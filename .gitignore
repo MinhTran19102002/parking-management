@@ -1,0 +1,51 @@
+
+# dependencies
+/project/node_modules
+/project/.pnp
+/project.pnp.js
+
+# testing
+/project/coverage
+
+# production
+/project/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+/project/npm-debug.log*
+/project/yarn-debug.log*
+/project/yarn-error.log*
+
+# .env
+
+# Logs
+/frontend-parking-management/build
+/frontend-parking-management/logs
+/frontend-parking-management/*.log
+/frontend-parking-management/npm-debug.log*
+/frontend-parking-management/yarn-debug.log*
+/frontend-parking-management/yarn-error.log*
+/frontend-parking-management/pnpm-debug.log*
+/frontend-parking-management/lerna-debug.log*
+
+/frontend-parking-management/node_modules
+/frontend-parking-management/dist
+/frontend-parking-management/dist-ssr
+/frontend-parking-management/*.local
+
+# Editor directories and files
+/frontend-parking-management/.vscode/*
+/frontend-parking-management/!.vscode/extensions.json
+/frontend-parking-management/.idea
+/frontend-parking-management/.DS_Store
+/frontend-parking-management/*.suo
+/frontend-parking-management/*.ntvs*
+/frontend-parking-management/*.njsproj
+/frontend-parking-management/*.sln
+/frontend-parking-management/*.sw?
+/frontend-parking-management/.vercel

@@ -1,0 +1,27 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es2017",
+        "jsx": "react",
+        "allowSyntheticDefaultImports": true,
+        "baseUrl": ".",
+        "types": [
+            "vite-plugin-svgr/client"
+        ],
+        "paths": {
+            "~/*": [
+                "./src/*"
+            ],
+        }
+    },
+    "exclude": [
+        "dist",
+        ".next",
+        ".cache",
+        "bundles",
+        "out"
+    ],
+    "include": [
+        "src/**/*",
+    ]
+}

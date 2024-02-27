@@ -1,0 +1,152 @@
+import { DELETE, GET, POST, PUT } from '../axiosMethods';
+
+const DOMAIN = import.meta.env.VITE_DOMAIN;
+
+export default {
+  get: (payload) => {
+    const url = `${DOMAIN}/user`;
+    return GET({
+      url,
+      payload
+    });
+  },
+
+  getManagers: (payload) => {
+    const url = `${DOMAIN}/user/manager`;
+    return GET({
+      url,
+      payload
+    });
+  },
+
+  getDrivers: (payload) => {
+    const url = `${DOMAIN}/user/driver/filter`;
+    return GET({
+      url,
+      payload
+    });
+  },
+
+  getEmployee: (payload) => {
+    const url = `${DOMAIN}/user/employee`;
+    return GET({
+      url,
+      payload
+    });
+  },
+
+  add: (payload) => {
+    const url = `${DOMAIN}/user`;
+    return POST({
+      url,
+      payload
+    });
+  },
+
+  addManager: (payload) => {
+    const url = `${DOMAIN}/user/manager`;
+    return POST({
+      url,
+      payload
+    });
+  },
+
+  addDriver: (payload) => {
+    const url = `${DOMAIN}/user/driver`;
+    return POST({
+      url,
+      payload
+    });
+  },
+
+  addMany: (payload) => {
+    const url = `${DOMAIN}/user/addMany`;
+    return POST({
+      url,
+      payload
+    });
+  },
+
+  edit: (_id, payload) => {
+    const url = `${DOMAIN}/user?_id=${_id}`;
+    return PUT({
+      url,
+      payload
+    });
+  },
+
+  editManager: (_id, payload) => {
+    const url = `${DOMAIN}/user/manager?_id=${_id}`;
+    return PUT({
+      url,
+      payload
+    });
+  },
+
+  editDriver: (_id, payload) => {
+    const url = `${DOMAIN}/user/driver?_id=${_id}`;
+    return PUT({
+      url,
+      payload
+    });
+  },
+
+  delete: (_id) => {
+    const url = `${DOMAIN}/user?_id=${_id}`;
+    return DELETE({
+      url
+    });
+  },
+
+  deleteManager: (_id) => {
+    const url = `${DOMAIN}/user/manager?_id=${_id}`;
+    return DELETE({
+      url
+    });
+  },
+
+  deleteMany: (ids) => {
+    const url = `${DOMAIN}/user/deleteMany`;
+    return POST({
+      url,
+      payload: {
+        ids
+      }
+    });
+  },
+
+  deleteManyManager: (ids) => {
+    const url = `${DOMAIN}/user/manager/deletes`;
+    return POST({
+      url,
+      payload: {
+        ids
+      }
+    });
+  },
+
+  deleteDriver: (_id) => {
+    const url = `${DOMAIN}/user/driver?_id=${_id}`;
+    return DELETE({
+      url
+    });
+  },
+
+  deleteManyDriver: (ids) => {
+    const url = `${DOMAIN}/user/driver/deletes`;
+    return POST({
+      url,
+      payload: {
+        ids
+      }
+    });
+  },
+
+  changePassword: (payload) => {
+    const url = `${DOMAIN}/user/changePassword`;
+    return POST({
+      url,
+      payload,
+    });
+  }
+};
