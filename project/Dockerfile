@@ -3,5 +3,5 @@ WORKDIR /app
 COPY package*.json ./
 RUN yarn install
 COPY . .
-EXPOSE 8010
+EXPOSE 7010
 CMD ["yarn", "dev"]
