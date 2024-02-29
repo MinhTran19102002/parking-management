@@ -19,7 +19,7 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports:
-      - 10039:5173
+      - 10048:5173
     networks:
       - db
     depends_on:
