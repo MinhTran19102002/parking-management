@@ -71,7 +71,7 @@ function Authen({}) {
                 wrapperCol={24}>
                 <Radio.Group>
                   {roles.map((role) => (
-                    <Radio value={role.value}>{role.label}</Radio>
+                    <Radio  value={role.value}>{role.label}</Radio>
                   ))}
                 </Radio.Group>
               </Form.Item>

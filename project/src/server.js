@@ -37,7 +37,7 @@ const START_SEVER = () => {
 
   //mo lai
   // httpServer.listen(PORT);
-
+  httpServer.use(cors())
   // chay local
   if (env.BUILD_MODE == 'dev') {
     httpServer.listen(8010, 8010, () => {
