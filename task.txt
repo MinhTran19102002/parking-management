@@ -1,0 +1,1 @@
+deloy Fe Be dùng ssh, monggo db

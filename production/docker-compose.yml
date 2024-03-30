@@ -1,0 +1,43 @@
+# version: '3.4'
+
+# services:
+#   backend:
+#     container_name: backend
+#     build:
+#       context: ../project
+#       dockerfile: Dockerfile
+#     restart: always
+#     networks:
+#       - db
+#     ports:
+#       - 8015:8010
+    
+#   # frontend:
+#   #   container_name: frontend
+#   #   build:
+#   #     context: ./frontend-parking-management
+#   #     dockerfile: Dockerfile
+#   #   restart: always
+#   #   ports:
+#   #     - 10048:5173
+#   #   networks:
+#   #     - db
+#   #   depends_on:
+#   #     - backend
+
+#   nginx:
+#     image: nginx:alpine
+#     port: 10048:5173
+#     volumes:
+#       - ../frontend-parking-management/build:/usr/share/nginx/html
+#       -
+#     ports:
+#       - "10048:5173"  # Cổng public (8080) : Cổng trong container (80)
+#     depends_on:
+#       - frontend
+#     networks:
+#     - db
+
+# networks:
+#   db:
+#     driver: bridge
