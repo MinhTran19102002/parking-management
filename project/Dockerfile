@@ -2,7 +2,7 @@ FROM node:18.16.0
 # RUN apt-get update && \
 #     apt-get install -y mongodb && \
 #     apt-get clean
-WORKDIR /app
+WORKDIR /app2
 COPY package*.json ./
 RUN yarn install
 COPY . .

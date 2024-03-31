@@ -10,7 +10,9 @@ services:
     networks:
       - db
     ports:
-      - 8015:8010
+      - 8010:8010
+    expose:
+      - 8010
     
   frontend:
     container_name: frontend

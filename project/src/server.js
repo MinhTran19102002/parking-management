@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(cors());
 
 //Use API V1
-app.use('/', APIs_V1);
+app.use('/api', APIs_V1);
 
 //Middleware xu ly loi tap trung
 app.use(errorHandlingMiddleware);
