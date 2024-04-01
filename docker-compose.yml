@@ -4,7 +4,7 @@ services:
   backend:
     container_name: backend
     build:
-      context: ./project
+      context: ./backend
       dockerfile: Dockerfile
     restart: always
     networks:
@@ -17,7 +17,7 @@ services:
   frontend:
     container_name: frontend
     build:
-      context: ./frontend-parking-management
+      context: ./frontend
       dockerfile: Dockerfile
     restart: always
     ports:
