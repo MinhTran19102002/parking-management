@@ -20,7 +20,7 @@
 /backend/npm-debug.log*
 /backend/yarn-debug.log*
 /backend/yarn-error.log*
-
+/frontend/yarn.lock
 # .env
 
 # Logs
@@ -49,3 +49,4 @@
 /frontend/*.sln
 /frontend/*.sw?
 /frontend/.vercel
+/frontend/yarn.lock

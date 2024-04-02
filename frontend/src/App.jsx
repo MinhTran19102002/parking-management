@@ -3,15 +3,12 @@ import Authen from './views/pages/Authen';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import Main from './views/pages/Main';
 import AppContext from './context';
-import { ConfigProvider, Skeleton, Spin, Typography, message, notification, theme } from 'antd';
-import customAntdTheme from './shared/CustomAntdTheme';
+import { Spin, Typography, message, notification, theme } from 'antd';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@progress/kendo-theme-default/dist/all.css';
-import { dayjsSetup } from './config';
-import dayjs from 'dayjs';
 import PageError from './views/pages/PageError';
 import { ThemeProvider } from 'styled-components';
-import socket from './socket';
+import DayService from './services/DayService';
 
 function Authencation({ children }) {
   const { state } = useContext(AppContext);
@@ -88,7 +85,7 @@ function App() {
   const navigate = useNavigate();
   const { token } = theme.useToken();
 
-  dayjsSetup();
+  DayService.setup();
 
   useEffect(() => {
     if (mess) {
