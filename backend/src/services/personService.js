@@ -155,6 +155,31 @@ const createUserM = async (data) => {
   }
 };
 
+
+const createUserStaff = async (data) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const hashed = await hashPassword(data.account.password);
+    data.account.password = hashed;
+    data.account.role = 'Staff';
+    
+    const createUser = await personModel.createNew(data);
+    if (createUser.acknowledged == false) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Người dùng tạo không thành công',
+        'Not Created',
+        'BR_person_2',
+      );
+    }
+    return createUser;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
 const createMany = async (_data) => {
   // eslint-disable-next-line no-useless-catch
   try {
@@ -287,6 +312,28 @@ const findDriverByFilter = async (filter) => {
       );
     }
     return findDriver;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+
+const findStaffByFilter = async (filter) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    let role = 'Staff';
+    const findManagerByFilter = await personModel.findUsers(filter, role);
+    if (findManagerByFilter.acknowledged == false) {
+      throw new ApiError(
+        StatusCodes.NOT_FOUND,
+        'Người quản lý không tồn tại',
+        'Not Found',
+        'BR_person_1_1',
+      );
+    }
+    return findManagerByFilter;
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
@@ -500,9 +547,9 @@ const deleteAll = async () => {
   }
 };
 
-const deleteMany = async (params) => {
+const deleteMany = async (ids, role) => {
   try {
-    const users = await personModel.deleteMany(params);
+    const users = await personModel.deleteMany(ids, role);
     if (users.acknowledged == false) {
       throw new ApiError(
         StatusCodes.INTERNAL_SERVER_ERROR,
@@ -692,6 +739,7 @@ export const userService = {
   login,
   createUser,
   createUserM,
+  createUserStaff,
   createMany,
   createManyDriver,
   // refreshToken,
@@ -705,6 +753,7 @@ export const userService = {
   deleteAll,
   findDriverByFilter,
   findManagerByFilter,
+  findStaffByFilter,
   updateDriver,
   deleteDriver,
   deleteDrivers,
