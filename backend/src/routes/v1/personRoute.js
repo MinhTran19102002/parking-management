@@ -115,4 +115,28 @@ Router.route('/changePassword').post(
   userController.changePassword,
 );
 
+
+Router.route('/staff/filter')
+  .post(
+    // userValidation.changePassword,
+    // verifyTokenMidleware.verifyToken,
+    userController.findStaffByFilter
+  );
+
+Router.route('/staff')
+  .post(
+    userController.createUserStaff)
+  .put(
+    // userValidation.updateUser,
+    // verifyTokenMidleware.verifyTokenAndAdmin,
+    userController.updateUser
+  )
+  .delete(
+    // verifyTokenMidleware.verifyTokenAndAdmin, 
+    userController.deleteStaff);
+Router.route('/staff/deletes').post(
+  // verifyTokenMidleware.verifyTokenAndAdmin,
+  userController.deleteStaffs
+);
+
 export const userRoute = Router;

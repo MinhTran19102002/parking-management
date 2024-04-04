@@ -517,7 +517,7 @@ const deleteAll = async () => {
   }
 };
 
-const deleteMany = async ({ ids }) => {
+const deleteMany = async (ids , role) => {
   try {
     const objectIds = ids.map((id) => new ObjectId(id));
     const updateId = await GET_DB()
@@ -527,7 +527,7 @@ const deleteMany = async ({ ids }) => {
     const result = await GET_DB()
       .collection(PERSON_COLLECTION_NAME)
       .deleteMany(
-        { _id: { $in: objectIds }, 'account.role': 'Manager' },
+        { _id: { $in: objectIds }, 'account.role': role },
         { returnDocument: 'after' },
         { locale: 'vi', strength: 1 },
       );

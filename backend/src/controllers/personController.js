@@ -22,6 +22,17 @@ const createUser = async (req, res, next) => {
   }
 };
 
+const createUserStaff = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    console.log('fadfasfasf')
+    const createUser = await userService.createUserStaff(req.body);
+    res.status(StatusCodes.CREATED).json(createUser);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const changePassword = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
@@ -133,10 +144,33 @@ const deleteManager = async (req, res, next) => {
   }
 };
 
+const deleteStaff= async (req, res, next) => {
+  try {
+    const rs = await userService.deleteUser(req.query._id, 'Staff');
+    res.status(StatusCodes.OK).json(rs);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const deleteManagers = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
-    const rs = await userService.deleteMany(req.body);
+    const ids = req.body.ids;
+    //const role = req.body.role;
+    const rs = await userService.deleteMany(ids,'Manager' );
+    res.status(StatusCodes.OK).json(rs);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteStaffs = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    const ids = req.body.ids;
+    // const role = req.body.role;
+    const rs = await userService.deleteMany(ids,'Staff' );
     res.status(StatusCodes.OK).json(rs);
   } catch (error) {
     next(error);
@@ -213,6 +247,16 @@ const findDriverByFilter = async (req, res, next) => {
   }
 };
 
+const findStaffByFilter = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    const rs = await userService.findStaffByFilter(req.query);
+    res.status(StatusCodes.OK).json(rs);
+  } catch (error) {
+    next(error);
+  }
+};
+
 const createEmployee = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
@@ -276,6 +320,7 @@ const deleteEmployee = async (req, res, next) => {
 export const userController = {
   createNew,
   createUser,
+  createUserStaff,
   createMany,
   createManyDriver,
   createDriver,
@@ -287,9 +332,11 @@ export const userController = {
   deleteUser,
   deleteManager,
   deleteManagers,
+  deleteStaffs,
   deleteMany,
   deleteAll,
   findDriverByFilter,
+  findStaffByFilter,
   findManagerByFilter,
   updateDriver,
   deleteDriver,
@@ -301,4 +348,5 @@ export const userController = {
   deleteAllEmployee,
   deleteEmployee,
   deleteEmployees,
+  deleteStaff,
 };
