@@ -1,5 +1,5 @@
 import React, { Suspense, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { Layout, Flex, Radio, theme, Typography, Tag, Spin, Skeleton } from 'antd';
+import { Layout, Flex, Radio, theme, Typography, Tag, Spin, Skeleton, Space } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
 import { DetailFloorStyled, TransformBlock } from './style';
 import { MapInteractionCSS } from 'react-map-interaction';
@@ -13,6 +13,10 @@ import CarC from '~/assets/images/blue-car.png';
 import MapA from '~/assets/images/mapA.svg?react';
 import MapB from '~/assets/images/mapB.svg?react';
 import MapC from '~/assets/images/mapC.svg?react';
+import MapA1 from '~/assets/images/mapA1.svg?react';
+import MapB1 from '~/assets/images/mapB1.svg?react';
+import MapC1 from '~/assets/images/mapC1.svg?react';
+import Moto from '~/assets/images/TealMoto.svg?react';
 import dayjs from 'dayjs';
 import DetailSlot from './DetailSlot';
 import AppContext from '~/context';
@@ -33,6 +37,7 @@ function Map({}) {
 
   const callApi = async () => {
     try {
+      setLoading(true);
       const api = await ParkingApi.getStatus({ zone });
       const newSlots = api[0].slots;
       setSlots(newSlots);
@@ -44,32 +49,32 @@ function Map({}) {
   };
 
   useEffect(() => {
-    callApi();
+    // callApi();
   }, [state.parkingEvent]);
 
   useEffect(() => {
-    setLoading(true);
-    callApi();
+    // callApi();
   }, [zone]);
 
   return (
     <Layout className="px-4">
       <Header className="border-1" title={'Bản đồ'} />
       <Content className="w-100 py-3">
-        <Flex>
+        <Space>
           <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
             <Radio.Button value="A">Khu A</Radio.Button>
+            <Radio.Button value="A1">Khu A1</Radio.Button>
             <Radio.Button value="B">Khu B</Radio.Button>
+            <Radio.Button value="B1">Khu B1</Radio.Button>
             <Radio.Button value="C">Khu C</Radio.Button>
+            <Radio.Button value="C1">Khu C1</Radio.Button>
           </Radio.Group>
-        </Flex>
+        </Space>
         <TransformBlock
           className="mt-2 overflow-hidden"
           style={{ backgroundColor: token.neutral5 }}>
           <Spin spinning={loading} wrapperClassName="h-100 w-100">
-            <MapInteractionCSS
-              minScale={0.4}
-              maxScale={2}>
+            <MapInteractionCSS minScale={0.4} maxScale={2}>
               <div className="map-wrapper">
                 {useMemo(() => {
                   let vehicles;
@@ -104,6 +109,12 @@ function Map({}) {
                     case 'C':
                       map = <MapC />;
                       break;
+                    case 'A1':
+                      map = <MapA1 />;
+                    case 'B1':
+                      map = <MapB1 />;
+                    case 'C1':
+                      map = <MapC1 />;
                   }
 
                   const newSlots = slots.map((slot, ix) => {
@@ -168,7 +179,7 @@ function Map({}) {
                       {map} {newSlots}
                     </>
                   );
-                }, [slots])}
+                }, [slots, zone])}
               </div>
             </MapInteractionCSS>
           </Spin>
