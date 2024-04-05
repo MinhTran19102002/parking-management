@@ -14,7 +14,7 @@ const createNew = async (data) => {
     const findZone = await parkingModel.findOne(zone);
     // eslint-disable-next-line no-useless-catch
     try {
-        const createNew = await stationModel.createStation({ stationName: data.stationName, zoneId: findZone._id })
+        const createNew = await stationModel.createStation({ stationName: data.stationName, zoneId: findZone._id, slotNumber: data.slotNumber })
         if (createNew.acknowledged == false) {
             throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe tạo không thành công', 'Not Deleted', 'BR_vihicle_4');
         }
