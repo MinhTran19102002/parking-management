@@ -12,7 +12,7 @@ const EVENT_COLLECTION_SCHEMA = Joi.object({
   name: Joi.string().required().min(1).max(50).trim().strict(),
   zone: Joi.string().optional().min(1).max(2).trim().strict(),
   eventId: Joi.string().optional().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE),
-  createdAt: Joi.date().timestamp('javascript').default(null),
+  createdAt: Joi.date().timestamp('javascript').default(null).strict(),
   _destroy: Joi.boolean().default(false),
 });
 
