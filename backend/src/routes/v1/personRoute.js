@@ -117,7 +117,7 @@ Router.route('/changePassword').post(
 
 
 Router.route('/staff/filter')
-  .post(
+  .get(
     // userValidation.changePassword,
     // verifyTokenMidleware.verifyToken,
     userController.findStaffByFilter
