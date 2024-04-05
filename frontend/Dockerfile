@@ -8,6 +8,7 @@ WORKDIR /app1
 # CMD [ "yarn", "dev" ]
 
 COPY . .
+# ENV VITE_DOMAIN = /api
 RUN yarn install
 RUN yarn build
 CMD [ "yarn", "dev" ]
