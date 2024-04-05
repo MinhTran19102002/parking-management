@@ -8,6 +8,7 @@ const STATION_COLLECTION_SCHEMA = Joi.object({
   stationName: Joi.string().required().min(1).max(50).trim().strict(),
   zoneId: Joi.string().optional().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE),
   //   stationId: Joi.string().optional().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE),
+  slotNumber : Joi.number().integer().required().min(0),
   createdAt: Joi.date().timestamp('javascript').default(Date.now).strict(),
   _destroy: Joi.boolean().default(false),
 });
