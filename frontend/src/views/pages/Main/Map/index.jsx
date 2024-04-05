@@ -14,8 +14,8 @@ import MapA from '~/assets/images/mapA.svg?react';
 import MapB from '~/assets/images/mapB.svg?react';
 import MapC from '~/assets/images/mapC.svg?react';
 import MapA1 from '~/assets/images/mapA1.svg?react';
-import MapB1 from '~/assets/images/mapA1.svg?react';
-import MapC1 from '~/assets/images/mapA1.svg?react';
+import MapB1 from '~/assets/images/mapB1.svg?react';
+import MapC1 from '~/assets/images/mapC1.svg?react';
 import Moto from '~/assets/images/TealMoto.svg?react';
 import dayjs from 'dayjs';
 import DetailSlot from './DetailSlot';
@@ -68,8 +68,6 @@ function Map({}) {
             <Radio.Button value="B1">Khu B1</Radio.Button>
             <Radio.Button value="C">Khu C</Radio.Button>
             <Radio.Button value="C1">Khu C1</Radio.Button>
-            <Radio.Button value="E">Khu E</Radio.Button>
-            <Radio.Button value="E1">Khu E1</Radio.Button>
           </Radio.Group>
         </Space>
         <TransformBlock
@@ -111,11 +109,11 @@ function Map({}) {
                     case 'C':
                       map = <MapC />;
                       break;
-                    case 'A1': 
+                    case 'A1':
                       map = <MapA1 />;
-                    case 'B1': 
+                    case 'B1':
                       map = <MapB1 />;
-                    case 'C1': 
+                    case 'C1':
                       map = <MapC1 />;
                   }
 
