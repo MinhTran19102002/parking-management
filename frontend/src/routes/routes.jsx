@@ -13,6 +13,7 @@ import Home from '~/views/pages/Main/Home';
 import Map from '~/views/pages/Main/Map';
 import Event from '~/views/pages/Main/Event';
 import UserPage from '~/views/pages/Main/UserPage';
+import Staff from '~/views/pages/Main/Staff';
 
 // Public routes
 const publicRoutes = [
@@ -41,7 +42,7 @@ const publicRoutes = [
     key: 'employee',
     label: 'Quản lý nhân viên',
     path: '/employee',
-    element: <Employee />,
+    element: <Staff />,
     icon: <UsergroupAddOutlined />
   },
   {
