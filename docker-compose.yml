@@ -1,6 +1,23 @@
 version: '3.4'
 
 services:
+  mongodb:
+    image: mongo
+    container_name: my-mongodb
+    ports:
+      - "27087:27087"
+    networks:
+      - db
+  data-importer:
+    image: mongo
+    container_name: data-importer
+    volumes:
+      - ./data:/data
+    command: bash -c "sleep 10 && mongoimport --host mongodb --db paking-management --collection event --file /data/event.json --jsonArray && mongoimport --host mongodb --db paking-management --collection parking --file /data/parking.json --jsonArray && mongoimport --host mongodb --db paking-management --collection parkingTurn --file /data/parkingTurn.json --jsonArray && mongoimport --host mongodb --db paking-management --collection persons --file /data/persons.json --jsonArray && mongoimport --host mongodb --db paking-management --collection vehicles --file /data/vehicles.json --jsonArray"
+    depends_on:
+      - mongodb
+    networks:
+      - db
   backend:
     container_name: backend
     build:
@@ -11,8 +28,13 @@ services:
       - db
     ports:
       - 8010:8010
+    environment:
+      MONGODB_URI: mongodb://mongodb/
     expose:
       - 8010
+    depends_on:
+      - mongodb
+      - data-importer
     
   frontend:
     container_name: frontend
@@ -20,6 +42,8 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     restart: always
+    environment:
+      VITE_DOMAIN: /api
     ports:
       - 10048:5173
     networks:
