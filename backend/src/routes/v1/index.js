@@ -4,6 +4,8 @@ import {userRoute} from '~/routes/v1/personRoute'
 import {parkingRoute} from '~/routes/v1/parkingRoute'
 import {parkingTurnRoute} from '~/routes/v1/parkingTurnRoute'
 import { vehicleRoute } from './vehicleRoute'
+import { scheduleRoute } from './scheduleRoute'
+import { stationRoute } from './stationRoute'
 
 const Router = express.Router()
 
@@ -21,5 +23,12 @@ Router.use('/parkingTurn', parkingTurnRoute)
 
 // API vehicle
 Router.use('/vehicle', vehicleRoute)
+
+// API schedule
+Router.use('/schedule', scheduleRoute)
+
+
+// API schedule
+Router.use('/station', stationRoute)
 
 export const APIs_V1 = Router
