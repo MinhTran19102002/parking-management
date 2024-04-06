@@ -30,6 +30,14 @@ const teacher_departments = [
   'Trường Trung học Kỹ thuật Thực hành'
 ];
 
+const avts = [
+  'https://danviet.mediacdn.vn/296231569849192448/2022/7/18/a33b29c7c6b604e85da7-1658133524535230644268.jpg',
+  'https://cafefcdn.com/thumb_w/640/203337114487263232/2024/1/2/avatar1704200715756-17042007161791079596829.jpg',
+  'https://nguoinoitieng.tv/images/thumbnail/101/bfk8.jpg',
+  'https://nguoinoitieng.tv/images/thumbnail/0/gs.jpg',
+  'https://nguoinoitieng.tv/images/thumbnail/104/bhu9.jpg'
+];
+
 const emp_departments = [
   'Phòng Đào tạo',
   'Phòng Đào tạo không chính quy',
@@ -64,7 +72,10 @@ function generateUsername(fullName) {
   const username = `${ten}${tenDem?.charAt(0)}${ho}`;
 
   function removeVietnameseAccents(str) {
-    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd')
+    return str
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/đ/g, 'd');
   }
 
   return removeVietnameseAccents(username);

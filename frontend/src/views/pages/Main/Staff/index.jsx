@@ -13,10 +13,17 @@ import {
   Modal,
   Pagination,
   Select,
-  Input
+  Input,
+  Avatar 
 } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
-import { PlusOutlined, EditOutlined, DeleteOutlined, DeleteFilled, ExclamationCircleFilled } from '@ant-design/icons';
+import {
+  PlusOutlined,
+  EditOutlined,
+  DeleteOutlined,
+  DeleteFilled,
+  ExclamationCircleFilled
+} from '@ant-design/icons';
 import { UserApi } from '~/api';
 import dayjs from 'dayjs';
 import { useSearchParams, useParams } from 'react-router-dom';
@@ -59,7 +66,12 @@ function Staff({}) {
     try {
       setLoading(true);
       const api = await EmployeeApi.get({ ...params, pageSize, pageIndex });
-      setData(api);
+      setData({
+        ...api,
+        data: api.data.map((el) => {
+          return { ...el, avatar: avts[0] };
+        })
+      });
       isMounted.current = true;
     } catch (error) {
       ErrorService.hanldeError(error, actions.onNoti);
@@ -69,6 +81,8 @@ function Staff({}) {
       setSeletedRows([]);
     }
   };
+
+  console.log(data);
 
   useEffect(() => {
     callApi();
@@ -160,6 +174,11 @@ function Staff({}) {
       dataIndex: 'key',
       width: 60,
       render: (_, prop, index) => (pageIndex - 1) * pageSize + index + 1
+    },
+    {
+      title: 'Avatar',
+      dataIndex: 'Avatar',
+      render: (_, item, index) => <Avatar size={48} src={item.avatar} />
     },
     {
       title: 'Tên',
@@ -368,3 +387,11 @@ function Staff({}) {
 }
 
 export default Staff;
+
+const avts = [
+  'https://nguoinoitieng.tv/images/thumbnail/96/bbf7.jpg',
+  'https://cafefcdn.com/thumb_w/640/203337114487263232/2024/1/2/avatar1704200715756-17042007161791079596829.jpg',
+  'https://nguoinoitieng.tv/images/thumbnail/101/bfk8.jpg',
+  'https://nguoinoitieng.tv/images/thumbnail/0/gs.jpg',
+  'https://nguoinoitieng.tv/images/thumbnail/104/bhu9.jpg'
+];
