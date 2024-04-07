@@ -174,13 +174,18 @@ function Map({}) {
                     }
                   });
 
-                  return (
-                    <>
-                      {map} {newSlots}
-                    </>
-                  );
+                  return <>{newSlots}</>;
                 }, [slots, zone])}
               </div>
+
+              {useMemo(() => {
+                if (zone === 'A') return <MapA />;
+                else if (zone === 'B') return <MapB />;
+                else if (zone === 'C') return <MapC />;
+                else if (zone === 'A1') return <MapA1 />;
+                else if (zone === 'B1') return <MapB1 />;
+                else if (zone === 'C1') return <MapC1 />;
+              }, [zone])}
             </MapInteractionCSS>
           </Spin>
         </TransformBlock>
