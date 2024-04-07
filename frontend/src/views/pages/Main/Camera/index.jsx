@@ -32,7 +32,7 @@ import CustomedTable from '~/views/components/Table';
 import AppContext from '~/context';
 import { ErrorService } from '~/services';
 import EmployeeApi from '~/api/Collections/EmployeeApi';
-import { hanldeColumes } from './data';
+import { CAMERAS, hanldeColumes } from './data';
 
 function Camera({}) {
   const [data, setData] = useState({
@@ -59,7 +59,10 @@ function Camera({}) {
   const callApi = async () => {
     try {
       setLoading(true);
-
+      setData({
+        ...data,
+        data: CAMERAS,
+      })
       isMounted.current = true;
     } catch (error) {
       ErrorService.hanldeError(error, actions.onNoti);
