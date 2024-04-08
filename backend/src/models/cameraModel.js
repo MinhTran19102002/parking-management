@@ -8,6 +8,7 @@ import { parkingModel } from '~/models/parkingModel'
 
 const CAMERA_COLLECTION_NAME = 'camera';
 const CAMENRA_COLLECTION_SCHEMA = Joi.object({
+  cameraId: Joi.string().required().min(1).max(50).trim().strict(),
   name: Joi.string().required().min(1).max(50).trim().strict(),
   images: Joi.array().items(Joi.string().optional()).default(null),
   type: Joi.string().valid('normal', 'cam360').required(),
@@ -57,7 +58,7 @@ const updateCamara = async (_id, _data) => {
   // delete _data._id;
   
   const data = await validateBeforCreate(_data);
-  console.log(_id)
+  delete data.cameraId;
   delete data.createdAt;
   data.updatedAt = Date.now();
   try {
