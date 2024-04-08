@@ -33,8 +33,10 @@ import AppContext from '~/context';
 import { ErrorService } from '~/services';
 import EmployeeApi from '~/api/Collections/EmployeeApi';
 import { CAMERAS, hanldeColumes } from './data';
+import CameraForm from './CameraForm';
 
 function Camera({}) {
+  const { actions } = useContext(AppContext);
   const [data, setData] = useState({
     data: [],
     totalCount: 0,
@@ -55,14 +57,17 @@ function Camera({}) {
   const [loading, setLoading] = useState(false);
   const isMounted = useRef(false);
   const [selectedRows, setSeletedRows] = useState([]);
+  const [formAction, setFormAction] = useState({});
+  const [openForm, setOpenForm] = useState(false);
+  const [openFormEdit, setOpenFormEdit] = useState(false);
 
   const callApi = async () => {
     try {
       setLoading(true);
       setData({
         ...data,
-        data: CAMERAS,
-      })
+        data: CAMERAS
+      });
       isMounted.current = true;
     } catch (error) {
       ErrorService.hanldeError(error, actions.onNoti);
@@ -184,11 +189,44 @@ function Camera({}) {
     <Layout className="px-4">
       <Header className="border-1" title={'Quản lý camera'} />
       <Content className="w-100 py-3">
+        <Modal
+          title={formAction.title}
+          open={openForm}
+          onCancel={() => {
+            setOpenForm(false);
+          }}
+          destroyOnClose={true}
+          classNames={{ footer: 'd-none' }}>
+          <CameraForm
+            formAction={formAction}
+            onClose={hanldeCloseForm}
+            noChangeAccount={formAction.action === 'edit'}
+            onNoti={actions.onNoti}
+            onMess={actions.onMess}
+          />
+        </Modal>
         <Card
           title={
             <Typography.Title type="primary" level={4} className="mb-0">
               Danh sách camera:
             </Typography.Title>
+          }
+          extra={
+            <Space>
+              {selectedRows.length > 0 && (
+                <Button
+                  id="btnDeleteMany"
+                  type="primary"
+                  icon={<DeleteFilled />}
+                  onClick={onDeleteMany}
+                  danger>
+                  Xóa
+                </Button>
+              )}
+              <Button id="btnAdd" type="primary" icon={<PlusOutlined />} onClick={onAdd}>
+                Thêm camera
+              </Button>
+            </Space>
           }
           className="box">
           <Row className="mt-2 mb-4 w-100">

@@ -9,6 +9,7 @@ import '@progress/kendo-theme-default/dist/all.css';
 import PageError from './views/pages/PageError';
 import { ThemeProvider } from 'styled-components';
 import DayService from './services/DayService';
+import { i18nConfig } from './config';
 
 function Authencation({ children }) {
   const { state } = useContext(AppContext);
@@ -86,6 +87,7 @@ function App() {
   const { token } = theme.useToken();
 
   DayService.setup();
+  i18nConfig();
 
   useEffect(() => {
     if (mess) {

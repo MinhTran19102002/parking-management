@@ -299,7 +299,7 @@ function Staff({}) {
                   Xóa
                 </Button>
               )}
-              <Button id="btnAdd" type="primary" ghost icon={<PlusOutlined />} onClick={onAdd}>
+              <Button id="btnAdd" type="primary" icon={<PlusOutlined />} onClick={onAdd}>
                 Thêm nhân viên
               </Button>
             </Space>

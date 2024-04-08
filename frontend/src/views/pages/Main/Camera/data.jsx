@@ -3,6 +3,9 @@ import React from 'react';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Avatar, Image } from 'antd';
 import CustomedImage from '~/views/components/CustomedImage';
+
+export const CAMERA_TYPES = ['normal', 'cam360'];
+
 export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }) => [
   {
     title: '#',
@@ -17,7 +20,10 @@ export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }) => [
     render: (_, item) => (
       <Avatar.Group shape="square">
         {item.images.map((img) => (
-          <CustomedImage style={{ width: 60, height: 60, objectFit: 'cover', border: '1.6px solid #fff' }} src={img} />
+          <CustomedImage
+            style={{ width: 60, height: 60, objectFit: 'cover', border: '1.6px solid #fff' }}
+            src={img}
+          />
         ))}
       </Avatar.Group>
     )
