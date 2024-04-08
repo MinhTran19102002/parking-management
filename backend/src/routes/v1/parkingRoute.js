@@ -7,13 +7,13 @@ import {parkingValidation} from '~/validations/parkingValidation'
 const Router = express.Router()
 
 Router.route('/getStatusByZone')
-  .get(verifyTokenMidleware.verifyTokenAndManager,parkingController.getStatusByZone) //verifyTokenMidleware.verifyToken,
+  .get(verifyTokenMidleware.verifyTokenAndAdminManager,parkingController.getStatusByZone) //verifyTokenMidleware.verifyToken,
 
 Router.route('/createPaking')
-  .post( parkingValidation.create,verifyTokenMidleware.verifyTokenAndManager, parkingController.createPaking)
+  .post( parkingValidation.create,verifyTokenMidleware.verifyTokenAndAdminManager, parkingController.createPaking)
 
 Router.route('/getStatus')
-  .get(verifyTokenMidleware.verifyTokenAndManager, parkingController.getStatus)
+  .get(verifyTokenMidleware.verifyTokenAndAdminManager, parkingController.getStatus)
 
 
 export const parkingRoute = Router
