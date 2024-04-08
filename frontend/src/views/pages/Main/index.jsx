@@ -41,7 +41,7 @@ function Main({}) {
   const currRoute = useMemo(() => {
     let rs = publicRoutes;
     if (auth.role && auth.role === 'Admin') {
-      rs = adminRoutes;
+      rs = [...rs, ...adminRoutes];
     }
     return rs;
   }, [state.auth]);

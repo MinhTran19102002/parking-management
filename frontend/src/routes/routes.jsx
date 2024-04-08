@@ -5,7 +5,8 @@ import {
   InteractionOutlined,
   LineChartOutlined,
   UserOutlined,
-  UsergroupAddOutlined
+  UsergroupAddOutlined, 
+  CameraOutlined
 } from '@ant-design/icons';
 import Driver from '~/views/pages/Main/Driver';
 import Employee from '~/views/pages/Main/Employee';
@@ -13,7 +14,8 @@ import Home from '~/views/pages/Main/Home';
 import Map from '~/views/pages/Main/Map';
 import Event from '~/views/pages/Main/Event';
 import UserPage from '~/views/pages/Main/UserPage';
-
+import Staff from '~/views/pages/Main/Staff';
+import Camera from '~/views/pages/Main/Camera';
 // Public routes
 const publicRoutes = [
   {
@@ -41,7 +43,7 @@ const publicRoutes = [
     key: 'employee',
     label: 'Quản lý nhân viên',
     path: '/employee',
-    element: <Employee />,
+    element: <Staff />,
     icon: <UsergroupAddOutlined />
   },
   {
@@ -60,7 +62,14 @@ const adminRoutes = [
     path: '/user',
     element: <UserPage />,
     icon: <ContactsOutlined />
-  }
+  },
+  {
+    key: 'camera',
+    label: 'Quản lý Camera',
+    path: '/camera',
+    element: <Camera />,
+    icon: <CameraOutlined />
+  },
 ];
 
 export { publicRoutes, adminRoutes };

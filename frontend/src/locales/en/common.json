@@ -1,0 +1,11 @@
+{
+  "namePage": "Smart Security WTC Tower",
+  "version": "Version",
+  "camera": {
+    "type": {
+      "title": "Type",
+      "cam360": "Camera 360",
+      "normal": "Normal"
+    }
+  }
+}
