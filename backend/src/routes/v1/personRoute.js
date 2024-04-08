@@ -32,41 +32,41 @@ Router.route('/addManyManager').post(userController.createMany); // tạo nhiề
 Router.route('/driver')
   .post(
     userValidation.createDriver,
-    verifyTokenMidleware.verifyTokenAndManager,
+    verifyTokenMidleware.verifyTokenAndAdminManager,
     userController.createDriver,
   ) //
-  .get(verifyTokenMidleware.verifyTokenAndManager, userController.findDriver) //
+  .get(verifyTokenMidleware.verifyTokenAndAdminManager, userController.findDriver) //
   .put(
     userValidation.updateDriver,
-    verifyTokenMidleware.verifyTokenAndManager,
+    verifyTokenMidleware.verifyTokenAndAdminManager,
     userController.updateDriver,
   ) //
   .delete(
     userValidation.deleteDriver,
-    verifyTokenMidleware.verifyTokenAndManager,
+    verifyTokenMidleware.verifyTokenAndAdminManager,
     userController.deleteDriver,
   ); //
 
 Router.route('/driver/deletes').post(
-  verifyTokenMidleware.verifyTokenAndManager,
+  verifyTokenMidleware.verifyTokenAndAdminManager,
   userController.deleteDrivers,
 );
 
 Router.route('/driver/filter').get(
-  verifyTokenMidleware.verifyTokenAndManager,
+  verifyTokenMidleware.verifyTokenAndAdminManager,
   userController.findDriverByFilter,
 );
 
 Router.route('/employee')
-  .get(verifyTokenMidleware.verifyTokenAndManager, userController.findEmployees)
+  .get(verifyTokenMidleware.verifyTokenAndAdminManager, userController.findEmployees)
   .post(
     userValidation.createEmployee,
-    verifyTokenMidleware.verifyTokenAndManager,
+    verifyTokenMidleware.verifyTokenAndAdminManager,
     userController.createEmployee,
   )
   .put(
     userValidation.createEmployee,
-    verifyTokenMidleware.verifyTokenAndManager,
+    verifyTokenMidleware.verifyTokenAndAdminManager,
     userController.updateEmployee,
   )
   .delete(
@@ -75,7 +75,7 @@ Router.route('/employee')
   );
 
 Router.route('/employee/deletes').post(
-  verifyTokenMidleware.verifyTokenAndManager,
+  verifyTokenMidleware.verifyTokenAndAdminManager,
   userController.deleteEmployees,
 );
 
@@ -83,29 +83,29 @@ Router.route('/employee/deletes').post(
 Router.route('/manager')
   .post(
     userValidation.createUser,
-    verifyTokenMidleware.verifyTokenAndAdmin,
+    verifyTokenMidleware.verifyTokenAndAdminManager,
     userController.createUser,
   ) //
   .get(verifyTokenMidleware.verifyTokenAndAdmin, userController.findManagerByFilter)
   .put(
     userValidation.updateUser,
-    verifyTokenMidleware.verifyTokenAndAdmin,
+    verifyTokenMidleware.verifyTokenAndAdminManager,
     userController.updateUser,
   )
-  .delete(verifyTokenMidleware.verifyTokenAndAdmin, userController.deleteManager);
+  .delete(verifyTokenMidleware.verifyTokenAndAdminManager, userController.deleteManager);
 
 Router.route('/manager/deletes').post(
-  verifyTokenMidleware.verifyTokenAndAdmin,
+  verifyTokenMidleware.verifyTokenAndAdminManager,
   userController.deleteManagers,
 );
 
 Router.route('/createManyEmployee').post(
-  verifyTokenMidleware.verifyTokenAndManager,
+  verifyTokenMidleware.verifyTokenAndAdminManager,
   userController.createManyEmployee,
 );
 
 Router.route('/deleteAllEmployee').delete(
-  verifyTokenMidleware.verifyTokenAndManager,
+  verifyTokenMidleware.verifyTokenAndAdminManager,
   userController.deleteAllEmployee,
 );
 

@@ -1,0 +1,65 @@
+import { userModel } from '~/models/personModel'
+import ApiError from '~/utils/ApiError'
+import { cameraModel } from '~/models/cameraModel'
+import { StatusCodes } from 'http-status-codes'
+
+const createCamera = async (data) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const createNew = await cameraModel.createNew(data)
+    if (createNew.acknowledged == false) {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Tạo camera không thành công', 'Not Created', 'BR_parking_2')
+    }
+    return createNew
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+}
+
+const updateCamara = async (_id, params) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const users = await cameraModel.updateCamara(_id, params);
+    if (users == null) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Người dùng cập nhật không thành công',
+        'Not Updated',
+        'BR_person_3',
+      );
+    }
+    return users;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+}
+
+const findByFilter = async (filter) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const findcamera = await cameraModel.findByFilter(filter);
+    if (findcamera.acknowledged == false) {
+      throw new ApiError(
+        StatusCodes.NOT_FOUND,
+        'Người lái xe không tồn tại',
+        'Not Found',
+        'BR_person_1_1',
+      );
+    }
+    return findcamera;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+export const cameraService = {
+  createCamera,
+  updateCamara,
+  findByFilter,
+}

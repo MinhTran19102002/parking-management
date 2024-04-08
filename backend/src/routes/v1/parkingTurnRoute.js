@@ -7,16 +7,16 @@ import { parkingTurnValidation } from '~/validations/parkingTurnValidation'
 const Router = express.Router()
 
 Router.route('/createPakingTurn')
-  .post(parkingTurnValidation.create, verifyTokenMidleware.verifyTokenAndManager,parkingTurnController.createNew)
+  .post(parkingTurnValidation.create, verifyTokenMidleware.verifyTokenAndAdminManager,parkingTurnController.createNew)
 
 Router.route('/createPakingTurnWithoutPosition')
-  .post(parkingTurnValidation.createWithoutPosition, verifyTokenMidleware.verifyTokenAndManager, parkingTurnController.createNewWithoutPosition)
+  .post(parkingTurnValidation.createWithoutPosition, verifyTokenMidleware.verifyTokenAndAdminManager, parkingTurnController.createNewWithoutPosition)
 
 Router.route('/createPakingTurnWithoutZoneAndPosition')
-  .post(parkingTurnValidation.createWithoutZoneAndPosition,verifyTokenMidleware.verifyTokenAndManager, parkingTurnController.createNewWithoutZone)
+  .post(parkingTurnValidation.createWithoutZoneAndPosition,verifyTokenMidleware.verifyTokenAndAdminManager, parkingTurnController.createNewWithoutZone)
 
 Router.route('/outPaking')
-  .post(parkingTurnValidation.createWithoutZoneAndPosition,verifyTokenMidleware.verifyTokenAndManager,parkingTurnController.outPaking)
+  .post(parkingTurnValidation.createWithoutZoneAndPosition,verifyTokenMidleware.verifyTokenAndAdminManager,parkingTurnController.outPaking)
 
 Router.route('/Reports/GetVehicleInOutNumber')
   .get( parkingTurnController.getVehicleInOutNumber)
