@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Form, Modal, Input, Select, Button, Space, Upload } from 'antd';
 import { UploadOutlined, PlusOutlined } from '@ant-design/icons';
-import { UserApi } from '~/api';
+import { CameraApi, UserApi } from '~/api';
 import { ErrorService, ValidateService } from '~/services';
 import AppContext from '~/context';
 import EmployeeApi from '~/api/Collections/EmployeeApi';
@@ -49,11 +49,9 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
   const hanldeEdit = async (values) => {
     try {
       setLoading(true);
-      delete values.account;
-      delete values.user;
-      const api = await UserApi.edit(formAction.payload._id, values);
+      const api = await CameraApi.edit(formAction.payload._id, values);
       if (api) {
-        onNoti({ message: 'Chỉnh sửa nhân viên thành công', type: 'success' });
+        onNoti({ message: 'Chỉnh sửa camera thành công', type: 'success' });
       }
       onClose({ reload: true, newValues: api });
     } catch (error) {
@@ -65,18 +63,18 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
 
   const hanldeAdd = async (values) => {
     console.log('hanlde Add', values);
-    // try {
-    //   setLoading(true);
-    //   const api = await EmployeeApi.add(values);
-    //   if (api) {
-    //     onNoti({ message: 'Thêm nhân viên thành công', type: 'success' });
-    //   }
-    //   onClose({ reload: true });
-    // } catch (error) {
-    //   ErrorService.hanldeError(error, onNoti);
-    // } finally {
-    //   setLoading(false);
-    // }
+    try {
+      setLoading(true);
+      const api = await CameraApi.add(values);
+      if (api) {
+        onNoti({ message: 'Thêm camera thành công', type: 'success' });
+      }
+      onClose({ reload: true });
+    } catch (error) {
+      ErrorService.hanldeError(error, onNoti);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const randomPassword = () => {
@@ -116,7 +114,7 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
           <Input placeholder="Nhập Camera ID" id="cameraIdInput" />
         </Form.Item>
 
-        <Form.Item name={'Tên'} label="Tên" rules={[{ required: true }]}>
+        <Form.Item name={'name'} label="Tên" rules={[{ required: true }]}>
           <Input placeholder="Nhập tên" id="nameInput" />
         </Form.Item>
 
@@ -141,32 +139,6 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
             <Button icon={<UploadOutlined />}>Upload</Button>
           </Upload>
         </Form.Item>
-
-        {/* <Form.Item
-          name={'user'}
-          label="Tên tài khoản"
-          validateDebounce={1000}
-          rules={[{ required: true, message: false }]}>
-          <Input placeholder="example" id="usernameinput" disabled={noChangeAccount} />
-        </Form.Item>
-
-        {!noChangeAccount && (
-          <Form.Item label="Mật khẩu" wrapperCol={{ span: 24 }}>
-            <Space.Compact className="w-100">
-              <Form.Item
-                name={'pass'}
-                rules={[{ required: true, message: false }]}
-                wrapperCol={{ span: 24 }}
-                className="w-100">
-                <Input.Password
-                  placeholder="Example@123"
-                  iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-                />
-              </Form.Item>
-              <Button icon={<RedoOutlined />} onClick={randomPassword} />
-            </Space.Compact>
-          </Form.Item>
-        )} */}
 
         <Form.Item
           wrapperCol={{
