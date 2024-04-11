@@ -1,4 +1,4 @@
-import { GET, POST, PUT } from '../axiosMethods';
+import { DELETE, GET, POST, PUT } from '../axiosMethods';
 
 const DOMAIN = import.meta.env.VITE_DOMAIN;
 
@@ -24,6 +24,23 @@ const CameraApi = {
     return PUT({
       url,
       payload
+    });
+  },
+
+  delete: (_id) => {
+    const url = `${DOMAIN}/camera?_id=${_id}`;
+    return DELETE({
+      url
+    });
+  },
+
+  deleteMany: (ids) => {
+    const url = `${DOMAIN}/camera/deletes`;
+    return POST({
+      url,
+      payload: {
+        ids
+      }
     });
   },
 };

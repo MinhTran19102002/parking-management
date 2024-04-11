@@ -91,7 +91,7 @@ function Camera({}) {
   }, [data]);
 
   const onAdd = () => {
-    setFormAction({ action: 'add', actionText: 'Thêm', title: 'Thêm nhân viên mới' });
+    setFormAction({ action: 'add', actionText: 'Thêm', title: 'Thêm camera mới' });
     setOpenForm(true);
   };
 
@@ -99,7 +99,7 @@ function Camera({}) {
     setFormAction({
       action: 'edit',
       actionText: 'Chỉnh sửa',
-      title: 'Chỉnh sửa thông tin nhân viên',
+      title: 'Chỉnh sửa thông tin camera',
       payload: { ...values }
     });
     setOpenForm(true);
@@ -108,10 +108,10 @@ function Camera({}) {
   const onDelete = async (values) => {
     try {
       setLoading(true);
-      const api = await EmployeeApi.delete(values._id);
+      const api = await CameraApi.delete(values._id);
       setData(api);
       actions.onNoti({
-        message: 'Xóa nhân viên thành công',
+        message: 'Xóa camera thành công',
         type: 'success'
       });
       callApi();
@@ -144,7 +144,7 @@ function Camera({}) {
         duration: 1
       });
       const ids = selectedRows.map((e) => e._id);
-      const api = await EmployeeApi.deleteMany(ids);
+      const api = await CameraApi.deleteMany(ids);
       setData(api);
       actions.onNoti({
         message: 'Xóa tất cả thành công',
