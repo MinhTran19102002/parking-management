@@ -98,25 +98,6 @@ function Map({}) {
                       break;
                   }
 
-                  let map;
-                  switch (zone) {
-                    case 'A':
-                      map = <MapA />;
-                      break;
-                    case 'B':
-                      map = <MapB />;
-                      break;
-                    case 'C':
-                      map = <MapC />;
-                      break;
-                    case 'A1':
-                      map = <MapA1 />;
-                    case 'B1':
-                      map = <MapB1 />;
-                    case 'C1':
-                      map = <MapC1 />;
-                  }
-
                   const newSlots = slots.map((slot, ix) => {
                     const [vehicle] = vehicles.filter((e) => e.position === slot.position);
                     if (vehicle) {
@@ -177,6 +158,8 @@ function Map({}) {
                   return <>{newSlots}</>;
                 }, [slots, zone])}
               </div>
+
+              
 
               {useMemo(() => {
                 if (zone === 'A') return <MapA />;

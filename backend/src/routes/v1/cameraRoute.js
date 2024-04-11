@@ -13,7 +13,7 @@ Router.route('/')
   .delete(cameraController.deleteCamara)
 
   Router.route('/deletes')
-  .delete(cameraController.deleteManyCamara)
+  .post(cameraController.deleteManyCamara)
 
   Router.route('/checkCameraId')
   .get(cameraController.checkCameraId)
