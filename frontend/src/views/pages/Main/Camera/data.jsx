@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import React from 'react';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Avatar, Image } from 'antd';
+import { Avatar, Image, Space, Button } from 'antd';
 import CustomedImage from '~/views/components/CustomedImage';
 
 export const CAMERA_TYPES = ['normal', 'cam360'];
@@ -19,7 +19,7 @@ export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }) => [
     key: 'images',
     render: (_, item) => (
       <Avatar.Group shape="square">
-        {item.images.map((img) => (
+        {item.images?.map((img) => (
           <CustomedImage
             style={{ width: 60, height: 60, objectFit: 'cover', border: '1.6px solid #fff' }}
             src={img}
@@ -62,6 +62,33 @@ export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }) => [
     dataIndex: 'updateAt',
     key: 'updateAt',
     render: (_, item) => dayjs(item.updateAt).format('L')
+  },
+  {
+    title: '',
+    dataIndex: 'actions',
+    key: 'actions',
+    width: 120,
+    render: (_, record, ix) => (
+      <Space>
+        <Button
+          id={`btnEdit${ix}`}
+          icon={<EditOutlined />}
+          type="text"
+          onClick={() => {
+            onEdit(record);
+          }}
+        />
+
+        <Button
+          id={`btnDelete${ix}`}
+          icon={<DeleteOutlined />}
+          type="text"
+          onClick={() => {
+            onDelete(record);
+          }}
+        />
+      </Space>
+    )
   }
 ];
 

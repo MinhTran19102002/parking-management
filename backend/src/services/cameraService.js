@@ -21,16 +21,16 @@ const createCamera = async (data) => {
 const updateCamara = async (_id, params) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    const cameraUpdate = await cameraModel.updateCamara(_id, params);
-    if (cameraUpdate == null) {
+    const users = await cameraModel.updateCamara(_id, params);
+    if (users == null) {
       throw new ApiError(
         StatusCodes.INTERNAL_SERVER_ERROR,
-        'Camera cập nhật không thành công',
+        'Người dùng cập nhật không thành công',
         'Not Updated',
         'BR_person_3',
       );
     }
-    return cameraUpdate;
+    return users;
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
@@ -58,64 +58,8 @@ const findByFilter = async (filter) => {
   }
 };
 
-const deleteCamara = async (_id) => {
-  // eslint-disable-next-line no-useless-catch
-  try {
-    const cameraDelete = await cameraModel.deleteCamara(_id);
-    if (cameraDelete.deletedCount == 0) {
-      throw new ApiError(
-        StatusCodes.INTERNAL_SERVER_ERROR,
-        'Xóa người dùng không thành công',
-        'Not Deleted',
-        'BR_person_4',
-      );
-    }
-    return cameraDelete;
-  } catch (error) {
-    if (error.type && error.code)
-      throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
-  }
-};
-
-
-const deleteManyCamara = async (ids) => {
-  // eslint-disable-next-line no-useless-catch
-  try {
-    const cameraDelete = await cameraModel.deleteManyCamara(ids);
-    if (cameraDelete.deletedCount == 0) {
-      throw new ApiError(
-        StatusCodes.INTERNAL_SERVER_ERROR,
-        'Xóa người dùng không thành công',
-        'Not Deleted',
-        'BR_person_4',
-      );
-    }
-    return cameraDelete;
-  } catch (error) {
-    if (error.type && error.code)
-      throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
-  }
-};
-
-const checkCameraId = async (cameraId) => {
-  // eslint-disable-next-line no-useless-catch
-  try {
-    const valid = await cameraModel.checkCameraId(cameraId)
-    return valid
-  } catch (error) {
-    if (error.type && error.code)
-      throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
-  }
-}
-
 export const cameraService = {
   createCamera,
   updateCamara,
   findByFilter,
-  deleteCamara,
-  deleteManyCamara,
-  checkCameraId,
 }

@@ -24,7 +24,7 @@ import {
   DeleteFilled,
   ExclamationCircleFilled
 } from '@ant-design/icons';
-import { UserApi } from '~/api';
+import { CameraApi, UserApi } from '~/api';
 import dayjs from 'dayjs';
 import { useSearchParams, useParams } from 'react-router-dom';
 import { GetAllParams } from '~/services/RegularService';
@@ -64,9 +64,10 @@ function Camera({}) {
   const callApi = async () => {
     try {
       setLoading(true);
+      const api = await CameraApi.getByFilter(params);
+      console.log(api);
       setData({
-        ...data,
-        data: CAMERAS
+        ...api
       });
       isMounted.current = true;
     } catch (error) {
