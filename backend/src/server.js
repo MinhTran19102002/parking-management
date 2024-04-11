@@ -42,7 +42,7 @@ const START_SEVER = () => {
   if (env.BUILD_MODE == 'dev') {
     httpServer.listen(8010, 8010, () => {
       // eslint-disable-next-line no-console
-      console.log(`Hello Minh, I am running at ${env.APP_HOST}:${env.APP_PORT}/${env.MONGODB_URI}`);
+      console.log(`Hello Minh, I am running at ${env.APP_HOST}:${env.APP_PORT}}`);
     });
     // httpServer.listen(env.APP_PORT, env.APP_HOST, () => {
     //   // eslint-disable-next-line no-console
