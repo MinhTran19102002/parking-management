@@ -102,6 +102,7 @@ const deleteManyCamara = async (ids) => {
 const checkCameraId = async (cameraId) => {
   // eslint-disable-next-line no-useless-catch
   try {
+    console.log(cameraId)
     const valid = await cameraModel.checkCameraId(cameraId)
     return valid
   } catch (error) {
