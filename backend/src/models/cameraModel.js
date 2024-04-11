@@ -1,5 +1,6 @@
 import Joi, { array, object } from 'joi';
 import { OBJECT_ID_RULE, OBJECT_ID_RULE_MESSAGE } from '~/utils/validators';
+import { StatusCodes } from 'http-status-codes'
 import ApiError from '~/utils/ApiError';
 import { ObjectId } from 'mongodb';
 import { GET_DB } from '~/config/mongodb';
@@ -10,16 +11,16 @@ const CAMERA_COLLECTION_NAME = 'camera';
 const CAMENRA_COLLECTION_SCHEMA = Joi.object({
   cameraId: Joi.string().required().min(1).max(50).trim().strict(),
   name: Joi.string().required().min(1).max(50).trim().strict(),
-  images: Joi.array().items(Joi.string().optional()).default(null),
+  images: Joi.array().items(Joi.string().optional()).default([]),
   type: Joi.string().valid('normal', 'cam360').required(),
   zone: Joi.string().optional().min(1).max(10).trim().strict(),
-  slots: Joi.array().items({ position: Joi.string().min(4).max(6).trim().strict().required(), }),
+  slots: Joi.array().items({ position: Joi.string().min(4).max(6).trim().strict(), }),
   location: Joi.object({
-    top: Joi.number().required().strict(),
-    left: Joi.number().required().strict(),
-    width: Joi.number().required().strict(),
-    rotate: Joi.number().required().strict(),
-    iconId: Joi.string().required().strict(),
+    top: Joi.number().strict(),
+    left: Joi.number().strict(),
+    width: Joi.number().strict(),
+    rotate: Joi.number().strict(),
+    iconId: Joi.string().strict(),
   }),
   createdAt: Joi.date().timestamp('javascript').default(Date.now).strict(),
   updatedAt: Joi.date().timestamp('javascript').default(null).strict(),
@@ -32,7 +33,11 @@ const validateBeforCreate = async (data) => {
 
 const createNew = async (data) => {
   try {
+    const checkCamera = await GET_DB().collection(CAMERA_COLLECTION_NAME).findOne({ "cameraId": data.cameraId });
 
+    if (checkCamera) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'CameraId đã tồn tại', 'already exist', 'BR_zone_1');
+    }
     const validateData = await validateBeforCreate(data);
 
     const checkParking = await parkingModel.findOne(data.zone);
@@ -45,7 +50,6 @@ const createNew = async (data) => {
     if (error.type && error.code) {
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
     }
-
     else {
       throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
     }
@@ -53,10 +57,8 @@ const createNew = async (data) => {
 };
 
 const updateCamara = async (_id, _data) => {
-  
-  // _data.updatedAt = Date.now();
-  // delete _data._id;
-  
+  _data.cameraId = "default"
+
   const data = await validateBeforCreate(_data);
   delete data.cameraId;
   delete data.createdAt;
@@ -67,14 +69,14 @@ const updateCamara = async (_id, _data) => {
         ...data,
       },
     };
-    
+
     const result = await GET_DB()
       .collection(CAMERA_COLLECTION_NAME)
       .findOneAndUpdate({ _id: new ObjectId(_id) }, updateOperation, { returnDocument: 'after' });
 
     return result;
   } catch (error) {
-      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -148,10 +150,61 @@ const findByFilter = async ({ pageSize, pageIndex, ...params }) => {
   }
 };
 
+const deleteCamara = async (_id) => {
+  try {
+    const result = await GET_DB()
+      .collection(CAMERA_COLLECTION_NAME)
+      .deleteOne(
+        { _id: new ObjectId(_id)},
+        { returnDocument: 'after' },
+        { locale: 'vi', strength: 1 },
+      );
+
+    return result;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const deleteManyCamara = async (ids) => {
+  try {
+    const objectIds  = ids.map((id) => new ObjectId(id))
+    const result = await GET_DB()
+      .collection(CAMERA_COLLECTION_NAME)
+      .deleteMany(
+        { _id:  { $in: objectIds}},
+        { returnDocument: 'after' },
+        { locale: 'vi', strength: 1 },
+      );
+
+    return result;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const checkCameraId =  async (cameraId) => {
+  try {
+    const valid = await GET_DB().collection(CAMERA_COLLECTION_NAME).findOne({'cameraId':cameraId})
+    if(valid){
+      return {valid : false}
+    }
+    else{
+      return {valid : true}
+    }
+  } catch (error) {
+    throw new Error(error);
+  }
+}
+
+
 export const cameraModel = {
   CAMERA_COLLECTION_NAME,
   CAMENRA_COLLECTION_SCHEMA,
   createNew,
   updateCamara,
   findByFilter,
+  deleteCamara,
+  deleteManyCamara,
+  checkCameraId,
 };

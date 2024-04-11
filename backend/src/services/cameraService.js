@@ -21,16 +21,16 @@ const createCamera = async (data) => {
 const updateCamara = async (_id, params) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    const users = await cameraModel.updateCamara(_id, params);
-    if (users == null) {
+    const cameraUpdate = await cameraModel.updateCamara(_id, params);
+    if (cameraUpdate == null) {
       throw new ApiError(
         StatusCodes.INTERNAL_SERVER_ERROR,
-        'Người dùng cập nhật không thành công',
+        'Camera cập nhật không thành công',
         'Not Updated',
         'BR_person_3',
       );
     }
-    return users;
+    return cameraUpdate;
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
@@ -102,7 +102,6 @@ const deleteManyCamara = async (ids) => {
 const checkCameraId = async (cameraId) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    console.log(cameraId)
     const valid = await cameraModel.checkCameraId(cameraId)
     return valid
   } catch (error) {
@@ -111,6 +110,7 @@ const checkCameraId = async (cameraId) => {
     else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 }
+
 export const cameraService = {
   createCamera,
   updateCamara,
