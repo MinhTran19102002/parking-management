@@ -8,7 +8,7 @@ export default createGlobalStyle`
         padding-bottom: 80px;
     }
 
-    .ant-menu.notCollapsed {
+    ${'' /* .ant-menu.notCollapsed {
         .ant-menu-item {
             display: flex;
             flex-direction: column;
@@ -26,7 +26,7 @@ export default createGlobalStyle`
                 font-size: 1.2rem;
             }
         }
-    }
+    } */}
         
     .ant-image-img {
         border-radius: 8px;

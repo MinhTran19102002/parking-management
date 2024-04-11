@@ -7,15 +7,9 @@ import {cameraController} from '~/controllers/cameraController'
 const Router = express.Router()
 
 Router.route('/')
-  .get(cameraController.findByFilter)
+.get(cameraController.findByFilter)
   .post( cameraController.createCamera)
   .put( cameraController.updateCamara)
-  .delete(cameraController.deleteCamara)
 
-  Router.route('/deletes')
-  .delete(cameraController.deleteManyCamara)
-
-  Router.route('/checkCameraId')
-  .get(cameraController.checkCameraId)
 
 export const cameraRoute = Router
