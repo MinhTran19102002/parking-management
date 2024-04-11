@@ -39,10 +39,12 @@ const createNew = async (data) => {
       throw new ApiError(StatusCodes.NOT_FOUND, 'CameraId đã tồn tại', 'already exist', 'BR_zone_1');
     }
     const validateData = await validateBeforCreate(data);
-
-    const checkParking = await parkingModel.findOne(data.zone);
-    if (!checkParking) {
-      throw new ApiError(StatusCodes.NOT_FOUND, 'Khu vực không được tìm thấy', 'Not Found', 'BR_zone_1');
+    let checkParking
+    if(data.zone){
+      checkParking = await parkingModel.findOne(data.zone);
+      if (!checkParking) {
+        throw new ApiError(StatusCodes.NOT_FOUND, 'Khu vực không được tìm thấy', 'Not Found', 'BR_zone_1');
+      }
     }
     const createNew = await GET_DB().collection(CAMERA_COLLECTION_NAME).insertOne(validateData);
     return createNew;
