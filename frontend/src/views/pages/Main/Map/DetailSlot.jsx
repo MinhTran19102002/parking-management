@@ -3,6 +3,7 @@ import { Image, Row, Col, Flex, Typography, theme } from 'antd';
 import IMG_LISENCE from '~/assets/images/lisence.png';
 import { InnerDetailFloorStyled } from './style';
 import { JobServices } from '~/services';
+import { CustomedImage } from '~/views/components';
 
 const eventNames = {
   in: 'Xe vào',
@@ -16,7 +17,7 @@ const personInfo = {
   phone: 'SĐT'
 };
 
-function DetailSlot({ position, zone, vehicle, driver }) {
+function DetailSlot({ position, zone, vehicle, driver, image }) {
   const { token } = theme.useToken();
   const { colorTextSecondary } = token;
 
@@ -61,12 +62,18 @@ function DetailSlot({ position, zone, vehicle, driver }) {
     i++;
   }
 
+  console.log(`${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/parkingTurn/${image}`);
+
   return (
     <InnerDetailFloorStyled>
       <Row className="detail-slot" gutter={{ xs: 4, sm: 8, md: 12 }}>
         <Col span={8}>
           <Flex vertical={true} align="center" gap={4}>
-            <Image id="eventLisenceImg" src={IMG_LISENCE} preview={false} />
+            <CustomedImage
+              id="eventLisenceImg"
+              src={`${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/parkingTurn/${image}`}
+              preview={false}
+            />
             <Typography.Text id="eventLisencePlate" strong>
               {vehicle.licenePlate}
             </Typography.Text>

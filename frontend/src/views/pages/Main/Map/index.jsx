@@ -49,11 +49,11 @@ function Map({}) {
   };
 
   useEffect(() => {
-    // callApi();
+    callApi();
   }, [state.parkingEvent]);
 
   useEffect(() => {
-    // callApi();
+    callApi();
   }, [zone]);
 
   return (
@@ -77,7 +77,7 @@ function Map({}) {
             <MapInteractionCSS minScale={0.4} maxScale={2}>
               <div className="map-wrapper">
                 {useMemo(() => {
-                  let vehicles;
+                  let vehicles = [];
                   let newWidth = 50;
                   let currMap;
                   switch (zone) {
@@ -127,6 +127,7 @@ function Map({}) {
                                 zone={zone}
                                 vehicle={slot?.parkingTurn?.vehicles}
                                 driver={slot?.parkingTurn?.persons}
+                                image={slot?.parkingTurn?.image}
                               />
                             }
                             overlayInnerStyle={{
@@ -158,8 +159,6 @@ function Map({}) {
                   return <>{newSlots}</>;
                 }, [slots, zone])}
               </div>
-
-              
 
               {useMemo(() => {
                 if (zone === 'A') return <MapA />;
