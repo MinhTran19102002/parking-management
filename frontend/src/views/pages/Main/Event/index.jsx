@@ -1,5 +1,17 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { Button, Card, Col, Form, Input, Layout, Radio, Row, Select, Switch } from 'antd';
+import {
+  Button,
+  Card,
+  Col,
+  Form,
+  Input,
+  Layout,
+  Radio,
+  Row,
+  Upload,
+  Select,
+  Switch,
+} from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
 import AppContext from '~/context';
 import { ParkingApi, UserApi } from '~/api';
@@ -7,6 +19,7 @@ import { ErrorService, ValidateService } from '~/services';
 import { SLOTS_A } from '../Map/parkingA';
 import { SLOTS_B } from '../Map/parkingB';
 import { SLOTS_C } from '../Map/parkingC';
+import { UploadOutlined } from '@ant-design/icons';
 
 const formItemLayout = {
   labelCol: {
@@ -54,12 +67,13 @@ function Event({}) {
   };
   const hanldeImport = async (values) => {
     try {
-      await ParkingApi.importVehicle(values);
-      actions.onNoti({
-        type: 'success',
-        message: 'Nhập xe thành công',
-        description: values.licenePlate
-      });
+      console.log('values', values);
+      // await ParkingApi.importVehicle(values);
+      // actions.onNoti({
+      //   type: 'success',
+      //   message: 'Nhập xe thành công',
+      //   description: values.licenePlate
+      // });
       importForm.resetFields();
     } catch (error) {
       ErrorService.hanldeError(error, actions.onNoti);
@@ -91,6 +105,8 @@ function Event({}) {
   useEffect(() => {
     callApi();
   }, [state.parkingEvent]);
+  
+
 
   return (
     <Layout className="px-4">
@@ -104,6 +120,7 @@ function Event({}) {
               onFinish={hanldeImport}
               disabled={loading}
               layout="vertical"
+
               {...formItemLayout}
               style={{ maxWidth: 4000 }}>
               <Card
@@ -115,7 +132,7 @@ function Event({}) {
                     </Button>
                   </Form.Item>
                 }>
-                <Form.Item>
+                {/* <Form.Item>
                   <Switch
                     checkedChildren="Chọn"
                     unCheckedChildren="Nhập"
@@ -198,6 +215,17 @@ function Event({}) {
                       </Form.Item>
                     );
                   }}
+                </Form.Item> */}
+                <Form.Item name="image" label="Hình ảnh biển số xe">
+                  <Upload
+                    accept="image/jpeg,image/jpg,image/png,image/webp"
+                    beforeUpload={(file) => {
+                      return false;
+                    }}
+                    onChange={(file) => console.log(file)}
+                    listType="picture">
+                    <Button icon={<UploadOutlined />}>Upload</Button>
+                  </Upload>
                 </Form.Item>
               </Card>
             </Form>
