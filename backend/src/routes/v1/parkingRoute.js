@@ -13,7 +13,7 @@ Router.route('/createPaking')
   .post( parkingValidation.create,verifyTokenMidleware.verifyTokenAndAdminManager, parkingController.createPaking)
 
 Router.route('/getStatus')
-  .get(verifyTokenMidleware.verifyTokenAndAdminManager, parkingController.getStatus)
+  .get( parkingController.getStatus)
 
 
 export const parkingRoute = Router

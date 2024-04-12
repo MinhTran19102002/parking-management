@@ -191,6 +191,7 @@ const getStatus = async (zone) => {
                         vehicleInfo: '$$slot.parkingTurn.vehicleInfo',
                         driverInfo: '$$slot.parkingTurn.personInfo',
                         position: '$$slot.parkingTurn.position',
+                        image : '$$slot.parkingTurn.image',
                         fee: '$$slot.parkingTurn.fee',
                         _destroy: '$$slot.parkingTurn._destroy',
                         start: '$$slot.parkingTurn.start',

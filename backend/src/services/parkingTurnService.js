@@ -11,7 +11,7 @@ import moment from 'moment';
 // import { Excel } from 'exceljs';
 const ExcelJS = require('exceljs');
 
-const createPakingTurn = async (licenePlate, zone, position) => {
+const createPakingTurn = async (licenePlate, zone, position, image) => {
   try {
     // Nếu API cần random dữ liệu của zone
     if (zone == '') {
@@ -20,6 +20,7 @@ const createPakingTurn = async (licenePlate, zone, position) => {
     }
     //tim vehicleId
     let vihicle = await vehicleModel.findOneByLicenePlate(licenePlate);
+    
     if (!vihicle) {
       const createVehicle = await vehicleModel.createNew({ licenePlate: licenePlate, type: 'Car' });
       vihicle = { _id: createVehicle.insertedId };
@@ -33,6 +34,7 @@ const createPakingTurn = async (licenePlate, zone, position) => {
         );
       }
     }
+    
     //tim parkingId
     const parking = await parkingModel.findOne(zone);
     // Nếu API cần random dữ liệu của position
@@ -53,12 +55,14 @@ const createPakingTurn = async (licenePlate, zone, position) => {
       console.log(slotRandom);
     }
 
+    // them anh o day
     const now = Date.now();
     const data = {
       vehicleId: vihicle._id.toString(),
       parkingId: parking._id.toString(),
       position: position,
-      fee: 10000,
+      image: image,
+      fee: 20000,
       start: now,
       _destroy: false,
     };
