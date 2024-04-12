@@ -104,4 +104,10 @@ export default createGlobalStyle`
             }
         }
     }
+
+    .ant-image {
+        background-color: #fffffd;
+        border-radius: 8px;
+        object-fit: contain;
+    }
 `;

@@ -62,7 +62,9 @@ function DetailSlot({ position, zone, vehicle, driver, image }) {
     i++;
   }
 
-  console.log(`${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/parkingTurn/${image}`);
+  console.log(
+    `${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/parkingTurn/${image}`
+  );
 
   return (
     <InnerDetailFloorStyled>
@@ -71,8 +73,11 @@ function DetailSlot({ position, zone, vehicle, driver, image }) {
           <Flex vertical={true} align="center" gap={4}>
             <CustomedImage
               id="eventLisenceImg"
-              src={`${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/parkingTurn/${image}`}
+              src={`${import.meta.env.VITE_DOMAIN}/${
+                import.meta.env.VITE_UPLOADS
+              }/parkingTurn/${image}`}
               preview={false}
+              style={{ height: 100 }}
             />
             <Typography.Text id="eventLisencePlate" strong>
               {vehicle.licenePlate}
