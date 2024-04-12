@@ -1,15 +1,18 @@
 import { StatusCodes } from 'http-status-codes';
 import { parkingTurnService } from '~/services/parkingTurnService';
 import {server} from '~/server'
+import uploadImageHandler from '~/utils/uploads'
 
 
 const createNew = async (req, res, next) => {
   try {
-    let licenePlate = req.body.licenePlate;
-    let zone = req.body.zone;
-    let position = req.body.position;
+    // let licenePlate = req.body.licenePlate;
+    // let zone = req.body.zone;
+    // let position = req.body.position;
+    const  { file, licenePlate, zone, position } = await uploadImageHandler(req, res, 1)
+    let image = file.filename;
     // Dieu huong sang tang Service
-    const createUser = await parkingTurnService.createPakingTurn(licenePlate, zone, position);
+    const createUser = await parkingTurnService.createPakingTurn(licenePlate, zone, position, image);
     server.io.emit('notification-parking',{ message:  'Car enters the parking lot'})
     res.status(StatusCodes.CREATED).json(createUser);
   } catch (error) {
@@ -19,11 +22,14 @@ const createNew = async (req, res, next) => {
 
 const createNewWithoutPosition = async (req, res, next) => {
   try {
-    let licenePlate = req.body.licenePlate;
-    let zone = req.body.zone;
+    // let licenePlate = req.body.licenePlate;
+    // let zone = req.body.zone;
     let position = '';
+    const  { file, licenePlate, zone } = await uploadImageHandler(req, res, 2)
+    let image = file.filename;
+    
     // Dieu huong sang tang Service
-    const createUser = await parkingTurnService.createPakingTurn(licenePlate, zone, position);
+    const createUser = await parkingTurnService.createPakingTurn(licenePlate, zone, position, image);
     server.io.emit('notification-parking', { message:  'Car enters the parking lot'})
     res.status(StatusCodes.CREATED).json(createUser);
   } catch (error) {
@@ -33,11 +39,13 @@ const createNewWithoutPosition = async (req, res, next) => {
 
 const createNewWithoutZone = async (req, res, next) => {
   try {
-    let licenePlate = req.body.licenePlate;
     let zone = '';
     let position = '';
+    let { file, licenePlate }= await uploadImageHandler(req, res, 3)
+    let image = file.filename;
     // Dieu huong sang tang Service
-    const createUser = await parkingTurnService.createPakingTurn(licenePlate, zone, position);
+    const createUser = await parkingTurnService.createPakingTurn(licenePlate, zone, position, image);
+    console.log('loi o day')
     server.io.emit('notification-parking',{ message:  'Car enters the parking lot'})
     res.status(StatusCodes.CREATED).json(createUser);
   } catch (error) {

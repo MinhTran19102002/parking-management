@@ -69,6 +69,16 @@ const findByFilter = async (req, res, next) => {
     }
   };
 
+  const upload = async (req, res, next) => {
+    try {
+      // Dieu huong sang tang Service
+      const rs = await cameraService.upload(req, res, next);
+      res.status(StatusCodes.OK).json(rs);
+    } catch (error) {
+      next(error);
+    }
+  };
+
 export const cameraController = {
     createCamera,
     updateCamara,
@@ -76,4 +86,5 @@ export const cameraController = {
     deleteCamara,
     deleteManyCamara,
     checkCameraId,
+    upload,
 }

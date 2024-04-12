@@ -157,7 +157,7 @@ const findOne = async (data) => {
   try {
     const findUser = await GET_DB()
       .collection(PERSON_COLLECTION_NAME)
-      .findOne({ 'account.username': data.username, 'account.role': data.role });
+      .findOne({ 'account.username': data.username });
     return findUser;
   } catch (error) {
     throw new Error(error);

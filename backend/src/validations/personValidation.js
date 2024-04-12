@@ -21,7 +21,6 @@ const validatePassword = Joi.string()
 const account = Joi.object({
   username: Joi.string().required().min(4).max(20).trim().strict().disallow(' ').pattern(/^[a-zA-Z0-9!@#$%^&*(),.?":{}|<>]+$/).message('Username không cho phép chữ có dấu, khoảng trắng'),
   password: validatePassword,
-  role: Joi.string().required().min(3).max(20).trim().strict(),
 });
 
 const accountUser = Joi.object({

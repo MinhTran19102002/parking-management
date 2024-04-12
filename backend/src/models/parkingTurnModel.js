@@ -11,7 +11,7 @@ const PARKINGTURN_COLLECTION_SCHEMA = Joi.object({
   vehicleId: Joi.string().required().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE),
   parkingId: Joi.string().required().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE),
   position: Joi.string().min(4).max(6).trim().strict().required(),
-
+  image: Joi.string(),
   fee: Joi.number().integer().multiple(1000).required().min(1000),
   start: Joi.date().timestamp('javascript').default(null),
   end: Joi.date().timestamp('javascript').default(null),
@@ -25,6 +25,7 @@ const validateBeforOperate = async (data) => {
 
 const createNew = async (data) => {
   try {
+    console.log(data)
     const validateData = await validateBeforOperate(data);
     validateData.start = data.start
     validateData.vehicleId = new ObjectId(validateData.vehicleId);
@@ -78,7 +79,7 @@ const updateOut = async (filter, now) => {
       const timeDifference = dateOut - dateIn;
       const hoursDifference = timeDifference / (1000 * 60 * 60);
       if (hoursDifference > 10) {
-        fee = fee + Math.floor(hoursDifference / 10)*5000
+        fee = fee + Math.floor(hoursDifference / 10)*10000
       }
     }
     else {

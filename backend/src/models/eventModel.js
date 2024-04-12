@@ -12,7 +12,7 @@ const EVENT_COLLECTION_SCHEMA = Joi.object({
   name: Joi.string().required().min(1).max(50).trim().strict(),
   zone: Joi.string().optional().min(1).max(2).trim().strict(),
   eventId: Joi.string().optional().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE),
-  createdAt: Joi.date().timestamp('javascript').default(null).strict(),
+  createdAt: Joi.date().timestamp('javascript').default(null),
   _destroy: Joi.boolean().default(false),
 });
 
@@ -25,6 +25,7 @@ const createEvent = async (data) => {
     if (data.eventId) {
       data.eventId = data.eventId.toString();
     }
+    console.log(data)
     const validateData = await validateBeforCreate(data);
     if (data.eventId) {
       validateData.eventId = new ObjectId(validateData.eventId);
@@ -132,6 +133,7 @@ const findEvent = async ({ pageSize, pageIndex, ...params }) => {
             },
             parkingTurn: {
               position: '$parkingTurn.position',
+              image: '$parkingTurn.image',
               fee: '$parkingTurn.fee',
               start: '$parkingTurn.start',
               end: '$parkingTurn.end',

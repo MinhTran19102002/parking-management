@@ -18,4 +18,7 @@ Router.route('/')
   Router.route('/checkCameraId')
   .get(cameraController.checkCameraId)
 
+
+  Router.route('/upload').get(cameraController.upload)
+
 export const cameraRoute = Router

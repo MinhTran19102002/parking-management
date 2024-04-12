@@ -9,11 +9,16 @@ import { APIs_V1 } from '~/routes/v1/index';
 import { errorHandlingMiddleware } from '~/middlewares/errorHandlingMiddleware';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import path from 'path';
+
+
 
 const app = express();
 //
 let io;
 app.use(express.json());
+
+app.use('/api/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use(cors());
 
