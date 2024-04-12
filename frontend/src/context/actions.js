@@ -8,9 +8,11 @@ export const onLogin = async (params) => {
   let type = 'error';
   let content = '';
   let info = {};
-  const { username, password, onComplete, role } = params;
+  const { username, password, onComplete } = params;
+  let role = null;
   try {
-    const rs = await AccountApi.login({ username, password, role, onNoti });
+    const rs = await AccountApi.login({ username, password, onNoti });
+    role = rs.person.account.role;
     if (rs) {
       isLogin = true;
       info = rs?.person || {};
@@ -34,7 +36,7 @@ export const onLogin = async (params) => {
   } catch (error) {
     type = 'error';
     content = 'Login Error';
-    ErrorService.hanldeError(error, onNoti)
+    ErrorService.hanldeError(error, onNoti);
   } finally {
     onComplete(type, content);
   }
