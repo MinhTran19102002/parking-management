@@ -3,7 +3,7 @@ import path from 'path';
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     // Tạo đường dẫn tương đối đến thư mục uploads trong dự án
-    cb(null, path.join(__dirname, '..', 'uploads'));
+    cb(null, path.join(__dirname, '..', 'uploads/parkingTurn'));
   }, // Thư mục lưu trữ
   filename: (req, file, cb) => {
     // Tạo tên file mới
