@@ -11,4 +11,66 @@
   },
   "updatedAt": null,
   "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6619f8becbd06f0b51448b34"
+  },
+  "cameraId": "CAM_001",
+  "name": "Camera Khu A",
+  "type": "normal",
+  "images": [],
+  "createdAt": {
+    "$numberLong": "1712978110845"
+  },
+  "updatedAt": null,
+  "_destroy": false,
+  "zone": "A",
+  "location": {
+    "left": "464",
+    "top": "116"
+  }
+},
+{
+  "_id": {
+    "$oid": "6619fd25cbd06f0b51448b35"
+  },
+  "cameraId": "CAM_002",
+  "name": "Camera khu A",
+  "type": "normal",
+  "images": [],
+  "createdAt": {
+    "$numberLong": "1712979237303"
+  },
+  "updatedAt": null,
+  "_destroy": false,
+  "zone": "A"
+},
+{
+  "_id": {
+    "$oid": "6619ff48cbd06f0b51448b36"
+  },
+  "cameraId": "CAM_003",
+  "name": "Camera khu A bên dưới",
+  "type": "normal",
+  "images": [],
+  "createdAt": {
+    "$numberLong": "1712979784469"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6619ff61cbd06f0b51448b37"
+  },
+  "cameraId": "CAM_004",
+  "name": "Camera Khu A gần lối vào",
+  "type": "normal",
+  "images": [],
+  "createdAt": {
+    "$numberLong": "1712979809844"
+  },
+  "updatedAt": null,
+  "_destroy": false
 }]
