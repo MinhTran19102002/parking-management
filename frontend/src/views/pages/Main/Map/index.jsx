@@ -128,6 +128,7 @@ function Map({}) {
                                 vehicle={slot?.parkingTurn?.vehicles}
                                 driver={slot?.parkingTurn?.persons}
                                 image={slot?.parkingTurn?.image}
+                                startTime={slot?.parkingTurn?.start}
                               />
                             }
                             overlayInnerStyle={{

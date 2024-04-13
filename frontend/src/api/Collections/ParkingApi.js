@@ -28,11 +28,13 @@ export default {
         path = '/createPakingTurnWithoutZoneAndPosition';
       }
     }
+    console.log('importVehicle', payload);
     const url = `${DOMAIN}/parkingTurn${path}`;
 
     return POST({
       url,
-      payload
+      payload,
+      headers: { 'Content-Type': 'multipart/form-data' }
     });
   },
 

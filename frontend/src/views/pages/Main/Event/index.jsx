@@ -1,17 +1,5 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import {
-  Button,
-  Card,
-  Col,
-  Form,
-  Input,
-  Layout,
-  Radio,
-  Row,
-  Upload,
-  Select,
-  Switch,
-} from 'antd';
+import { Button, Card, Col, Form, Input, Layout, Radio, Row, Upload, Select, Switch } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
 import AppContext from '~/context';
 import { ParkingApi, UserApi } from '~/api';
@@ -40,6 +28,8 @@ function Event({}) {
   const [exportForm] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const [isSelect, setIsSelect] = useState(false);
+  const [fileList, setFileList] = useState([]);
+  const [imageFile, setImageFile] = useState();
   const occupiedSlots = useMemo(() => {
     const { A: zoneA, B: zoneB, C: zoneC } = parkings;
     return [...(zoneA?.slots || []), ...(zoneB?.slots || []), ...(zoneC?.slots || [])];
@@ -67,21 +57,26 @@ function Event({}) {
   };
   const hanldeImport = async (values) => {
     try {
-      console.log('values', values);
-      // await ParkingApi.importVehicle(values);
-      // actions.onNoti({
-      //   type: 'success',
-      //   message: 'Nhập xe thành công',
-      //   description: values.licenePlate
-      // });
+      //hanldeImage
+      console.log(values, imageFile);
+      delete values['image'];
+      await ParkingApi.importVehicle({
+        ...values,
+        image: imageFile
+      });
+      actions.onNoti({
+        type: 'success',
+        message: 'Nhập xe thành công',
+        description: values.licenePlate
+      });
       importForm.resetFields();
     } catch (error) {
+      console.log(error);
       ErrorService.hanldeError(error, actions.onNoti);
     }
   };
 
   const hanldeExport = async (values) => {
-    console.log('values', values);
     try {
       setLoading(true);
       const apis = values.licenePlate.map((el) => {
@@ -105,8 +100,6 @@ function Event({}) {
   useEffect(() => {
     callApi();
   }, [state.parkingEvent]);
-  
-
 
   return (
     <Layout className="px-4">
@@ -120,7 +113,6 @@ function Event({}) {
               onFinish={hanldeImport}
               disabled={loading}
               layout="vertical"
-
               {...formItemLayout}
               style={{ maxWidth: 4000 }}>
               <Card
@@ -132,7 +124,7 @@ function Event({}) {
                     </Button>
                   </Form.Item>
                 }>
-                {/* <Form.Item>
+                <Form.Item>
                   <Switch
                     checkedChildren="Chọn"
                     unCheckedChildren="Nhập"
@@ -215,14 +207,18 @@ function Event({}) {
                       </Form.Item>
                     );
                   }}
-                </Form.Item> */}
+                </Form.Item>
                 <Form.Item name="image" label="Hình ảnh biển số xe">
                   <Upload
                     accept="image/jpeg,image/jpg,image/png,image/webp"
                     beforeUpload={(file) => {
                       return false;
                     }}
-                    onChange={(file) => console.log(file)}
+                    fileList={fileList}
+                    onChange={({ file, fileList: newFileList }) => {
+                      setFileList(newFileList);
+                      setImageFile(file);
+                    }}
                     listType="picture">
                     <Button icon={<UploadOutlined />}>Upload</Button>
                   </Upload>

@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Image, Row, Col, Flex, Typography, theme } from 'antd';
 import IMG_LISENCE from '~/assets/images/lisence.png';
 import { InnerDetailFloorStyled } from './style';
-import { JobServices } from '~/services';
+import { FormatNumber, JobServices } from '~/services';
 import { CustomedImage } from '~/views/components';
+import dayjs from 'dayjs';
 
 const eventNames = {
   in: 'Xe vào',
@@ -17,7 +18,7 @@ const personInfo = {
   phone: 'SĐT'
 };
 
-function DetailSlot({ position, zone, vehicle, driver, image }) {
+function DetailSlot({ position, zone, vehicle, driver, image, startTime }) {
   const { token } = theme.useToken();
   const { colorTextSecondary } = token;
 
@@ -87,11 +88,40 @@ function DetailSlot({ position, zone, vehicle, driver, image }) {
         <Col span={16}>
           <Flex justify="space-evenly" vertical={true} align="start">
             {driverInfo}
+            <Expense startTime={startTime} />
           </Flex>
         </Col>
       </Row>
     </InnerDetailFloorStyled>
   );
 }
+
+const Expense = (startTime) => {
+  const [fee, setFee] = useState(20000);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const dateIn = new Date(startTime);
+      const dateOut = new Date(dayjs());
+      const timeDifference = dateOut - dateIn;
+      const hoursDifference = timeDifference / (1000 * 60 * 60);
+      if (hoursDifference > 10) {
+        const newFee = fee + Math.floor(hoursDifference / 10) * 10000;
+        setFee(newFee);
+      }
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <Typography.Text>
+      <span className="label">Tiền xe</span>
+      <span className="value">
+        {': '} {FormatNumber(fee, { isEndZeroDecimal: false })} {' VNĐ'}
+      </span>
+    </Typography.Text>
+  );
+};
 
 export default DetailSlot;
