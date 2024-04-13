@@ -70,6 +70,7 @@ function Event({}) {
         description: values.licenePlate
       });
       importForm.resetFields();
+      setImageFile();
     } catch (error) {
       console.log(error);
       ErrorService.hanldeError(error, actions.onNoti);
