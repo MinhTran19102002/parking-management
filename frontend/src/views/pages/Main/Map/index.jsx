@@ -21,6 +21,7 @@ import dayjs from 'dayjs';
 import DetailSlot from './DetailSlot';
 import AppContext from '~/context';
 import { ParkingApi } from '~/api';
+import CameraLayer from './CameraLayer';
 
 function Map({}) {
   const { token } = theme.useToken();
@@ -160,7 +161,7 @@ function Map({}) {
                   return <>{newSlots}</>;
                 }, [slots, zone])}
               </div>
-
+              <CameraLayer zone={zone} />
               {useMemo(() => {
                 if (zone === 'A') return <MapA />;
                 else if (zone === 'B') return <MapB />;

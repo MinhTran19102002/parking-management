@@ -58,7 +58,6 @@ function Event({}) {
   const hanldeImport = async (values) => {
     try {
       //hanldeImage
-      console.log(values, imageFile);
       delete values['image'];
       await ParkingApi.importVehicle({
         ...values,
