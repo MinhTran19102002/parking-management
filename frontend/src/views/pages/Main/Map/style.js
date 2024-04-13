@@ -61,3 +61,7 @@ export const InnerDetailFloorStyled = styled.div`
     color: ${({ theme }) => theme.colorTextSecondary};
   }
 `;
+
+export const CameraPoint = styled.div`
+
+`

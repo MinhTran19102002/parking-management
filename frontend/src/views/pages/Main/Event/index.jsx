@@ -58,7 +58,6 @@ function Event({}) {
   const hanldeImport = async (values) => {
     try {
       //hanldeImage
-      console.log(values, imageFile);
       delete values['image'];
       await ParkingApi.importVehicle({
         ...values,
@@ -70,6 +69,7 @@ function Event({}) {
         description: values.licenePlate
       });
       importForm.resetFields();
+      setImageFile();
     } catch (error) {
       console.log(error);
       ErrorService.hanldeError(error, actions.onNoti);
