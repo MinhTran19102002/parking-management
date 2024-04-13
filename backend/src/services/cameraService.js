@@ -5,21 +5,6 @@ import { StatusCodes } from 'http-status-codes'
 import multer from 'multer'
 import path from 'path';
 import uploadImageHandler from '~/utils/uploads'
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    // Tạo đường dẫn tương đối đến thư mục uploads trong dự án
-    cb(null, path.join(__dirname, '..', 'uploads'));
-  }, // Thư mục lưu trữ
-  filename: (req, file, cb) => {
-    // Tạo tên file mới
-    const uniqueSuffix = Date.now();
-    const ext = path.extname(file.originalname);
-    cb(null, path.basename(file.originalname, ext) + '-' + uniqueSuffix + ext);
-  }
-});
-
-// Khởi tạo middleware upload
-const uploadImage = multer({ storage: storage }).single('image');
 
 const createCamera = async (data) => {
   // eslint-disable-next-line no-useless-catch
