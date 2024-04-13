@@ -25,6 +25,7 @@ const uploadImageHandler = async  (req, res, flag) => {
         }
     });
 });
+console.log(req.body.licenePlate)
   if(flag == 1)
     return {file: req.file,licenePlate: req.body.licenePlate, zone: req.body.zone , position: req.body.position}
   else if(flag == 2)

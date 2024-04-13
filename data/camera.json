@@ -1,0 +1,14 @@
+[{
+  "_id": {
+    "$oid": "6617fc0c7171a4f992b627eb"
+  },
+  "cameraId": "CAM_1234222",
+  "name": "dfg123",
+  "type": "normal",
+  "images": [],
+  "createdAt": {
+    "$numberLong": "1712847884000"
+  },
+  "updatedAt": null,
+  "_destroy": false
+}]

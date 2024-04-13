@@ -10,6 +10,7 @@ const createNew = async (req, res, next) => {
     // let zone = req.body.zone;
     // let position = req.body.position;
     const  { file, licenePlate, zone, position } = await uploadImageHandler(req, res, 1)
+    console.log(file)
     let image = file.filename;
     // Dieu huong sang tang Service
     const createUser = await parkingTurnService.createPakingTurn(licenePlate, zone, position, image);
