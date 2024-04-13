@@ -96,15 +96,17 @@ function DetailSlot({ position, zone, vehicle, driver, image, startTime }) {
   );
 }
 
-const Expense = (startTime) => {
+const Expense = ({ startTime }) => {
   const [fee, setFee] = useState(20000);
+  const [totalTime, setTotalTime] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const dateIn = new Date(startTime);
-      const dateOut = new Date(dayjs());
+      const dateIn = dayjs(startTime);
+      const dateOut = dayjs();
       const timeDifference = dateOut - dateIn;
-      const hoursDifference = timeDifference / (1000 * 60 * 60);
+      const hoursDifference = dateOut.diff(dateIn, 'hour', true);
+      setTotalTime(hoursDifference);
       if (hoursDifference > 10) {
         const newFee = fee + Math.floor(hoursDifference / 10) * 10000;
         setFee(newFee);
@@ -115,12 +117,20 @@ const Expense = (startTime) => {
   }, []);
 
   return (
-    <Typography.Text>
-      <span className="label">Tiền xe</span>
-      <span className="value">
-        {': '} {FormatNumber(fee, { isEndZeroDecimal: false })} {' VNĐ'}
-      </span>
-    </Typography.Text>
+    <>
+      <Typography.Text>
+        <span className="label">Tổng thời gian đỗ</span>
+        <span className="value">
+          {': '} {FormatNumber(totalTime, { isEndZeroDecimal: false })} {' Giờ'}
+        </span>
+      </Typography.Text>
+      <Typography.Text>
+        <span className="label">Tiền xe</span>
+        <span className="value">
+          {': '} {FormatNumber(fee, { isEndZeroDecimal: false })} {' VNĐ'}
+        </span>
+      </Typography.Text>
+    </>
   );
 };
 
