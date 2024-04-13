@@ -7,8 +7,8 @@ export const GET = ({ url, headers, payload, responseType = 'json' }) => new Pro
         .catch(reject)
 })
 
-export const POST = ({ url, payload }) => new Promise(async (resolve, reject) => {
-    axiosClient.post(url, payload,)
+export const POST = ({ url, payload, headers }) => new Promise(async (resolve, reject) => {
+    axiosClient.post(url, payload, { headers })
         .then(resolve)
         .catch(reject)
 })
