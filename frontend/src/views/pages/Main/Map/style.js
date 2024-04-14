@@ -63,5 +63,7 @@ export const InnerDetailFloorStyled = styled.div`
 `;
 
 export const CameraPoint = styled.div`
-
-`
+  &:hover {
+    opacity: 0.8;
+  }
+`;

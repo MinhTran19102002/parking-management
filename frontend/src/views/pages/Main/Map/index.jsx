@@ -1,5 +1,13 @@
-import React, { Suspense, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { Layout, Flex, Radio, theme, Typography, Tag, Spin, Skeleton, Space } from 'antd';
+import React, {
+  Suspense,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react';
+import { Layout, Flex, Radio, theme, Typography, Tag, Spin, Skeleton, Space, Button } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
 import { DetailFloorStyled, TransformBlock } from './style';
 import { MapInteractionCSS } from 'react-map-interaction';
@@ -22,6 +30,9 @@ import DetailSlot from './DetailSlot';
 import AppContext from '~/context';
 import { ParkingApi } from '~/api';
 import CameraLayer from './CameraLayer';
+import { SettingOutlined } from '@ant-design/icons';
+import VehicleLayer from './VehicleLayer';
+import { DISABLED_MAP_INTERACTION } from './data';
 
 function Map({}) {
   const { token } = theme.useToken();
@@ -32,6 +43,7 @@ function Map({}) {
   const zone = searchParams.get('zone') || 'A';
   const [loading, setLoading] = useState(false);
   const isMounted = useRef(false);
+  const [settingMode, setSettingMode] = useState(false);
   const onChangeZone = (e) => {
     setSearchParams({ zone: e.target.value });
   };
@@ -57,11 +69,15 @@ function Map({}) {
     callApi();
   }, [zone]);
 
+  const hanldeMapSetting = useCallback(() => {});
+
+  console.log(settingMode);
+
   return (
     <Layout className="px-4">
       <Header className="border-1" title={'Bản đồ'} />
       <Content className="w-100 py-3">
-        <Space>
+        <Flex justify="space-between">
           <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
             <Radio.Button value="A">Khu A</Radio.Button>
             <Radio.Button value="A1">Khu A1</Radio.Button>
@@ -70,106 +86,39 @@ function Map({}) {
             <Radio.Button value="C">Khu C</Radio.Button>
             <Radio.Button value="C1">Khu C1</Radio.Button>
           </Radio.Group>
-        </Space>
+          {!settingMode ? (
+            <Button icon={<SettingOutlined />} onClick={() => setSettingMode(true)}>
+              Cài đặt
+            </Button>
+          ) : (
+            <Space>
+              <Button onClick={() => setSettingMode(false)}>Hủy bỏ</Button>
+              <Button type="primary" onClick={hanldeMapSetting}>
+                Xác nhận
+              </Button>
+            </Space>
+          )}
+        </Flex>
         <TransformBlock
           className="mt-2 overflow-hidden"
           style={{ backgroundColor: token.neutral5 }}>
           <Spin spinning={loading} wrapperClassName="h-100 w-100">
-            <MapInteractionCSS minScale={0.4} maxScale={2}>
+            <MapInteractionCSS
+              {...DISABLED_MAP_INTERACTION(settingMode)}
+              minScale={0.4}
+              maxScale={2}>
               <div className="map-wrapper">
+                <VehicleLayer slots={slots} zone={zone} />
+                <CameraLayer zone={zone} />
                 {useMemo(() => {
-                  let vehicles = [];
-                  let newWidth = 50;
-                  let currMap;
-                  switch (zone) {
-                    case 'A':
-                      vehicles = SLOTS_A;
-                      newWidth = 52;
-                      currMap = CarA;
-                      break;
-                    case 'B':
-                      vehicles = SLOTS_B;
-                      newWidth = 76;
-                      currMap = CarB;
-                      break;
-                    case 'C':
-                      vehicles = SLOTS_C;
-                      newWidth = 68;
-                      currMap = CarC;
-                      break;
-                  }
-
-                  const newSlots = slots.map((slot, ix) => {
-                    const [vehicle] = vehicles.filter((e) => e.position === slot.position);
-                    if (vehicle) {
-                      const { top, left, position, rotate } = vehicle;
-                      const width = newWidth;
-                      return (
-                        <React.Fragment key={position + ix}>
-                          <DetailFloorStyled
-                            key={position + ix}
-                            title={
-                              <Flex justify="space-between">
-                                <Typography.Title
-                                  id="location"
-                                  level={5}
-                                  className="detail-slot-title my-0"
-                                  style={{ color: token.green7 }}>
-                                  {`Khu ${zone} - ${position}`}
-                                </Typography.Title>
-                                <Tag color="cyan">
-                                  {dayjs(slot?.parkingTurn?.start, 'x').format('L LTS')}
-                                </Tag>
-                              </Flex>
-                            }
-                            content={
-                              <DetailSlot
-                                {...vehicle}
-                                zone={zone}
-                                vehicle={slot?.parkingTurn?.vehicles}
-                                driver={slot?.parkingTurn?.persons}
-                                image={slot?.parkingTurn?.image}
-                                startTime={slot?.parkingTurn?.start}
-                              />
-                            }
-                            overlayInnerStyle={{
-                              border: '1px solid',
-                              borderColor: token.cyan,
-                              backgroundColor: token.cyan1,
-                              boxShadow: token.boxShadowSecondary
-                            }}
-                            getPopupContainer={() => document.querySelector('#root')}>
-                            <img
-                              id={position}
-                              key={zone + position + ix}
-                              {...vehicle}
-                              className="image-container"
-                              src={currMap}
-                              style={{
-                                transform: `rotate(${rotate}deg)`,
-                                width,
-                                top,
-                                left
-                              }}
-                            />
-                          </DetailFloorStyled>
-                        </React.Fragment>
-                      );
-                    }
-                  });
-
-                  return <>{newSlots}</>;
-                }, [slots, zone])}
+                  if (zone === 'A') return <MapA />;
+                  else if (zone === 'B') return <MapB />;
+                  else if (zone === 'C') return <MapC />;
+                  else if (zone === 'A1') return <MapA1 />;
+                  else if (zone === 'B1') return <MapB1 />;
+                  else if (zone === 'C1') return <MapC1 />;
+                }, [zone])}
               </div>
-              <CameraLayer zone={zone} />
-              {useMemo(() => {
-                if (zone === 'A') return <MapA />;
-                else if (zone === 'B') return <MapB />;
-                else if (zone === 'C') return <MapC />;
-                else if (zone === 'A1') return <MapA1 />;
-                else if (zone === 'B1') return <MapB1 />;
-                else if (zone === 'C1') return <MapC1 />;
-              }, [zone])}
             </MapInteractionCSS>
           </Spin>
         </TransformBlock>

@@ -7,10 +7,12 @@ import Camera360 from '~/assets/images/camera/type=360.svg?react';
 import CameraHori from '~/assets/images/camera/type=hori.svg?react';
 import { CameraPoint } from './style';
 import { CameraLocations } from './data';
+
 function CameraLayer({ zone }) {
   const { actions } = useContext(AppContext);
   const isMounted = useRef(false);
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const callApi = async () => {
     try {
@@ -33,7 +35,6 @@ function CameraLayer({ zone }) {
   return (
     <div>
       {data.map((camera, ix) => {
-        console.log(camera, DefaultCameraLocation);
         const defaultLocation =
           DefaultCameraLocation.find((el) => el.cameraId === camera.cameraId)?.location || {};
         return (
@@ -46,4 +47,10 @@ function CameraLayer({ zone }) {
   );
 }
 
+const getCameraIcon = (type) => {
+  if (type === 'ver') return <CameraVer />;
+  else if (type === 'hori') return <CameraHori />;
+  else if (type === '360') return <Camera360 />;
+  else <CameraVer />;
+};
 export default CameraLayer;
