@@ -24,6 +24,7 @@
     "@progress/kendo-react-progressbars": "5.9.0",
     "@progress/kendo-react-taskboard": "5.13.1",
     "@progress/kendo-theme-default": "7.0.1",
+    "@tanstack/react-query": "^5.29.2",
     "@types/node": "^20.8.7",
     "antd": "^5.10.2",
     "axios": "^1.5.1",
@@ -48,6 +49,7 @@
     "vite-plugin-svgr": "^4.2.0"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.28.11",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@vitejs/plugin-react-swc": "^3.3.2",

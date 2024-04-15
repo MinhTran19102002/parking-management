@@ -89,4 +89,12 @@ export default createGlobalStyle`
             padding-block: 0;
         }
     }
+
+    .card {
+        padding: 16px;
+    }
+
+    .no-border {
+        border: none;
+    }
 `;

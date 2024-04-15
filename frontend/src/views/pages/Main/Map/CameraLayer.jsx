@@ -17,7 +17,6 @@ function CameraLayer({ zone }) {
   const callApi = async () => {
     try {
       const api = await CameraApi.getByFilter({ zone });
-      console.log(api);
       setData(api.data);
       isMounted.current = true;
     } catch (error) {
