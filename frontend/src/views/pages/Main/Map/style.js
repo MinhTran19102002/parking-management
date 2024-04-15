@@ -67,3 +67,14 @@ export const CameraPoint = styled.div`
     opacity: 0.8;
   }
 `;
+
+export const CameraSidebarStyled = styled.div`
+  position: absolute;
+  top: 116px;
+  right: 24px;
+
+  button {
+    display: block;
+    margin-left: auto;
+  }
+`;

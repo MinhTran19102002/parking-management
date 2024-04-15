@@ -33,6 +33,7 @@ import CameraLayer from './CameraLayer';
 import { SettingOutlined } from '@ant-design/icons';
 import VehicleLayer from './VehicleLayer';
 import { DISABLED_MAP_INTERACTION } from './data';
+import CameraSide from './CameraSide';
 
 function Map({}) {
   const { token } = theme.useToken();
@@ -122,6 +123,7 @@ function Map({}) {
             </MapInteractionCSS>
           </Spin>
         </TransformBlock>
+        <CameraSide />
       </Content>
       <Footer />
     </Layout>
