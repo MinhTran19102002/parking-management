@@ -46,7 +46,7 @@ function Map({}) {
   const [loading, setLoading] = useState(false);
   const isMounted = useRef(false);
   const [settingMode, setSettingMode] = useState(false);
-  const { data: cameraUsed } = useQuery({
+  const { data: cameraUnused } = useQuery({
     queryKey: ['camera', 'unused'],
     queryFn: async () => {
       try {
@@ -56,7 +56,6 @@ function Map({}) {
     }
   });
 
-  console.log(cameraUsed);
   const onChangeZone = (e) => {
     setSearchParams({ zone: e.target.value });
   };
@@ -143,7 +142,7 @@ function Map({}) {
             </MapInteractionCSS>
           </Spin>
         </TransformBlock>
-        {settingMode && <CameraSide settingMode={settingMode} />}
+        {settingMode && <CameraSide data={cameraUnused} settingMode={settingMode} />}
       </Content>
       <Footer />
     </Layout>

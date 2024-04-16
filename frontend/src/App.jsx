@@ -56,8 +56,7 @@ function Authorize({ children }) {
           <Spin
             spinning={loading}
             size="large"
-            tip={<Typography.Title level={4}>Loading...</Typography.Title>}
-            fullscreen={true}>
+            tip={<Typography.Title level={4}>Loading...</Typography.Title>}>
             <div className="content" />
           </Spin>
         </div>

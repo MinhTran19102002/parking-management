@@ -36,7 +36,8 @@ export default defineConfig(({ mode }) => {
         loader: {
           '.js': 'jsx'
         }
-      }
+      },
+      exclude: ['js-big-decimal'],
     },
     server: {
       watch: {

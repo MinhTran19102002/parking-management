@@ -7,20 +7,9 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { CameraApi } from '~/api';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-function CameraSide({ defaultExpand = true, settingMode }) {
+function CameraSide({ defaultExpand = true, settingMode, data=[] }) {
   const [expand, setExpand] = useState(defaultExpand);
   const { token } = theme.useToken();
-  const query = useQuery({
-    queryKey: ['camera', 'uninstall'],
-    queryFn: async () => {
-      try {
-        const api = await CameraApi.getByFilter();
-        return api.data;
-      } catch {}
-    }
-  });
-  const { isFetching, data = [] } = query;
-
   return (
     <CameraSidebarStyled>
       <Button icon={<CameraOutlined />} onClick={() => setExpand((prev) => !prev)}>

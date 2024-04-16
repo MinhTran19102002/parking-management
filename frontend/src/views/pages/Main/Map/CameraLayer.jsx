@@ -7,12 +7,19 @@ import Camera360 from '~/assets/images/camera/type=360.svg?react';
 import CameraHori from '~/assets/images/camera/type=hori.svg?react';
 import { CameraPoint } from './style';
 import { CameraLocations } from './data';
+import { useDraggable } from '@neodrag/react';
 
 function CameraLayer({ zone }) {
   const { actions } = useContext(AppContext);
   const isMounted = useRef(false);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const draggableRef = useRef(null);
+  const drapObj = useDraggable(draggableRef);
+
+  useEffect(() => {
+    console.log('drapObj', drapObj);
+  }, [drapObj]);
 
   const callApi = async () => {
     try {
@@ -32,7 +39,7 @@ function CameraLayer({ zone }) {
 
   const DefaultCameraLocation = CameraLocations[zone] || [];
   return (
-    <div>
+    <div id="cameraLayer" ref={draggableRef}>
       {data.map((camera, ix) => {
         const defaultLocation =
           DefaultCameraLocation.find((el) => el.cameraId === camera.cameraId)?.location || {};
