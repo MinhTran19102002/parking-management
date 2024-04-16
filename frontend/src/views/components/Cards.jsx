@@ -1,11 +1,13 @@
-import { Card, Col, Row, Typography } from 'antd';
+import { Card, Col, Row, Typography, theme } from 'antd';
 import React from 'react';
 import CustomedImage from './CustomedImage';
 
 export const CameraCard = ({ img = [], name, cameraId, type }) => {
+  const { token } = theme.useToken();
+
   return (
-    <div style={{}} className="w-100">
-      <Row className="w-100" gutter={8}>
+    <div style={{borderRadius: 8}} className="w-100 hover-default">
+      <Row className="w-100 py-2 px-2" gutter={8}>
         <Col span={8}>
           <CustomedImage style={{ width: '100%' }} src={img || img[0]} />
         </Col>

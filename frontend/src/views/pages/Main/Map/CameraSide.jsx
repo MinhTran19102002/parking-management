@@ -59,7 +59,7 @@ function CameraSide({ defaultExpand = true }) {
           scrollableTarget="scrollableDiv">
           <List
             dataSource={data}
-            split={false}
+            split
             size='small'
             renderItem={(cameraItem, index) => {
               return (

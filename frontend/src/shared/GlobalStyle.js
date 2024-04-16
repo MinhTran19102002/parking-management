@@ -92,9 +92,18 @@ export default createGlobalStyle`
 
     .card {
         padding: 16px;
+        border-radius: 8px;
+    }
+
+    .border-radius-default {
+        border-radius-default: 8px;
     }
 
     .no-border {
         border: none;
+    }
+
+    .hover-default:hover {
+        background: ${({ theme }) => theme.colorBgTextHover};
     }
 `;
