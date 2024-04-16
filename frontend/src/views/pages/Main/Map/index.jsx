@@ -28,12 +28,13 @@ import Moto from '~/assets/images/TealMoto.svg?react';
 import dayjs from 'dayjs';
 import DetailSlot from './DetailSlot';
 import AppContext from '~/context';
-import { ParkingApi } from '~/api';
+import { CameraApi, ParkingApi } from '~/api';
 import CameraLayer from './CameraLayer';
 import { SettingOutlined } from '@ant-design/icons';
 import VehicleLayer from './VehicleLayer';
 import { DISABLED_MAP_INTERACTION } from './data';
 import CameraSide from './CameraSide';
+import { useQuery } from '@tanstack/react-query';
 
 function Map({}) {
   const { token } = theme.useToken();
@@ -45,6 +46,17 @@ function Map({}) {
   const [loading, setLoading] = useState(false);
   const isMounted = useRef(false);
   const [settingMode, setSettingMode] = useState(false);
+  const { data: cameraUsed } = useQuery({
+    queryKey: ['camera', 'unused'],
+    queryFn: async () => {
+      try {
+        const api = await CameraApi.getUnused();
+        return api.data;
+      } catch {}
+    }
+  });
+
+  console.log(cameraUsed);
   const onChangeZone = (e) => {
     setSearchParams({ zone: e.target.value });
   };
@@ -72,7 +84,11 @@ function Map({}) {
 
   const hanldeMapSetting = useCallback(() => {});
 
-  console.log(settingMode);
+  const onDropCamera = (e) => {
+    e.preventDefault();
+    const cameraDroped = JSON.parse(e.dataTransfer.getData('cameraData'));
+    console.log(cameraDroped);
+  };
 
   return (
     <Layout className="px-4">
@@ -100,6 +116,7 @@ function Map({}) {
             </Space>
           )}
         </Flex>
+
         <TransformBlock
           className="mt-2 overflow-hidden"
           style={{ backgroundColor: token.neutral5 }}>
@@ -108,7 +125,10 @@ function Map({}) {
               {...DISABLED_MAP_INTERACTION(settingMode)}
               minScale={0.4}
               maxScale={2}>
-              <div className="map-wrapper">
+              <div
+                className="map-wrapper"
+                onDrop={onDropCamera}
+                onDragOver={(e) => e.preventDefault()}>
                 <VehicleLayer slots={slots} zone={zone} />
                 <CameraLayer zone={zone} />
                 {useMemo(() => {
@@ -123,7 +143,7 @@ function Map({}) {
             </MapInteractionCSS>
           </Spin>
         </TransformBlock>
-        <CameraSide />
+        {settingMode && <CameraSide settingMode={settingMode} />}
       </Content>
       <Footer />
     </Layout>

@@ -7,7 +7,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { CameraApi } from '~/api';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-function CameraSide({ defaultExpand = true }) {
+function CameraSide({ defaultExpand = true, settingMode }) {
   const [expand, setExpand] = useState(defaultExpand);
   const { token } = theme.useToken();
   const query = useQuery({
@@ -20,8 +20,6 @@ function CameraSide({ defaultExpand = true }) {
     }
   });
   const { isFetching, data = [] } = query;
-
-  console.log(token, data);
 
   return (
     <CameraSidebarStyled>
@@ -43,6 +41,7 @@ function CameraSide({ defaultExpand = true }) {
           boxShadow: token.boxShadow,
           backgroundColor: token.colorBgBase,
           height: 640,
+          width: 400,
         }}>
         <InfiniteScroll
           dataLength={data.length}
@@ -60,7 +59,7 @@ function CameraSide({ defaultExpand = true }) {
           <List
             dataSource={data}
             split
-            size='small'
+            size="small"
             renderItem={(cameraItem, index) => {
               return (
                 <List.Item key={'cameraItem' + index}>

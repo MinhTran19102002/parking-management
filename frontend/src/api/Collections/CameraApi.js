@@ -11,6 +11,14 @@ const CameraApi = {
     });
   },
 
+  getUnused: (payload) => {
+    const url = `${DOMAIN}/camera/unused`;
+    return GET({
+      url,
+      payload
+    });
+  },
+
   add: (payload) => {
     const url = `${DOMAIN}/camera`;
     return POST({
