@@ -80,7 +80,7 @@ function Map({}) {
     return totalCameras.filter((el) => !el.zone);
   }, [totalCameras]);
 
-  const camerUsed = useMemo(() => {
+  const cameraUsed = useMemo(() => {
     return totalCameras.filter((el) => el.zone);
   }, [totalCameras]);
 
@@ -110,9 +110,7 @@ function Map({}) {
   });
 
   useEffect(() => {
-    if (settingMode) {
-      refetchCameraUsed();
-    }
+    refetchCameraUsed();
   }, [settingMode]);
 
   const onDropCamera = (e) => {
@@ -171,7 +169,7 @@ function Map({}) {
                   <CameraSetting
                     settingMode={settingMode}
                     zone={zone}
-                    cameras={camerUsed}
+                    cameraUsed={cameraUsed}
                     cameraUnused={cameraUnused}
                     ref={cameraSettingRef}
                     editManyCameras={editManyCameras}

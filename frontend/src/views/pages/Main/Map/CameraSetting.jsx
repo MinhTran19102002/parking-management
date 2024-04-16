@@ -26,7 +26,7 @@ const DEFAULT_CAMERA = {
 };
 
 function CameraSetting({ zone, settingMode, cameraUnused, cameraUsed, editManyCameras }, ref) {
-  const [cameras, setCameras] = useState([]);
+  const [cameras, setCameras] = useState([...cameraUsed]);
   const isEdit = useRef(false);
   const draggbleRef = useRef(null);
   const drapObj = useDraggable(draggbleRef);
@@ -54,6 +54,10 @@ function CameraSetting({ zone, settingMode, cameraUnused, cameraUsed, editManyCa
     [JSON.stringify(cameras)]
   );
 
+  useEffect(() => {
+    setCameras(cameraUsed)
+  }, [cameraUsed]);
+
   return (
     <div id="cameraForm" onDrop={onDropCamera} onDragOver={(e) => e.preventDefault()}>
       {cameras.map((camera, ix) => {
@@ -62,7 +66,7 @@ function CameraSetting({ zone, settingMode, cameraUnused, cameraUsed, editManyCa
         return (
           <CameraPointA
             key={'camera' + ix}
-            style={{ position: 'absolute', ...defaultLocation }}
+            style={{ position: 'absolute', ...defaultLocation}}
             camera={camera}
             setCameras={setCameras}
             cameras={cameras}

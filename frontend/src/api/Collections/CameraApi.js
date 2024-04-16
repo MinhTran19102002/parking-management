@@ -37,7 +37,7 @@ const CameraApi = {
 
   editMany: (cameras) => {
     const url = `${DOMAIN}/camera/updateS`;
-    return PUT({
+    return POST({
       url,
       payload: cameras
     });
