@@ -41,6 +41,33 @@ const updateCamara = async (_id, params) => {
   }
 }
 
+const updateManyCamara = async (listCamrera) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    let listUpdate = []
+    await Promise.allSettled(
+      listCamrera.map(async (data) => {
+        // console.log(data)
+        const cameraUpdate = await cameraModel.updateCamara(data._id, data);
+        return cameraUpdate;
+      }),
+    )
+      .then((results) => {
+        results.forEach((result) => {
+          listUpdate.push(result.value)
+        });
+      })
+      .catch((error) => {
+        throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+      });
+    return listUpdate;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+}
+
 const findByFilter = async (filter) => {
   // eslint-disable-next-line no-useless-catch
   try {
@@ -60,6 +87,27 @@ const findByFilter = async (filter) => {
     else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
+
+const findByFilterUnused = async (filter) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const findcamera = await cameraModel.findByFilterUnused(filter);
+    if (findcamera.acknowledged == false) {
+      throw new ApiError(
+        StatusCodes.NOT_FOUND,
+        'Người lái xe không tồn tại',
+        'Not Found',
+        'BR_person_1_1',
+      );
+    }
+    return findcamera;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
 
 const deleteCamara = async (_id) => {
   // eslint-disable-next-line no-useless-catch
@@ -134,4 +182,6 @@ export const cameraService = {
   deleteManyCamara,
   checkCameraId,
   upload,
+  findByFilterUnused,
+  updateManyCamara,
 }

@@ -21,7 +21,7 @@ const PERSON_COLLECTION_SCHEMA = Joi.object({
   address: Joi.string().min(6).max(50).trim().strict(),
   phone: Joi.string().required().min(10).max(11).trim().strict(),
   email: Joi.string().required().min(4).max(50).trim().strict(),
-
+  avatar : Joi.string().optional().min(0).max(50).trim().strict(),
   account: Joi.object({
     username: Joi.string()
       .required()
@@ -103,8 +103,11 @@ const createDriver = async (data, licenePlate, job, department) => {
 
 const createNew = async (data) => {
   try {
+    console.log('111111')
     const validateData = await validateBeforCreate(data);
+    console.log('222222222')
     const check = await findOne(data.account);
+    console.log('2222222222')
     if (check) {
       throw new ApiError(
         StatusCodes.NOT_FOUND,
@@ -120,7 +123,7 @@ const createNew = async (data) => {
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
     else if (error.message.includes('E11000 duplicate key')) {
       throw new ApiError(error.statusCode, 'Trùng SĐT hoặc gmail', 'Email_1', 'Email_1');
-    } else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    } else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message,'Email_1', 'Email_1' );
   }
 };
 
@@ -485,6 +488,34 @@ const updateUser = async (_id, _data) => {
   }
 };
 
+const updateAvatar = async (_id, image) => {
+  console.log(image)
+  const updatedAt = Date.now();
+  
+  try {
+    const updateOperation = {
+      $set: {
+        'avatar': image,
+        'updatedAt': updatedAt
+      },
+    };
+    console.log(updateOperation)
+    const result = await GET_DB()
+      .collection(PERSON_COLLECTION_NAME)
+      .findOneAndUpdate({ _id: new ObjectId(_id) }, updateOperation, { returnDocument: 'after' });
+    return result;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else if (error.message.includes('Plan executor error during findAndModify')) {
+      throw new ApiError(error.statusCode, 'Trùng SĐT hoặc gmail', 'Email_1', 'Email_1');
+    } else {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    }
+  }
+};
+
+
 const deleteUser = async (_id, role) => {
   try {
     const result = await GET_DB()
@@ -719,4 +750,5 @@ export const personModel = {
   deleteAllEmployee,
   deleteEmployee,
   deleteManyEmployee,
+  updateAvatar,
 };

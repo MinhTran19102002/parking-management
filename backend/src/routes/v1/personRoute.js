@@ -139,4 +139,9 @@ Router.route('/staff/deletes').post(
   userController.deleteStaffs
 );
 
+Router.route('/staff/updateAvatar').put(
+  // verifyTokenMidleware.verifyTokenAndAdmin,
+  userController.updateAvatar
+);
+
 export const userRoute = Router;
