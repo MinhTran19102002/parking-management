@@ -1,6 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { userService } from '~/services/personService';
 import bcrypt from 'bcrypt';
+import uploadImageHandler from '~/utils/uploads';
 
 const createNew = async (req, res, next) => {
   try {
@@ -25,8 +26,23 @@ const createUser = async (req, res, next) => {
 const createUserStaff = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
-    console.log('fadfasfasf')
-    const createUser = await userService.createUserStaff(req.body);
+
+    const  file= await uploadImageHandler(req, res, 'avatar')
+    let image = file.filename;
+    const createUser = await userService.createUserStaff(req.body, image);
+    res.status(StatusCodes.CREATED).json(createUser);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateAvatar = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    req.query._id
+    const  file= await uploadImageHandler(req, res, 'avatar')
+    let image = file.filename;
+    const createUser = await userService.updateAvatar(req.query._id,  image);
     res.status(StatusCodes.CREATED).json(createUser);
   } catch (error) {
     next(error);
@@ -126,6 +142,7 @@ const updateUser = async (req, res, next) => {
     next(error);
   }
 };
+
 
 const deleteUser = async (req, res, next) => {
   try {
@@ -321,6 +338,7 @@ export const userController = {
   createNew,
   createUser,
   createUserStaff,
+  updateAvatar,
   createMany,
   createManyDriver,
   createDriver,

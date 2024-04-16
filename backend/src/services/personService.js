@@ -156,14 +156,26 @@ const createUserM = async (data) => {
 };
 
 
-const createUserStaff = async (data) => {
+const createUserStaff = async (data, image) => {
   // eslint-disable-next-line no-useless-catch
   try {
     const hashed = await hashPassword(data.account.password);
     data.account.password = hashed;
     data.account.role = 'Staff';
-    
-    const createUser = await personModel.createNew(data);
+    data.image = image
+    let staffNew = {
+      "account": {
+        "username": data.account.username,
+        "password": hashed,
+       "role" : data.account.role
+      },
+      "name": data.name,
+      "address": data.name,
+      "phone": data.phone,
+      "email": data.email,
+      "avatar": data.image
+    }
+    const createUser = await personModel.createNew(staffNew);
     if (createUser.acknowledged == false) {
       throw new ApiError(
         StatusCodes.INTERNAL_SERVER_ERROR,
@@ -175,8 +187,14 @@ const createUserStaff = async (data) => {
     return createUser;
   } catch (error) {
     if (error.type && error.code)
+    {
+      
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    }
+    else
+    { 
+      console.log('5445345')
+      throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);}
   }
 };
 
@@ -390,6 +408,26 @@ const updateUser = async (_id, params) => {
   // eslint-disable-next-line no-useless-catch
   try {
     const users = await personModel.updateUser(_id, params);
+    if (users == null) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Người dùng cập nhật không thành công',
+        'Not Updated',
+        'BR_person_3',
+      );
+    }
+    return users;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+const updateAvatar = async (_id, image) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const users = await personModel.updateAvatar(_id, image);
     if (users == null) {
       throw new ApiError(
         StatusCodes.INTERNAL_SERVER_ERROR,
@@ -742,6 +780,7 @@ export const userService = {
   createUserStaff,
   createMany,
   createManyDriver,
+  updateAvatar,
   // refreshToken,
   createDriver,
   findDriver,

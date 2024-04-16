@@ -9,8 +9,12 @@ const createNew = async (req, res, next) => {
     // let licenePlate = req.body.licenePlate;
     // let zone = req.body.zone;
     // let position = req.body.position;
-    const  { file, licenePlate, zone, position } = await uploadImageHandler(req, res, 1)
-    console.log(file)
+
+    
+    const  file= await uploadImageHandler(req, res, 'parkingTurn')
+    let licenePlate = req.body.licenePlate
+    let  zone = req.body.zone
+    let position = req.body.position
     let image = file.filename;
     // Dieu huong sang tang Service
     const createUser = await parkingTurnService.createPakingTurn(licenePlate, zone, position, image);
@@ -25,8 +29,11 @@ const createNewWithoutPosition = async (req, res, next) => {
   try {
     // let licenePlate = req.body.licenePlate;
     // let zone = req.body.zone;
+    
+    const  file = await uploadImageHandler(req, res, 'parkingTurn')
+    let licenePlate = req.body.licenePlate
+    let  zone = req.body.zone
     let position = '';
-    const  { file, licenePlate, zone } = await uploadImageHandler(req, res, 2)
     let image = file.filename;
     
     // Dieu huong sang tang Service
@@ -40,9 +47,10 @@ const createNewWithoutPosition = async (req, res, next) => {
 
 const createNewWithoutZone = async (req, res, next) => {
   try {
+    
+    let file= await uploadImageHandler(req, res, 'parkingTurn')
     let zone = '';
     let position = '';
-    let { file, licenePlate }= await uploadImageHandler(req, res, 3)
     let image = file.filename;
     // Dieu huong sang tang Service
     const createUser = await parkingTurnService.createPakingTurn(licenePlate, zone, position, image);
