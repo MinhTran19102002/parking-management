@@ -60,7 +60,7 @@ const createNew = async (data) => {
 
 const updateCamara = async (_id, _data) => {
   _data.cameraId = "default"
-
+  delete _data._id;
   const data = await validateBeforCreate(_data);
   delete data.cameraId;
   delete data.createdAt;
@@ -102,27 +102,72 @@ const findByFilter = async ({ pageSize, pageIndex, ...params }) => {
     const camera = await GET_DB()
       .collection(CAMERA_COLLECTION_NAME)
       .aggregate([
-        // {
-        //   $match: {
-        //     driver: { $exists: true },
-        //   },
-        // },
         {
           $sort: {
             createdAt: -1, // sắp xếp theo thứ tự giảm dần của trường thoi_gian
           },
         },
-        // {
-        //   $lookup: {
-        //     from: vehicleModel.VEHICLE_COLLECTION_NAME,
-        //     localField: 'driver.vehicleId',
-        //     foreignField: '_id',
-        //     as: 'driver.vehicle',
-        //   },
-        // },
         {
           $match: {
             ...paramMatch,
+          },
+        },
+      ])
+      .toArray();
+
+    let totalCount = camera.length;
+    let totalPage = 1;
+    let newCamara = camera;
+
+    if (pageSize && pageIndex) {
+      pageSize = Number(pageSize);
+      pageIndex = Number(pageIndex);
+      if (pageSize != 10 && pageSize != 20 && pageSize != 30) pageSize = 10;
+      // eslint-disable-next-line use-isnan
+      if (pageIndex < 1 || isNaN(pageIndex)) pageIndex = 1;
+      totalPage = Math.ceil(totalCount / pageSize);
+      if (pageIndex > totalPage) pageIndex = totalPage;
+      newCamara = newCamara.slice((pageIndex - 1) * pageSize, pageIndex * pageSize);
+    }
+    return {
+      data: newCamara,
+      totalCount,
+      totalPage,
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+const findByFilterUnused = async ({ pageSize, pageIndex, ...params }) => {
+  // Construct the regular expression pattern dynamically
+  let paramMatch = {};
+  for (let [key, value] of Object.entries(params)) {
+    let regex;
+    if (key == 'name') {
+      regex = {
+        [key]: new RegExp(`${value}`, 'i'),
+      };
+    } else {
+      regex = {
+        [key]: new RegExp(`^${value}`, 'i'),
+      };
+    }
+    Object.assign(paramMatch, regex);
+  }
+  try {
+    const camera = await GET_DB()
+      .collection(CAMERA_COLLECTION_NAME)
+      .aggregate([
+        {
+          $sort: {
+            createdAt: -1, // sắp xếp theo thứ tự giảm dần của trường thoi_gian
+          },
+        },
+        {
+          $match: {
+            ...paramMatch,
+            "location": { $exists: false }
           },
         },
       ])
@@ -209,4 +254,5 @@ export const cameraModel = {
   deleteCamara,
   deleteManyCamara,
   checkCameraId,
+  findByFilterUnused,
 };
