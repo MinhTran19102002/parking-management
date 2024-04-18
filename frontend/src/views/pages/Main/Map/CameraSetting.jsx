@@ -8,33 +8,29 @@ import CameraHori from '~/assets/images/camera/type=hori.svg?react';
 import { CameraPoint } from './style';
 import { CameraLocations } from './data';
 import { useDraggable } from '@neodrag/react';
+import CameraSide from './CameraSide';
 
-function CameraLayer({ zone, settingMode }) {
-  const { actions } = useContext(AppContext);
-  const isMounted = useRef(false);
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-
-  const callApi = async () => {
-    try {
-      const api = await CameraApi.getByFilter({ zone });
-      setData(api.data);
-      isMounted.current = true;
-    } catch (error) {
-      ErrorService.hanldeError(error, actions.onNoti);
-    } finally {
-      setLoading(false);
-    }
+function CameraSetting({ zone, settingMode, cameraUnused, cameraUsed }) {
+  const [cameras, setCameras] = useState([]);
+  const draggbleRef = useRef(null);
+  const drapObj = useDraggable(draggbleRef);
+  const onDropCamera = (e) => {
+    e.preventDefault();
+    const cameraDroped = JSON.parse(e.dataTransfer.getData('cameraData'));
+    console.log(cameraDroped);
   };
 
-  useEffect(() => {
-    callApi();
-  }, [zone]);
-
   const DefaultCameraLocation = CameraLocations[zone] || [];
+
+  console.log('CameraSetting Render');
   return (
-    <div id="cameraLayer">
-      {data.map((camera, ix) => {
+    <div
+      id="cameraForm"
+      ref={draggbleRef}
+      onDrop={onDropCamera}
+      onDragOver={(e) => e.preventDefault()}>
+      {<CameraSide data={cameraUnused} />}
+      {cameras.map((camera, ix) => {
         const defaultLocation =
           DefaultCameraLocation.find((el) => el.cameraId === camera.cameraId)?.location || {};
         return (
@@ -47,10 +43,4 @@ function CameraLayer({ zone, settingMode }) {
   );
 }
 
-const getCameraIcon = (type) => {
-  if (type === 'ver') return <CameraVer />;
-  else if (type === 'hori') return <CameraHori />;
-  else if (type === '360') return <Camera360 />;
-  else <CameraVer />;
-};
-export default CameraLayer;
+export default CameraSetting;

@@ -35,6 +35,7 @@ import VehicleLayer from './VehicleLayer';
 import { DISABLED_MAP_INTERACTION } from './data';
 import CameraSide from './CameraSide';
 import { useQuery } from '@tanstack/react-query';
+import CameraSetting from './CameraSetting';
 
 function Map({}) {
   const { token } = theme.useToken();
@@ -45,16 +46,42 @@ function Map({}) {
   const zone = searchParams.get('zone') || 'A';
   const [loading, setLoading] = useState(false);
   const isMounted = useRef(false);
-  const [settingMode, setSettingMode] = useState(false);
-  const { data: cameraUnused } = useQuery({
-    queryKey: ['camera', 'unused'],
+  const [cameraForm, setCameraForm] = useState([]);
+  const [settingMode, setSettingMode] = useState(true);
+
+  // const { data: cameraUnused, refetch: refetchCameraUnused } = useQuery({
+  //   queryKey: ['camera', 'unused'],
+  //   initialData: [],
+  //   queryFn: async () => {
+  //     if (settingMode)
+  //       try {
+  //         const api = await CameraApi.getUnused();
+  //         return api.data;
+  //       } catch {}
+  //     return [];
+  //   }
+  // });
+
+  const { data: totalCameras, refetch: refetchCameraUsed } = useQuery({
+    queryKey: ['camera', 'used'],
+    initialData: [],
     queryFn: async () => {
-      try {
-        const api = await CameraApi.getUnused();
-        return api.data;
-      } catch {}
+      if (settingMode)
+        try {
+          const api = await CameraApi.getByFilter();
+          return api.data;
+        } catch {}
+      return [];
     }
   });
+
+  const cameraUnused = useMemo(() => {
+    return totalCameras.filter((el) => !el.zone);
+  }, [totalCameras]);
+
+  const camerUsed = useMemo(() => {
+    return totalCameras.filter((el) => el.zone);
+  }, [totalCameras]);
 
   const onChangeZone = (e) => {
     setSearchParams({ zone: e.target.value });
@@ -83,11 +110,11 @@ function Map({}) {
 
   const hanldeMapSetting = useCallback(() => {});
 
-  const onDropCamera = (e) => {
-    e.preventDefault();
-    const cameraDroped = JSON.parse(e.dataTransfer.getData('cameraData'));
-    console.log(cameraDroped);
-  };
+  useEffect(() => {
+    if (settingMode) {
+      refetchCameraUsed();
+    }
+  }, [settingMode]);
 
   return (
     <Layout className="px-4">
@@ -115,7 +142,6 @@ function Map({}) {
             </Space>
           )}
         </Flex>
-
         <TransformBlock
           className="mt-2 overflow-hidden"
           style={{ backgroundColor: token.neutral5 }}>
@@ -124,12 +150,19 @@ function Map({}) {
               {...DISABLED_MAP_INTERACTION(settingMode)}
               minScale={0.4}
               maxScale={2}>
-              <div
-                className="map-wrapper"
-                onDrop={onDropCamera}
-                onDragOver={(e) => e.preventDefault()}>
-                <VehicleLayer slots={slots} zone={zone} />
-                <CameraLayer zone={zone} />
+              <div className="map-wrapper">
+                {settingMode || <VehicleLayer slots={slots} zone={zone} />}
+                {settingMode ? (
+                  <CameraSetting
+                    settingMode={settingMode}
+                    zone={zone}
+                    cameras={camerUsed}
+                    cameraUnused={cameraUnused}
+                  />
+                ) : (
+                  <CameraLayer zone={zone} settingMode={settingMode} />
+                )}
+
                 {useMemo(() => {
                   if (zone === 'A') return <MapA />;
                   else if (zone === 'B') return <MapB />;
@@ -142,7 +175,6 @@ function Map({}) {
             </MapInteractionCSS>
           </Spin>
         </TransformBlock>
-        {settingMode && <CameraSide data={cameraUnused} settingMode={settingMode} />}
       </Content>
       <Footer />
     </Layout>

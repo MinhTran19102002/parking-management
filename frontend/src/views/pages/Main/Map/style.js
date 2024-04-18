@@ -69,10 +69,6 @@ export const CameraPoint = styled.div`
 `;
 
 export const CameraSidebarStyled = styled.div`
-  position: absolute;
-  top: 116px;
-  right: 24px;
-
   button {
     display: block;
     margin-left: auto;

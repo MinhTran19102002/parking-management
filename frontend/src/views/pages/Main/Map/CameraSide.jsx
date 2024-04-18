@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { memo, useState } from 'react';
 import { CameraSidebarStyled } from './style';
 import { Button, Divider, Flex, List, Skeleton, Space, theme } from 'antd';
 import { CameraOutlined, CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
@@ -7,11 +7,11 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { CameraApi } from '~/api';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-function CameraSide({ defaultExpand = true, settingMode, data=[] }) {
+function CameraSide({ defaultExpand = true, settingMode, data = [] }) {
   const [expand, setExpand] = useState(defaultExpand);
   const { token } = theme.useToken();
   return (
-    <CameraSidebarStyled>
+    <CameraSidebarStyled style={{ position: 'fixed', top: 0, right: -300 }}>
       <Button icon={<CameraOutlined />} onClick={() => setExpand((prev) => !prev)}>
         <Space>
           Danh sách camera{' '}
@@ -30,7 +30,7 @@ function CameraSide({ defaultExpand = true, settingMode, data=[] }) {
           boxShadow: token.boxShadow,
           backgroundColor: token.colorBgBase,
           height: 640,
-          width: 400,
+          width: 400
         }}>
         <InfiniteScroll
           dataLength={data.length}
@@ -63,4 +63,4 @@ function CameraSide({ defaultExpand = true, settingMode, data=[] }) {
   );
 }
 
-export default CameraSide;
+export default memo(CameraSide);
