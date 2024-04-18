@@ -105,7 +105,9 @@ function Map({}) {
     callApi();
   }, [zone, state.parkingEvent]);
 
-  const hanldeMapSetting = useCallback(() => {});
+  const hanldeMapSetting = useCallback(() => {
+    cameraSettingRef.current.onEditManyCameras();
+  });
 
   useEffect(() => {
     if (settingMode) {
@@ -118,6 +120,12 @@ function Map({}) {
     const cameraDroped = JSON.parse(e.dataTransfer.getData('cameraData'));
     cameraSettingRef.current.addCameraToZone(cameraDroped, zone);
   };
+
+  const editManyCameras = useCallback(async (cameras) => {
+    try {
+      const api = await CameraApi.editMany(cameras);
+    } catch {}
+  }, []);
 
   return (
     <Layout className="px-4">
@@ -166,6 +174,7 @@ function Map({}) {
                     cameras={camerUsed}
                     cameraUnused={cameraUnused}
                     ref={cameraSettingRef}
+                    editManyCameras={editManyCameras}
                   />
                 ) : (
                   <CameraLayer zone={zone} settingMode={settingMode} />

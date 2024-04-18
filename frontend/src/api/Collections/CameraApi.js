@@ -35,6 +35,14 @@ const CameraApi = {
     });
   },
 
+  editMany: (cameras) => {
+    const url = `${DOMAIN}/camera/updateS`;
+    return PUT({
+      url,
+      payload: cameras
+    });
+  },
+
   delete: (_id) => {
     const url = `${DOMAIN}/camera?_id=${_id}`;
     return DELETE({
@@ -50,6 +58,6 @@ const CameraApi = {
         ids
       }
     });
-  },
+  }
 };
 export default CameraApi;

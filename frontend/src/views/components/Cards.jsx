@@ -11,10 +11,6 @@ export const CameraCard = (props) => {
       style={{ borderRadius: 8 }}
       className="w-100 hover-defaul"
       draggable="true"
-      drag={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-      }}
       onDragStart={(e) => {
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('cameraData', JSON.stringify(props));
