@@ -11,9 +11,11 @@ export const CameraCard = (props) => {
       style={{ borderRadius: 8 }}
       className="w-100 hover-defaul"
       draggable="true"
-      onDragStart={(e) => {
+      drag={(e) => {
         e.preventDefault();
         e.stopPropagation();
+      }}
+      onDragStart={(e) => {
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('cameraData', JSON.stringify(props));
         e.dataTransfer.setDragImage(e.target.parentNode, 20, 20);
@@ -23,7 +25,7 @@ export const CameraCard = (props) => {
           <CustomedImage style={{ width: '100%' }} src={img || img[0]} />
         </Col>
         <Col span={16}>
-          <Typography strong>
+          <Typography strong={'true'}>
             <span>{cameraId}</span>
           </Typography>
           <Typography>

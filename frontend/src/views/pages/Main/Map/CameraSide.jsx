@@ -11,7 +11,7 @@ function CameraSide({ defaultExpand = true, settingMode, data = [] }) {
   const [expand, setExpand] = useState(defaultExpand);
   const { token } = theme.useToken();
   return (
-    <CameraSidebarStyled style={{ position: 'fixed', top: 0, right: -300 }}>
+    <CameraSidebarStyled style={{ position: 'fixed', top: 120, right: 32, zIndex: 1 }}>
       <Button icon={<CameraOutlined />} onClick={() => setExpand((prev) => !prev)}>
         <Space>
           Danh sách camera{' '}

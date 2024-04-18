@@ -1,4 +1,11 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, {
+  forwardRef,
+  useContext,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState
+} from 'react';
 import { CameraApi } from '~/api';
 import AppContext from '~/context';
 import { ErrorService } from '~/services';
@@ -10,10 +17,19 @@ import { CameraLocations } from './data';
 import { useDraggable } from '@neodrag/react';
 import CameraSide from './CameraSide';
 
-function CameraSetting({ zone, settingMode, cameraUnused, cameraUsed }) {
+const DEFAULT_CAMERA = {
+  location: {
+    top: 0,
+    left: 0,
+    iconId: 'hori'
+  }
+};
+
+function CameraSetting({ zone, settingMode, cameraUnused, cameraUsed }, ref) {
   const [cameras, setCameras] = useState([]);
   const draggbleRef = useRef(null);
   const drapObj = useDraggable(draggbleRef);
+
   const onDropCamera = (e) => {
     e.preventDefault();
     const cameraDroped = JSON.parse(e.dataTransfer.getData('cameraData'));
@@ -22,14 +38,27 @@ function CameraSetting({ zone, settingMode, cameraUnused, cameraUsed }) {
 
   const DefaultCameraLocation = CameraLocations[zone] || [];
 
-  console.log('CameraSetting Render');
+  useImperativeHandle(
+    ref,
+    () => {
+      return {
+        addCameraToZone(cameraData, zone) {
+          setCameras((pre) => [...pre, { ...cameraData, ...DEFAULT_CAMERA }]);
+        }
+      };
+    },
+    []
+  );
+
+  useEffect(() => {
+    console.log('change Drap', drapObj);
+  }, [drapObj]);
+
   return (
     <div
       id="cameraForm"
-      ref={draggbleRef}
       onDrop={onDropCamera}
       onDragOver={(e) => e.preventDefault()}>
-      {<CameraSide data={cameraUnused} />}
       {cameras.map((camera, ix) => {
         const defaultLocation =
           DefaultCameraLocation.find((el) => el.cameraId === camera.cameraId)?.location || {};
@@ -39,8 +68,11 @@ function CameraSetting({ zone, settingMode, cameraUnused, cameraUsed }) {
           </CameraPoint>
         );
       })}
+      <CameraPoint ref={draggbleRef} key={'camera'} style={{ position: 'absolute', ...DEFAULT_CAMERA.location }}>
+        <CameraVer />
+      </CameraPoint>
     </div>
   );
 }
 
-export default CameraSetting;
+export default forwardRef(CameraSetting);

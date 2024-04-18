@@ -17,7 +17,7 @@ const initState = {
   onChangePassword: false,
   parkingEvent: null,
   authorize: null,
-  zones: ['A', 'A1', 'A2', 'A3', 'B', 'C']
+  zones: ['A', 'B1', 'C1', 'A1', 'B', 'C']
 };
 
 export default initState;

@@ -101,7 +101,7 @@ function EventCard({ item }) {
                 preview={false}
                 style={{ background: '#FFF', width: 120, height: 120 }}
               />
-              <Typography.Text id="eventLisencePlate" strong>
+              <Typography.Text id="eventLisencePlate" strong={'true'}>
                 {vehicle.licenePlate}
               </Typography.Text>
             </Flex>

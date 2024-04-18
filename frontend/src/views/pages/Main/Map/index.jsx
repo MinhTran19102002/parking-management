@@ -46,6 +46,7 @@ function Map({}) {
   const zone = searchParams.get('zone') || 'A';
   const [loading, setLoading] = useState(false);
   const isMounted = useRef(false);
+  const cameraSettingRef = useRef(null);
   const [cameraForm, setCameraForm] = useState([]);
   const [settingMode, setSettingMode] = useState(true);
 
@@ -102,11 +103,7 @@ function Map({}) {
 
   useEffect(() => {
     callApi();
-  }, [state.parkingEvent]);
-
-  useEffect(() => {
-    callApi();
-  }, [zone]);
+  }, [zone, state.parkingEvent]);
 
   const hanldeMapSetting = useCallback(() => {});
 
@@ -115,6 +112,12 @@ function Map({}) {
       refetchCameraUsed();
     }
   }, [settingMode]);
+
+  const onDropCamera = (e) => {
+    e.preventDefault();
+    const cameraDroped = JSON.parse(e.dataTransfer.getData('cameraData'));
+    cameraSettingRef.current.addCameraToZone(cameraDroped, zone);
+  };
 
   return (
     <Layout className="px-4">
@@ -146,11 +149,15 @@ function Map({}) {
           className="mt-2 overflow-hidden"
           style={{ backgroundColor: token.neutral5 }}>
           <Spin spinning={loading} wrapperClassName="h-100 w-100">
+            {settingMode && <CameraSide data={cameraUnused} />}
             <MapInteractionCSS
               {...DISABLED_MAP_INTERACTION(settingMode)}
               minScale={0.4}
               maxScale={2}>
-              <div className="map-wrapper">
+              <div
+                className="map-wrapper"
+                onDrop={onDropCamera}
+                onDragOver={(e) => e.preventDefault()}>
                 {settingMode || <VehicleLayer slots={slots} zone={zone} />}
                 {settingMode ? (
                   <CameraSetting
@@ -158,6 +165,7 @@ function Map({}) {
                     zone={zone}
                     cameras={camerUsed}
                     cameraUnused={cameraUnused}
+                    ref={cameraSettingRef}
                   />
                 ) : (
                   <CameraLayer zone={zone} settingMode={settingMode} />
