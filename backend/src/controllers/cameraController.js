@@ -53,12 +53,24 @@ const findByFilter = async (req, res, next) => {
 const findByFilterUnused = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
-    const rs = await cameraService.findByFilterUnused(req.query);
+    const rs = await cameraService.findByFilterUnused(req.query, false);
     res.status(StatusCodes.OK).json(rs);
   } catch (error) {
     next(error);
   }
 };
+
+
+const findByFilterUsed = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    const rs = await cameraService.findByFilterUnused(req.query, true);
+    res.status(StatusCodes.OK).json(rs);
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 
 const deleteCamara = async (req, res, next) => {
@@ -113,5 +125,6 @@ export const cameraController = {
   checkCameraId,
   upload,
   findByFilterUnused,
+  findByFilterUsed,
   updateManyCamara,
 }
