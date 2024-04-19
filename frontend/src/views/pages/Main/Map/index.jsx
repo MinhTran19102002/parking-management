@@ -48,7 +48,8 @@ function Map({}) {
   const isMounted = useRef(false);
   const cameraSettingRef = useRef(null);
   const [cameraForm, setCameraForm] = useState([]);
-  const [settingMode, setSettingMode] = useState(true);
+  const [settingMode, setSettingMode] = useState(false);
+  const [cameraUnused, setCameraUnused] = useState([]);
 
   // const { data: cameraUnused, refetch: refetchCameraUnused } = useQuery({
   //   queryKey: ['camera', 'unused'],
@@ -75,10 +76,6 @@ function Map({}) {
       return [];
     }
   });
-
-  const cameraUnused = useMemo(() => {
-    return totalCameras.filter((el) => !el.zone);
-  }, [totalCameras]);
 
   const cameraUsed = useMemo(() => {
     return totalCameras.filter((el) => el.zone);
@@ -117,16 +114,29 @@ function Map({}) {
     e.preventDefault();
     const cameraDroped = JSON.parse(e.dataTransfer.getData('cameraData'));
     cameraSettingRef.current.addCameraToZone(cameraDroped, zone);
+
+    //remove camera
+    const newUnusedCameras = cameraUnused.filter(
+      (cameraItem) => cameraItem.cameraId !== cameraDroped.cameraId
+    );
+    setCameraUnused(newUnusedCameras);
   };
 
   const editManyCameras = useCallback(async (cameras) => {
     try {
       const api = await CameraApi.editMany(cameras);
       actions.onMess({ type: 'success', content: 'Cập nhật camera thành công' });
+      setSettingMode(false);
     } catch {
       actions.onMess({ type: 'error', content: 'Cập nhật camera thấp bại' });
     }
   }, []);
+
+  useEffect(() => {
+    if (totalCameras.length > 0 && settingMode) {
+      setCameraUnused(totalCameras.filter((item) => !item.zone));
+    }
+  }, [totalCameras]);
 
   return (
     <Layout className="px-4">
@@ -158,7 +168,7 @@ function Map({}) {
           className="mt-2 overflow-hidden"
           style={{ backgroundColor: token.neutral5 }}>
           <Spin spinning={loading} wrapperClassName="h-100 w-100">
-            {settingMode && <CameraSide data={cameraUnused} />}
+            {settingMode && <CameraSide defaultData={cameraUnused} />}
             <MapInteractionCSS
               {...DISABLED_MAP_INTERACTION(settingMode)}
               minScale={0.4}
@@ -173,7 +183,6 @@ function Map({}) {
                     settingMode={settingMode}
                     zone={zone}
                     cameraUsed={cameraUsed}
-                    cameraUnused={cameraUnused}
                     ref={cameraSettingRef}
                     editManyCameras={editManyCameras}
                   />

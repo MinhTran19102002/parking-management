@@ -35,10 +35,8 @@ function CameraLayer({ zone, settingMode }) {
   return (
     <div id="cameraLayer">
       {data.map((camera, ix) => {
-        const defaultLocation =
-          DefaultCameraLocation.find((el) => el.cameraId === camera.cameraId)?.location || {};
         return (
-          <CameraPoint key={'camera' + ix} style={{ position: 'absolute', ...defaultLocation }}>
+          <CameraPoint key={'camera' + ix} style={{ position: 'absolute', ...camera.location }}>
             <CameraVer />
           </CameraPoint>
         );

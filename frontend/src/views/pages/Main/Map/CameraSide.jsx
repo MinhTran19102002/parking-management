@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { forwardRef, memo, useEffect, useImperativeHandle, useState } from 'react';
 import { CameraSidebarStyled } from './style';
 import { Button, Divider, Flex, List, Skeleton, Space, theme } from 'antd';
 import { CameraOutlined, CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
@@ -7,9 +7,15 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { CameraApi } from '~/api';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
-function CameraSide({ defaultExpand = true, settingMode, data = [] }) {
+function CameraSide({ defaultExpand = true, settingMode, defaultData = [] }) {
+  const [data, setData] = useState(defaultData);
   const [expand, setExpand] = useState(defaultExpand);
   const { token } = theme.useToken();
+
+  useEffect(() => {
+    setData(defaultData);
+  }, [defaultData]);
+
   return (
     <CameraSidebarStyled style={{ position: 'fixed', top: 120, right: 32, zIndex: 1 }}>
       <Button icon={<CameraOutlined />} onClick={() => setExpand((prev) => !prev)}>

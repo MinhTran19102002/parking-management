@@ -25,7 +25,7 @@ const DEFAULT_CAMERA = {
   }
 };
 
-function CameraSetting({ zone, settingMode, cameraUnused, cameraUsed, editManyCameras }, ref) {
+function CameraSetting({ zone, cameraUsed, editManyCameras }, ref) {
   const [cameras, setCameras] = useState([...cameraUsed]);
   const isEdit = useRef(false);
   const draggbleRef = useRef(null);
