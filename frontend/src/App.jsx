@@ -10,6 +10,7 @@ import PageError from './views/pages/PageError';
 import { ThemeProvider } from 'styled-components';
 import DayService from './services/DayService';
 import { i18nConfig } from './config';
+import { GlobalStyle } from './shared';
 
 function Authencation({ children }) {
   const { state } = useContext(AppContext);
@@ -55,8 +56,7 @@ function Authorize({ children }) {
           <Spin
             spinning={loading}
             size="large"
-            tip={<Typography.Title level={4}>Loading...</Typography.Title>}
-            fullscreen={true}>
+            tip={<Typography.Title level={4}>Loading...</Typography.Title>}>
             <div className="content" />
           </Spin>
         </div>
@@ -116,6 +116,7 @@ function App() {
       {contextHolder}
       {notiContextHolder}
       <ThemeProvider theme={{ ...token }}>
+        <GlobalStyle />
         <Routes>
           <Route path="/auth/login" element={<Authen />} />
           <Route

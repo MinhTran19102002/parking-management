@@ -89,4 +89,21 @@ export default createGlobalStyle`
             padding-block: 0;
         }
     }
+
+    .card {
+        padding: 16px;
+        border-radius: 8px;
+    }
+
+    .border-radius-default {
+        border-radius-default: 8px;
+    }
+
+    .no-border {
+        border: none;
+    }
+
+    .hover-default:hover {
+        background: ${({ theme }) => theme.colorBgTextHover};
+    }
 `;

@@ -1,2 +1,1 @@
-export { default as GlobalStyle } from "./GlobalStyle";
-export { useLocalStorage } from "./useLocalStorage";
+export { default as GlobalStyle } from './GlobalStyle';

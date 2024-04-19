@@ -1,3 +1,19 @@
+export const DISABLED_MAP_INTERACTION = (disabled) => {
+  return (
+    disabled && {
+      disableZoom: true,
+      disablePan: true,
+      value: {
+        scale: 1,
+        translation: {
+          x: 0,
+          y: 0
+        }
+      }
+    }
+  );
+};
+
 export const CameraLocations = {
   A: [
     {
@@ -13,6 +29,6 @@ export const CameraLocations = {
         top: 54,
         left: 12
       }
-    },
+    }
   ]
 };

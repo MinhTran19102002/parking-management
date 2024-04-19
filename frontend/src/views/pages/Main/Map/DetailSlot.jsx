@@ -80,7 +80,7 @@ function DetailSlot({ position, zone, vehicle, driver, image, startTime }) {
               preview={false}
               style={{ height: 100 }}
             />
-            <Typography.Text id="eventLisencePlate" strong>
+            <Typography.Text id="eventLisencePlate" strong={'true'}>
               {vehicle.licenePlate}
             </Typography.Text>
           </Flex>

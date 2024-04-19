@@ -7,15 +7,17 @@ import Camera360 from '~/assets/images/camera/type=360.svg?react';
 import CameraHori from '~/assets/images/camera/type=hori.svg?react';
 import { CameraPoint } from './style';
 import { CameraLocations } from './data';
-function CameraLayer({ zone }) {
+import { useDraggable } from '@neodrag/react';
+
+function CameraLayer({ zone, settingMode }) {
   const { actions } = useContext(AppContext);
   const isMounted = useRef(false);
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const callApi = async () => {
     try {
       const api = await CameraApi.getByFilter({ zone });
-      console.log(api);
       setData(api.data);
       isMounted.current = true;
     } catch (error) {
@@ -31,13 +33,10 @@ function CameraLayer({ zone }) {
 
   const DefaultCameraLocation = CameraLocations[zone] || [];
   return (
-    <div>
+    <div id="cameraLayer">
       {data.map((camera, ix) => {
-        console.log(camera, DefaultCameraLocation);
-        const defaultLocation =
-          DefaultCameraLocation.find((el) => el.cameraId === camera.cameraId)?.location || {};
         return (
-          <CameraPoint key={'camera' + ix} style={{ position: 'absolute', ...defaultLocation }}>
+          <CameraPoint key={'camera' + ix} style={{ position: 'absolute', ...camera.location }}>
             <CameraVer />
           </CameraPoint>
         );
@@ -46,4 +45,10 @@ function CameraLayer({ zone }) {
   );
 }
 
+const getCameraIcon = (type) => {
+  if (type === 'ver') return <CameraVer />;
+  else if (type === 'hori') return <CameraHori />;
+  else if (type === '360') return <Camera360 />;
+  else <CameraVer />;
+};
 export default CameraLayer;

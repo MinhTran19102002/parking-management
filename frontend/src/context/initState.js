@@ -1,11 +1,11 @@
 const getIsLogin = () => {
-  let auth = localStorage.getItem("auth");
-  if(auth) {
+  let auth = localStorage.getItem('auth');
+  if (auth) {
     auth = JSON.parse(auth);
   } else {
     auth = {
-      isLogin: false,
-    }
+      isLogin: false
+    };
   }
   return auth;
 };
@@ -17,6 +17,7 @@ const initState = {
   onChangePassword: false,
   parkingEvent: null,
   authorize: null,
+  zones: ['A', 'B1', 'C1', 'A1', 'B', 'C']
 };
 
 export default initState;

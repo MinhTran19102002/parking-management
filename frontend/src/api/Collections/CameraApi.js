@@ -11,6 +11,14 @@ const CameraApi = {
     });
   },
 
+  getUnused: (payload) => {
+    const url = `${DOMAIN}/camera/unused`;
+    return GET({
+      url,
+      payload
+    });
+  },
+
   add: (payload) => {
     const url = `${DOMAIN}/camera`;
     return POST({
@@ -22,6 +30,19 @@ const CameraApi = {
   edit: (_id, payload) => {
     const url = `${DOMAIN}/camera?_id=${_id}`;
     return PUT({
+      url,
+      payload
+    });
+  },
+
+  editMany: (cameras) => {
+    const url = `${DOMAIN}/camera/updateS`;
+    const payload = cameras.map((cameraItem) => {
+      delete cameraItem.updatedAt;
+      delete cameraItem.createdAt;
+      return cameraItem;
+    });
+    return POST({
       url,
       payload
     });
@@ -42,6 +63,6 @@ const CameraApi = {
         ids
       }
     });
-  },
+  }
 };
 export default CameraApi;

@@ -63,5 +63,14 @@ export const InnerDetailFloorStyled = styled.div`
 `;
 
 export const CameraPoint = styled.div`
+  &:hover {
+    opacity: 0.8;
+  }
+`;
 
-`
+export const CameraSidebarStyled = styled.div`
+  button {
+    display: block;
+    margin-left: auto;
+  }
+`;
