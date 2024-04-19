@@ -20,7 +20,8 @@ const PERSON_COLLECTION_SCHEMA = Joi.object({
     .message('Họ và tên không được phép có ký tự và số'),
   address: Joi.string().min(6).max(50).trim().strict(),
   phone: Joi.string().required().min(10).max(11).trim().strict(),
-  email: Joi.string().required().min(4).max(50).trim().strict(),
+  email: Joi.string().required().min(4).max(200).trim().strict(),
+  gender:  Joi.string().min(1).max(20).trim().strict(),
   avatar : Joi.string().optional().min(0).max(50).trim().strict(),
   account: Joi.object({
     username: Joi.string()
@@ -103,11 +104,8 @@ const createDriver = async (data, licenePlate, job, department) => {
 
 const createNew = async (data) => {
   try {
-    console.log('111111')
     const validateData = await validateBeforCreate(data);
-    console.log('222222222')
     const check = await findOne(data.account);
-    console.log('2222222222')
     if (check) {
       throw new ApiError(
         StatusCodes.NOT_FOUND,
