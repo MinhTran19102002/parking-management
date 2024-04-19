@@ -122,7 +122,10 @@ function Map({}) {
   const editManyCameras = useCallback(async (cameras) => {
     try {
       const api = await CameraApi.editMany(cameras);
-    } catch {}
+      actions.onMess({ type: 'success', content: 'Cập nhật camera thành công' });
+    } catch {
+      actions.onMess({ type: 'error', content: 'Cập nhật camera thấp bại' });
+    }
   }, []);
 
   return (

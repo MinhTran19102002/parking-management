@@ -37,9 +37,14 @@ const CameraApi = {
 
   editMany: (cameras) => {
     const url = `${DOMAIN}/camera/updateS`;
+    const payload = cameras.map((cameraItem) => {
+      delete cameraItem.updatedAt;
+      delete cameraItem.createdAt;
+      return cameraItem;
+    });
     return POST({
       url,
-      payload: cameras
+      payload
     });
   },
 

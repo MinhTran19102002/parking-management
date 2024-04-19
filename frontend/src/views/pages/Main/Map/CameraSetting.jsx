@@ -44,7 +44,7 @@ function CameraSetting({ zone, settingMode, cameraUnused, cameraUsed, editManyCa
     () => {
       return {
         addCameraToZone(cameraData, zone) {
-          setCameras((pre) => [...pre, { ...cameraData, ...DEFAULT_CAMERA }]);
+          setCameras((pre) => [...pre, { ...cameraData, zone, ...DEFAULT_CAMERA }]);
         },
         onEditManyCameras() {
           editManyCameras(cameras);
@@ -55,63 +55,64 @@ function CameraSetting({ zone, settingMode, cameraUnused, cameraUsed, editManyCa
   );
 
   useEffect(() => {
-    setCameras(cameraUsed)
+    setCameras(cameraUsed);
   }, [cameraUsed]);
 
   return (
     <div id="cameraForm" onDrop={onDropCamera} onDragOver={(e) => e.preventDefault()}>
-      {cameras.map((camera, ix) => {
-        const defaultLocation =
-          DefaultCameraLocation.find((el) => el.cameraId === camera.cameraId)?.location || {};
-        return (
-          <CameraPointA
-            key={'camera' + ix}
-            style={{ position: 'absolute', ...defaultLocation}}
-            camera={camera}
-            setCameras={setCameras}
-            cameras={cameras}
-            zone={zone}
-          />
-        );
-      })}
+      {zone &&
+        cameras.map((camera, ix) => {
+          return (
+            <CameraPointA
+              key={'camera' + ix}
+              style={{
+                position: 'absolute',
+                display: camera.zone !== zone && 'none'
+              }}
+              camera={camera}
+              setCameras={setCameras}
+              cameras={cameras}
+              zone={zone}
+            />
+          );
+        })}
     </div>
   );
 }
 
-const CameraPointA = ({ camera, cameras, setCameras, zone, ...props }) => {
+const CameraPointA = ({ camera, cameras, setCameras, zone, style, ...props }) => {
   const draggbleRef = useRef(null);
-  const drapObj = useDraggable(draggbleRef);
+  const drapObj = useDraggable(draggbleRef, {
+    defaultPosition: { x: camera.location.left, y: camera.location.top }
+  });
   const { isDragging, dragState = {} } = drapObj;
 
   useEffect(() => {
-    const { offsetX: left = DEFAULT_CAMERA.location.x, offsetY: top = DEFAULT_CAMERA.location.y } =
-      dragState || {};
-    if (top && left) {
-      const newCamera = {
-        ...camera,
-        zone,
-        location: {
-          top,
-          left
+    if (!isDragging) {
+      const { offsetX: left, offsetY: top } = dragState || {};
+      if (top && left) {
+        const newCamera = {
+          ...camera,
+          zone,
+          location: {
+            top,
+            left
+          }
+        };
+        const pos = cameras.findIndex((el) => el.cameraId === camera.cameraId);
+        if (pos === -1) return;
+        else {
+          const cameraRs = cameras.slice();
+          cameraRs.splice(pos, 1, newCamera);
+          setCameras(cameraRs);
         }
-      };
-      const pos = cameras.findIndex((el) => el.cameraId === camera.cameraId);
-      if (pos === -1)
-        setCameras((prev) => {
-          prev.push(newCamera);
-          return prev;
-        });
-      else {
-        console.log('setCmaeras');
-        const rs = cameras.slice();
-        rs.splice(pos, 1, newCamera);
-        setCameras(rs);
       }
     }
-  }, [dragState.offsetX, dragState.offsetY]);
+  }, [isDragging]);
 
   return (
-    <CameraPoint ref={draggbleRef} {...props}>
+    <CameraPoint ref={draggbleRef} style={style}>
+      <p>{camera.cameraId}</p>
       <CameraVer />
     </CameraPoint>
   );
