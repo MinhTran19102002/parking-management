@@ -12,13 +12,13 @@ const createCamera = async (req, res, next) => {
   }
 };
 
-const updateCamara = async (req, res, next) => {
+const updateCamera = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
-    const newCamara = req.body;
+    const newCamera = req.body;
     // delete newUser.account;
     // const rs = await userService.updateUser(req.query._id, newUser);
-    const createNew = await cameraService.updateCamara(req.query._id, newCamara);
+    const createNew = await cameraService.updateCamera(req.query._id, newCamera);
 
     res.status(StatusCodes.CREATED).json(createNew);
   } catch (error) {
@@ -26,13 +26,12 @@ const updateCamara = async (req, res, next) => {
   }
 };
 
-const updateManyCamara = async (req, res, next) => {
+const updateManyCamera = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
-    // const newCamara = req.body;
     // delete newUser.account;
     // const rs = await userService.updateUser(req.query._id, newUser);
-    const createNew = await cameraService.updateManyCamara(req.body);
+    const createNew = await cameraService.updateManyCamera(req.body);
 
     res.status(StatusCodes.CREATED).json(createNew);
   } catch (error) {
@@ -73,22 +72,22 @@ const findByFilterUsed = async (req, res, next) => {
 
 
 
-const deleteCamara = async (req, res, next) => {
+const deleteCamera = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
     const _idDelete = req.query._id;
-    const rs = await cameraService.deleteCamara(_idDelete);
+    const rs = await cameraService.deleteCamera(_idDelete);
     res.status(StatusCodes.OK).json(rs);
   } catch (error) {
     next(error);
   }
 };
 
-const deleteManyCamara = async (req, res, next) => {
+const deleteManyCamera = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
     const ids = req.body.ids;
-    const rs = await cameraService.deleteManyCamara(ids);
+    const rs = await cameraService.deleteManyCamera(ids);
     res.status(StatusCodes.OK).json(rs);
   } catch (error) {
     next(error);
@@ -118,13 +117,13 @@ const upload = async (req, res, next) => {
 
 export const cameraController = {
   createCamera,
-  updateCamara,
+  updateCamera,
   findByFilter,
-  deleteCamara,
-  deleteManyCamara,
+  deleteCamera,
+  deleteManyCamera,
   checkCameraId,
   upload,
   findByFilterUnused,
   findByFilterUsed,
-  updateManyCamara,
+  updateManyCamera,
 }
