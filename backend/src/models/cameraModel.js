@@ -139,7 +139,7 @@ const findByFilter = async ({ pageSize, pageIndex, ...params }) => {
   }
 };
 
-const findByFilterUnused = async ({ pageSize, pageIndex, ...params }) => {
+const findByFilterUnused = async ({ pageSize, pageIndex, ...params }, use) => {
   // Construct the regular expression pattern dynamically
   let paramMatch = {};
   for (let [key, value] of Object.entries(params)) {
@@ -167,7 +167,7 @@ const findByFilterUnused = async ({ pageSize, pageIndex, ...params }) => {
         {
           $match: {
             ...paramMatch,
-            "location": { $exists: false }
+            "location": { $exists: use }
           },
         },
       ])

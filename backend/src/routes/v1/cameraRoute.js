@@ -15,6 +15,9 @@ Router.route('/')
 Router.route('/unused')
   .get(cameraController.findByFilterUnused)
 
+  Router.route('/used')
+  .get(cameraController.findByFilterUsed)
+
 Router.route('/updateS')
   .post(cameraController.updateManyCamara)
 

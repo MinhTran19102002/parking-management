@@ -88,10 +88,10 @@ const findByFilter = async (filter) => {
   }
 };
 
-const findByFilterUnused = async (filter) => {
+const findByFilterUnused = async (filter, use) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    const findcamera = await cameraModel.findByFilterUnused(filter);
+    const findcamera = await cameraModel.findByFilterUnused(filter, use);
     if (findcamera.acknowledged == false) {
       throw new ApiError(
         StatusCodes.NOT_FOUND,
