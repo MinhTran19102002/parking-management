@@ -58,13 +58,14 @@ const createNew = async (data) => {
   }
 };
 
-const updateCamara = async (_id, _data) => {
+const updateCamera = async (_id, _data) => {
   _data.cameraId = "default"
   delete _data._id;
   const data = await validateBeforCreate(_data);
   delete data.cameraId;
   delete data.createdAt;
   data.updatedAt = Date.now();
+
   try {
     const updateOperation = {
       $set: {
@@ -75,6 +76,30 @@ const updateCamara = async (_id, _data) => {
     const result = await GET_DB()
       .collection(CAMERA_COLLECTION_NAME)
       .findOneAndUpdate({ _id: new ObjectId(_id) }, updateOperation, { returnDocument: 'after' });
+    return result;
+  } catch (error) {
+    throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+const removeCamera = async (_ids) => {
+  // _data.cameraId = "default"
+  // delete _data._id;
+  // const data = await validateBeforCreate(_data);
+  // delete data.cameraId;
+  // delete data.createdAt;
+  // data.updatedAt = Date.now();
+  try {
+    const updateOperation = {
+      $unset: {
+        location: 1
+      },
+    };
+    const objectIds  = _ids.map((id) => new ObjectId(id))
+
+    const result = await GET_DB()
+      .collection(CAMERA_COLLECTION_NAME)
+      .updateMany({ _id: { $nin: objectIds }  }, updateOperation, { returnDocument: 'after' });
 
     return result;
   } catch (error) {
@@ -117,7 +142,7 @@ const findByFilter = async ({ pageSize, pageIndex, ...params }) => {
 
     let totalCount = camera.length;
     let totalPage = 1;
-    let newCamara = camera;
+    let newCamera = camera;
 
     if (pageSize && pageIndex) {
       pageSize = Number(pageSize);
@@ -127,10 +152,10 @@ const findByFilter = async ({ pageSize, pageIndex, ...params }) => {
       if (pageIndex < 1 || isNaN(pageIndex)) pageIndex = 1;
       totalPage = Math.ceil(totalCount / pageSize);
       if (pageIndex > totalPage) pageIndex = totalPage;
-      newCamara = newCamara.slice((pageIndex - 1) * pageSize, pageIndex * pageSize);
+      newCamera = newCamera.slice((pageIndex - 1) * pageSize, pageIndex * pageSize);
     }
     return {
-      data: newCamara,
+      data: newCamera,
       totalCount,
       totalPage,
     };
@@ -175,7 +200,7 @@ const findByFilterUnused = async ({ pageSize, pageIndex, ...params }, use) => {
 
     let totalCount = camera.length;
     let totalPage = 1;
-    let newCamara = camera;
+    let newCamera = camera;
 
     if (pageSize && pageIndex) {
       pageSize = Number(pageSize);
@@ -185,10 +210,10 @@ const findByFilterUnused = async ({ pageSize, pageIndex, ...params }, use) => {
       if (pageIndex < 1 || isNaN(pageIndex)) pageIndex = 1;
       totalPage = Math.ceil(totalCount / pageSize);
       if (pageIndex > totalPage) pageIndex = totalPage;
-      newCamara = newCamara.slice((pageIndex - 1) * pageSize, pageIndex * pageSize);
+      newCamera = newCamera.slice((pageIndex - 1) * pageSize, pageIndex * pageSize);
     }
     return {
-      data: newCamara,
+      data: newCamera,
       totalCount,
       totalPage,
     };
@@ -197,7 +222,7 @@ const findByFilterUnused = async ({ pageSize, pageIndex, ...params }, use) => {
   }
 };
 
-const deleteCamara = async (_id) => {
+const deleteCamera = async (_id) => {
   try {
     const result = await GET_DB()
       .collection(CAMERA_COLLECTION_NAME)
@@ -213,7 +238,7 @@ const deleteCamara = async (_id) => {
   }
 };
 
-const deleteManyCamara = async (ids) => {
+const deleteManyCamera = async (ids) => {
   try {
     const objectIds  = ids.map((id) => new ObjectId(id))
     const result = await GET_DB()
@@ -249,10 +274,11 @@ export const cameraModel = {
   CAMERA_COLLECTION_NAME,
   CAMENRA_COLLECTION_SCHEMA,
   createNew,
-  updateCamara,
+  updateCamera,
   findByFilter,
-  deleteCamara,
-  deleteManyCamara,
+  deleteCamera,
+  deleteManyCamera,
   checkCameraId,
   findByFilterUnused,
+  removeCamera,
 };

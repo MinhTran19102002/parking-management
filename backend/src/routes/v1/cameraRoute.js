@@ -9,8 +9,8 @@ const Router = express.Router()
 Router.route('/')
   .get(cameraController.findByFilter)
   .post(cameraController.createCamera)
-  .put(cameraController.updateCamara)
-  .delete(cameraController.deleteCamara)
+  .put(cameraController.updateCamera)
+  .delete(cameraController.deleteCamera)
 
 Router.route('/unused')
   .get(cameraController.findByFilterUnused)
@@ -19,10 +19,10 @@ Router.route('/unused')
   .get(cameraController.findByFilterUsed)
 
 Router.route('/updateS')
-  .post(cameraController.updateManyCamara)
+  .post(cameraController.updateManyCamera)
 
 Router.route('/deletes')
-  .post(cameraController.deleteManyCamara)
+  .post(cameraController.deleteManyCamera)
 
 Router.route('/checkCameraId')
   .get(cameraController.checkCameraId)

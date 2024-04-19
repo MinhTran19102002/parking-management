@@ -21,10 +21,10 @@ const createCamera = async (data) => {
   }
 }
 
-const updateCamara = async (_id, params) => {
+const updateCamera = async (_id, params) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    const cameraUpdate = await cameraModel.updateCamara(_id, params);
+    const cameraUpdate = await cameraModel.updateCamera(_id, params);
     if (cameraUpdate == null) {
       throw new ApiError(
         StatusCodes.INTERNAL_SERVER_ERROR,
@@ -41,25 +41,31 @@ const updateCamara = async (_id, params) => {
   }
 }
 
-const updateManyCamara = async (listCamrera) => {
+const updateManyCamera = async (listCamrera) => {
   // eslint-disable-next-line no-useless-catch
   try {
     let listUpdate = []
+    let listId = []
     await Promise.allSettled(
       listCamrera.map(async (data) => {
         // console.log(data)
-        const cameraUpdate = await cameraModel.updateCamara(data._id, data);
+        const cameraUpdate = await cameraModel.updateCamera(data._id, data);
+        
         return cameraUpdate;
       }),
     )
       .then((results) => {
         results.forEach((result) => {
           listUpdate.push(result.value)
+          listId.push(result.value._id)
         });
+        
       })
       .catch((error) => {
         throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
       });
+    const removeCamera = await cameraModel.removeCamera(listId);
+    console.log(removeCamera)
     return listUpdate;
   } catch (error) {
     if (error.type && error.code)
@@ -109,10 +115,10 @@ const findByFilterUnused = async (filter, use) => {
 };
 
 
-const deleteCamara = async (_id) => {
+const deleteCamera = async (_id) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    const cameraDelete = await cameraModel.deleteCamara(_id);
+    const cameraDelete = await cameraModel.deleteCamera(_id);
     if (cameraDelete.deletedCount == 0) {
       throw new ApiError(
         StatusCodes.INTERNAL_SERVER_ERROR,
@@ -130,10 +136,10 @@ const deleteCamara = async (_id) => {
 };
 
 
-const deleteManyCamara = async (ids) => {
+const deleteManyCamera = async (ids) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    const cameraDelete = await cameraModel.deleteManyCamara(ids);
+    const cameraDelete = await cameraModel.deleteManyCamera(ids);
     if (cameraDelete.deletedCount == 0) {
       throw new ApiError(
         StatusCodes.INTERNAL_SERVER_ERROR,
@@ -176,12 +182,12 @@ const upload = async (req, res, next) => {
 
 export const cameraService = {
   createCamera,
-  updateCamara,
+  updateCamera,
   findByFilter,
-  deleteCamara,
-  deleteManyCamara,
+  deleteCamera,
+  deleteManyCamera,
   checkCameraId,
   upload,
   findByFilterUnused,
-  updateManyCamara,
+  updateManyCamera,
 }
