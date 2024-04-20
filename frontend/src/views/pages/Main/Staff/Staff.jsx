@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Form, Modal, Input, Select, Button, Space, Card } from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone, RedoOutlined } from '@ant-design/icons';
-import { UserApi } from '~/api';
+import { Form, Modal, Input, Select, Button, Space, Card, Upload } from 'antd';
+import { EyeInvisibleOutlined, EyeTwoTone, RedoOutlined, UploadOutlined } from '@ant-design/icons';
+import { StaffApi, UserApi } from '~/api';
 import { ErrorService, ValidateService } from '~/services';
 import AppContext from '~/context';
 import EmployeeApi from '~/api/Collections/EmployeeApi';
@@ -17,11 +17,13 @@ const formItemLayout = {
 
 const DEFAULT_PASSWORD = 'Parking@123';
 
-function EmployeeForm({ isOpen, onClose, formAction, noChangeAccount }) {
+function StaffForm({ isOpen, onClose, formAction, noChangeAccount }) {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const { state, actions } = useContext(AppContext);
   const { onNoti, onMess } = actions;
+  const [fileList, setFileList] = useState([]);
+  const [imageFile, setImageFile] = useState();
 
   const hanldeClose = (action, values) => {
     form.resetFields();
@@ -63,7 +65,15 @@ function EmployeeForm({ isOpen, onClose, formAction, noChangeAccount }) {
   const hanldeAdd = async (values) => {
     try {
       setLoading(true);
-      const api = await EmployeeApi.add(values);
+      const account = {
+        username: values?.user,
+        password: values?.pass
+      };
+      values.account = account;
+      delete values['image'];
+      delete values.user;
+      delete values.pass;
+      const api = await StaffApi.add({ ...values, image: imageFile });
       if (api) {
         onNoti({ message: 'Thêm nhân viên thành công', type: 'success' });
       }
@@ -144,6 +154,46 @@ function EmployeeForm({ isOpen, onClose, formAction, noChangeAccount }) {
             </Space.Compact>
           </Form.Item>
         )} */}
+        <Form.Item name="image" label="Ảnh nhân viên" rules={[{ required: true, message: false }]}>
+          <Upload
+            accept="image/jpeg,image/jpg,image/png,image/webp"
+            beforeUpload={(file) => {
+              return false;
+            }}
+            maxCount={1}
+            fileList={fileList}
+            onChange={({ file, fileList: newFileList }) => {
+              setFileList(newFileList);
+              setImageFile(file);
+            }}
+            listType="picture">
+            <Button icon={<UploadOutlined />}>Upload</Button>
+          </Upload>
+        </Form.Item>
+        <Form.Item
+          name={'user'}
+          label="Tên tài khoản"
+          validateDebounce={1000}
+          rules={[{ required: true, message: false }]}>
+          <Input placeholder="example" id="usernameinput" disabled={noChangeAccount} />
+        </Form.Item>
+        {!noChangeAccount && (
+          <Form.Item label="Mật khẩu" wrapperCol={{ span: 24 }}>
+            <Space.Compact className="w-100">
+              <Form.Item
+                name={'pass'}
+                rules={[{ required: true, message: false }]}
+                wrapperCol={{ span: 24 }}
+                className="w-100">
+                <Input.Password
+                  placeholder="Example@123"
+                  iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                />
+              </Form.Item>
+              <Button icon={<RedoOutlined />} onClick={randomPassword} />
+            </Space.Compact>
+          </Form.Item>
+        )}
 
         <Form.Item
           wrapperCol={{
@@ -152,8 +202,10 @@ function EmployeeForm({ isOpen, onClose, formAction, noChangeAccount }) {
           }}
           className="mt-4">
           <Space>
-            <Button id='btnCancel' onClick={hanldeClose}>Hủy</Button>
-            <Button id='btnSubmit' htmlType="submit" type="primary">
+            <Button id="btnCancel" onClick={hanldeClose}>
+              Hủy
+            </Button>
+            <Button id="btnSubmit" htmlType="submit" type="primary">
               {formAction.actionText}
             </Button>
           </Space>
@@ -163,4 +215,4 @@ function EmployeeForm({ isOpen, onClose, formAction, noChangeAccount }) {
   );
 }
 
-export default EmployeeForm;
+export default StaffForm;
