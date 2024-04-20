@@ -1,5 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import { cameraService } from '~/services/cameraService';
+import uploadImageHandler from '~/utils/uploads';
 
 const createCamera = async (req, res, next) => {
   try {
@@ -115,6 +116,20 @@ const upload = async (req, res, next) => {
   }
 };
 
+const addImage = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    req.query._id
+    const  file= await uploadImageHandler(req, res, 'camera')
+    let image = file.filename;
+    const createUser = await cameraService.updateAvatar(req.query._id,  image);
+    res.status(StatusCodes.CREATED).json(createUser);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 export const cameraController = {
   createCamera,
   updateCamera,
@@ -123,6 +138,7 @@ export const cameraController = {
   deleteManyCamera,
   checkCameraId,
   upload,
+  addImage,
   findByFilterUnused,
   findByFilterUsed,
   updateManyCamera,

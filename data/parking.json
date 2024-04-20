@@ -17,8 +17,10 @@
     },
     {
       "position": "B103",
-      "parkingTurnId": null,
-      "isBlank": true
+      "parkingTurnId": {
+        "$oid": "661e41517d6490eecebc6944"
+      },
+      "isBlank": false
     },
     {
       "position": "B104",
@@ -27,8 +29,10 @@
     },
     {
       "position": "B105",
-      "parkingTurnId": null,
-      "isBlank": true
+      "parkingTurnId": {
+        "$oid": "6619e7df535b2c18a7430a57"
+      },
+      "isBlank": false
     },
     {
       "position": "B106",
@@ -42,13 +46,17 @@
     },
     {
       "position": "B202",
-      "parkingTurnId": null,
-      "isBlank": true
+      "parkingTurnId": {
+        "$oid": "6619ea04f67a3cf17b75dcf5"
+      },
+      "isBlank": false
     },
     {
       "position": "B203",
-      "parkingTurnId": null,
-      "isBlank": true
+      "parkingTurnId": {
+        "$oid": "6619e87e5fb48dc74ff030e2"
+      },
+      "isBlank": false
     },
     {
       "position": "B204",
@@ -109,8 +117,10 @@
     },
     {
       "position": "B403",
-      "parkingTurnId": null,
-      "isBlank": true
+      "parkingTurnId": {
+        "$oid": "6619e77e23c089efbea69a61"
+      },
+      "isBlank": false
     },
     {
       "position": "B404",
@@ -149,8 +159,10 @@
     },
     {
       "position": "B505",
-      "parkingTurnId": null,
-      "isBlank": true
+      "parkingTurnId": {
+        "$oid": "6619e67b0f04fc27d1eee6dd"
+      },
+      "isBlank": false
     },
     {
       "position": "B506",
@@ -188,7 +200,7 @@
       "isBlank": true
     }
   ],
-  "occupied": 1,
+  "occupied": 7,
   "total": 36,
   "createdAt": {
     "$numberLong": "1701582639277"
@@ -402,8 +414,10 @@
     },
     {
       "position": "A704",
-      "parkingTurnId": null,
-      "isBlank": true
+      "parkingTurnId": {
+        "$oid": "6619e76056d0659d64b91255"
+      },
+      "isBlank": false
     },
     {
       "position": "A705",
@@ -431,7 +445,7 @@
       "isBlank": true
     }
   ],
-  "occupied": 1,
+  "occupied": 2,
   "total": 45,
   "createdAt": {
     "$numberLong": "1701582937653"
@@ -548,8 +562,10 @@
     },
     {
       "position": "C206",
-      "parkingTurnId": null,
-      "isBlank": true
+      "parkingTurnId": {
+        "$oid": "6619e16baeb7c74d37082903"
+      },
+      "isBlank": false
     },
     {
       "position": "C207",
@@ -647,7 +663,7 @@
       "isBlank": true
     }
   ],
-  "occupied": 0,
+  "occupied": 1,
   "total": 40,
   "createdAt": {
     "$numberLong": "1701582946092"
