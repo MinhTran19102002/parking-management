@@ -32,6 +32,13 @@ const publicRoutes = [
     element: <Map />,
     icon: <CarOutlined />
   },
+  {
+    key: 'driver',
+    label: 'Quản lý chủ xe',
+    path: '/driver',
+    element: <Driver />,
+    icon: <UserOutlined />
+  }
 ];
 
 const adminRoutes = [
