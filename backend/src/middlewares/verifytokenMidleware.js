@@ -30,7 +30,7 @@ const verifyToken = (req, res, next) => {
 const verifyTokenAndAdminManager = (req, res, next) => {
   // next(); /// neu test tren postman thi mo doan code nay
   verifyToken(req, res, () => {
-    if (req.user.role == 'Admin' || req.user.role == 'Manager') {
+    if (req.user.role == 'Admin' || req.user.role == 'Manager' || req.user.role == 'Staff') {
       next();
     } else {
       throw new ApiError(
@@ -46,7 +46,7 @@ const verifyTokenAndAdminManager = (req, res, next) => {
 const verifyTokenAndAdmin = (req, res, next) => {
   // next(); /// neu test tren postman thi mo doan code nay
   verifyToken(req, res, () => {
-    if (req.user.role == 'Admin') {
+    if (req.user.role == 'Admin'  || req.user.role == 'Staff') {
       next();
     } else {
       throw new ApiError(
@@ -62,7 +62,7 @@ const verifyTokenAndAdmin = (req, res, next) => {
 const verifyTokenAndManager = (req, res, next) => {
   //next(); /// neu test tren postman thi mo doan code nay
   verifyToken(req, res, () => {
-    if (req.user.role == 'Manager') {
+    if (req.user.role == 'Manager'  || req.user.role == 'Staff') {
       next();
     } else {
       throw new ApiError(
