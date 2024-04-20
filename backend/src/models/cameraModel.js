@@ -92,7 +92,8 @@ const removeCamera = async (_ids) => {
   try {
     const updateOperation = {
       $unset: {
-        location: 1
+        location: 1,
+        zone: 1,
       },
     };
     const objectIds  = _ids.map((id) => new ObjectId(id))
