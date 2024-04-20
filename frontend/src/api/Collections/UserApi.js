@@ -68,7 +68,7 @@ export default {
   },
 
   edit: (_id, payload) => {
-    const url = `${DOMAIN}/user?_id=${_id}`;
+    const url = `${DOMAIN}/user/staff?_id=${_id}`;
     return PUT({
       url,
       payload

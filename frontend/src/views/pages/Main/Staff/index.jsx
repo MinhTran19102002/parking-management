@@ -95,6 +95,7 @@ function Staff({}) {
 
   const onEdit = (values) => {
     values.user = values.account.username;
+    values.image = values.avatar;
     setFormAction({
       action: 'edit',
       actionText: 'Chỉnh sửa',
@@ -107,7 +108,7 @@ function Staff({}) {
   const onDelete = async (values) => {
     try {
       setLoading(true);
-      const api = await EmployeeApi.delete(values._id);
+      const api = await StaffApi.delete(values._id);
       setData(api);
       actions.onNoti({
         message: 'Xóa nhân viên thành công',

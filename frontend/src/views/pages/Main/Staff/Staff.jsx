@@ -154,22 +154,28 @@ function StaffForm({ isOpen, onClose, formAction, noChangeAccount }) {
             </Space.Compact>
           </Form.Item>
         )} */}
-        <Form.Item name="image" label="Ảnh nhân viên" rules={[{ required: true, message: false }]}>
-          <Upload
-            accept="image/jpeg,image/jpg,image/png,image/webp"
-            beforeUpload={(file) => {
-              return false;
-            }}
-            maxCount={1}
-            fileList={fileList}
-            onChange={({ file, fileList: newFileList }) => {
-              setFileList(newFileList);
-              setImageFile(file);
-            }}
-            listType="picture">
-            <Button icon={<UploadOutlined />}>Upload</Button>
-          </Upload>
-        </Form.Item>
+        {!noChangeAccount && (
+          <Form.Item
+            name="image"
+            label="Ảnh nhân viên"
+            rules={[{ required: true, message: false }]}>
+            <Upload
+              accept="image/jpeg,image/jpg,image/png,image/webp"
+              beforeUpload={(file) => {
+                return false;
+              }}
+              maxCount={1}
+              fileList={fileList}
+              onChange={({ file, fileList: newFileList }) => {
+                setFileList(newFileList);
+                setImageFile(file);
+              }}
+              listType="picture">
+              <Button icon={<UploadOutlined />}>Upload</Button>
+            </Upload>
+          </Form.Item>
+        )}
+
         <Form.Item
           name={'user'}
           label="Tên tài khoản"

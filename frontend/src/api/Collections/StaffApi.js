@@ -21,14 +21,14 @@ export default {
   },
 
   delete: (_id) => {
-    const url = `${DOMAIN}/user/employee?_id=${_id}`;
+    const url = `${DOMAIN}/user/staff?_id=${_id}`;
     return DELETE({
       url
     });
   },
 
   deleteMany: (ids) => {
-    const url = `${DOMAIN}/user/employee/deletes`;
+    const url = `${DOMAIN}/user/staff/deletes`;
     return POST({
       url,
       payload: {
