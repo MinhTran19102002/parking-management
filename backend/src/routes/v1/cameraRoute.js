@@ -30,4 +30,10 @@ Router.route('/checkCameraId')
 
 Router.route('/upload').get(cameraController.upload)
 
+Router.route('/addImage').put(
+  // verifyTokenMidleware.verifyTokenAndAdmin,
+  cameraController.addImage
+);
+
+
 export const cameraRoute = Router

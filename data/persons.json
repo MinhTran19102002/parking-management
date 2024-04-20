@@ -23,29 +23,6 @@
 },
 {
   "_id": {
-    "$oid": "65706ddcd8604bc6fdd315e8"
-  },
-  "name": "Tri thieu NGuyen",
-  "address": "Tay Ninh",
-  "phone": "0996023953",
-  "email": "minhtc1910@gmail.com",
-  "driver": {
-    "vehicleId": {
-      "$oid": "65706e77d8604bc6fdd315e9"
-    },
-    "department": "Điện",
-    "job": "Giảng viên"
-  },
-  "createdAt": {
-    "$numberLong": "1701867128215"
-  },
-  "updatedAt": {
-    "$numberLong": "1701867128215"
-  },
-  "_destroy": false
-},
-{
-  "_id": {
     "$oid": "65731766072c18b354ccde82"
   },
   "name": "Tran Minh",
@@ -676,27 +653,6 @@
 },
 {
   "_id": {
-    "$oid": "65737ae3aaf4004940d20cf2"
-  },
-  "name": "Phạm Xuân Thu",
-  "address": "707 Đường UVW, Quận 10, TP HCM",
-  "phone": "0321815837",
-  "email": "thuxpham@gmail.com",
-  "driver": {
-    "vehicleId": {
-      "$oid": "65737adfaaf4004940d20c90"
-    },
-    "job": "Teacher",
-    "department": "Khoa Cơ khí Động Lực"
-  },
-  "createdAt": {
-    "$numberLong": "1702066915781"
-  },
-  "updatedAt": null,
-  "_destroy": false
-},
-{
-  "_id": {
     "$oid": "65737ae3aaf4004940d20cf4"
   },
   "name": "Đặng Hữu Hải",
@@ -712,6 +668,27 @@
   },
   "createdAt": {
     "$numberLong": "1702066915785"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae3aaf4004940d20cf2"
+  },
+  "name": "Phạm Xuân Thu",
+  "address": "707 Đường UVW, Quận 10, TP HCM",
+  "phone": "0321815837",
+  "email": "thuxpham@gmail.com",
+  "driver": {
+    "vehicleId": {
+      "$oid": "65737adfaaf4004940d20c90"
+    },
+    "job": "Teacher",
+    "department": "Khoa Cơ khí Động Lực"
+  },
+  "createdAt": {
+    "$numberLong": "1702066915781"
   },
   "updatedAt": null,
   "_destroy": false
@@ -970,27 +947,6 @@
 },
 {
   "_id": {
-    "$oid": "65737ae4aaf4004940d20d02"
-  },
-  "name": "Phan Thị Tuấn",
-  "address": "808 Đường XYZ, Quận 11, TP HCM",
-  "phone": "0357922539",
-  "email": "tuantphan@gmail.com",
-  "driver": {
-    "vehicleId": {
-      "$oid": "65737ae0aaf4004940d20ca5"
-    },
-    "job": "Employee",
-    "department": "Phòng Đào tạo"
-  },
-  "createdAt": {
-    "$numberLong": "1702066916029"
-  },
-  "updatedAt": null,
-  "_destroy": false
-},
-{
-  "_id": {
     "$oid": "65737ae4aaf4004940d20d03"
   },
   "name": "Phạm Thành Nam",
@@ -1006,6 +962,27 @@
   },
   "createdAt": {
     "$numberLong": "1702066916035"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae4aaf4004940d20d02"
+  },
+  "name": "Phan Thị Tuấn",
+  "address": "808 Đường XYZ, Quận 11, TP HCM",
+  "phone": "0357922539",
+  "email": "tuantphan@gmail.com",
+  "driver": {
+    "vehicleId": {
+      "$oid": "65737ae0aaf4004940d20ca5"
+    },
+    "job": "Employee",
+    "department": "Phòng Đào tạo"
+  },
+  "createdAt": {
+    "$numberLong": "1702066916029"
   },
   "updatedAt": null,
   "_destroy": false
@@ -1243,48 +1220,6 @@
 },
 {
   "_id": {
-    "$oid": "65737ae4aaf4004940d20d15"
-  },
-  "name": "Võ Quốc Hạnh",
-  "address": "131 Đường UVW, Quận 10, TP HCM",
-  "phone": "0365866087",
-  "email": "hanhqvo@gmail.com",
-  "driver": {
-    "vehicleId": {
-      "$oid": "65737ae0aaf4004940d20cbd"
-    },
-    "job": "Teacher",
-    "department": "Khoa Công nghệ thông tin"
-  },
-  "createdAt": {
-    "$numberLong": "1702066916466"
-  },
-  "updatedAt": null,
-  "_destroy": false
-},
-{
-  "_id": {
-    "$oid": "65737ae4aaf4004940d20d13"
-  },
-  "name": "Huỳnh Minh Hạnh",
-  "address": "191 Đường LMN, Quận 12, TP HCM",
-  "phone": "0384007632",
-  "email": "hanhmhuynh@gmail.com",
-  "driver": {
-    "vehicleId": {
-      "$oid": "65737ae0aaf4004940d20cb9"
-    },
-    "job": "Student",
-    "department": "Trường Trung học Kỹ thuật Thực hành"
-  },
-  "createdAt": {
-    "$numberLong": "1702066916342"
-  },
-  "updatedAt": null,
-  "_destroy": false
-},
-{
-  "_id": {
     "$oid": "65737ae4aaf4004940d20d14"
   },
   "name": "Hoàng Minh Thu",
@@ -1321,6 +1256,48 @@
   },
   "createdAt": {
     "$numberLong": "1702066916332"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae4aaf4004940d20d15"
+  },
+  "name": "Võ Quốc Hạnh",
+  "address": "131 Đường UVW, Quận 10, TP HCM",
+  "phone": "0365866087",
+  "email": "hanhqvo@gmail.com",
+  "driver": {
+    "vehicleId": {
+      "$oid": "65737ae0aaf4004940d20cbd"
+    },
+    "job": "Teacher",
+    "department": "Khoa Công nghệ thông tin"
+  },
+  "createdAt": {
+    "$numberLong": "1702066916466"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae4aaf4004940d20d13"
+  },
+  "name": "Huỳnh Minh Hạnh",
+  "address": "191 Đường LMN, Quận 12, TP HCM",
+  "phone": "0384007632",
+  "email": "hanhmhuynh@gmail.com",
+  "driver": {
+    "vehicleId": {
+      "$oid": "65737ae0aaf4004940d20cb9"
+    },
+    "job": "Student",
+    "department": "Trường Trung học Kỹ thuật Thực hành"
+  },
+  "createdAt": {
+    "$numberLong": "1702066916342"
   },
   "updatedAt": null,
   "_destroy": false
@@ -1663,27 +1640,6 @@
 },
 {
   "_id": {
-    "$oid": "65737ae4aaf4004940d20d29"
-  },
-  "name": "Phạm Thành Duy",
-  "address": "131 Đường ABC, Quận Bình Tân, TP HCM",
-  "phone": "0333407965",
-  "email": "duytpham@gmail.com",
-  "driver": {
-    "vehicleId": {
-      "$oid": "65737ae1aaf4004940d20cd2"
-    },
-    "job": "Teacher",
-    "department": "Khoa Xây dựng"
-  },
-  "createdAt": {
-    "$numberLong": "1702066916737"
-  },
-  "updatedAt": null,
-  "_destroy": false
-},
-{
-  "_id": {
     "$oid": "65737ae4aaf4004940d20d2a"
   },
   "name": "Vũ Văn Nam",
@@ -1699,6 +1655,27 @@
   },
   "createdAt": {
     "$numberLong": "1702066916748"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae4aaf4004940d20d29"
+  },
+  "name": "Phạm Thành Duy",
+  "address": "131 Đường ABC, Quận Bình Tân, TP HCM",
+  "phone": "0333407965",
+  "email": "duytpham@gmail.com",
+  "driver": {
+    "vehicleId": {
+      "$oid": "65737ae1aaf4004940d20cd2"
+    },
+    "job": "Teacher",
+    "department": "Khoa Xây dựng"
+  },
+  "createdAt": {
+    "$numberLong": "1702066916737"
   },
   "updatedAt": null,
   "_destroy": false
@@ -2631,12 +2608,12 @@
 },
 {
   "_id": {
-    "$oid": "6575841757acff4574f1c1b6"
+    "$oid": "6575841757acff4574f1c1b7"
   },
-  "name": "Lê Thị Thùy Dung",
-  "phone": "0781122334",
-  "email": "lethithuydung606@gmail.com",
-  "address": "606 Đường XYZ, Quận 1, TP HCM",
+  "name": "Ngô Văn Tuấn",
+  "phone": "0782233445",
+  "email": "ngovantuan707@gmail.com",
+  "address": "707 Đường LMN, Quận 2, TP HCM",
   "createdAt": {
     "$numberLong": "1702200343346"
   },
@@ -2645,12 +2622,12 @@
 },
 {
   "_id": {
-    "$oid": "6575841757acff4574f1c1b7"
+    "$oid": "6575841757acff4574f1c1b6"
   },
-  "name": "Ngô Văn Tuấn",
-  "phone": "0782233445",
-  "email": "ngovantuan707@gmail.com",
-  "address": "707 Đường LMN, Quận 2, TP HCM",
+  "name": "Lê Thị Thùy Dung",
+  "phone": "0781122334",
+  "email": "lethithuydung606@gmail.com",
+  "address": "606 Đường XYZ, Quận 1, TP HCM",
   "createdAt": {
     "$numberLong": "1702200343346"
   },
@@ -3473,25 +3450,6 @@
 },
 {
   "_id": {
-    "$oid": "65796c4b2297b37fbd30fed7"
-  },
-  "name": "Huỳnh Thị Duy",
-  "address": "303 Đường LMN, Quận 2, TP HCM",
-  "phone": "0319977830",
-  "email": "duythuynh@gmail.com",
-  "account": {
-    "username": "duythuynh",
-    "password": "$2b$10$MuU1ntD3mt2QsS/Ysn/XEeF/DqeJ.ffvev6y7/OtE3Cj2HUS2yVsy",
-    "role": "Manager"
-  },
-  "createdAt": {
-    "$numberLong": "1702456395299"
-  },
-  "updatedAt": null,
-  "_destroy": false
-},
-{
-  "_id": {
     "$oid": "65796c4b2297b37fbd30fed9"
   },
   "name": "Vũ Minh Tâm",
@@ -3505,6 +3463,25 @@
   },
   "createdAt": {
     "$numberLong": "1702456395300"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65796c4b2297b37fbd30fed7"
+  },
+  "name": "Huỳnh Thị Duy",
+  "address": "303 Đường LMN, Quận 2, TP HCM",
+  "phone": "0319977830",
+  "email": "duythuynh@gmail.com",
+  "account": {
+    "username": "duythuynh",
+    "password": "$2b$10$MuU1ntD3mt2QsS/Ysn/XEeF/DqeJ.ffvev6y7/OtE3Cj2HUS2yVsy",
+    "role": "Manager"
+  },
+  "createdAt": {
+    "$numberLong": "1702456395299"
   },
   "updatedAt": null,
   "_destroy": false
@@ -4059,46 +4036,6 @@
 },
 {
   "_id": {
-    "$oid": "660ea877d57d74670bfdde8a"
-  },
-  "account": {
-    "username": "MinhTrdaasan1",
-    "password": "$2b$10$PwjxVKGvqCux//HifWP6SO0Nl8JESrJ4fYn8.VNK49onj/yno8SKS",
-    "role": "Staff"
-  },
-  "name": "Tran Cong Minh",
-  "address": "An Giang",
-  "phone": "0909741520",
-  "email": "mfiahfas@gmail.com",
-  "createdAt": {
-    "$numberLong": "1712236663379"
-  },
-  "updatedAt": null,
-  "_destroy": false,
-  "avatar": "https://nguoinoitieng.tv/images/thumbnail/96/bbf7.jpg"
-},
-{
-  "_id": {
-    "$oid": "6610b92b063644febdb19126"
-  },
-  "account": {
-    "username": "MinhTrdaasan13",
-    "password": "$2b$10$iGZRiCvd5N5Jhu5UAS9zvelQZNx1qDmgVlZOfOlMCPThb87/hgO96",
-    "role": "Staff"
-  },
-  "name": "Tran Cong Minh",
-  "address": "An Giang",
-  "phone": "0909701520",
-  "email": "mahfas@gmail.com",
-  "createdAt": {
-    "$numberLong": "1712372011369"
-  },
-  "updatedAt": null,
-  "_destroy": false,
-  "avatar": "https://nguoinoitieng.tv/images/thumbnail/96/bbf7.jpg"
-},
-{
-  "_id": {
     "$oid": "6610ba87063644febdb19127"
   },
   "account": {
@@ -4156,5 +4093,47 @@
     "$numberLong": "1712944003168"
   },
   "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6622adb99e6f9eb6b7d2904b"
+  },
+  "account": {
+    "username": "Minh@12345",
+    "password": "$2b$10$UArLg5hMiy8mhdaJHddA3ex4AgTi17CVJg4Mqsn81B32l31pudNKm",
+    "role": "Staff"
+  },
+  "name": "Tran Cong Minh",
+  "address": "Tran Cong Minh",
+  "phone": "0912116410",
+  "email": "minhtc1910@gmail.com",
+  "avatar": "baek-1713548729377.jpg",
+  "createdAt": {
+    "$numberLong": "1713548729446"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "662321126b1b4d9f3961f7bc"
+  },
+  "account": {
+    "username": "ngocminh1234",
+    "password": "$2b$10$VPhgBFDo2T5J/eN8ZuFeL.6aHJ.cMfPlGG4npXdqTANR/JnE1rbUC",
+    "role": "Staff"
+  },
+  "name": "Tran Trung Hau",
+  "address": "Tran Trung Hau",
+  "phone": "0321328855",
+  "email": "ngocminh123@gmail.com",
+  "avatar": "avt2-1713578258534.jpg",
+  "createdAt": {
+    "$numberLong": "1713578258597"
+  },
+  "updatedAt": {
+    "$numberLong": "1713580038413"
+  },
   "_destroy": false
 }]
