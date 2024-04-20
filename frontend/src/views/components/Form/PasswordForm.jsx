@@ -29,7 +29,12 @@ function PasswordForm({ account, isOpen, onClose, noChangeAccount }) {
         onMess({ content: 'Chỉnh sửa nhân viên thành công', type: 'success' });
       }
 
-      onClose({ afterAction: actions.logout() });
+      onClose({
+        afterAction: () => {
+          actions.onSetChangePassword();
+          actions.logout();
+        }
+      });
       // onClose();
     } catch (error) {
       ErrorService.hanldeError(error, onNoti);

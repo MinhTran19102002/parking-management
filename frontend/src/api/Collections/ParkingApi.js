@@ -28,7 +28,6 @@ export default {
         path = '/createPakingTurnWithoutZoneAndPosition';
       }
     }
-    console.log('importVehicle', payload);
     const url = `${DOMAIN}/parkingTurn${path}`;
 
     return POST({

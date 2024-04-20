@@ -48,6 +48,7 @@ function Header({ title }) {
   const [formAction, setFormAction] = useState({});
   const [openForm, setOpenForm] = useState(false);
   const navigate = useNavigate();
+  const [avatar, setAvatar] = useState(DEFAULT_AVATAR);
 
   const hanldeLogout = async () => {
     actions.logout();
@@ -71,6 +72,16 @@ function Header({ title }) {
   useEffect(() => {
     if (!state.auth.isLogin) {
       navigate('/auth/login');
+    } else {
+      // hanlde avatart
+      try {
+        if (auth.info.avatar)
+          setAvatar(
+            `${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/avatar/${
+              auth.info.avatar
+            }`
+          );
+      } catch {}
     }
   }, [state.auth]);
 
@@ -118,7 +129,17 @@ function Header({ title }) {
           {useMemo(() => {
             return (
               <Space id="profileUser">
-                <Avatar src={DEFAULT_AVATAR} size={40} />
+                <Avatar
+                  src={
+                    auth.info.avatar
+                      ? `${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/avatar/${
+                          auth.info.avatar
+                        }`
+                      : DEFAULT_AVATAR
+                  }
+                  size={40}
+                  fallback
+                />
                 <Dropdown
                   menu={{ items, onClick: hanldeClickProfile }}
                   getPopupContainer={() => document.querySelector('#root')}
@@ -135,7 +156,7 @@ function Header({ title }) {
                 </Dropdown>
               </Space>
             );
-          }, [state.auth])}
+          }, [state.auth, avatar])}
         </Space>
       </Flex>
       <Modal

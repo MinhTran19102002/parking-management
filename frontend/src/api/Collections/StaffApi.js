@@ -4,7 +4,7 @@ const DOMAIN = import.meta.env.VITE_DOMAIN;
 
 export default {
   get: (payload) => {
-    const url = `${DOMAIN}/user/staff`;
+    const url = `${DOMAIN}/user/staff/filter`;
     return GET({
       url,
       payload
@@ -12,22 +12,23 @@ export default {
   },
 
   add: (payload) => {
-    const url = `${DOMAIN}/user/employee`;
+    const url = `${DOMAIN}/user/staff`;
     return POST({
       url,
-      payload
+      payload,
+      headers: { 'Content-Type': 'multipart/form-data' }
     });
   },
 
   delete: (_id) => {
-    const url = `${DOMAIN}/user/employee?_id=${_id}`;
+    const url = `${DOMAIN}/user/staff?_id=${_id}`;
     return DELETE({
       url
     });
   },
 
   deleteMany: (ids) => {
-    const url = `${DOMAIN}/user/employee/deletes`;
+    const url = `${DOMAIN}/user/staff/deletes`;
     return POST({
       url,
       payload: {

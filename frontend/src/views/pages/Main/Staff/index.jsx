@@ -1,9 +1,6 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { TileLayout } from '@progress/kendo-react-layout';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import {
-  Badge,
   Card,
-  Col,
   Layout,
   Row,
   Table,
@@ -12,9 +9,8 @@ import {
   Button,
   Modal,
   Pagination,
-  Select,
   Input,
-  Avatar 
+  Avatar
 } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
 import {
@@ -24,12 +20,10 @@ import {
   DeleteFilled,
   ExclamationCircleFilled
 } from '@ant-design/icons';
-import { UserApi } from '~/api';
+import { StaffApi } from '~/api';
 import dayjs from 'dayjs';
-import { useSearchParams, useParams } from 'react-router-dom';
-import { GetAllParams } from '~/services/RegularService';
+import { useSearchParams } from 'react-router-dom';
 import StaffForm from './Staff';
-import CustomedTable from '~/views/components/Table';
 import AppContext from '~/context';
 import { ErrorService } from '~/services';
 import EmployeeApi from '~/api/Collections/EmployeeApi';
@@ -65,11 +59,11 @@ function Staff({}) {
   const callApi = async () => {
     try {
       setLoading(true);
-      const api = await EmployeeApi.get({ ...params, pageSize, pageIndex });
+      const api = await StaffApi.get({ ...params, pageSize, pageIndex });
       setData({
         ...api,
         data: api.data.map((el) => {
-          return { ...el, avatar: avts[0] };
+          return { ...el };
         })
       });
       isMounted.current = true;
@@ -81,8 +75,6 @@ function Staff({}) {
       setSeletedRows([]);
     }
   };
-
-  console.log(data);
 
   useEffect(() => {
     callApi();
@@ -102,6 +94,8 @@ function Staff({}) {
   };
 
   const onEdit = (values) => {
+    values.user = values.account.username;
+    values.image = values.avatar;
     setFormAction({
       action: 'edit',
       actionText: 'Chỉnh sửa',
@@ -114,7 +108,7 @@ function Staff({}) {
   const onDelete = async (values) => {
     try {
       setLoading(true);
-      const api = await EmployeeApi.delete(values._id);
+      const api = await StaffApi.delete(values._id);
       setData(api);
       actions.onNoti({
         message: 'Xóa nhân viên thành công',
@@ -178,7 +172,14 @@ function Staff({}) {
     {
       title: 'Avatar',
       dataIndex: 'Avatar',
-      render: (_, item, index) => <Avatar size={48} src={item.avatar} />
+      render: (_, item, index) => (
+        <Avatar
+          size={48}
+          src={`${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/avatar/${
+            item.avatar
+          }`}
+        />
+      )
     },
     {
       title: 'Tên',
