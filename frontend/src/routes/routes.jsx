@@ -5,7 +5,7 @@ import {
   InteractionOutlined,
   LineChartOutlined,
   UserOutlined,
-  UsergroupAddOutlined, 
+  UsergroupAddOutlined,
   CameraOutlined
 } from '@ant-design/icons';
 import Driver from '~/views/pages/Main/Driver';
@@ -32,30 +32,16 @@ const publicRoutes = [
     element: <Map />,
     icon: <CarOutlined />
   },
-  {
-    key: 'driver',
-    label: 'Quản lý chủ xe',
-    path: '/driver',
-    element: <Driver />,
-    icon: <UserOutlined />
-  },
-  {
-    key: 'employee',
-    label: 'Quản lý nhân viên',
-    path: '/employee',
-    element: <Staff />,
-    icon: <UsergroupAddOutlined />
-  },
-  {
-    key: 'event',
-    label: 'Nhập xuất xe',
-    path: '/event',
-    element: <Event />,
-    icon: <InteractionOutlined />
-  }
 ];
 
 const adminRoutes = [
+  {
+    key: 'staff',
+    label: 'Quản lý nhân viên',
+    path: '/staff',
+    element: <Staff />,
+    icon: <UsergroupAddOutlined />
+  },
   {
     key: 'user',
     label: 'Quản lý người dùng',
@@ -69,7 +55,17 @@ const adminRoutes = [
     path: '/camera',
     element: <Camera />,
     icon: <CameraOutlined />
-  },
+  }
+];
+
+const hideRoutes = [
+  {
+    key: 'event',
+    label: 'Nhập xuất xe',
+    path: '/event',
+    element: <Event />,
+    icon: <InteractionOutlined />
+  }
 ];
 
 export { publicRoutes, adminRoutes };
