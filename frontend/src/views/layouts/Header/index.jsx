@@ -75,11 +75,12 @@ function Header({ title }) {
     } else {
       // hanlde avatart
       try {
-        setAvatar(
-          `${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/avatar/${
-            auth.info.avatar
-          }`
-        );
+        if (auth.info.avatar)
+          setAvatar(
+            `${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/avatar/${
+              auth.info.avatar
+            }`
+          );
       } catch {}
     }
   }, [state.auth]);
@@ -128,7 +129,17 @@ function Header({ title }) {
           {useMemo(() => {
             return (
               <Space id="profileUser">
-                <Avatar src={avatar} size={40} />
+                <Avatar
+                  src={
+                    auth.info.avatar
+                      ? `${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/avatar/${
+                          auth.info.avatar
+                        }`
+                      : DEFAULT_AVATAR
+                  }
+                  size={40}
+                  fallback
+                />
                 <Dropdown
                   menu={{ items, onClick: hanldeClickProfile }}
                   getPopupContainer={() => document.querySelector('#root')}

@@ -92,11 +92,17 @@ function EventCard({ item }) {
       <div id="eventTag" className="event-tag"></div>
       <Row gutter={{ xs: 4, sm: 8, md: 12 }}>
         {isImage && (
-          <Col span={8}>
+          <Col>
             <Flex vertical={true} align="center" gap={4}>
               <Image
                 id="eventLisenceImg"
-                src={IMG_DEVELOPING}
+                src={
+                  parkingTurn?.image
+                    ? `${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/parkingTurn/${
+                        parkingTurn?.image
+                      }`
+                    : IMG_DEVELOPING
+                }
                 className="p-2"
                 preview={false}
                 style={{ background: '#FFF', width: 120, height: 120 }}
@@ -107,7 +113,7 @@ function EventCard({ item }) {
             </Flex>
           </Col>
         )}
-        <Col span={16}>
+        <Col>
           <Flex justify="space-evenly" vertical={true} align="start">
             <Typography.Title
               id="eventZone"
