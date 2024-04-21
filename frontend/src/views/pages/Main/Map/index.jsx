@@ -177,7 +177,6 @@ function Map({}) {
                 className="map-wrapper"
                 onDrop={onDropCamera}
                 onDragOver={(e) => e.preventDefault()}>
-                {settingMode || <VehicleLayer slots={slots} zone={zone} />}
                 {settingMode ? (
                   <CameraSetting
                     settingMode={settingMode}
@@ -189,7 +188,7 @@ function Map({}) {
                 ) : (
                   <CameraLayer zone={zone} settingMode={settingMode} />
                 )}
-
+                {settingMode || <VehicleLayer slots={slots} zone={zone} />}
                 {useMemo(() => {
                   if (zone === 'A') return <MapA />;
                   else if (zone === 'B') return <MapB />;
