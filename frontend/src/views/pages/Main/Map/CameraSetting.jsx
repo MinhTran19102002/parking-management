@@ -16,8 +16,6 @@ import { CameraPoint } from './style';
 import { CameraLocations } from './data';
 import { useDraggable } from '@neodrag/react';
 import CameraSide from './CameraSide';
-import { Button } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
 
 const DEFAULT_CAMERA = {
   location: {
@@ -60,10 +58,8 @@ function CameraSetting({ zone, cameraUsed, editManyCameras }, ref) {
     setCameras(cameraUsed);
   }, [cameraUsed]);
 
-  console.log('cameraSetting render');
-
   return (
-    <div id="cameraSetting" onDrop={onDropCamera} onDragOver={(e) => e.preventDefault()}>
+    <div id="cameraForm" onDrop={onDropCamera} onDragOver={(e) => e.preventDefault()}>
       {zone &&
         cameras.map((camera, ix) => {
           return (
@@ -90,7 +86,6 @@ const CameraPointA = ({ camera, cameras, setCameras, zone, style, ...props }) =>
     defaultPosition: { x: camera.location.left, y: camera.location.top }
   });
   const { isDragging, dragState = {} } = drapObj;
-  console.log('CameraPoint render', camera.cameraId);
 
   useEffect(() => {
     if (!isDragging) {
@@ -116,20 +111,9 @@ const CameraPointA = ({ camera, cameras, setCameras, zone, style, ...props }) =>
   }, [isDragging]);
 
   return (
-    <CameraPoint ref={draggbleRef}>
-      {/* <Button
-          icon={<DeleteOutlined />}
-          danger
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log('on Remove camera');
-          }}
-        /> */}
+    <CameraPoint ref={draggbleRef} style={style}>
       <p>{camera.cameraId}</p>
-      <div className="handle">
-        <CameraVer />
-      </div>
+      <CameraVer />
     </CameraPoint>
   );
 };
