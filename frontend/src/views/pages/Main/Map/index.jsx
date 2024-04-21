@@ -138,6 +138,12 @@ function Map({}) {
     }
   }, [totalCameras]);
 
+  const onRemoveCameraFormMap = (newCamera) => {
+    const rs = cameraUnused.slice();
+    rs.push(newCamera);
+    setCameraUnused(rs);
+  };
+
   return (
     <Layout className="px-4">
       <Header className="border-1" title={'Bản đồ'} />
@@ -183,8 +189,10 @@ function Map({}) {
                     settingMode={settingMode}
                     zone={zone}
                     cameraUsed={cameraUsed}
+                    setCameraUnused={setCameraUnused}
                     ref={cameraSettingRef}
                     editManyCameras={editManyCameras}
+                    onRemoveCameraFormMap={onRemoveCameraFormMap}
                   />
                 ) : (
                   <CameraLayer zone={zone} settingMode={settingMode} />
