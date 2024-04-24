@@ -18,8 +18,9 @@ import { CameraPoint } from './style';
 import { CameraLocations } from './data';
 import { useDraggable } from '@neodrag/react';
 import CameraSide from './CameraSide';
-import { Button, Space } from 'antd';
-import { DeleteOutlined, RetweetOutlined } from '@ant-design/icons';
+import { Button, Space, theme } from 'antd';
+import Icon, { DeleteOutlined, RetweetOutlined } from '@ant-design/icons';
+import { ResizableBox, Resizable } from 'react-resizable';
 
 const DEFAULT_CAMERA = {
   location: {
@@ -67,7 +68,7 @@ function CameraSetting({ zone, cameraUsed, editManyCameras, onRemoveCameraFormMa
     onRemoveCameraFormMap(camera);
   };
 
-  console.log('cameraSetting render');
+  console.log('cameraSetting render', cameras);
 
   return (
     <div id="cameraForm" onDrop={onDropCamera} onDragOver={(e) => e.preventDefault()}>
@@ -99,17 +100,22 @@ function CameraSetting({ zone, cameraUsed, editManyCameras, onRemoveCameraFormMa
 }
 
 const CAMERA_ICONS = {
-  ver: <CameraVer />,
-  hori: <CameraHori />,
-  cam360: <Camera360 />
+  ver: CameraVer,
+  hori: CameraHori,
+  cam360: Camera360
 };
 
 const CAMERA_ICONIDS = ['ver', 'hori', 'cam360'];
 const CameraPointA = ({ camera, cameras, setCameras, zone, extra, style, ...props }) => {
   const draggbleRef = useRef(null);
+  const { token } = theme.useToken();
   const [position, setPosition] = useState({
     x: camera?.location?.left || 0,
     y: camera?.location?.top || 0
+  });
+  const [size, setSize] = useState({
+    width: 200,
+    height: 200
   });
   const [cameraIconId, setCameraIconId] = useState(camera?.iconId || 'ver');
   const drapObj = useDraggable(draggbleRef, {
@@ -118,7 +124,6 @@ const CameraPointA = ({ camera, cameras, setCameras, zone, extra, style, ...prop
     onDrag: ({ offsetX, offsetY }) => setPosition({ x: offsetX, y: offsetY })
   });
   const { isDragging, dragState = {} } = drapObj;
-  console.log('camera render', camera);
 
   useEffect(() => {
     if (!isDragging) {
@@ -170,10 +175,29 @@ const CameraPointA = ({ camera, cameras, setCameras, zone, extra, style, ...prop
         />
         {extra}
       </Space.Compact>
-      <div className="dragPoint">
-        <p>{camera.cameraId}</p>
-        {CAMERA_ICONS[cameraIconId]}
-      </div>
+      <ResizableBox
+        {...size}
+        className="box"
+        handle={<div className="foo" />}
+        minConstraints={[100, 100]}
+        maxConstraints={[300, 300]}
+        onResize={(event, { node, size, handle }) => {
+          setSize({ width: size.width, height: size.height });
+        }}
+        // resizeHandles={['sw', 'se', 'nw', 'ne']}
+        >
+        <div
+          className="dragPoint box"
+          style={{
+            backgroundColor: token.geekblue2,
+            borderRadius: '2px',
+            resize: 'both',
+            border: `solid 1px ${token.geekblue8}`,
+            ...size
+          }}>
+          {<Icon component={CAMERA_ICONS[cameraIconId]} style={{}} />}
+        </div>
+      </ResizableBox>
     </CameraPoint>
   );
 };
