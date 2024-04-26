@@ -21,6 +21,7 @@ const CAMENRA_COLLECTION_SCHEMA = Joi.object({
     width: Joi.number().strict(),
     rotate: Joi.number().strict(),
     iconId: Joi.string().strict(),
+    cameraIconId : Joi.string().strict(),
   }),
   createdAt: Joi.date().timestamp('javascript').default(Date.now).strict(),
   updatedAt: Joi.date().timestamp('javascript').default(null).strict(),
