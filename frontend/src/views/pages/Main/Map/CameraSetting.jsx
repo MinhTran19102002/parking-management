@@ -20,7 +20,8 @@ import { useDraggable } from '@neodrag/react';
 import CameraSide from './CameraSide';
 import { Button, Space, theme } from 'antd';
 import Icon, { DeleteOutlined, RetweetOutlined } from '@ant-design/icons';
-import { ResizableBox, Resizable } from 'react-resizable';
+// import { ResizableBox, Resizable } from 'react-resizable';
+import { Resizable } from 're-resizable';
 
 const DEFAULT_CAMERA = {
   location: {
@@ -63,18 +64,35 @@ function CameraSetting({ zone, cameraUsed, editManyCameras, onRemoveCameraFormMa
   }, [cameraUsed]);
 
   const hanldeDeleteCameraFromMap = (camera) => {
-    console.log(camera.cameraId);
     setCameras((prev) => prev.filter((cameraItem) => cameraItem?.cameraId !== camera?.cameraId));
     onRemoveCameraFormMap(camera);
   };
 
-  console.log('cameraSetting render', cameras);
+  const onChangeCamera = (index, newCamera) => {
+    const rs = cameras.slice();
+    rs[index] = newCamera;
+    setCameras(rs);
+  };
+
+  const onChangeLocation = (index, location) => {
+    const rs = cameras.slice();
+    rs[index] = {
+      ...rs[index],
+      location: {
+        ...DEFAULT_POSITION,
+        ...location
+      }
+    };
+
+    setCameras(rs);
+  };
 
   return (
     <div id="cameraForm" onDrop={onDropCamera} onDragOver={(e) => e.preventDefault()}>
       {useMemo(() => {
         return cameras.map((camera, ix) => (
           <CameraPointA
+            index={ix}
             key={'camera' + ix}
             style={{
               position: 'absolute',
@@ -84,6 +102,8 @@ function CameraSetting({ zone, cameraUsed, editManyCameras, onRemoveCameraFormMa
             setCameras={setCameras}
             cameras={cameras}
             zone={zone}
+            onChangeCamera={onChangeCamera}
+            onChange={onChangeLocation}
             extra={
               <Button
                 icon={<DeleteOutlined />}
@@ -100,67 +120,57 @@ function CameraSetting({ zone, cameraUsed, editManyCameras, onRemoveCameraFormMa
 }
 
 const CAMERA_ICONS = {
-  ver: CameraVer,
-  hori: CameraHori,
-  cam360: Camera360
+  ver: <CameraVer className="w-100 h-100" />,
+  hori: <CameraHori className="w-100 h-100" />,
+  cam360: <Camera360 className="w-100 h-100" />
 };
+const DEFAULT_POSITION = { width: 64, height: 64, top: 0, left: 0, iconId: 'ver' };
 
 const CAMERA_ICONIDS = ['ver', 'hori', 'cam360'];
-const CameraPointA = ({ camera, cameras, setCameras, zone, extra, style, ...props }) => {
+const CameraPointA = ({
+  camera,
+  cameras,
+  setCameras,
+  zone,
+  onChangeCamera,
+  extra,
+  index,
+  style,
+  onChange,
+  ...props
+}) => {
+  const { location = {} } = camera;
+  const {
+    width = 64,
+    height = 64,
+    top = 0,
+    left = 0,
+    iconId = 'ver'
+  } = location || DEFAULT_POSITION;
   const draggbleRef = useRef(null);
   const { token } = theme.useToken();
-  const [position, setPosition] = useState({
-    x: camera?.location?.left || 0,
-    y: camera?.location?.top || 0
-  });
-  const [size, setSize] = useState({
-    width: 200,
-    height: 200
-  });
-  const [cameraIconId, setCameraIconId] = useState(camera?.iconId || 'ver');
   const drapObj = useDraggable(draggbleRef, {
-    position,
+    defaultPosition: {
+      x: left,
+      y: top
+    },
     handle: '.dragPoint',
-    onDrag: ({ offsetX, offsetY }) => setPosition({ x: offsetX, y: offsetY })
+    onDragEnd: ({ offsetX, offsetY }) =>
+      onChange(index, { ...location, top: offsetY, left: offsetX })
   });
-  const { isDragging, dragState = {} } = drapObj;
-
-  useEffect(() => {
-    if (!isDragging) {
-      const { offsetX: left, offsetY: top } = dragState || {};
-      if (top && left) {
-        const newCamera = {
-          ...camera,
-          zone,
-          location: {
-            top,
-            left
-          }
-        };
-        const pos = cameras.findIndex((el) => el.cameraId === camera.cameraId);
-        if (pos === -1) return;
-        else {
-          const cameraRs = cameras.slice();
-          cameraRs.splice(pos, 1, newCamera);
-          setCameras(cameraRs);
-        }
-      }
-    }
-  }, [isDragging]);
-
-  useLayoutEffect(() => {
-    setPosition({
-      x: camera?.location?.left || 0,
-      y: camera?.location?.top || 0
-    });
-  }, [JSON.stringify(camera)]);
 
   const hanldeChangeIcon = () => {
-    let index = CAMERA_ICONIDS.findIndex((el) => el === cameraIconId);
-    if (index === CAMERA_ICONIDS.length - 1) index = 0;
-    else index++;
-    setCameraIconId(CAMERA_ICONIDS[index]);
+    let ix = CAMERA_ICONIDS.findIndex((el) => el === iconId);
+    if (index === CAMERA_ICONIDS.length - 1) ix = 0;
+    else ix++;
+    onChange(index, { ...location, iconId: CAMERA_ICONIDS[ix] });
   };
+
+  const onChangeSize = ({ width: addWidth, height: addHeight }) => {
+    onChange(index, { ...location, width: width + addWidth, height: height + addHeight });
+  };
+
+  const icon = CAMERA_ICONS[iconId];
 
   return (
     <CameraPoint ref={draggbleRef} style={style}>
@@ -175,29 +185,23 @@ const CameraPointA = ({ camera, cameras, setCameras, zone, extra, style, ...prop
         />
         {extra}
       </Space.Compact>
-      <ResizableBox
-        {...size}
-        className="box"
-        handle={<div className="foo" />}
-        minConstraints={[100, 100]}
-        maxConstraints={[300, 300]}
-        onResize={(event, { node, size, handle }) => {
-          setSize({ width: size.width, height: size.height });
-        }}
-        // resizeHandles={['sw', 'se', 'nw', 'ne']}
-        >
+      <Resizable
+        minHeight={40}
+        minWidth={40}
+        maxHeight={100}
+        maxWidth={100}
+        onResizeStop={(_, __, ___, delta) => onChangeSize(delta)}
+        enable={{ topRight: true, bottomRight: true, bottomLeft: true, topLeft: true }}>
         <div
-          className="dragPoint box"
+          className="dragPoint box w-100 h-100"
           style={{
             backgroundColor: token.geekblue2,
-            borderRadius: '2px',
-            resize: 'both',
-            border: `solid 1px ${token.geekblue8}`,
-            ...size
+            borderRadius: '4px',
+            border: `solid 1px ${token.geekblue8}`
           }}>
-          {<Icon component={CAMERA_ICONS[cameraIconId]} style={{}} />}
+          {icon}
         </div>
-      </ResizableBox>
+      </Resizable>
     </CameraPoint>
   );
 };
