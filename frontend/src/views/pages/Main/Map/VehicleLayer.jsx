@@ -75,7 +75,6 @@ function VehicleLayer({ slots, zone }) {
               <img
                 id={position}
                 key={zone + position + ix}
-                {...vehicle}
                 className="image-container"
                 src={currMap}
                 style={{

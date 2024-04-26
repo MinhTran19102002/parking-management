@@ -138,7 +138,6 @@ function Header({ title }) {
                       : DEFAULT_AVATAR
                   }
                   size={40}
-                  fallback
                 />
                 <Dropdown
                   menu={{ items, onClick: hanldeClickProfile }}
