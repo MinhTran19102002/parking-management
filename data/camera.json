@@ -3,19 +3,38 @@
     "$oid": "6619ff48cbd06f0b51448b36"
   },
   "cameraId": "CAM_003",
-  "name": "Camera khu A bên dưới",
+  "name": "Camera khu B1",
   "type": "normal",
   "images": [],
   "createdAt": {
     "$numberLong": "1712979784469"
   },
   "updatedAt": {
-    "$numberLong": "1713578122269"
+    "$numberLong": "1714183880060"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6624cf53c89fdcf13729b2df"
+  },
+  "cameraId": "CAM_002",
+  "name": "CAM 002",
+  "type": "normal",
+  "images": [],
+  "createdAt": {
+    "$numberLong": "1713688403891"
+  },
+  "updatedAt": {
+    "$numberLong": "1714184053231"
   },
   "_destroy": false,
   "location": {
-    "top": 57,
-    "left": 365
+    "width": 64,
+    "height": 64,
+    "top": 27,
+    "left": 167,
+    "iconId": "hori"
   },
-  "zone": "B"
+  "zone": "A"
 }]
