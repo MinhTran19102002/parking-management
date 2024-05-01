@@ -7,30 +7,21 @@ This project is front-end of parking management system.
 
 - New Project: create new Project
 - Add libraries.
-
-## Version 1.1.0
-
 - Develop Login, Dashboard UI
 - Develop Login feature
 - Map data from API to General chart
-
-## Version 1.2.0
-
-- Dev Map page: map of A, B, C zone
-- Dev Driver map
-- Map data from API: get all driver and show to Driver table
-
-## Version 1.3.0
-
+- Map page
 - Dev Driver Management page
 - Dev Detail Slot pop-up (Map page)
-
-## Version 1.4.0
-
-- Employee Management page: Employee list table, CRUD functions
-- User Management page: User list table, CRUD functions
+- Employee Management page
+- User Management page
 - Edit Personal Infomation function
 - Change password function
+
+## Version 0.2.0
+
+- Camera management page
+- Monitor camera on Map page
 
 ## How to Run:
 
