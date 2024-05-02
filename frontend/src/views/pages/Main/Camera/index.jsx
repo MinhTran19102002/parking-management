@@ -34,6 +34,7 @@ import { ErrorService } from '~/services';
 import EmployeeApi from '~/api/Collections/EmployeeApi';
 import { CAMERAS, hanldeColumes } from './data';
 import CameraForm from './CameraForm';
+import VideoBlock from '~/views/components/VideoBlock';
 
 function Camera({}) {
   const { actions } = useContext(AppContext);
@@ -65,7 +66,6 @@ function Camera({}) {
     try {
       setLoading(true);
       const api = await CameraApi.getByFilter(params);
-      console.log(api);
       setData({
         ...api
       });
