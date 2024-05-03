@@ -1,11 +1,15 @@
 import { StatusCodes } from 'http-status-codes';
 import { cameraService } from '~/services/cameraService';
-import uploadImageHandler from '~/utils/uploads';
+import { uploadImageHandler } from '~/utils/uploads';
 
 const createCamera = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
-    const createNew = await cameraService.createCamera(req.body);
+    // console.log(req.body)
+    const images = await uploadImageHandler.uploadImageMultiple(req, res, 'camera')
+    // let images  = []
+
+    const createNew = await cameraService.createCamera(req.body, images);
 
     res.status(StatusCodes.CREATED).json(createNew);
   } catch (error) {
@@ -16,9 +20,12 @@ const createCamera = async (req, res, next) => {
 const updateCamera = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
+    // const images = await uploadImageHandler.uploadImageMultiple(req, res, 'camera')
     const newCamera = req.body;
+    // if (images != []) {
+    //   newCamera.images = im
+    // }
     // delete newUser.account;
-    // const rs = await userService.updateUser(req.query._id, newUser);
     const createNew = await cameraService.updateCamera(req.query._id, newCamera);
 
     res.status(StatusCodes.CREATED).json(createNew);
@@ -120,9 +127,9 @@ const addImage = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
     req.query._id
-    const  file= await uploadImageHandler(req, res, 'camera')
+    const file = await uploadImageHandler.uploadImageSingle(req, res, 'camera')
     let image = file.filename;
-    const createUser = await cameraService.updateAvatar(req.query._id,  image);
+    const createUser = await cameraService.updateAvatar(req.query._id, image);
     res.status(StatusCodes.CREATED).json(createUser);
   } catch (error) {
     next(error);

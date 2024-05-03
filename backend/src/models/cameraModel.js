@@ -23,7 +23,7 @@ const CAMENRA_COLLECTION_SCHEMA = Joi.object({
     height: Joi.number().strict(),
     rotate: Joi.number().strict(),
     iconId: Joi.string().strict(),
-    cameraIconId : Joi.string().strict(),
+    cameraIconId: Joi.string().strict(),
   }),
   createdAt: Joi.date().timestamp('javascript').default(Date.now).strict(),
   updatedAt: Joi.date().timestamp('javascript').default(null).strict(),
@@ -41,9 +41,12 @@ const createNew = async (data) => {
     if (checkCamera) {
       throw new ApiError(StatusCodes.NOT_FOUND, 'CameraId đã tồn tại', 'already exist', 'BR_zone_1');
     }
+    if (data.images == []) {
+      delete data.images
+    }
     const validateData = await validateBeforCreate(data);
     let checkParking
-    if(data.zone){
+    if (data.zone) {
       checkParking = await parkingModel.findOne(data.zone);
       if (!checkParking) {
         throw new ApiError(StatusCodes.NOT_FOUND, 'Khu vực không được tìm thấy', 'Not Found', 'BR_zone_1');
@@ -99,11 +102,11 @@ const removeCamera = async (_ids) => {
         zone: 1,
       },
     };
-    const objectIds  = _ids.map((id) => new ObjectId(id))
+    const objectIds = _ids.map((id) => new ObjectId(id))
 
     const result = await GET_DB()
       .collection(CAMERA_COLLECTION_NAME)
-      .updateMany({ _id: { $nin: objectIds }  }, updateOperation, { returnDocument: 'after' });
+      .updateMany({ _id: { $nin: objectIds } }, updateOperation, { returnDocument: 'after' });
 
     return result;
   } catch (error) {
@@ -231,7 +234,7 @@ const deleteCamera = async (_id) => {
     const result = await GET_DB()
       .collection(CAMERA_COLLECTION_NAME)
       .deleteOne(
-        { _id: new ObjectId(_id)},
+        { _id: new ObjectId(_id) },
         { returnDocument: 'after' },
         { locale: 'vi', strength: 1 },
       );
@@ -244,11 +247,11 @@ const deleteCamera = async (_id) => {
 
 const deleteManyCamera = async (ids) => {
   try {
-    const objectIds  = ids.map((id) => new ObjectId(id))
+    const objectIds = ids.map((id) => new ObjectId(id))
     const result = await GET_DB()
       .collection(CAMERA_COLLECTION_NAME)
       .deleteMany(
-        { _id:  { $in: objectIds}},
+        { _id: { $in: objectIds } },
         { returnDocument: 'after' },
         { locale: 'vi', strength: 1 },
       );
@@ -259,14 +262,14 @@ const deleteManyCamera = async (ids) => {
   }
 };
 
-const checkCameraId =  async (cameraId) => {
+const checkCameraId = async (cameraId) => {
   try {
-    const valid = await GET_DB().collection(CAMERA_COLLECTION_NAME).findOne({'cameraId':cameraId})
-    if(valid){
-      return {valid : false}
+    const valid = await GET_DB().collection(CAMERA_COLLECTION_NAME).findOne({ 'cameraId': cameraId })
+    if (valid) {
+      return { valid: false }
     }
-    else{
-      return {valid : true}
+    else {
+      return { valid: true }
     }
   } catch (error) {
     throw new Error(error);
