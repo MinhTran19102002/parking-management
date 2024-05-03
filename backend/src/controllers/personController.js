@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { userService } from '~/services/personService';
 import bcrypt from 'bcrypt';
-import uploadImageHandler from '~/utils/uploads';
+import {uploadImageHandler} from '~/utils/uploads';
 
 const createNew = async (req, res, next) => {
   try {
@@ -27,7 +27,7 @@ const createUserStaff = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
 
-    const  file= await uploadImageHandler(req, res, 'avatar')
+    const  file= await uploadImageHandler.uploadImageSingle(req, res, 'avatar')
     let image = file.filename;
     const createUser = await userService.createUserStaff(req.body, image);
     res.status(StatusCodes.CREATED).json(createUser);
@@ -40,7 +40,7 @@ const updateAvatar = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
     req.query._id
-    const  file= await uploadImageHandler(req, res, 'avatar')
+    const  file= await uploadImageHandler.uploadImageSingle(req, res, 'avatar')
     let image = file.filename;
     const createUser = await userService.updateAvatar(req.query._id,  image);
     res.status(StatusCodes.CREATED).json(createUser);

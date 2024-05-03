@@ -11,16 +11,26 @@ const storage = multer.diskStorage({
     // Tạo tên file mới
     const uniqueSuffix = Date.now();
     const ext = path.extname(file.originalname);
-    cb(null, path.basename(file.originalname, ext) + '-' + uniqueSuffix + ext);
+    // console.log(req.body )
+    if(folder == 'camera'){
+      cb(null, path.basename(file.originalname, ext) + '-' + uniqueSuffix + ext);
+    }
+    else{
+      cb(null, path.basename(file.originalname, ext) + '-' + uniqueSuffix + ext);
+    }
+    
   }
 });
 
 let uploadImage = multer({ storage: storage }).single('image');
 
-const uploadImageHandler = async (req, res,type ) => {
+let uploadImageS = multer({ storage: storage }).array('images', 15);
+
+const uploadImageSingle = async (req, res,type ) => {
   folder = type
   await new Promise((resolve, reject) => {
     uploadImage(req, res, function (err) {
+      //console.log(req.body )
       if (err) {
         reject(err); // Ném lỗi nếu có lỗi xảy ra
       } else {
@@ -31,5 +41,28 @@ const uploadImageHandler = async (req, res,type ) => {
   return req.file
 }
 
-export default uploadImageHandler;
+const uploadImageMultiple  = async (req, res,type ) => {
+  folder = type
+  // if (!req.files || !req.files.length || !req.file) {
+  //   console.log(req.body)
+  //   return []
+  // }
+  await new Promise((resolve, reject) => {
+    uploadImageS(req, res, function (err) {
+      if (err) {
+        reject(err); // Ném lỗi nếu có lỗi xảy ra
+      } else {
+        resolve(); // Thông báo hoàn thành thành công
+      }
+    });
+  });
+  const filenames = req.files.map(file => file.filename);
+  return filenames
+}
+
+
+export const uploadImageHandler = {
+  uploadImageSingle,
+  uploadImageMultiple
+}
 

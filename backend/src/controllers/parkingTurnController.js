@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { parkingTurnService } from '~/services/parkingTurnService';
 import {server} from '~/server'
-import uploadImageHandler from '~/utils/uploads'
+import {uploadImageHandler} from '~/utils/uploads'
 
 
 const createNew = async (req, res, next) => {
@@ -11,7 +11,7 @@ const createNew = async (req, res, next) => {
     // let position = req.body.position;
 
     
-    const  file= await uploadImageHandler(req, res, 'parkingTurn')
+    const  file= await uploadImageHandler.uploadImageSingle(req, res, 'parkingTurn')
     let licenePlate = req.body.licenePlate
     let  zone = req.body.zone
     let position = req.body.position
@@ -30,7 +30,7 @@ const createNewWithoutPosition = async (req, res, next) => {
     // let licenePlate = req.body.licenePlate;
     // let zone = req.body.zone;
     
-    const  file = await uploadImageHandler(req, res, 'parkingTurn')
+    const  file = await uploadImageHandler.uploadImageSingle(req, res, 'parkingTurn')
     let licenePlate = req.body.licenePlate
     let  zone = req.body.zone
     let position = '';
@@ -48,7 +48,7 @@ const createNewWithoutPosition = async (req, res, next) => {
 const createNewWithoutZone = async (req, res, next) => {
   try {
     
-    let file= await uploadImageHandler(req, res, 'parkingTurn')
+    let file= await uploadImageHandler.uploadImageSingle(req, res, 'parkingTurn')
     let zone = '';
     let position = '';
     let image = file.filename;
