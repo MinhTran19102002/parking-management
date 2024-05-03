@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import React from 'react';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Avatar, Image, Space, Button } from 'antd';
+import { Avatar, Image, Space, Button, Typography } from 'antd';
 import CustomedImage from '~/views/components/CustomedImage';
 
 export const CAMERA_TYPES = ['normal', 'cam360'];
@@ -50,6 +50,12 @@ export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }) => [
     dataIndex: 'zone',
     key: 'zone',
     render: (text) => text || 'Chưa lắp'
+  },
+  {
+    title: 'Luồng stream',
+    dataIndex: 'streamLink',
+    key: 'streamLink',
+    render: (text) => (text ? <Typography.Link href={text}>Link</Typography.Link> : 'Chưa cài đặt')
   },
   {
     title: 'Ngày mua',

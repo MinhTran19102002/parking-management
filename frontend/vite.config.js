@@ -1,5 +1,5 @@
 /* eslint-disable no-undef */
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig, loadEnv, transformWithEsbuild } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import jsconfigPaths from 'vite-jsconfig-paths';
 const path = require('path');
@@ -29,7 +29,17 @@ export default defineConfig(({ mode }) => {
       jsconfigPaths(),
       svgr({
         include: ['**/*.svg?react']
-      })
+      }),
+      {
+        name: 'treat-js-files-as-jsx',
+        async transform(code, id) {
+          if (!id.match(/src\/.*\.js$/)) return null;
+          return transformWithEsbuild(code, id, {
+            loader: 'jsx',
+            jsx: 'automatic'
+          });
+        }
+      }
     ],
     optimizeDeps: {
       esbuildOptions: {
@@ -37,7 +47,7 @@ export default defineConfig(({ mode }) => {
           '.js': 'jsx'
         }
       },
-      exclude: ['js-big-decimal'],
+      exclude: ['js-big-decimal']
     },
     server: {
       watch: {

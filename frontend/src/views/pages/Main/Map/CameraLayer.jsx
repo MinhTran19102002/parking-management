@@ -8,6 +8,9 @@ import CameraHori from '~/assets/images/camera/type=hori.svg?react';
 import { CameraPoint } from './style';
 import { CameraLocations } from './data';
 import { useDraggable } from '@neodrag/react';
+import CameraService from '~/services/CameraService';
+import { Popover } from 'antd';
+import { CameraCard } from '~/views/components';
 
 function CameraLayer({ zone, settingMode }) {
   const { actions } = useContext(AppContext);
@@ -36,8 +39,12 @@ function CameraLayer({ zone, settingMode }) {
     <div id="cameraLayer">
       {data.map((camera, ix) => {
         return (
-          <CameraPoint key={'camera' + ix} style={{ position: 'absolute', ...camera.location }}>
-            <CameraVer />
+          <CameraPoint
+            key={'camera' + camera._id}
+            style={{ position: 'absolute', ...camera.location, ...CameraService.LimitSize }}>
+            <Popover content={<CameraCard {...camera} />}>
+              {CameraService.GetIconByIdIcon(camera.location.iconId)}
+            </Popover>
           </CameraPoint>
         );
       })}
