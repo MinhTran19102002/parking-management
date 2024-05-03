@@ -58,7 +58,7 @@ function CameraSide({ defaultExpand = true, settingMode, defaultData = [] }) {
             renderItem={(cameraItem, index) => {
               return (
                 <List.Item key={'cameraItem' + index}>
-                  <CameraCard {...cameraItem} />
+                  <CameraCard {...cameraItem} dragable />
                 </List.Item>
               );
             }}

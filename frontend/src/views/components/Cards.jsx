@@ -2,7 +2,7 @@ import { Card, Col, Row, Typography, theme } from 'antd';
 import React from 'react';
 import CustomedImage from './CustomedImage';
 
-export const CameraCard = (props) => {
+export const CameraCard = ({ dragable, ...props }) => {
   const { img = [], name, cameraId, type } = props;
   const { token } = theme.useToken();
 
@@ -10,7 +10,7 @@ export const CameraCard = (props) => {
     <div
       style={{ borderRadius: 8 }}
       className="w-100 hover-defaul"
-      draggable="true"
+      draggable={dragable}
       onDragStart={(e) => {
         e.dataTransfer.effectAllowed = 'move';
         e.dataTransfer.setData('cameraData', JSON.stringify(props));

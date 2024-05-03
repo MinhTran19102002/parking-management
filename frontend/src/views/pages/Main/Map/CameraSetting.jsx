@@ -133,13 +133,7 @@ const CameraPointA = ({
   ...props
 }) => {
   const { location = {} } = camera;
-  const {
-    width = 64,
-    height = 64,
-    top = 0,
-    left = 0,
-    iconId = 'ver'
-  } = location || DEFAULT_POSITION;
+  const { width, height, top, left, iconId } = location || DEFAULT_POSITION;
   const draggbleRef = useRef(null);
   const { token } = theme.useToken();
   const drapObj = useDraggable(draggbleRef, {
