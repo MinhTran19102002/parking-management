@@ -41,7 +41,7 @@ const uploadImageSingle = async (req, res,type ) => {
   return req.file
 }
 
-const uploadImageMultiple  = async (req, res,type ) => {
+const uploadImageMultiple  = async (req, res,type) => {
   folder = type
   // if (!req.files || !req.files.length || !req.file) {
   //   console.log(req.body)

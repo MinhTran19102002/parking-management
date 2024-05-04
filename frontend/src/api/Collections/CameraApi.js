@@ -23,7 +23,8 @@ const CameraApi = {
     const url = `${DOMAIN}/camera`;
     return POST({
       url,
-      payload
+      payload,
+      headers: { 'Content-Type': 'multipart/form-data' }
     });
   },
 
