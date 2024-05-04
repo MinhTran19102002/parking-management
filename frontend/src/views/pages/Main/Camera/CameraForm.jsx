@@ -25,6 +25,8 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
   const { state, actions } = useContext(AppContext);
   const { onNoti, onMess } = actions;
   const { t: lag, i18n } = useTranslation();
+  const [fileList, setFileList] = useState([]);
+  const [imageFile, setImageFile] = useState();
 
   const hanldeClose = (action, values) => {
     form.resetFields();
@@ -64,7 +66,9 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
   const hanldeAdd = async (values) => {
     console.log('hanlde Add', values);
     try {
+      delete values['images'];
       setLoading(true);
+      console.log(values, imageFile);
       const api = await CameraApi.add(values);
       if (api) {
         onNoti({ message: 'Thêm camera thành công', type: 'success' });
@@ -80,27 +84,6 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
   const randomPassword = () => {
     form.setFieldValue('pass', DEFAULT_PASSWORD);
   };
-
-  const fileList = [
-    {
-      uid: '0',
-      name: 'xxx.png',
-      status: 'uploading',
-      percent: 33
-    },
-    {
-      uid: '-1',
-      name: 'yyy.png',
-      status: 'done',
-      url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-      thumbUrl: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png'
-    },
-    {
-      uid: '-2',
-      name: 'zzz.png',
-      status: 'error'
-    }
-  ];
 
   return (
     <div className="container-fluid pt-3">
@@ -130,10 +113,14 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
 
         <Form.Item name="images" label="Hình ảnh">
           <Upload
-            action="https://660d2bd96ddfa2943b33731c.mockapi.io/api/upload"
             accept="image/jpeg,image/jpg,image/png,image/webp"
             beforeUpload={(file) => {
               return false;
+            }}
+            fileList={fileList}
+            onChange={({ file, fileList: newFileList }) => {
+              setFileList(newFileList);
+              setImageFile(file);
             }}
             listType="picture">
             <Button icon={<UploadOutlined />}>Upload</Button>
