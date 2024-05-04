@@ -62,11 +62,6 @@ function DetailSlot({ position, zone, vehicle, driver, image, startTime }) {
     );
     i++;
   }
-
-  console.log(
-    `${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/parkingTurn/${image}`
-  );
-
   return (
     <InnerDetailFloorStyled>
       <Row className="detail-slot" gutter={{ xs: 4, sm: 8, md: 12 }}>

@@ -1,4 +1,4 @@
-import { Card, Col, Flex, Image, Row, Typography, theme } from 'antd';
+import { Card, Col, Flex, Image, Row, Space, Typography, theme } from 'antd';
 import dayjs from 'dayjs';
 import React from 'react';
 import IMG_DEVELOPING from '~/assets/images/developing.png';
@@ -22,7 +22,7 @@ const personInfo = {
 function EventCard({ item }) {
   const { token } = theme.useToken();
 
-  let { name, parkingTurn, vehicle, person = {} } = item;
+  let { name, parkingTurn, vehicle, zone, person = {} } = item;
 
   const color = {
     primary: token.event[name][0],
@@ -40,6 +40,15 @@ function EventCard({ item }) {
     };
     delete person.driver;
   }
+
+  rs.push(
+    <Typography.Title level={5} className="my-0" key={'info' + i}>
+      <span className="label">Khu vực</span>
+      <span className="value">
+        {': '} {item.zone}
+      </span>
+    </Typography.Title>
+  );
 
   for (const [key, value] of Object.entries(personInfo)) {
     let xValue = person && person[key];
@@ -76,12 +85,7 @@ function EventCard({ item }) {
   return (
     <Card
       title={
-        <Typography.Title level={5}>{dayjs(item.createdAt, 'x').format('L LTS')}</Typography.Title>
-      }
-      extra={
-        <CustomedTag entity={name} entityType="event">
-          {eventNames[name]}
-        </CustomedTag>
+        <Typography.Title level={5} className='my-0'>{dayjs(item.createdAt, 'x').format('L LTS')}</Typography.Title>
       }
       className="event-card"
       style={{
@@ -90,7 +94,7 @@ function EventCard({ item }) {
         border: `2px solid ${color.primary}`
       }}>
       <div id="eventTag" className="event-tag"></div>
-      <Row gutter={{ xs: 4, sm: 8, md: 12 }}>
+      <Space size={1}>
         {isImage && (
           <Col>
             <Flex vertical={true} align="center" gap={4}>
@@ -114,13 +118,13 @@ function EventCard({ item }) {
           </Col>
         )}
         <Col>
-          <Flex justify="space-evenly" vertical={true} align="start">
+          <Space direction="vertical" size={1}>
             <Typography.Title
               id="eventZone"
               level={5}
               className="mb-0"
               style={{ color: color.primary }}>
-              {'Khu ' + item.zone}
+              {eventNames[name]}
             </Typography.Title>
             {rs.length > 0 && rs}
             {/* <Typography.Text id="eventDriverName">
@@ -139,9 +143,9 @@ function EventCard({ item }) {
               <span className="label">SĐT: </span>
               <span className="value">{item.driver.phone}</span>
             </Typography.Text> */}
-          </Flex>
+          </Space>
         </Col>
-      </Row>
+      </Space>
     </Card>
   );
 }

@@ -68,8 +68,11 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
     try {
       delete values['images'];
       setLoading(true);
-      console.log(values, imageFile);
-      const api = await CameraApi.add(values);
+      console.log(values, imageFile, fileList);
+      const api = await CameraApi.add({
+        ...values,
+        images: fileList
+      });
       if (api) {
         onNoti({ message: 'Thêm camera thành công', type: 'success' });
       }
