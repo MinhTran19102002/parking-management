@@ -20,10 +20,22 @@ const CameraApi = {
   },
 
   add: (payload) => {
+    const form = new FormData();
+    for (const key in payload) {
+      const value = payload[key];
+      if (Array.isArray(value)) {
+        const arrayKey = `${key}[]`;
+        value.forEach((v) => {
+          form.append(arrayKey, v);
+        });
+      } else {
+        form.append(key, value);
+      }
+    }
     const url = `${DOMAIN}/camera`;
     return POST({
       url,
-      payload,
+      payload: form,
       headers: { 'Content-Type': 'multipart/form-data' }
     });
   },
@@ -32,7 +44,8 @@ const CameraApi = {
     const url = `${DOMAIN}/camera?_id=${_id}`;
     return PUT({
       url,
-      payload
+      payload,
+      headers: { 'Content-Type': 'multipart/form-data' }
     });
   },
 
