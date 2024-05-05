@@ -11,7 +11,7 @@ const CAMERA_COLLECTION_NAME = 'camera';
 const CAMENRA_COLLECTION_SCHEMA = Joi.object({
   cameraId: Joi.string().required().min(1).max(50).trim().strict(),
   name: Joi.string().required().min(1).max(50).trim().strict(),
-  image:Joi.string().optional().min(0).max(50).trim().strict().default(''),
+  image:Joi.string().optional().min(0).max(100).trim().strict().default(''),
   type: Joi.string().valid('normal', 'cam360').required(),
   zone: Joi.string().optional().min(1).max(10).trim().strict(),
   streamLink: Joi.string().optional().min(1).max(100).trim().strict(),
@@ -44,6 +44,7 @@ const createNew = async (data) => {
     if (data.image == '') {
       delete data.image
     }
+    console.log(data)
     const validateData = await validateBeforCreate(data);
     let checkParking
     if (data.zone) {
