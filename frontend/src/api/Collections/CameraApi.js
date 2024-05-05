@@ -20,18 +20,20 @@ const CameraApi = {
   },
 
   add: (payload) => {
-    const form = new FormData();
+    let form = new FormData();
     for (const key in payload) {
       const value = payload[key];
       if (Array.isArray(value)) {
         const arrayKey = `${key}[]`;
         value.forEach((v) => {
+          console.log(v)
           form.append(arrayKey, v);
         });
       } else {
         form.append(key, value);
       }
     }
+    console.log(...form);
     const url = `${DOMAIN}/camera`;
     return POST({
       url,
