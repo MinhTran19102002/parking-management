@@ -42,7 +42,7 @@ function EventCard({ item }) {
   }
 
   rs.push(
-    <Typography.Title level={5} className="my-0" key={'info' + i}>
+    <Typography.Title level={5} className="my-0" key={'info' + 'zone'}>
       <span className="label">Khu vực</span>
       <span className="value">
         {': '} {item.zone}
@@ -75,7 +75,7 @@ function EventCard({ item }) {
 
     if (rs.length === 0) {
       rs = [
-        <Typography.Title level={5} key={'info'}>
+        <Typography.Title level={5} key={'vanglaikhach'}>
           Khách vãng lai
         </Typography.Title>
       ];

@@ -36,6 +36,7 @@ import { DISABLED_MAP_INTERACTION } from './data';
 import CameraSide from './CameraSide';
 import { useQuery } from '@tanstack/react-query';
 import CameraSetting from './CameraSetting';
+import VideoBlock from '~/views/components/VideoBlock';
 
 function Map({}) {
   const { token } = theme.useToken();
@@ -148,6 +149,7 @@ function Map({}) {
     <Layout className="px-4">
       <Header className="border-1" title={'Bản đồ'} />
       <Content className="w-100 py-3">
+        <VideoBlock />
         <Flex justify="space-between">
           <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
             <Radio.Button value="A">Khu A</Radio.Button>
