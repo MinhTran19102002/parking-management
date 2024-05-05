@@ -24,13 +24,14 @@ const storage = multer.diskStorage({
 
 let uploadImage = multer({ storage: storage }).single('image');
 
-let uploadImageS = multer({ storage: storage }).array('images', 15);
+let uploadImageS = multer({ storage: storage }).array('image', 15);
 
 const uploadImageSingle = async (req, res,type ) => {
   folder = type
+  
   await new Promise((resolve, reject) => {
     uploadImage(req, res, function (err) {
-      //console.log(req.body )
+      // console.log(req.body)
       if (err) {
         reject(err); // Ném lỗi nếu có lỗi xảy ra
       } else {
@@ -41,14 +42,17 @@ const uploadImageSingle = async (req, res,type ) => {
   return req.file
 }
 
-const uploadImageMultiple  = async (req, res,type) => {
+const uploadImageMultiple  = async (req, res,type ) => {
   folder = type
   // if (!req.files || !req.files.length || !req.file) {
   //   console.log(req.body)
   //   return []
   // }
+  
   await new Promise((resolve, reject) => {
     uploadImageS(req, res, function (err) {
+      //console.log(req.body)
+      console.log(req.body )
       if (err) {
         reject(err); // Ném lỗi nếu có lỗi xảy ra
       } else {
@@ -65,4 +69,3 @@ export const uploadImageHandler = {
   uploadImageSingle,
   uploadImageMultiple
 }
-

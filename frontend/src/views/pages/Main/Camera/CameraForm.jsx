@@ -114,7 +114,7 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
           />
         </Form.Item>
 
-        <Form.Item name="images" label="Hình ảnh">
+        <Form.Item name={"images"} label="Hình ảnh">
           <Upload
             accept="image/jpeg,image/jpg,image/png,image/webp"
             beforeUpload={(file) => {
