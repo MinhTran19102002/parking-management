@@ -71,7 +71,7 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
       console.log(values, imageFile, fileList);
       const api = await CameraApi.add({
         ...values,
-        images: fileList
+        image: imageFile
       });
       if (api) {
         onNoti({ message: 'Thêm camera thành công', type: 'success' });
@@ -120,6 +120,7 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
             beforeUpload={(file) => {
               return false;
             }}
+            maxCount={1}
             fileList={fileList}
             onChange={({ file, fileList: newFileList }) => {
               setFileList(newFileList);
