@@ -6,10 +6,12 @@ const createCamera = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
     // console.log(req.body)
-    const images = await uploadImageHandler.uploadImageMultiple(req, res, 'camera')
+    let image = await uploadImageHandler.uploadImageSingle(req, res, 'camera')
     // let images  = []
-
-    const createNew = await cameraService.createCamera(req.body, images);
+    if(!image){
+      image = ''
+    }
+    const createNew = await cameraService.createCamera(req.body, image);
 
     res.status(StatusCodes.CREATED).json(createNew);
   } catch (error) {
