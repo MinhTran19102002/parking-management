@@ -11,7 +11,7 @@ const CAMERA_COLLECTION_NAME = 'camera';
 const CAMENRA_COLLECTION_SCHEMA = Joi.object({
   cameraId: Joi.string().required().min(1).max(50).trim().strict(),
   name: Joi.string().required().min(1).max(50).trim().strict(),
-  images: Joi.array().items(Joi.string().optional()).default([]),
+  image:Joi.string().optional().min(0).max(50).trim().strict().default(''),
   type: Joi.string().valid('normal', 'cam360').required(),
   zone: Joi.string().optional().min(1).max(10).trim().strict(),
   streamLink: Joi.string().optional().min(1).max(100).trim().strict(),
@@ -41,8 +41,8 @@ const createNew = async (data) => {
     if (checkCamera) {
       throw new ApiError(StatusCodes.NOT_FOUND, 'CameraId đã tồn tại', 'already exist', 'BR_zone_1');
     }
-    if (data.images == []) {
-      delete data.images
+    if (data.image == '') {
+      delete data.image
     }
     const validateData = await validateBeforCreate(data);
     let checkParking

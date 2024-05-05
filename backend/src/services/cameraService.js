@@ -6,10 +6,10 @@ import multer from 'multer'
 import path from 'path';
 import uploadImageHandler from '~/utils/uploads'
 
-const createCamera = async (data, images) => {
+const createCamera = async (data, image) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    data.images = images
+    data.image = image
     const createNew = await cameraModel.createNew(data)
     if (createNew.acknowledged == false) {
       throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Tạo camera không thành công', 'Not Created', 'BR_parking_2')
