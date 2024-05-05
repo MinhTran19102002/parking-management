@@ -3,7 +3,7 @@ import React from 'react';
 import CustomedImage from './CustomedImage';
 
 export const CameraCard = ({ dragable, ...props }) => {
-  const { img = [], name, cameraId, type } = props;
+  const { img = [], name, cameraId, type, image } = props;
   const { token } = theme.useToken();
 
   return (
@@ -18,7 +18,10 @@ export const CameraCard = ({ dragable, ...props }) => {
       }}>
       <Row className="w-100 py-2 px-2" gutter={8}>
         <Col span={8}>
-          <CustomedImage style={{ width: '100%' }} src={img || img[0]} />
+          <CustomedImage
+            style={{ width: '100%', maxWidth: 200, }}
+            src={`${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/camera/${image}`}
+          />
         </Col>
         <Col span={16}>
           <Typography strong={'true'}>

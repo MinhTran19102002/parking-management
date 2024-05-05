@@ -19,12 +19,10 @@ export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }) => [
     key: 'images',
     render: (_, item) => (
       <Avatar.Group shape="square">
-        {item.images?.map((img) => (
           <CustomedImage
             style={{ width: 60, height: 60, objectFit: 'cover', border: '1.6px solid #fff' }}
-            src={`${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/camera/${img}`}
+            src={`${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/camera/${item.image}`}
           />
-        ))}
       </Avatar.Group>
     )
   },
