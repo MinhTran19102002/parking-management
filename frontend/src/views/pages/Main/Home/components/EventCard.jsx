@@ -94,7 +94,7 @@ function EventCard({ item }) {
         border: `2px solid ${color.primary}`
       }}>
       <div id="eventTag" className="event-tag"></div>
-      <Space size={1}>
+      <Space size={1} align='start'>
         {isImage && (
           <Col>
             <Flex vertical={true} align="center" gap={4}>
@@ -118,7 +118,7 @@ function EventCard({ item }) {
           </Col>
         )}
         <Col>
-          <Space direction="vertical" size={1}>
+          <Space align='start' direction="vertical" size={1}>
             <Typography.Title
               id="eventZone"
               level={5}
