@@ -85,7 +85,9 @@ function EventCard({ item }) {
   return (
     <Card
       title={
-        <Typography.Title level={5} className='my-0'>{dayjs(item.createdAt, 'x').format('L LTS')}</Typography.Title>
+        <Typography.Title level={5} className="my-0">
+          {dayjs(item.createdAt, 'x').format('L LTS')}
+        </Typography.Title>
       }
       className="event-card"
       style={{
@@ -94,40 +96,37 @@ function EventCard({ item }) {
         border: `2px solid ${color.primary}`
       }}>
       <div id="eventTag" className="event-tag"></div>
-      <Space size={1} align='start'>
+      <Space size='small' align="start" className='px-2'>
         {isImage && (
-          <Col>
-            <Flex vertical={true} align="center" gap={4}>
-              <Image
-                id="eventLisenceImg"
-                src={
-                  parkingTurn?.image
-                    ? `${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/parkingTurn/${
-                        parkingTurn?.image
-                      }`
-                    : IMG_DEVELOPING
-                }
-                className="p-2"
-                preview={false}
-                style={{ background: '#FFF', width: 120, height: 120 }}
-              />
-              <Typography.Text id="eventLisencePlate" strong={'true'}>
-                {vehicle.licenePlate}
-              </Typography.Text>
-            </Flex>
-          </Col>
+          <Space align="center" direction="vertical" size={1}>
+            <Image
+              id="eventLisenceImg"
+              src={
+                parkingTurn?.image
+                  ? `${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/parkingTurn/${
+                      parkingTurn?.image
+                    }`
+                  : IMG_DEVELOPING
+              }
+              className="p-2"
+              preview={false}
+              style={{ background: '#FFF', width: 120, height: 120 }}
+            />
+            <Typography.Text id="eventLisencePlate" strong={'true'}>
+              {vehicle.licenePlate}
+            </Typography.Text>
+          </Space>
         )}
-        <Col>
-          <Space align='start' direction="vertical" size={1}>
-            <Typography.Title
-              id="eventZone"
-              level={5}
-              className="mb-0"
-              style={{ color: color.primary }}>
-              {eventNames[name]}
-            </Typography.Title>
-            {rs.length > 0 && rs}
-            {/* <Typography.Text id="eventDriverName">
+        <Space align="start" direction="vertical" size={1}>
+          <Typography.Title
+            id="eventZone"
+            level={5}
+            className="mb-0"
+            style={{ color: color.primary }}>
+            {eventNames[name]}
+          </Typography.Title>
+          {rs.length > 0 && rs}
+          {/* <Typography.Text id="eventDriverName">
               <span className="label">Chủ xe: </span>
               <span className="value">{item.driver.name}</span>
             </Typography.Text>
@@ -143,8 +142,7 @@ function EventCard({ item }) {
               <span className="label">SĐT: </span>
               <span className="value">{item.driver.phone}</span>
             </Typography.Text> */}
-          </Space>
-        </Col>
+        </Space>
       </Space>
     </Card>
   );
