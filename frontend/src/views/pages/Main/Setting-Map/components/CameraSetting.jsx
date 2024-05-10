@@ -11,8 +11,8 @@ import React, {
 import { CameraApi } from '~/api';
 import AppContext from '~/context';
 import { ErrorService } from '~/services';
-import { CameraPoint } from './style';
-import { CameraLocations } from './data';
+import { CameraPoint } from '../style';
+import { CameraLocations } from '../data/data';
 import { useDraggable } from '@neodrag/react';
 import CameraSide from './CameraSide';
 import { Button, Space, theme } from 'antd';
@@ -22,6 +22,7 @@ import { Resizable } from 're-resizable';
 import CameraService from '~/services/CameraService';
 
 const DEFAULT_CAMERA = {
+  slots: [],
   location: {
     top: 0,
     left: 0,

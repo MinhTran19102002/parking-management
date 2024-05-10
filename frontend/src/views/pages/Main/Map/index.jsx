@@ -153,7 +153,7 @@ function Map({}) {
             <Radio.Button value="C">Khu C</Radio.Button>
             <Radio.Button value="C1">Khu C1</Radio.Button>
           </Radio.Group>
-          {!settingMode ? (
+          {/* {!settingMode ? (
             <Button icon={<SettingOutlined />} onClick={() => setSettingMode(true)}>
               Cài đặt
             </Button>
@@ -164,7 +164,7 @@ function Map({}) {
                 Xác nhận
               </Button>
             </Space>
-          )}
+          )} */}
         </Flex>
         <TransformBlock
           className="mt-2 overflow-hidden"

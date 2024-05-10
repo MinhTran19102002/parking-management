@@ -1,7 +1,7 @@
-import { SLOTS_C } from './parkingC';
-import { SLOTS_B } from './parkingB';
-import { SLOTS_A } from './parkingA';
-import { DetailFloorStyled } from './style';
+import { SLOTS_C } from '../data/parkingC';
+import { SLOTS_B } from '../data/parkingB';
+import { SLOTS_A } from '../data/parkingA';
+import { DetailFloorStyled } from '../style';
 import React from 'react';
 import { Flex, Typography, Tag, theme } from 'antd';
 import CarA from '~/assets/images/blue-car.png';

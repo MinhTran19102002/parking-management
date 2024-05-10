@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import MapA from '~/assets/images/mapA.svg?react';
+import MapA from '~/assets/images/map/mapA.svg?react';
 import MapB from '~/assets/images/mapB.svg?react';
 import MapC from '~/assets/images/mapC.svg?react';
 import MapA1 from '~/assets/images/mapA1.svg?react';

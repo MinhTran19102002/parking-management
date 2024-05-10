@@ -1,5 +1,5 @@
 import React, { forwardRef, memo, useEffect, useImperativeHandle, useState } from 'react';
-import { CameraSidebarStyled } from './style';
+import { CameraSidebarStyled } from '../style';
 import { Button, Divider, Flex, List, Skeleton, Space, theme } from 'antd';
 import { CameraOutlined, CaretDownOutlined, CaretUpOutlined } from '@ant-design/icons';
 import { CameraCard } from '~/views/components';
