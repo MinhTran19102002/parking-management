@@ -19,11 +19,12 @@ export const CameraCard = ({ dragable, ...props }) => {
       <Row className="w-100 py-2 px-2" gutter={8}>
         <Col span={8}>
           <CustomedImage
-            style={{ width: '100%', maxWidth: 200, }}
+            style={{ width: '100%', maxWidth: 200 }}
             src={`${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/camera/${image}`}
           />
         </Col>
         <Col span={16}>
+          {dragable && <Typography.Title level={5}>Kéo thả vào bản đồ</Typography.Title>}
           <Typography strong={'true'}>
             <span>{cameraId}</span>
           </Typography>

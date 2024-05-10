@@ -18,12 +18,6 @@ import { SLOTS_C } from './parkingC';
 import CarA from '~/assets/images/blue-car.png';
 import CarB from '~/assets/images/blue-car.png';
 import CarC from '~/assets/images/blue-car.png';
-import MapA from '~/assets/images/mapA.svg?react';
-import MapB from '~/assets/images/mapB.svg?react';
-import MapC from '~/assets/images/mapC.svg?react';
-import MapA1 from '~/assets/images/mapA1.svg?react';
-import MapB1 from '~/assets/images/mapB1.svg?react';
-import MapC1 from '~/assets/images/mapC1.svg?react';
 import Moto from '~/assets/images/TealMoto.svg?react';
 import dayjs from 'dayjs';
 import DetailSlot from './DetailSlot';
@@ -37,6 +31,7 @@ import CameraSide from './CameraSide';
 import { useQuery } from '@tanstack/react-query';
 import CameraSetting from './CameraSetting';
 import VideoBlock from '~/views/components/VideoBlock';
+import MapLayer from './MapLayer';
 
 function Map({}) {
   const { token } = theme.useToken();
@@ -149,7 +144,6 @@ function Map({}) {
     <Layout className="px-4">
       <Header className="border-1" title={'Bản đồ'} />
       <Content className="w-100 py-3">
-        <VideoBlock />
         <Flex justify="space-between">
           <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
             <Radio.Button value="A">Khu A</Radio.Button>
@@ -200,14 +194,7 @@ function Map({}) {
                   <CameraLayer zone={zone} settingMode={settingMode} />
                 )}
 
-                {useMemo(() => {
-                  if (zone === 'A') return <MapA />;
-                  else if (zone === 'B') return <MapB />;
-                  else if (zone === 'C') return <MapC />;
-                  else if (zone === 'A1') return <MapA1 />;
-                  else if (zone === 'B1') return <MapB1 />;
-                  else if (zone === 'C1') return <MapC1 />;
-                }, [zone])}
+                <MapLayer zone={zone} />
               </div>
             </MapInteractionCSS>
           </Spin>

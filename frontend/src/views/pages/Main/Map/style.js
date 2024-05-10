@@ -4,7 +4,6 @@ import { Image, Popover } from 'antd';
 export const TransformBlock = styled.div`
   height: 96%;
   border: 1px solid #f0f0f0;
-  padding: 18px;
   border-radius: 8px;
   background-color: #fff;
 
