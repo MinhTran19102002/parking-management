@@ -17,6 +17,7 @@ import Event from '~/views/pages/Main/Event';
 import UserPage from '~/views/pages/Main/UserPage';
 import Staff from '~/views/pages/Main/Staff';
 import Camera from '~/views/pages/Main/Camera';
+import SettingMap from '~/views/pages/Main/Setting-Map';
 // Public routes
 const publicRoutes = [
   {
@@ -73,7 +74,7 @@ const adminRoutes = [
         key: 'setting-map',
         label: 'Bản đồ',
         path: '/setting-map',
-        element: <Map />
+        element: <SettingMap />
       }
     ]
   }

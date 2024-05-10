@@ -22,7 +22,6 @@ function Sider({ routes, ...props }) {
   };
 
   const handleExpandSubmenu = (keys) => {
-    console.log('keys', keys);
     setCurrent({ ...current, openKeys: keys });
   };
 
