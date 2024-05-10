@@ -11,11 +11,11 @@ const CAMERA_COLLECTION_NAME = 'camera';
 const CAMENRA_COLLECTION_SCHEMA = Joi.object({
   cameraId: Joi.string().required().min(1).max(50).trim().strict(),
   name: Joi.string().required().min(1).max(50).trim().strict(),
-  image:Joi.string().optional().min(0).max(100).trim().strict().default(''),
+  image: Joi.string().optional().min(0).max(100).trim().strict().default(''),
   type: Joi.string().valid('normal', 'cam360').required(),
   zone: Joi.string().optional().min(1).max(10).trim().strict(),
   streamLink: Joi.string().optional().min(1).max(100).trim().strict(),
-  slots: Joi.array().items({ position: Joi.string().min(4).max(6).trim().strict(), }),
+  slots: Joi.array().items(Joi.string().min(4).max(6).trim().strict()),
   location: Joi.object({
     top: Joi.number().strict(),
     left: Joi.number().strict(),
@@ -277,6 +277,37 @@ const checkCameraId = async (cameraId) => {
   }
 }
 
+const updateSlot = async (cameraId, data) => {
+  try {
+    const valid = await GET_DB().collection(CAMERA_COLLECTION_NAME).findOne({ 'cameraId': cameraId })
+    if (!valid) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'Khong tim thay camera', 'Not Found', 'BR_zone_1');
+    }
+    
+    const parking = await parkingModel.findOne(valid.zone)
+    data.slots.forEach(position => {
+      const slot = parking.slots.find(slot => slot.position === position);
+      if (!slot) {
+        throw new ApiError(StatusCodes.NOT_FOUND, 'Vi tri khong ton tai trong bai do xe', 'Not Found', 'BR_zone_1');
+      }
+    });
+    const update = await GET_DB().collection(CAMERA_COLLECTION_NAME).updateOne(
+      { 'cameraId': cameraId},
+      {
+        $set: {
+          'slots' : data.slots,
+        },
+      },
+      
+    )
+    return update
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+}
+
 
 export const cameraModel = {
   CAMERA_COLLECTION_NAME,
@@ -289,4 +320,5 @@ export const cameraModel = {
   checkCameraId,
   findByFilterUnused,
   removeCamera,
+  updateSlot
 };

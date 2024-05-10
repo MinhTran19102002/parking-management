@@ -51,7 +51,7 @@ const updateManyCamera = async (listCamrera) => {
       listCamrera.map(async (data) => {
         // console.log(data)
         const cameraUpdate = await cameraModel.updateCamera(data._id, data);
-        
+
         return cameraUpdate;
       }),
     )
@@ -60,7 +60,7 @@ const updateManyCamera = async (listCamrera) => {
           listUpdate.push(result.value)
           listId.push(result.value._id)
         });
-        
+
       })
       .catch((error) => {
         throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
@@ -172,13 +172,26 @@ const checkCameraId = async (cameraId) => {
 const upload = async (req, res, next) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    const  uploadImage = await uploadImageHandler(req, res)
+    const uploadImage = await uploadImageHandler(req, res)
     return uploadImage
-} catch (error) {
-  if (error.type && error.code)
-    throw new ApiError(error.statusCode, error.message, error.type, error.code);
-  else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
 }
+
+const updateSlot = async (data) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    let {cameraId, ...slots} = data
+    const uploadImage = await cameraModel.updateSlot(cameraId, slots)
+    return uploadImage
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
 }
 
 export const cameraService = {
@@ -191,4 +204,5 @@ export const cameraService = {
   upload,
   findByFilterUnused,
   updateManyCamera,
+  updateSlot,
 }

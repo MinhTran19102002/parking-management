@@ -22,6 +22,12 @@ const PARKING_COLLECTION_SCHEMA = Joi.object({
         .message(OBJECT_ID_RULE_MESSAGE)
         .default(null),
       isBlank: Joi.boolean().default(true),
+
+      width: Joi.number().strict(),
+      height: Joi.number().strict(),
+      rotate: Joi.number().strict(),
+      x: Joi.number().strict(),
+      y: Joi.number().strict(),
     })
     .min(1)
     .unique('position')
@@ -191,13 +197,13 @@ const getStatus = async (zone) => {
                         vehicleInfo: '$$slot.parkingTurn.vehicleInfo',
                         driverInfo: '$$slot.parkingTurn.personInfo',
                         position: '$$slot.parkingTurn.position',
-                        image : '$$slot.parkingTurn.image',
+                        image: '$$slot.parkingTurn.image',
                         fee: '$$slot.parkingTurn.fee',
                         _destroy: '$$slot.parkingTurn._destroy',
                         start: '$$slot.parkingTurn.start',
                         end: '$$slot.parkingTurn.end',
                         vehicles: '$$slot.parkingTurn.vehicles',
-                        persons :'$$slot.parkingTurn.persons',
+                        persons: '$$slot.parkingTurn.persons',
                       },
                     },
                   },
@@ -215,10 +221,42 @@ const getStatus = async (zone) => {
   }
 };
 
+const updateSlot = async (zone, position, dataUpadte) => {
+  try {
+
+    const update = await GET_DB()
+      .collection(parkingModel.PARKING_COLLECTION_NAME)
+      .updateOne(
+        { 'zone': zone, 'slots.position': position },
+        {
+          $set: {
+            // 'slots.$.parkingTurnId': createNew.insertedId,
+            // 'slots.$.isBlank': false,
+            'slots.$.width': dataUpadte.width,
+            'slots.$.height': dataUpadte.height,
+            'slots.$.rotate': dataUpadte.rotate,
+            'slots.$.x': dataUpadte.x,
+            'slots.$.y': dataUpadte.y
+          },
+        },
+      );
+    if (update.matchedCount == 0) {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Bãi cập nhật không thành công', 'Not Updated', 'BR_parking_3');
+    }
+    return update;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+
 export const parkingModel = {
   PARKING_COLLECTION_NAME,
   PARKING_COLLECTION_SCHEMA,
   createNew,
   findOne,
   getStatus,
+  updateSlot,
 };
