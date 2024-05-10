@@ -143,6 +143,17 @@ const addImage = async (req, res, next) => {
 };
 
 
+const updateSlot = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    const updateSlot = await cameraService.updateSlot(req.body);
+    res.status(StatusCodes.CREATED).json(updateSlot);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 export const cameraController = {
   createCamera,
   updateCamera,
@@ -155,4 +166,5 @@ export const cameraController = {
   findByFilterUnused,
   findByFilterUsed,
   updateManyCamera,
+  updateSlot,
 }
