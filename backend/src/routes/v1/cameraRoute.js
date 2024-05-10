@@ -35,5 +35,10 @@ Router.route('/addImage').put(
   cameraController.addImage
 );
 
+Router.route('/updateSlot').put(
+  // verifyTokenMidleware.verifyTokenAndAdmin,
+  cameraController.updateSlot
+);
+
 
 export const cameraRoute = Router

@@ -35,8 +35,27 @@ const createPaking = async (data) => {
   }
 }
 
+const updateSlot = async (data) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+
+    let {zone, position, ...dataUpadte} = data
+
+    const updateSlot = await parkingModel.updateSlot(zone,position, dataUpadte)
+    if (updateSlot.acknowledged == false) {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Bãi tạo không thành công', 'Not Created', 'BR_parking_2')
+    }
+    return updateSlot
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+}
+
 export const parkingService = {
   getStatusByZone,
   createPaking,
   getStatus,
+  updateSlot,
 }
