@@ -32,6 +32,7 @@ import { useQuery } from '@tanstack/react-query';
 import CameraSetting from './components/CameraSetting';
 import VideoBlock from '~/views/components/VideoBlock';
 import MapLayer from './components/MapLayer';
+import SlotLayer from './components/SlotLayer';
 
 function SettingMap({}) {
   const { token } = theme.useToken();
@@ -179,7 +180,7 @@ function SettingMap({}) {
                 className="map-wrapper"
                 onDrop={onDropCamera}
                 onDragOver={(e) => e.preventDefault()}>
-                {settingMode || <VehicleLayer slots={slots} zone={zone} />}
+                {/* {settingMode || <VehicleLayer slots={slots} zone={zone} />} */}
                 {settingMode ? (
                   <CameraSetting
                     settingMode={settingMode}
@@ -193,7 +194,7 @@ function SettingMap({}) {
                 ) : (
                   <CameraLayer zone={zone} settingMode={settingMode} />
                 )}
-
+                <SlotLayer zone={zone} />
                 <MapLayer zone={zone} />
               </div>
             </MapInteractionCSS>

@@ -18,7 +18,7 @@ function VehicleLayer({ slots, zone }) {
   switch (zone) {
     case 'A':
       vehicles = SLOTS_A;
-      newWidth = 52;
+      newWidth = 34;
       currMap = CarA;
       break;
     case 'B':
