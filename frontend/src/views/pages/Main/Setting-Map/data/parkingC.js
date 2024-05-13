@@ -4,279 +4,279 @@ export const SLOTS_C = [
     occupied: true,
     top: 43,
     left: 181,
-    rotate: 90
+    rotate: 0
   },
   {
     position: 'C102',
     occupied: true,
     top: 43,
     left: 236,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C103',
     occupied: true,
     top: 43,
     left: 291,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C104',
     occupied: true,
     top: 43,
     left: 345,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C105',
     occupied: true,
     top: 43,
     left: 399,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C106',
     occupied: true,
     top: 43,
     left: 539,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C107',
     occupied: true,
     top: 43,
     left: 594,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C108',
     occupied: true,
     top: 43,
     left: 649,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C109',
     occupied: true,
     top: 43,
     left: 704,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C110',
     occupied: true,
     top: 43,
     left: 760,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C201',
     occupied: true,
-    top: 206,
+    top: 204,
     left: 181,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C202',
     occupied: true,
-    top: 206,
+    top: 204,
     left: 236,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C203',
     occupied: true,
-    top: 206,
+    top: 204,
     left: 291,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C204',
     occupied: true,
-    top: 206,
+    top: 204,
     left: 345,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C205',
     occupied: true,
-    top: 206,
+    top: 204,
     left: 399,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C301',
     occupied: true,
-    top: 206,
+    top: 204,
     left: 539,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C302',
     occupied: true,
-    top: 206,
+    top: 204,
     left: 594,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C303',
     occupied: true,
-    top: 206,
+    top: 204,
     left: 649,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C304',
     occupied: true,
-    top: 206,
+    top: 204,
     left: 704,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C305',
     occupied: true,
-    top: 206,
+    top: 204,
     left: 760,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C206',
     occupied: true,
-    top: 292,
+    top: 294,
     left: 181,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C207',
     occupied: true,
-    top: 292,
+    top: 294,
     left: 236,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C208',
     occupied: true,
-    top: 292,
+    top: 294,
     left: 291,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C209',
     occupied: true,
-    top: 292,
+    top: 294,
     left: 345,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C210',
     occupied: true,
-    top: 292,
+    top: 294,
     left: 399,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C306',
     occupied: true,
-    top: 292,
+    top: 294,
     left: 539,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C307',
     occupied: true,
-    top: 292,
+    top: 294,
     left: 594,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C308',
     occupied: true,
-    top: 292,
+    top: 294,
     left: 649,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C309',
     occupied: true,
-    top: 292,
+    top: 294,
     left: 704,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C310',
     occupied: true,
-    top: 292,
+    top: 294,
     left: 760,
-    rotate: 90
+    rotate: 0,
   },
   {
     position: 'C401',
     occupied: true,
     top: 456,
     left: 181,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C402',
     occupied: true,
     top: 456,
     left: 236,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C403',
     occupied: true,
     top: 456,
     left: 291,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C404',
     occupied: true,
     top: 456,
     left: 345,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C405',
     occupied: true,
     top: 456,
     left: 399,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C406',
     occupied: true,
     top: 456,
     left: 539,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C407',
     occupied: true,
     top: 456,
     left: 594,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C408',
     occupied: true,
     top: 456,
     left: 649,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C409',
     occupied: true,
     top: 456,
     left: 704,
-    rotate: -90
+    rotate: -180,
   },
   {
     position: 'C410',
     occupied: true,
     top: 456,
     left: 760,
-    rotate: -90
+    rotate: -180,
   }
 ];

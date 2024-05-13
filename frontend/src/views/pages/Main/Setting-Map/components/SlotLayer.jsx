@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SlotStyled } from '../style';
 import { SLOTS_C } from '../data/parkingC';
 import { SLOTS_B } from '../data/parkingB';
@@ -16,19 +16,23 @@ const getSlots = (zone) => {
     case 'A':
       vehicles = SLOTS_A;
       newWidth = 40;
-      veWidth = 24;
       height = 68;
+      veWidth = 24;
       textStyle = {
         fontSize: 11
       };
       break;
     case 'B':
       vehicles = SLOTS_B;
-      newWidth = 76;
+      newWidth = 56;
+      height = 90;
+      veWidth = 34;
       break;
     case 'C':
       vehicles = SLOTS_C;
-      newWidth = 68;
+      newWidth = 54;
+      height = 90;
+      veWidth = 34;
       break;
   }
 
@@ -45,6 +49,10 @@ function SlotLayer({ zone }) {
     };
   });
   console.log(newSlots);
+
+  useEffect(() => {
+    setMapProps(getSlots(zone));
+  }, [zone]);
 
   return (
     <div id="slotsLayer">
