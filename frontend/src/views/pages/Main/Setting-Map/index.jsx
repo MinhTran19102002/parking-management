@@ -1,21 +1,21 @@
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { Layout, Flex, Radio, theme, Spin } from 'antd';
+import { Layout, Flex, Radio, theme, Spin, Space, Button } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
 import { TransformBlock } from './style';
 import { MapInteractionCSS } from 'react-map-interaction';
 import { useSearchParams } from 'react-router-dom';
 import AppContext from '~/context';
 import { CameraApi, ParkingApi } from '~/api';
-import CameraLayer from './components/CameraLayer';
-import VehicleLayer from './components/VehicleLayer';
-import { DISABLED_MAP_INTERACTION } from './data';
-import CameraSide from './components/CameraSide';
+import CameraLayer from '../Map/components/CameraLayer';
+import { SettingOutlined } from '@ant-design/icons';
+import { DISABLED_MAP_INTERACTION } from '../Map/data';
+import CameraSide from '../Map/components/CameraSide';
 import { useQuery } from '@tanstack/react-query';
-import CameraSetting from './components/CameraSetting';
-import MapLayer from './components/MapLayer';
-import SlotLayer from './components/SlotLayer';
+import CameraSetting from '../Map/components/CameraSetting';
+import MapLayer from '../Map/components/MapLayer';
+import SlotLayer from '../Map/components/SlotLayer';
 
-function Map({}) {
+function SettingMap({}) {
   const { token } = theme.useToken();
   const { colorBgContainer } = token;
   const { state, actions } = useContext(AppContext);
@@ -124,7 +124,7 @@ function Map({}) {
 
   return (
     <Layout className="px-4">
-      <Header className="border-1" title={'Bản đồ'} />
+      <Header className="border-1" title={'Cài đặt bản đồ'} />
       <Content className="w-100 py-3">
         <Flex justify="space-between">
           <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
@@ -135,7 +135,7 @@ function Map({}) {
             <Radio.Button value="C">Khu C</Radio.Button>
             <Radio.Button value="C1">Khu C1</Radio.Button>
           </Radio.Group>
-          {/* {!settingMode ? (
+          {!settingMode ? (
             <Button icon={<SettingOutlined />} onClick={() => setSettingMode(true)}>
               Cài đặt
             </Button>
@@ -146,7 +146,7 @@ function Map({}) {
                 Xác nhận
               </Button>
             </Space>
-          )} */}
+          )}
         </Flex>
         <TransformBlock
           className="mt-2 overflow-hidden"
@@ -175,9 +175,8 @@ function Map({}) {
                 ) : (
                   <CameraLayer zone={zone} settingMode={settingMode} />
                 )}
-
+                <SlotLayer zone={zone} />
                 <MapLayer zone={zone} />
-                <SlotLayer zone={zone} vehicles={!settingMode ? slots : []} />
               </div>
             </MapInteractionCSS>
           </Spin>
@@ -188,4 +187,4 @@ function Map({}) {
   );
 }
 
-export default Map;
+export default SettingMap;

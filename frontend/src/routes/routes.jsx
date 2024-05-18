@@ -6,7 +6,8 @@ import {
   LineChartOutlined,
   UserOutlined,
   UsergroupAddOutlined,
-  CameraOutlined
+  CameraOutlined,
+  SettingOutlined
 } from '@ant-design/icons';
 import Driver from '~/views/pages/Main/Driver';
 import Employee from '~/views/pages/Main/Employee';
@@ -16,6 +17,7 @@ import Event from '~/views/pages/Main/Event';
 import UserPage from '~/views/pages/Main/UserPage';
 import Staff from '~/views/pages/Main/Staff';
 import Camera from '~/views/pages/Main/Camera';
+import SettingMap from '~/views/pages/Main/Setting-Map';
 // Public routes
 const publicRoutes = [
   {
@@ -62,6 +64,19 @@ const adminRoutes = [
     path: '/camera',
     element: <Camera />,
     icon: <CameraOutlined />
+  },
+  {
+    key: 'setting',
+    label: 'Cài đặt',
+    icon: <SettingOutlined />,
+    children: [
+      {
+        key: 'setting-map',
+        label: 'Bản đồ',
+        path: '/setting-map',
+        element: <SettingMap />
+      }
+    ]
   }
 ];
 

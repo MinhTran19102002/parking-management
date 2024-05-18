@@ -4,9 +4,9 @@ import { Content, Footer, Header } from '~/views/layouts';
 import AppContext from '~/context';
 import { ParkingApi, UserApi } from '~/api';
 import { ErrorService, ValidateService } from '~/services';
-import { SLOTS_A } from '../Map/parkingA';
-import { SLOTS_B } from '../Map/parkingB';
-import { SLOTS_C } from '../Map/parkingC';
+import { SLOTS_A } from '../Map/data/parkingA';
+import { SLOTS_B } from '../Map/data/parkingB';
+import { SLOTS_C } from '../Map/data/parkingC';
 import { UploadOutlined } from '@ant-design/icons';
 
 const formItemLayout = {

@@ -9,7 +9,7 @@ function Sider({ routes, ...props }) {
   const { token } = theme.useToken();
   const location = useLocation();
   const navigate = useNavigate();
-  const [current, setCurrent] = useState();
+  const [current, setCurrent] = useState({});
   const [collapsed, setCollapsed] = useState(false);
 
   const handleChangePage = ({ item }) => {
@@ -21,12 +21,16 @@ function Sider({ routes, ...props }) {
     });
   };
 
+  const handleExpandSubmenu = (keys) => {
+    setCurrent({ ...current, openKeys: keys });
+  };
+
   useEffect(() => {
     if (location) {
       if (location.pathname != current?.path) {
         setCurrent({
           selectedKeys: location.pathname.split('/').filter(Boolean),
-          openKeys: location.pathname.split('/').filter(Boolean),
+          openKeys: [...(current.openKeys || []), location.pathname.split('/').filter(Boolean)[0]],
           path: location.pathname
         });
       }
@@ -39,11 +43,11 @@ function Sider({ routes, ...props }) {
       width={200}
       className="py-4"
       collapsible
-      theme="light"
+      theme="dark"
       collapsed={collapsed}
       onCollapse={(value) => setCollapsed(value)}
       style={{
-        background: token.colorBgContainer
+        // background: token.colorBgContainer
       }}>
       <Flex vertical className="px-2 mt-1" align="center">
         <Image src={LOGO} width={40} preview={false} />
@@ -55,11 +59,14 @@ function Sider({ routes, ...props }) {
       </Flex>
       <Menu
         id="menuSider"
+        mode="inline"
+        theme="dark"
         className={`mt-5 ${!collapsed && 'notCollapsed'}`}
         items={routes}
         selectedKeys={current?.selectedKeys}
         openKeys={current?.openKeys}
         onSelect={handleChangePage}
+        onOpenChange={handleExpandSubmenu}
       />
     </Layout.Sider>
   );

@@ -67,9 +67,12 @@ function Main({}) {
       </Modal>
       <Sider routes={currRoute} />
       <Routes>
-        {currRoute.map((route, ix) => (
-          <Route {...route} key={'route' + ix} />
-        ))}
+        {currRoute.map((route, ix) => {
+          if (route.children) {
+            return route.children.map((subRoute) => <Route {...subRoute} key={subRoute.key} />);
+          }
+          return <Route {...route} key={'route' + ix} />;
+        })}
         <Route path="*" element={<Navigate to={currRoute[0].path} />} />
       </Routes>
     </Layout>

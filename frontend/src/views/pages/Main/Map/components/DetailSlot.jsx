@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Image, Row, Col, Flex, Typography, theme } from 'antd';
 import IMG_LISENCE from '~/assets/images/lisence.png';
-import { InnerDetailFloorStyled } from './style';
+import { InnerDetailFloorStyled } from '../style';
 import { FormatNumber, JobServices } from '~/services';
 import { CustomedImage } from '~/views/components';
 import dayjs from 'dayjs';
