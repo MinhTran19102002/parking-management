@@ -15,21 +15,30 @@ function VehicleLayer({ slots, zone }) {
   let vehicles = [];
   let newWidth = 50;
   let currMap;
+  let veWidth = 0;
+  let height = 100;
+  let textStyle = {}  ;
   switch (zone) {
     case 'A':
       vehicles = SLOTS_A;
-      newWidth = 52;
-      currMap = CarA;
+      newWidth = 40;
+      height = 68;
+      veWidth = 24;
+      textStyle = {
+        fontSize: 11
+      };
       break;
     case 'B':
       vehicles = SLOTS_B;
-      newWidth = 76;
-      currMap = CarB;
+      newWidth = 56;
+      height = 90;
+      veWidth = 34;
       break;
     case 'C':
       vehicles = SLOTS_C;
-      newWidth = 68;
-      currMap = CarC;
+      newWidth = 54;
+      height = 90;
+      veWidth = 34;
       break;
   }
 
@@ -76,7 +85,7 @@ function VehicleLayer({ slots, zone }) {
                 id={position}
                 key={zone + position + ix}
                 className="image-container"
-                src={currMap}
+                src={CarA}
                 style={{
                   transform: `rotate(${rotate}deg)`,
                   width,

@@ -9,6 +9,7 @@ import MapC1 from '~/assets/images/mapC1.svg?react';
 function MapLayer({ zone }) {
   return (
     <div>
+      {' '}
       {useMemo(() => {
         if (zone === 'A') return <MapA />;
         else if (zone === 'B') return <MapB />;

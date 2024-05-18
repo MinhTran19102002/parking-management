@@ -6,7 +6,7 @@ import CameraVer from '~/assets/images/camera/type=ver.svg?react';
 import Camera360 from '~/assets/images/camera/type=360.svg?react';
 import CameraHori from '~/assets/images/camera/type=hori.svg?react';
 import { CameraPoint } from '../style';
-import { CameraLocations } from '../data/data';
+import { CameraLocations } from '../data';
 import { useDraggable } from '@neodrag/react';
 import CameraService from '~/services/CameraService';
 import { Popover } from 'antd';

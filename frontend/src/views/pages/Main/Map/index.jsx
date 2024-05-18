@@ -1,37 +1,19 @@
-import React, {
-  Suspense,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from 'react';
-import { Layout, Flex, Radio, theme, Typography, Tag, Spin, Skeleton, Space, Button } from 'antd';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { Layout, Flex, Radio, theme, Spin } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
-import { DetailFloorStyled, TransformBlock } from './style';
+import { TransformBlock } from './style';
 import { MapInteractionCSS } from 'react-map-interaction';
 import { useSearchParams } from 'react-router-dom';
-import { SLOTS_A } from './parkingA';
-import { SLOTS_B } from './parkingB';
-import { SLOTS_C } from './parkingC';
-import CarA from '~/assets/images/blue-car.png';
-import CarB from '~/assets/images/blue-car.png';
-import CarC from '~/assets/images/blue-car.png';
-import Moto from '~/assets/images/TealMoto.svg?react';
-import dayjs from 'dayjs';
-import DetailSlot from './DetailSlot';
 import AppContext from '~/context';
 import { CameraApi, ParkingApi } from '~/api';
-import CameraLayer from './CameraLayer';
-import { SettingOutlined } from '@ant-design/icons';
-import VehicleLayer from './VehicleLayer';
+import CameraLayer from './components/CameraLayer';
+import VehicleLayer from './components/VehicleLayer';
 import { DISABLED_MAP_INTERACTION } from './data';
-import CameraSide from './CameraSide';
+import CameraSide from './components/CameraSide';
 import { useQuery } from '@tanstack/react-query';
-import CameraSetting from './CameraSetting';
-import VideoBlock from '~/views/components/VideoBlock';
-import MapLayer from './MapLayer';
+import CameraSetting from './components/CameraSetting';
+import MapLayer from './components/MapLayer';
+import SlotLayer from './components/SlotLayer';
 
 function Map({}) {
   const { token } = theme.useToken();
@@ -179,7 +161,7 @@ function Map({}) {
                 className="map-wrapper"
                 onDrop={onDropCamera}
                 onDragOver={(e) => e.preventDefault()}>
-                {settingMode || <VehicleLayer slots={slots} zone={zone} />}
+                {/* {settingMode || <VehicleLayer slots={slots} zone={zone} />} */}
                 {settingMode ? (
                   <CameraSetting
                     settingMode={settingMode}
@@ -195,6 +177,7 @@ function Map({}) {
                 )}
 
                 <MapLayer zone={zone} />
+                <SlotLayer zone={zone} vehicles={!settingMode ? slots : []} />
               </div>
             </MapInteractionCSS>
           </Spin>

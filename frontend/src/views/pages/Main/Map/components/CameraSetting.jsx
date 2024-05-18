@@ -11,8 +11,8 @@ import React, {
 import { CameraApi } from '~/api';
 import AppContext from '~/context';
 import { ErrorService } from '~/services';
-import { CameraPoint } from './style';
-import { CameraLocations } from './data';
+import { CameraPoint } from '../style';
+import { CameraLocations } from '../data';
 import { useDraggable } from '@neodrag/react';
 import CameraSide from './CameraSide';
 import { Button, Space, theme } from 'antd';

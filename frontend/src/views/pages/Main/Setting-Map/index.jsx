@@ -1,38 +1,19 @@
-import React, {
-  Suspense,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState
-} from 'react';
-import { Layout, Flex, Radio, theme, Typography, Tag, Spin, Skeleton, Space, Button } from 'antd';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
+import { Layout, Flex, Radio, theme, Spin, Space, Button } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
-import { DetailFloorStyled, TransformBlock } from './style';
+import { TransformBlock } from './style';
 import { MapInteractionCSS } from 'react-map-interaction';
 import { useSearchParams } from 'react-router-dom';
-import { SLOTS_A } from './data/parkingA';
-import { SLOTS_B } from './data/parkingB';
-import { SLOTS_C } from './data/parkingC';
-import CarA from '~/assets/images/blue-car.png';
-import CarB from '~/assets/images/blue-car.png';
-import CarC from '~/assets/images/blue-car.png';
-import Moto from '~/assets/images/TealMoto.svg?react';
-import dayjs from 'dayjs';
-import DetailSlot from './components/DetailSlot';
 import AppContext from '~/context';
 import { CameraApi, ParkingApi } from '~/api';
-import CameraLayer from './components/CameraLayer';
+import CameraLayer from '../Map/components/CameraLayer';
 import { SettingOutlined } from '@ant-design/icons';
-import VehicleLayer from './components/VehicleLayer';
-import { DISABLED_MAP_INTERACTION } from './data/data';
-import CameraSide from './components/CameraSide';
+import { DISABLED_MAP_INTERACTION } from '../Map/data';
+import CameraSide from '../Map/components/CameraSide';
 import { useQuery } from '@tanstack/react-query';
-import CameraSetting from './components/CameraSetting';
-import VideoBlock from '~/views/components/VideoBlock';
-import MapLayer from './components/MapLayer';
-import SlotLayer from './components/SlotLayer';
+import CameraSetting from '../Map/components/CameraSetting';
+import MapLayer from '../Map/components/MapLayer';
+import SlotLayer from '../Map/components/SlotLayer';
 
 function SettingMap({}) {
   const { token } = theme.useToken();

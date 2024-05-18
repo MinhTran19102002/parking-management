@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { SlotStyled } from '../style';
 import { SLOTS_C } from '../data/parkingC';
 import { SLOTS_B } from '../data/parkingB';
 import { SLOTS_A } from '../data/parkingA';
 import { Flex, Space, Typography } from 'antd';
 import CarA from '~/assets/images/blue-car.png';
+import { SlotStyled } from '../../Setting-Map/style';
+import SlotStatus from './SlotStatus';
 
 const getSlots = (zone) => {
   let vehicles = [];
@@ -38,7 +39,7 @@ const getSlots = (zone) => {
 
   return { slots: vehicles, width: newWidth, height, veWidth, textStyle };
 };
-function SlotLayer({ zone }) {
+function SlotLayer({ zone, vehicles = [] }) {
   const [mapProps, setMapProps] = useState(getSlots(zone));
   const { slots = [], width = 0, height = 0, veWidth, textStyle } = mapProps;
 
@@ -48,7 +49,6 @@ function SlotLayer({ zone }) {
       rotate: el.rotate - 90
     };
   });
-  console.log(newSlots);
 
   useEffect(() => {
     setMapProps(getSlots(zone));
@@ -58,38 +58,32 @@ function SlotLayer({ zone }) {
     <div id="slotsLayer">
       {slots.map((slot, ix) => {
         const { rotate } = slot;
+        const { position } = slot;
+        const vehicle = vehicles.find((el) => el.position === position);
         return (
-          <>
-            <SlotStyled
-              key={slot.position}
-              style={{
-                position: 'absolute',
-                width,
-                height,
-                ...slot,
-                transform: `rotate(${slot.rotate}deg)`,
-                padding: '2px 0'
-              }}>
-              <Flex vertical direction="vertical" align="center" size={0} className="w-100 h-100">
-                <img
-                  src={CarA}
-                  style={{
-                    ...slot,
-                    width: veWidth
-                  }}
-                />
-                <Typography.Text
-                  className="slot-id"
-                  style={{
-                    ...textStyle,
-                    lineHeight: '100%',
-                    transform: `rotate(${rotate === -180 ? 180 : 0}deg)`
-                  }}>
-                  {slot.position}
-                </Typography.Text>
-              </Flex>
-            </SlotStyled>
-          </>
+          <SlotStyled
+            key={slot.position}
+            style={{
+              position: 'absolute',
+              width,
+              height,
+              ...slot,
+              transform: `rotate(${slot.rotate}deg)`,
+              padding: '2px 0'
+            }}>
+            <Flex vertical direction="vertical" align="center" size={0} className="w-100 h-100">
+              <SlotStatus zone={zone} slotInfor={slot} slot={vehicle} />
+              <Typography.Text
+                className="slot-id"
+                style={{
+                  ...textStyle,
+                  lineHeight: '100%',
+                  transform: `rotate(${rotate === -180 ? 180 : 0}deg)`
+                }}>
+                {slot.position}
+              </Typography.Text>
+            </Flex>
+          </SlotStyled>
         );
       })}
     </div>

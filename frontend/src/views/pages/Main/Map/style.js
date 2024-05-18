@@ -1,6 +1,21 @@
 import styled, { css } from 'styled-components';
 import { Image, Popover } from 'antd';
 
+export const SlotStyled = styled.div`
+  height: 100px;
+  border: solid 1px #666;
+  border-radius: 4px;
+  position: absolute;
+
+  &:hover {
+    border-color: #000;
+  }
+
+  .slot-id {
+
+  }
+`
+
 export const TransformBlock = styled.div`
   height: 96%;
   border: 1px solid #f0f0f0;
