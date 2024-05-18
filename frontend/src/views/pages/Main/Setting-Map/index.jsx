@@ -161,7 +161,6 @@ function SettingMap({}) {
                 className="map-wrapper"
                 onDrop={onDropCamera}
                 onDragOver={(e) => e.preventDefault()}>
-                {/* {settingMode || <VehicleLayer slots={slots} zone={zone} />} */}
                 {settingMode ? (
                   <CameraSetting
                     settingMode={settingMode}
