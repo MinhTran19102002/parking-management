@@ -52,6 +52,7 @@ const createNewWithoutZone = async (req, res, next) => {
     let zone = '';
     let position = '';
     let image = file.filename;
+    let licenePlate = req.body.licenePlate
     // Dieu huong sang tang Service
     const createUser = await parkingTurnService.createPakingTurn(licenePlate, zone, position, image);
     console.log('loi o day')
@@ -64,6 +65,7 @@ const createNewWithoutZone = async (req, res, next) => {
 
 const outPaking = async (req, res, next) => {
   try {
+    console.log(req)
     const licenePlate = req.body.licenePlate;
     // Dieu huong sang tang Service
     const outPaking = await parkingTurnService.outPaking(licenePlate);

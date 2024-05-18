@@ -67,7 +67,7 @@ const createPakingTurn = async (licenePlate, zone, position, image) => {
       _destroy: false,
     };
 
-    const createPakingTurn = await parkingTurnModel.createNew(data);
+    let createPakingTurn = await parkingTurnModel.createNew(data);
     if (createPakingTurn.acknowledged == false) {
       throw new ApiError(
         StatusCodes.INTERNAL_SERVER_ERROR,
@@ -94,6 +94,7 @@ const createPakingTurn = async (licenePlate, zone, position, image) => {
       eventId: createPakingTurn.insertedId,
       createdAt: now,
     });
+    createPakingTurn.position = position
     return createPakingTurn;
   } catch (error) {
     if (error.type && error.code)
@@ -106,6 +107,7 @@ const outPaking = async (licenePlate) => {
   try {
     //tim vehicleId
     const vihicle = await vehicleModel.findOneByLicenePlate(licenePlate);
+    console.log(licenePlate)
     if (!vihicle) {
       throw new ApiError(
         StatusCodes.INTERNAL_SERVER_ERROR,
