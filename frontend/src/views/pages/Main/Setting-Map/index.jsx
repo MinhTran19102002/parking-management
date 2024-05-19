@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { Layout, Flex, Radio, theme, Spin, Space, Button } from 'antd';
+import { Layout, Flex, Radio, theme, Spin, Space, Button, Modal } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
 import { TransformBlock } from './style';
 import { MapInteractionCSS } from 'react-map-interaction';
@@ -14,6 +14,7 @@ import { useQuery } from '@tanstack/react-query';
 import CameraSetting from '../Map/components/CameraSetting';
 import MapLayer from '../Map/components/MapLayer';
 import SlotLayer from '../Map/components/SlotLayer';
+import SlotAssigend from '../Map/components/SlotAssigend';
 
 function SettingMap({}) {
   const { token } = theme.useToken();
@@ -28,6 +29,9 @@ function SettingMap({}) {
   const [cameraForm, setCameraForm] = useState([]);
   const [settingMode, setSettingMode] = useState(false);
   const [cameraUnused, setCameraUnused] = useState([]);
+  const [assignSlotMode, setAssignSlotMode] = useState(false);
+  const [hoveredSlots, setHoveredSlots] = useState([]);
+  const [openAssignedSlotModal, setOpenAssignedSlotModal] = useState(true);
 
   // const { data: cameraUnused, refetch: refetchCameraUnused } = useQuery({
   //   queryKey: ['camera', 'unused'],
@@ -46,12 +50,10 @@ function SettingMap({}) {
     queryKey: ['camera', 'used'],
     initialData: [],
     queryFn: async () => {
-      if (settingMode)
-        try {
-          const api = await CameraApi.getByFilter();
-          return api.data;
-        } catch {}
-      return [];
+      try {
+        const api = await CameraApi.getByFilter();
+        return api.data;
+      } catch {}
     }
   });
 
@@ -122,8 +124,23 @@ function SettingMap({}) {
     setCameraUnused(rs);
   };
 
+  const onHoverCamera = (camera = {}) => {
+    const { slots = [] } = camera;
+    setHoveredSlots(slots);
+  };
+
+  const hanldeAssigneSlot = () => {};
+
   return (
     <Layout className="px-4">
+      <Modal
+        title="Cài đặt camera và ô đỗ"
+        width='fit-content'
+        open={openAssignedSlotModal}
+        onOk={hanldeAssigneSlot}
+        onCancel={() => setOpenAssignedSlotModal(false)}>
+        <SlotAssigend />
+      </Modal>
       <Header className="border-1" title={'Cài đặt bản đồ'} />
       <Content className="w-100 py-3">
         <Flex justify="space-between">
@@ -135,18 +152,37 @@ function SettingMap({}) {
             <Radio.Button value="C">Khu C</Radio.Button>
             <Radio.Button value="C1">Khu C1</Radio.Button>
           </Radio.Group>
-          {!settingMode ? (
-            <Button icon={<SettingOutlined />} onClick={() => setSettingMode(true)}>
-              Cài đặt
+          <Space>
+            {!assignSlotMode &&
+              (!settingMode ? (
+                <Button icon={<SettingOutlined />} onClick={() => setSettingMode(true)}>
+                  Cài đặt
+                </Button>
+              ) : (
+                <Space>
+                  <Button onClick={() => setSettingMode(false)}>Hủy bỏ</Button>
+                  <Button type="primary" onClick={hanldeMapSetting}>
+                    Xác nhận
+                  </Button>
+                </Space>
+              ))}
+            {!settingMode &&
+              (!assignSlotMode ? (
+                <Button icon={<SettingOutlined />} onClick={() => setAssignSlotMode(true)}>
+                  Chỉ định Slot cho Camera
+                </Button>
+              ) : (
+                <Space>
+                  <Button onClick={() => setAssignSlotMode(false)}>Hủy bỏ</Button>
+                  <Button type="primary" onClick={hanldeMapSetting}>
+                    Xác nhận
+                  </Button>
+                </Space>
+              ))}
+            <Button type="primary" onClick={() => setOpenAssignedSlotModal(true)}>
+              Cài đặt ô đỗ
             </Button>
-          ) : (
-            <Space>
-              <Button onClick={() => setSettingMode(false)}>Hủy bỏ</Button>
-              <Button type="primary" onClick={hanldeMapSetting}>
-                Xác nhận
-              </Button>
-            </Space>
-          )}
+          </Space>
         </Flex>
         <TransformBlock
           className="mt-2 overflow-hidden"
@@ -172,9 +208,14 @@ function SettingMap({}) {
                     onRemoveCameraFormMap={onRemoveCameraFormMap}
                   />
                 ) : (
-                  <CameraLayer zone={zone} settingMode={settingMode} />
+                  <CameraLayer
+                    zone={zone}
+                    settingMode={settingMode}
+                    data={totalCameras}
+                    onHoverCamera={onHoverCamera}
+                  />
                 )}
-                <SlotLayer zone={zone} />
+                <SlotLayer zone={zone} hoveredSlots={hoveredSlots} />
                 <MapLayer zone={zone} />
               </div>
             </MapInteractionCSS>

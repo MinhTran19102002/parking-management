@@ -14,7 +14,7 @@ export default {
   GetIconIds: () => CAMERA_ICONIDS,
   GetIcons: () => CAMERA_ICONS,
   GetIconByIdIcon: (iconId, className) => (
-    <div style={{ backgroundColor: '#e08516', border: '0.2em solid #063443', borderRadius: 8 }}>
+    <div className='camera-point-inner' style={{ backgroundColor: '#e08516', border: '0.2em solid #063443', borderRadius: 8 }}>
       {CAMERA_ICONS[iconId]}
     </div>
   )
