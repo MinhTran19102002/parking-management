@@ -15,6 +15,7 @@ import CameraSetting from '../Map/components/CameraSetting';
 import MapLayer from '../Map/components/MapLayer';
 import SlotLayer from '../Map/components/SlotLayer';
 import SlotAssigend from '../Map/components/SlotAssigend';
+import { ErrorService } from '~/services';
 
 function SettingMap({}) {
   const { token } = theme.useToken();
@@ -29,9 +30,8 @@ function SettingMap({}) {
   const [cameraForm, setCameraForm] = useState([]);
   const [settingMode, setSettingMode] = useState(false);
   const [cameraUnused, setCameraUnused] = useState([]);
-  const [assignSlotMode, setAssignSlotMode] = useState(false);
   const [hoveredSlots, setHoveredSlots] = useState([]);
-  const [openAssignedSlotModal, setOpenAssignedSlotModal] = useState(true);
+  const [openAssignedSlotModal, setOpenAssignedSlotModal] = useState(false);
 
   // const { data: cameraUnused, refetch: refetchCameraUnused } = useQuery({
   //   queryKey: ['camera', 'unused'],
@@ -116,7 +116,7 @@ function SettingMap({}) {
     if (totalCameras.length > 0 && settingMode) {
       setCameraUnused(totalCameras.filter((item) => !item.zone));
     }
-  }, [totalCameras]);
+  }, [JSON.stringify(totalCameras), settingMode]);
 
   const onRemoveCameraFormMap = (newCamera) => {
     const rs = cameraUnused.slice();
@@ -129,59 +129,49 @@ function SettingMap({}) {
     setHoveredSlots(slots);
   };
 
-  const hanldeAssigneSlot = () => {};
-
   return (
     <Layout className="px-4">
       <Modal
         title="Cài đặt camera và ô đỗ"
-        width='fit-content'
+        width="fit-content"
+        footer={null}
         open={openAssignedSlotModal}
-        onOk={hanldeAssigneSlot}
         onCancel={() => setOpenAssignedSlotModal(false)}>
-        <SlotAssigend />
+        <SlotAssigend
+          zone={zone}
+          triggerUpdateCamera={openAssignedSlotModal}
+          onCancel={() => setOpenAssignedSlotModal(false)}
+        />
       </Modal>
       <Header className="border-1" title={'Cài đặt bản đồ'} />
       <Content className="w-100 py-3">
         <Flex justify="space-between">
-          <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
-            <Radio.Button value="A">Khu A</Radio.Button>
-            <Radio.Button value="A1">Khu A1</Radio.Button>
-            <Radio.Button value="B">Khu B</Radio.Button>
-            <Radio.Button value="B1">Khu B1</Radio.Button>
-            <Radio.Button value="C">Khu C</Radio.Button>
-            <Radio.Button value="C1">Khu C1</Radio.Button>
-          </Radio.Group>
           <Space>
-            {!assignSlotMode &&
-              (!settingMode ? (
-                <Button icon={<SettingOutlined />} onClick={() => setSettingMode(true)}>
-                  Cài đặt
-                </Button>
-              ) : (
-                <Space>
-                  <Button onClick={() => setSettingMode(false)}>Hủy bỏ</Button>
-                  <Button type="primary" onClick={hanldeMapSetting}>
-                    Xác nhận
-                  </Button>
-                </Space>
-              ))}
-            {!settingMode &&
-              (!assignSlotMode ? (
-                <Button icon={<SettingOutlined />} onClick={() => setAssignSlotMode(true)}>
-                  Chỉ định Slot cho Camera
-                </Button>
-              ) : (
-                <Space>
-                  <Button onClick={() => setAssignSlotMode(false)}>Hủy bỏ</Button>
-                  <Button type="primary" onClick={hanldeMapSetting}>
-                    Xác nhận
-                  </Button>
-                </Space>
-              ))}
+            <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
+              <Radio.Button value="A">Khu A</Radio.Button>
+              <Radio.Button value="A1">Khu A1</Radio.Button>
+              <Radio.Button value="B">Khu B</Radio.Button>
+              <Radio.Button value="B1">Khu B1</Radio.Button>
+              <Radio.Button value="C">Khu C</Radio.Button>
+              <Radio.Button value="C1">Khu C1</Radio.Button>
+            </Radio.Group>
             <Button type="primary" onClick={() => setOpenAssignedSlotModal(true)}>
               Cài đặt ô đỗ
             </Button>
+          </Space>
+          <Space>
+            {!settingMode ? (
+              <Button icon={<SettingOutlined />} onClick={() => setSettingMode(true)}>
+                Cài đặt
+              </Button>
+            ) : (
+              <Space>
+                <Button onClick={() => setSettingMode(false)}>Hủy bỏ</Button>
+                <Button type="primary" onClick={hanldeMapSetting}>
+                  Xác nhận
+                </Button>
+              </Space>
+            )}
           </Space>
         </Flex>
         <TransformBlock

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import SlotLayer from './SlotLayer';
 import MapLayer from './MapLayer';
 import { useQuery } from '@tanstack/react-query';
@@ -8,30 +8,22 @@ import { SLOTS_C } from '../data/parkingC';
 import { SLOTS_B } from '../data/parkingB';
 import { SLOTS_A } from '../data/parkingA';
 import { GetSlots } from '../data';
+import { Button, Flex, Space } from 'antd';
+import AppContext from '~/context';
+import { ErrorService } from '~/services';
 
 const SLOTS = GetSlots();
-function SlotAssigend({}) {
-  const [zone, setZone] = useState('A');
+function SlotAssigend({ onCancel, triggerUpdateCamera, zone }) {
+  const { actions } = useContext(AppContext);
   const [hoveredSlots, setHoveredSlots] = useState([]);
-  const { data: cameras, refetch: refetchCameraUsed } = useQuery({
-    queryKey: ['camera', 'used'],
-    initialData: [],
-    queryFn: async () => {
-      try {
-        const api = await CameraApi.getByFilter();
-        return api.data;
-      } catch {}
-    }
-  });
-
-  const cameraForm = cameras.slice();
+  const [cameras, setCameras] = useState([]);
   const [selectedCamera, setSelectedCamera] = useState();
   const [selectedSlots, setSelectedSlots] = useState([]);
   const checkableSlots = useMemo(() => {
     if (!selectedCamera) return [];
     const unselectedCamera = cameras.filter((el) => el.cameraId !== selectedCamera) || [];
     const unSlots = unselectedCamera.reduce((acc, curr) => {
-      acc.push(...curr.slots);
+      acc.push(...(curr.slots || []));
       return acc;
     }, []);
     return SLOTS.filter((slot) => !unSlots.includes(slot));
@@ -43,22 +35,46 @@ function SlotAssigend({}) {
   };
 
   const onCheckSlot = (isCheck, checkedSlot) => {
-    console.log('checkedSlot', isCheck, checkedSlot);
-    const selectedCam = cameras.find((el) => el.cameraId === selectedCamera);
-    const { slots = [] } = selectedCam;
-    const newSlots = isCheck ? [...slots, checkedSlot] : slots.filter((el) => el !== checkedSlot);
-
-    selectedCam.slots = newSlots;
-    
+    const index = cameras.findIndex((el) => el.cameraId === selectedCamera);
+    if (index !== -1) {
+      const selectedCam = cameras[index];
+      const { slots = [] } = selectedCam;
+      const newSlots = isCheck ? [...slots, checkedSlot] : slots.filter((el) => el !== checkedSlot);
+      selectedCam.slots = newSlots;
+      const newCameras = cameras.slice();
+      newCameras[index] = selectedCam;
+      setCameras(newCameras);
+    }
   };
 
   useEffect(() => {
     if (selectedCamera) {
-      const { slots = [] } = cameraForm.find((el) => el.cameraId === selectedCamera);
-      console.log(cameraForm, selectedCamera, slots);
+      const { slots = [] } = cameras.find((el) => el.cameraId === selectedCamera);
       setSelectedSlots(slots);
     }
-  }, [selectedCamera, JSON.stringify(cameraForm)]);
+  }, [selectedCamera, JSON.stringify(cameras)]);
+
+  const callApi = async () => {
+    try {
+      const api = await CameraApi.getByFilter();
+      setCameras(api.data || []);
+    } catch {}
+  };
+
+  useEffect(() => {
+    callApi();
+  }, [triggerUpdateCamera]);
+
+  const submit = async () => {
+    try {
+      await CameraApi.editMany(cameras);
+      actions.onNoti({ message: 'Chỉnh sửa camera thành công', type: 'success' });
+      setSelectedCamera(null);
+      onCancel();
+    } catch (error) {
+      ErrorService.hanldeError(error, actions.onNoti);
+    }
+  };
 
   return (
     <div id="slotAssigned" style={{ position: 'relative' }}>
@@ -79,6 +95,15 @@ function SlotAssigend({}) {
         onHoverCamera={onHoverCamera}
         selectedCameraId={selectedCamera}
       />
+
+      <Flex className="w-100 mt-4">
+        <Space style={{ marginLeft: 'auto' }}>
+          <Button onClick={onCancel}>Hủy bỏ</Button>
+          <Button onClick={submit} type="primary">
+            Xác nhận
+          </Button>
+        </Space>
+      </Flex>
     </div>
   );
 }
