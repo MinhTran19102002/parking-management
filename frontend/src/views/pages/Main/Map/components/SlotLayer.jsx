@@ -2,45 +2,22 @@ import React, { useEffect, useState } from 'react';
 import { SLOTS_C } from '../data/parkingC';
 import { SLOTS_B } from '../data/parkingB';
 import { SLOTS_A } from '../data/parkingA';
-import { Flex, Space, Typography } from 'antd';
+import { Checkbox, Flex, Space, Typography } from 'antd';
 import CarA from '~/assets/images/blue-car.png';
 import { SlotStyled } from '../../Setting-Map/style';
 import SlotStatus from './SlotStatus';
+import { GetPlotsInfor } from '../data';
 
-const getSlots = (zone) => {
-  let vehicles = [];
-  let newWidth = 0;
-  let veWidth = 0;
-  let height = 100;
-  let textStyle = {};
-  switch (zone) {
-    case 'A':
-      vehicles = SLOTS_A;
-      newWidth = 40;
-      height = 68;
-      veWidth = 24;
-      textStyle = {
-        fontSize: 11
-      };
-      break;
-    case 'B':
-      vehicles = SLOTS_B;
-      newWidth = 56;
-      height = 90;
-      veWidth = 34;
-      break;
-    case 'C':
-      vehicles = SLOTS_C;
-      newWidth = 54;
-      height = 90;
-      veWidth = 34;
-      break;
-  }
-
-  return { slots: vehicles, width: newWidth, height, veWidth, textStyle };
-};
-function SlotLayer({ zone, vehicles = [] }) {
-  const [mapProps, setMapProps] = useState(getSlots(zone));
+function SlotLayer({
+  zone,
+  vehicles = [],
+  hoveredSlots = [],
+  checkable,
+  onCheckSlot,
+  checkableSlots = [],
+  checkedSlots = []
+}) {
+  const [mapProps, setMapProps] = useState(GetPlotsInfor(zone));
   const { slots = [], width = 0, height = 0, veWidth, textStyle } = mapProps;
 
   const newSlots = slots.map((el) => {
@@ -51,7 +28,7 @@ function SlotLayer({ zone, vehicles = [] }) {
   });
 
   useEffect(() => {
-    setMapProps(getSlots(zone));
+    setMapProps(GetPlotsInfor(zone));
   }, [zone]);
 
   return (
@@ -59,18 +36,27 @@ function SlotLayer({ zone, vehicles = [] }) {
       {slots.map((slot, ix) => {
         const { rotate } = slot;
         const { position } = slot;
+        const isHovered = hoveredSlots.find((el) => el === position);
         const vehicle = vehicles.find((el) => el.position === position);
+        const config = {
+          slot,
+          width,
+          height,
+          vehicle,
+          zone,
+          rotate,
+          textStyle
+        };
         return (
-          <SlotStyled
-            key={slot.position}
-            style={{
-              position: 'absolute',
-              width,
-              height,
-              ...slot,
-              transform: `rotate(${slot.rotate}deg)`,
-              padding: '2px 0'
-            }}>
+          <InteractionSlot key={position} {...config} isHovered={isHovered}>
+            {checkable && checkableSlots.find((slot) => slot === position) && (
+              <Checkbox
+                checked={checkedSlots.find((slot) => slot === position)}
+                style={{ position: 'absolute', top: 0, left: 4 }}
+                onChange={(e) => onCheckSlot(e.target.checked, position)}
+                size="large"
+              />
+            )}
             <Flex vertical direction="vertical" align="center" size={0} className="w-100 h-100">
               <SlotStatus zone={zone} slotInfor={slot} slot={vehicle} />
               <Typography.Text
@@ -83,11 +69,48 @@ function SlotLayer({ zone, vehicles = [] }) {
                 {slot.position}
               </Typography.Text>
             </Flex>
-          </SlotStyled>
+          </InteractionSlot>
         );
       })}
     </div>
   );
 }
+
+const InteractionSlot = ({ slot, width, height, children, isHovered }) => {
+  const [isHover, setIsHover] = useState(false);
+
+  useEffect(() => {
+    setIsHover(isHovered);
+  }, [isHovered]);
+
+  const hoverCSS = isHover
+    ? {
+        borderColor: `#000`,
+        backgroundColor: '#c0bdbd'
+      }
+    : {};
+
+  const onHover = (e, newValue) => {
+    setIsHover(newValue);
+  };
+
+  return (
+    <SlotStyled
+      onMouseOver={(e) => onHover(e, true)}
+      onMouseOut={(e) => onHover(e, false)}
+      key={slot.position}
+      style={{
+        position: 'absolute',
+        width,
+        height,
+        ...slot,
+        transform: `rotate(${slot.rotate}deg)`,
+        padding: '2px 0',
+        ...hoverCSS
+      }}>
+      {children}
+    </SlotStyled>
+  );
+};
 
 export default SlotLayer;

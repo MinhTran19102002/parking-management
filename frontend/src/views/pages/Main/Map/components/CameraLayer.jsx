@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { CameraApi } from '~/api';
 import AppContext from '~/context';
 import { ErrorService } from '~/services';
@@ -12,35 +12,25 @@ import CameraService from '~/services/CameraService';
 import { Popover } from 'antd';
 import { CameraCard } from '~/views/components';
 
-function CameraLayer({ zone, settingMode }) {
+function CameraLayer({ zone, data = [], onHoverCamera, selectedCameraId, onClick, selectable }) {
   const { actions } = useContext(AppContext);
   const isMounted = useRef(false);
-  const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-
-  const callApi = async () => {
-    try {
-      const api = await CameraApi.getByFilter({ zone });
-      setData(api.data);
-      isMounted.current = true;
-    } catch (error) {
-      ErrorService.hanldeError(error, actions.onNoti);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    callApi();
-  }, [zone]);
+  const cameras = useMemo(() => {
+    return data.filter((el) => el.zone === zone);
+  }, [zone, data]);
 
   const DefaultCameraLocation = CameraLocations[zone] || [];
   return (
     <div id="cameraLayer">
-      {data.map((camera, ix) => {
+      {cameras.map((camera = {}, ix) => {
         return (
           <CameraPoint
+            onClick={() => onClick(camera.cameraId)}
+            onMouseOver={() => onHoverCamera(camera)}
+            onMouseOut={() => onHoverCamera({})}
             key={'camera' + camera._id}
+            className={`${selectedCameraId === camera.cameraId ? 'selected-camera' : ''}`}
             style={{ position: 'absolute', ...camera.location, ...CameraService.LimitSize }}>
             <Popover content={<CameraCard {...camera} />}>
               {CameraService.GetIconByIdIcon(camera.location.iconId)}

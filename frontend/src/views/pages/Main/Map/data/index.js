@@ -2,6 +2,14 @@ import { SLOTS_C } from './parkingC';
 import { SLOTS_B } from './parkingB';
 import { SLOTS_A } from './parkingA';
 
+export const GetSlots = () => [...SLOTS_A, ...SLOTS_B, ...SLOTS_C].map((el) => el.position);
+export const GetSlotsGroupByZone = () => {
+  return {
+    A: SLOTS_A.map((el) => el.position),
+    B: SLOTS_B.map((el) => el.position),
+    C: SLOTS_C.map((el) => el.position)
+  };
+};
 export const GetPlotsInfor = (zone) => {
   let vehicles = [];
   let newWidth = 0;

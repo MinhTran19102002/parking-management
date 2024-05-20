@@ -12,9 +12,8 @@ export const SlotStyled = styled.div`
   }
 
   .slot-id {
-
   }
-`
+`;
 
 export const TransformBlock = styled.div`
   height: 96%;
@@ -77,6 +76,11 @@ export const InnerDetailFloorStyled = styled.div`
 `;
 
 export const CameraPoint = styled.div`
+  &.selected-camera {
+    .camera-point-inner {
+      background-color: #b36709 !important;
+    }
+  }
   &:hover {
     opacity: 0.8;
   }

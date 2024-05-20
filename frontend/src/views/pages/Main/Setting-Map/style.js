@@ -7,10 +7,6 @@ export const SlotStyled = styled.div`
   border-radius: 4px;
   position: absolute;
 
-  &:hover {
-    border-color: #000;
-  }
-
   .slot-id {
 
   }
