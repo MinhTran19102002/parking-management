@@ -452,9 +452,15 @@ const updateDriver = async (_id, data, licenePlate, job, department) => {
   };
 
   let validateData = await validateBeforCreate(data);
+
+  let arrayvehicleId_new = []
+  validateData.driver.arrayvehicleId.map((valid) => {
+    arrayvehicleId_new.push(new ObjectId(valid))
+  });
+  validateData.driver.arrayvehicleId = arrayvehicleId_new
   validateData.updatedAt = Date.now();
   validateData.createdAt = findDriver.createdAt;
-  validateData.driver.vehicleId = new ObjectId(vehicleId);
+  // validateData.driver.vehicleId = new ObjectId(vehicleId);
   try {
     const updateOperation = {
       $set: {
@@ -788,6 +794,34 @@ const deleteEmployee = async (_id) => {
   }
 };
 
+const getUser = async (phone) => {
+  try {
+    const findUser = await GET_DB()
+      .collection(PERSON_COLLECTION_NAME)
+      // .findOne({ 'phone': phone });
+      .aggregate([
+        {
+          $match: {
+            'phone': phone,
+          },
+        },
+        {
+          $lookup: {
+            from: vehicleModel.VEHICLE_COLLECTION_NAME,
+            localField: 'driver.arrayvehicleId',
+            foreignField: '_id',
+            as: 'driver.vehicle',
+          },
+        },
+      ])
+      .toArray();
+    return findUser.length ? findUser[0] : null;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+
 export const personModel = {
   PERSON_COLLECTION_NAME,
   PERSON_COLLECTION_SCHEMA,
@@ -813,4 +847,5 @@ export const personModel = {
   deleteEmployee,
   deleteManyEmployee,
   updateAvatar,
+  getUser,
 };

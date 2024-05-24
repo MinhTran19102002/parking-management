@@ -803,6 +803,25 @@ const deleteEmployee = async (_id) => {
   }
 };
 
+const getUser = async (phone) => {
+  try {
+    const users = await personModel.getUser(phone);
+    if (!users) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Không có thông tin người dùng',
+        'Not Deleted',
+        'BR_person_4',
+      );
+    }
+    return users;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
 export const userService = {
   login,
   createUser,
@@ -835,4 +854,5 @@ export const userService = {
   deleteAllEmployee,
   deleteEmployee,
   deleteManyE,
+  getUser,
 };

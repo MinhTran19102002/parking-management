@@ -334,7 +334,19 @@ const deleteEmployee = async (req, res, next) => {
   }
 };
 
+const getUser = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    const phone = req.body.phone;
+    const rs = await userService.getUser(phone);
+    res.status(StatusCodes.OK).json(rs);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const userController = {
+  getUser,
   createNew,
   createUser,
   createUserStaff,
