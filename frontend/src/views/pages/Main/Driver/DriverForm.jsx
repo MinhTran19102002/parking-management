@@ -6,10 +6,32 @@ import { UserApi } from '~/api';
 
 const formItemLayout = {
   labelCol: {
-    sm: { span: 6 }
+    xs: {
+      span: 24
+    },
+    sm: {
+      span: 6
+    }
   },
   wrapperCol: {
-    sm: { span: 18 }
+    xs: {
+      span: 24
+    },
+    sm: {
+      span: 18
+    }
+  }
+};
+const formItemLayoutWithOutLabel = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0
+    },
+    sm: {
+      span: 18,
+      offset: 6
+    }
   }
 };
 
@@ -68,12 +90,7 @@ function DriverForm({ isOpen, onClose, formAction, onNoti, onMess }) {
 
   return (
     <div className="container-fluid pt-3">
-      <Form
-        form={form}
-        onFinish={onFinish}
-        disabled={loading}
-        {...formItemLayout}
-        style={{ maxWidth: 4000 }}>
+      <Form form={form} onFinish={onFinish} disabled={loading} {...formItemLayout}>
         <Form.Item name={'name'} label="Họ và tên" rules={[{ required: true }]}>
           <Input placeholder="Nguyễn Văn A" id="nameInput" />
         </Form.Item>
@@ -122,51 +139,64 @@ function DriverForm({ isOpen, onClose, formAction, onNoti, onMess }) {
         <Form.Item label="Đơn vị" name={['department']} rules={[{ required: true }]}>
           <Input placeholder="Công nghệ thông tin" />
         </Form.Item>
-        <Form.Item
-          label="Biển số xe"
-          name={['licenePlate']}
-          rules={[
-            { required: true, message: false },
-            ({}) => ({
-              validator(_, value) {
-                if (ValidateService.licensePlate(value)) {
-                  return Promise.resolve();
-                }
-                return Promise.reject({ message: 'Sai định dạng (VD: 12A-2184)' });
-              }
-            })
-          ]}>
-          <Input placeholder="12A-2184" />
-        </Form.Item>
-        {/* <Form.Item name="vehicle" className="w-100" wrapperCol={{ span: 24 }}>
-        <div
-          style={{
-            display: 'flex',
-            rowGap: 16,
-            flexDirection: 'column'
-          }}>
-          <Card size="small" title={`Nhập thông tin xe`}>
-            <Form.Item
-              label="Biển số xe"
-              name={['vehicle', 'licenePlate']}
-              rules={[{ required: true }]}
-              labelCol={{ span: 6 }}
-              wrapperCol={{ span: 18 }}>
-              <Input />
-            </Form.Item>
-            <Form.Item
-              label="Loại xe"
-              name={'type'}
-              rules={[{ required: true }]}
-              labelCol={{ span: 6 }}
-              wrapperCol={{ span: 18 }}>
-              <Select>
-                <Select.Option></Select.Option>
-              </Select>
-            </Form.Item>
-          </Card>
-        </div>
-      </Form.Item> */}
+
+        <Form.List name={'licenePlate'}>
+          {(fields, { add, remove }) => (
+            <>
+              {fields.map((field, ix) => {
+                return (
+                  <Form.Item
+                    key={'licenePlate' + ix}
+                    label={ix === 0 && 'Biển số xe'}
+                    required={true}
+                    {...(ix !== 0 && formItemLayoutWithOutLabel)}>
+                    <Form.Item
+                      {...field}
+                      key={'vehicle' + ix}
+                      name={[field.name]}
+                      noStyle
+                      rules={[
+                        { required: true, message: false },
+                        ({}) => ({
+                          validator(_, value) {
+                            if (ValidateService.licensePlate(value)) {
+                              return Promise.resolve();
+                            }
+                            return Promise.reject({ message: 'Sai định dạng (VD: 12A-2184)' });
+                          }
+                        })
+                      ]}>
+                      <Input
+                        placeholder="12A-2184"
+                        style={{
+                          width: '80%'
+                        }}
+                      />
+                    </Form.Item>
+
+                    {fields.length > 1 ? (
+                      <MinusCircleOutlined
+                        className="dynamic-delete-button ms-4"
+                        onClick={() => remove(field.name)}
+                      />
+                    ) : null}
+                  </Form.Item>
+                );
+              })}
+              <Form.Item label="" wrapperCol={{ span: 24 }}>
+                <Button
+                  type="dashed"
+                  onClick={() => add()}
+                  style={{
+                    width: '100%'
+                  }}
+                  icon={<PlusOutlined />}>
+                  Thêm xe
+                </Button>
+              </Form.Item>
+            </>
+          )}
+        </Form.List>
 
         {/* <Form.List name="vehicle">
         {(fields, { add, remove }) => (
