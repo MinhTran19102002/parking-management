@@ -8,7 +8,7 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { env } from '~/config/environment';
 import express from 'express';
-import { date } from 'joi';
+import { date, valid } from 'joi';
 
 const generateAccessToken = (user) => {
   return jwt.sign(
@@ -167,7 +167,7 @@ const createUserStaff = async (data, image) => {
       "account": {
         "username": data.account.username,
         "password": hashed,
-       "role" : data.account.role
+        "role": data.account.role
       },
       "name": data.name,
       "address": data.name,
@@ -186,15 +186,14 @@ const createUserStaff = async (data, image) => {
     }
     return createUser;
   } catch (error) {
-    if (error.type && error.code)
-    {
-      
+    if (error.type && error.code) {
+
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
     }
-    else
-    { 
+    else {
       console.log('5445345')
-      throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);}
+      throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    }
   }
 };
 
@@ -253,20 +252,51 @@ const createDriver = async (data) => {
     // const licenePlate = data.licenePlate;
     // delete data.licenePlate;
     let { licenePlate, job, department, ...other } = data;
-    let vehicle = await vehicleModel.findOneByLicenePlate(licenePlate);
-    if (!vehicle) {
-      vehicle = await vehicleModel.createNew({ licenePlate: licenePlate });
-      if (vehicle.acknowledged == false) {
-        throw new ApiError(
-          StatusCodes.INTERNAL_SERVER_ERROR,
-          'Xe tạo không thành công',
-          'Not Created',
-          'BR_vehicle_2',
-        );
+    let array_licenePlate = [];
+    // let vehicle = '';
+    if (Array.isArray(licenePlate)) {
+      // licenePlate.forEach((value) =>(
+      //   let vehicle = await vehicleModel.findOneByLicenePlate(licenePlate)
+        
+      // ));
+      await Promise.all(
+        licenePlate.map(async (valid) => {
+          let vehicle = await vehicleModel.findOneByLicenePlate(valid);
+          
+
+          array_licenePlate.push(valid)
+          if (!vehicle) {
+            vehicle = await vehicleModel.createNew({ licenePlate: valid });
+            if (vehicle.acknowledged == false) {
+              throw new ApiError(
+                StatusCodes.INTERNAL_SERVER_ERROR,
+                'Xe tạo không thành công',
+                'Not Created',
+                'BR_vehicle_2',
+              );
+            }
+          }
+        }))
+    }
+    else if (typeof licenePlate === 'string'){
+       let vehicle = await vehicleModel.findOneByLicenePlate(licenePlate);
+       array_licenePlate.push(licenePlate)
+       if (!vehicle) {
+        vehicle = await vehicleModel.createNew({ licenePlate: licenePlate });
+        if (vehicle.acknowledged == false) {
+          throw new ApiError(
+            StatusCodes.INTERNAL_SERVER_ERROR,
+            'Xe tạo không thành công',
+            'Not Created',
+            'BR_vehicle_2',
+          );
+        }
       }
     }
+    
+    
 
-    const createDriver = await personModel.createDriver(other, licenePlate, job, department);
+    const createDriver = await personModel.createDriver(other, array_licenePlate, job, department);
     if (createDriver.acknowledged == false) {
       throw new ApiError(
         StatusCodes.INTERNAL_SERVER_ERROR,

@@ -1,4 +1,4 @@
-import Joi from 'joi';
+import Joi, { array } from 'joi';
 import { ObjectId } from 'mongodb';
 import ApiError from '~/utils/ApiError';
 import { OBJECT_ID_RULE, OBJECT_ID_RULE_MESSAGE } from '~/utils/validators';
@@ -21,8 +21,8 @@ const PERSON_COLLECTION_SCHEMA = Joi.object({
   address: Joi.string().min(6).max(50).trim().strict(),
   phone: Joi.string().required().min(10).max(11).trim().strict(),
   email: Joi.string().required().min(4).max(200).trim().strict(),
-  gender:  Joi.string().min(1).max(20).trim().strict(),
-  avatar : Joi.string().optional().min(0).max(50).trim().strict(),
+  gender: Joi.string().min(1).max(20).trim().strict(),
+  avatar: Joi.string().optional().min(0).max(50).trim().strict(),
   account: Joi.object({
     username: Joi.string()
       .required()
@@ -38,7 +38,8 @@ const PERSON_COLLECTION_SCHEMA = Joi.object({
   }).optional(),
 
   driver: Joi.object({
-    vehicleId: Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE).required(),
+    vehicleId: Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE),
+    arrayvehicleId: Joi.array().items(Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE).required()),
     job: Joi.string().required().min(4).max(50).trim().strict(),
     department: Joi.string().required().min(4).max(50).trim().strict(),
   }).optional(),
@@ -54,35 +55,48 @@ const validateBeforCreate = async (data) => {
 
 const createDriver = async (data, licenePlate, job, department) => {
   try {
-    const vehicle = await vehicleModel.findOneByLicenePlate(licenePlate);
-    if (!vehicle) {
-      // xe da duoc tao o service neu xe chua ton tai
-      throw new ApiError(
-        StatusCodes.INTERNAL_SERVER_ERROR,
-        'Biển số chưa tồn tại',
-        'Not Found',
-        'BR_person_1',
-      );
-    }
-    if (vehicle.driverId != null) {
-      // xe da co chu
-      throw new ApiError(
-        StatusCodes.INTERNAL_SERVER_ERROR,
-        'Xe đã có chủ',
-        'Not Found',
-        'BR_person_1',
-      );
-    }
-    data.driver = { vehicleId: vehicle._id.toString(), job: job, department: department };
+    let array_vehicle = []
+    await Promise.all(licenePlate.map(async (valid) => {
+      const vehicle = await vehicleModel.findOneByLicenePlate(valid);
+      array_vehicle.push(vehicle._id.toString())
+      if (!vehicle) {
+        // xe da duoc tao o service neu xe chua ton tai
+        throw new ApiError(
+          StatusCodes.INTERNAL_SERVER_ERROR,
+          'Biển số chưa tồn tại',
+          'Not Found',
+          'BR_person_1',
+        );
+      }
+      if (vehicle.driverId != null) {
+        // xe da co chu
+        throw new ApiError(
+          StatusCodes.INTERNAL_SERVER_ERROR,
+          'Xe đã có chủ',
+          'Not Found',
+          'BR_person_1',
+        );
+      }
+    }))
+    data.driver = { arrayvehicleId: array_vehicle, job: job, department: department };
     const validateData = await validateBeforCreate(data);
-    validateData.driver.vehicleId = new ObjectId(validateData.driver.vehicleId);
+
+
+    let arrayvehicleId_new = []
+    validateData.driver.arrayvehicleId.map((valid) => {
+      arrayvehicleId_new.push(new ObjectId(valid))
+    });
+    validateData.driver.arrayvehicleId = arrayvehicleId_new
+    // return validateData
+    // validateData.driver.vehicleId = new ObjectId(validateData.driver.vehicleId);
     const createNew = await GET_DB().collection(PERSON_COLLECTION_NAME).insertOne(validateData);
     const updateVihecle = await GET_DB()
       .collection(vehicleModel.VEHICLE_COLLECTION_NAME)
       .updateOne(
-        { _id: validateData.driver.vehicleId },
+        { _id: { $in: validateData.driver.arrayvehicleId } },
         { $set: { driverId: createNew.insertedId } },
       );
+
     if (updateVihecle.modifiedCount == 0) {
       throw new ApiError(
         StatusCodes.INTERNAL_SERVER_ERROR,
@@ -121,7 +135,7 @@ const createNew = async (data) => {
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
     else if (error.message.includes('E11000 duplicate key')) {
       throw new ApiError(error.statusCode, 'Trùng SĐT hoặc gmail', 'Email_1', 'Email_1');
-    } else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message,'Email_1', 'Email_1' );
+    } else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message, 'Email_1', 'Email_1');
   }
 };
 
@@ -236,7 +250,7 @@ const findDriverByFilter = async ({ pageSize, pageIndex, ...params }) => {
         {
           $lookup: {
             from: vehicleModel.VEHICLE_COLLECTION_NAME,
-            localField: 'driver.vehicleId',
+            localField: 'driver.arrayvehicleId',
             foreignField: '_id',
             as: 'driver.vehicle',
           },
@@ -350,41 +364,91 @@ const updateDriver = async (_id, data, licenePlate, job, department) => {
       'BR_vihicle_4',
     );
   }
-  const findVehicleOfDataUpdate = await GET_DB()
-    .collection(vehicleModel.VEHICLE_COLLECTION_NAME)
-    .findOne({ licenePlate: licenePlate });
-  let vehicleId = findDriver.driver.vehicleId.toString();
+  let vehicleId;
+  let array_vehicleId = [];
 
-  if (findVehicleOfDataUpdate == null) {
-    //Neu xe khong ton tai
-    const createVehicle = await vehicleModel.createNew({
-      licenePlate: licenePlate,
-      type: 'Car',
-      driverId: findDriver._id,
-    });
-    vehicleId = createVehicle.insertedId.toString();
-    await vehicleModel.deleteOne(findDriver.driver.vehicleId);
-  } else if (findVehicleOfDataUpdate.driverId == null) {
-    //Neu xe ton tai nhung chua co chu
-    const update = await vehicleModel.updateDriverId(findVehicleOfDataUpdate._id, findDriver._id);
-    vehicleId = findVehicleOfDataUpdate._id.toString();
-    await vehicleModel.deleteOne(findDriver.driver.vehicleId);
-  } else if (!findVehicleOfDataUpdate.driverId.equals(findDriver._id)) {
-    //Neu xe ton tai nhung co chu khac roi
-    throw new ApiError(
-      StatusCodes.INTERNAL_SERVER_ERROR,
-      'Xe có chủ rồi bà',
-      'Not FOUND',
-      'BR_vihicle_4',
-    );
-  } else if (findVehicleOfDataUpdate.driverId.equals(findDriver._id)) {
-    //Neu xe ton tai va la xe cua chu nay
-    vehicleId = findVehicleOfDataUpdate._id.toString();
+  if (Array.isArray(licenePlate)) {
+    await Promise.all(licenePlate.map(async (valid) => {
+      const findVehicleOfDataUpdate = await GET_DB()
+        .collection(vehicleModel.VEHICLE_COLLECTION_NAME)
+        .findOne({ licenePlate: valid });
+      // vehicleId = findDriver.driver.vehicleId.toString();
+
+
+
+      if (findVehicleOfDataUpdate == null) {
+        //Neu xe khong ton tai
+        const createVehicle = await vehicleModel.createNew({
+          licenePlate: valid,
+          type: 'Car',
+          driverId: findDriver._id,
+        });
+        vehicleId = createVehicle.insertedId.toString();
+        // await vehicleModel.deleteOne(findDriver.driver.vehicleId);
+      } else if (findVehicleOfDataUpdate.driverId == null) {
+        //Neu xe ton tai nhung chua co chu
+        const update = await vehicleModel.updateDriverId(findVehicleOfDataUpdate._id, findDriver._id);
+        vehicleId = findVehicleOfDataUpdate._id.toString();
+        // await vehicleModel.deleteOne(findDriver.driver.vehicleId);
+      } else if (!findVehicleOfDataUpdate.driverId.equals(findDriver._id)) {
+        //Neu xe ton tai nhung co chu khac roi
+        throw new ApiError(
+          StatusCodes.INTERNAL_SERVER_ERROR,
+          'Xe có chủ rồi bà',
+          'Not FOUND',
+          'BR_vihicle_4',
+        );
+      } else if (findVehicleOfDataUpdate.driverId.equals(findDriver._id)) {
+        //Neu xe ton tai va la xe cua chu nay
+        vehicleId = findVehicleOfDataUpdate._id.toString();
+      }
+      array_vehicleId.push(vehicleId)
+    }))
   }
+  else if (typeof licenePlate === 'string') {
+    const findVehicleOfDataUpdate = await GET_DB()
+      .collection(vehicleModel.VEHICLE_COLLECTION_NAME)
+      .findOne({ licenePlate: licenePlate });
+    vehicleId = findDriver.driver.vehicleId.toString();
+
+
+
+    if (findVehicleOfDataUpdate == null) {
+      //Neu xe khong ton tai
+      const createVehicle = await vehicleModel.createNew({
+        licenePlate: licenePlate,
+        type: 'Car',
+        driverId: findDriver._id,
+      });
+      vehicleId = createVehicle.insertedId.toString();
+      await vehicleModel.deleteOne(findDriver.driver.vehicleId);
+    } else if (findVehicleOfDataUpdate.driverId == null) {
+      //Neu xe ton tai nhung chua co chu
+      const update = await vehicleModel.updateDriverId(findVehicleOfDataUpdate._id, findDriver._id);
+      vehicleId = findVehicleOfDataUpdate._id.toString();
+      await vehicleModel.deleteOne(findDriver.driver.vehicleId);
+    } else if (!findVehicleOfDataUpdate.driverId.equals(findDriver._id)) {
+      //Neu xe ton tai nhung co chu khac roi
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Xe có chủ rồi bà',
+        'Not FOUND',
+        'BR_vihicle_4',
+      );
+    } else if (findVehicleOfDataUpdate.driverId.equals(findDriver._id)) {
+      //Neu xe ton tai va la xe cua chu nay
+      vehicleId = findVehicleOfDataUpdate._id.toString();
+    }
+  }
+  // ly lien bien so xe
+
+
+
+
   data = {
     ...data,
     createdAt: findDriver.createdAt,
-    driver: { job: job, department: department, vehicleId: vehicleId },
+    driver: { job: job, department: department, arrayvehicleId: array_vehicleId },
   };
 
   let validateData = await validateBeforCreate(data);
@@ -489,7 +553,7 @@ const updateUser = async (_id, _data) => {
 const updateAvatar = async (_id, image) => {
   console.log(image)
   const updatedAt = Date.now();
-  
+
   try {
     const updateOperation = {
       $set: {
@@ -546,7 +610,7 @@ const deleteAll = async () => {
   }
 };
 
-const deleteMany = async (ids , role) => {
+const deleteMany = async (ids, role) => {
   try {
     const objectIds = ids.map((id) => new ObjectId(id));
     const updateId = await GET_DB()
