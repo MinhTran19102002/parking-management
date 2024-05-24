@@ -253,16 +253,21 @@ const createDriver = async (data) => {
     // delete data.licenePlate;
     let { licenePlate, job, department, ...other } = data;
     let array_licenePlate = [];
+    if (other.account) {
+      const hashed = await hashPassword(other.account.password);
+      other.account.password = hashed;
+      other.account.role = 'driver';
+    }
     // let vehicle = '';
     if (Array.isArray(licenePlate)) {
       // licenePlate.forEach((value) =>(
       //   let vehicle = await vehicleModel.findOneByLicenePlate(licenePlate)
-        
+
       // ));
       await Promise.all(
         licenePlate.map(async (valid) => {
           let vehicle = await vehicleModel.findOneByLicenePlate(valid);
-          
+
 
           array_licenePlate.push(valid)
           if (!vehicle) {
@@ -278,10 +283,10 @@ const createDriver = async (data) => {
           }
         }))
     }
-    else if (typeof licenePlate === 'string'){
-       let vehicle = await vehicleModel.findOneByLicenePlate(licenePlate);
-       array_licenePlate.push(licenePlate)
-       if (!vehicle) {
+    else if (typeof licenePlate === 'string') {
+      let vehicle = await vehicleModel.findOneByLicenePlate(licenePlate);
+      array_licenePlate.push(licenePlate)
+      if (!vehicle) {
         vehicle = await vehicleModel.createNew({ licenePlate: licenePlate });
         if (vehicle.acknowledged == false) {
           throw new ApiError(
@@ -293,8 +298,8 @@ const createDriver = async (data) => {
         }
       }
     }
-    
-    
+
+
 
     const createDriver = await personModel.createDriver(other, array_licenePlate, job, department);
     if (createDriver.acknowledged == false) {
