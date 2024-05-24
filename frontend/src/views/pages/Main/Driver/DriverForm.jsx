@@ -35,7 +35,7 @@ const formItemLayoutWithOutLabel = {
   }
 };
 
-function DriverForm({ isOpen, onClose, formAction, onNoti, onMess }) {
+function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
@@ -46,7 +46,13 @@ function DriverForm({ isOpen, onClose, formAction, onNoti, onMess }) {
 
   useEffect(() => {
     if (formAction.action === 'edit') {
-      form.setFieldsValue({ ...formAction.payload });
+      const { payload } = formAction;
+      let licenePlate = [];
+      if (payload.vehicle) {
+        licenePlate = payload.vehicle?.map((el) => el.licenePlate);
+      }
+      delete payload.vehicle;
+      form.setFieldsValue({ ...payload, licenePlate });
     }
   }, [formAction]);
 
