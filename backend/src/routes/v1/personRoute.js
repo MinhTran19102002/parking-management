@@ -31,14 +31,14 @@ Router.route('/addManyManager').post(userController.createMany); // tạo nhiề
 
 Router.route('/driver')
   .post(
-    userValidation.createDriver,
-    verifyTokenMidleware.verifyTokenAndAdminManager,
+    // userValidation.createDriver,
+    // verifyTokenMidleware.verifyTokenAndAdminManager,
     userController.createDriver,
   ) //
   .get(verifyTokenMidleware.verifyTokenAndAdminManager, userController.findDriver) //
   .put(
-    userValidation.updateDriver,
-    verifyTokenMidleware.verifyTokenAndAdminManager,
+    // userValidation.updateDriver,
+    // verifyTokenMidleware.verifyTokenAndAdminManager,
     userController.updateDriver,
   ) //
   .delete(
