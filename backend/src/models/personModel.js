@@ -38,7 +38,7 @@ const PERSON_COLLECTION_SCHEMA = Joi.object({
   }).optional(),
 
   driver: Joi.object({
-    vehicleId: Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE),
+    // vehicleId: Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE),
     arrayvehicleId: Joi.array().items(Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE).required()),
     job: Joi.string().required().min(4).max(50).trim().strict(),
     department: Joi.string().required().min(4).max(50).trim().strict(),
@@ -529,17 +529,23 @@ const deleteDrivers = async (_ids) => {
 };
 
 const updateUser = async (_id, _data) => {
+  
   _data.updatedAt = Date.now();
   delete _data._id;
+  console.log(_data)
+  delete _data.driver;
   const data = await validateBeforCreate(_data);
+  
   delete data.createdAt;
   data.updatedAt = Date.now();
+  
   try {
     const updateOperation = {
       $set: {
         ...data,
       },
     };
+    // console.log(updateOperation)
     const result = await GET_DB()
       .collection(PERSON_COLLECTION_NAME)
       .findOneAndUpdate({ _id: new ObjectId(_id) }, updateOperation, { returnDocument: 'after' });

@@ -212,6 +212,31 @@ const getEvent = async (req, res) => {
   }
 };
 
+
+const getByDriver = async (req, res) => {
+  // const pageIndex = req.query.pageIndex;
+  // const pageSize = req.query.pageSize;
+  console.log('111111111111')
+  const phone = req.query.phone;
+  console.log(phone)
+  try {
+    const findEvent = await eventModel.getByDriver(phone);
+    if (findEvent.acknowledged == false) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Không tìm thấy sự kiện',
+        'Not Found',
+        'BR_event_1',
+      );
+    }
+    return findEvent;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
 const exportEvent = async (req, res) => {
   const filter = { pageSize: 50, pageIndex: 1 };
   try {
@@ -320,4 +345,5 @@ export const parkingTurnService = {
   getRevenue,
   getEvent,
   exportEvent,
+  getByDriver,
 };
