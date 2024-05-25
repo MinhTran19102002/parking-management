@@ -5,7 +5,7 @@ export default createGlobalStyle`
         display: flex;
         flex-flow: column;
         flex-direction: column;
-        padding-bottom: 80px;
+        padding-bottom: 30px;
     }
 
     ${'' /* .ant-menu.notCollapsed {
