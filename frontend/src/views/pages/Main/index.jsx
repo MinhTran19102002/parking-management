@@ -2,7 +2,7 @@ import React, { useContext, useMemo } from 'react';
 import { Layout, Modal, theme } from 'antd';
 import { Sider } from '~/views/layouts';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import { adminRoutes, publicRoutes } from '~/routes';
+import { adminRoutes, driverRoutes, publicRoutes } from '~/routes';
 import AppContext from '~/context';
 import socket from '~/socket';
 import { useEffect } from 'react';
@@ -40,8 +40,11 @@ function Main({}) {
 
   const currRoute = useMemo(() => {
     let rs = publicRoutes;
-    if (auth.role && auth.role === 'Admin') {
-      rs = [...rs, ...adminRoutes];
+    switch (auth.role) {
+      case 'Admin':
+        rs = [...rs, ...adminRoutes];
+      case 'driver':
+        rs = [...driverRoutes];
     }
     return rs;
   }, [state.auth]);

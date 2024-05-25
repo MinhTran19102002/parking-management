@@ -146,7 +146,15 @@ export default {
     const url = `${DOMAIN}/user/changePassword`;
     return POST({
       url,
-      payload,
+      payload
+    });
+  },
+
+  getPersonalByPhone: (phone) => {
+    const url = `${DOMAIN}/user/getUser`;
+    return POST({
+      url,
+      payload: { phone }
     });
   }
 };

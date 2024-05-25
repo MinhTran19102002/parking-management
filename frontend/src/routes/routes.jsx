@@ -7,7 +7,8 @@ import {
   UserOutlined,
   UsergroupAddOutlined,
   CameraOutlined,
-  SettingOutlined
+  SettingOutlined,
+  HistoryOutlined
 } from '@ant-design/icons';
 import Driver from '~/views/pages/Main/Driver';
 import Employee from '~/views/pages/Main/Employee';
@@ -18,6 +19,8 @@ import UserPage from '~/views/pages/Main/UserPage';
 import Staff from '~/views/pages/Main/Staff';
 import Camera from '~/views/pages/Main/Camera';
 import SettingMap from '~/views/pages/Main/Setting-Map';
+import Personal from '~/views/pages/Main/Personal';
+import History from '~/views/pages/Main/History';
 // Public routes
 const publicRoutes = [
   {
@@ -40,6 +43,23 @@ const publicRoutes = [
     path: '/driver',
     element: <Driver />,
     icon: <UserOutlined />
+  }
+];
+
+const driverRoutes = [
+  {
+    key: 'personal',
+    label: 'Thông tin cá nhân',
+    path: '/personal',
+    element: <Personal />,
+    icon: <UserOutlined />
+  },
+  {
+    key: 'history',
+    label: 'Lịch sử',
+    path: '/history',
+    element: <History />,
+    icon: <HistoryOutlined />
   }
 ];
 
@@ -90,4 +110,4 @@ const hideRoutes = [
   }
 ];
 
-export { publicRoutes, adminRoutes };
+export { publicRoutes, adminRoutes, driverRoutes };
