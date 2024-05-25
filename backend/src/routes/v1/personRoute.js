@@ -144,4 +144,8 @@ Router.route('/staff/updateAvatar').put(
   userController.updateAvatar
 );
 
+Router.route('/getUser').post(
+  userController.getUser
+)
+
 export const userRoute = Router;
