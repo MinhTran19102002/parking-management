@@ -89,6 +89,7 @@ function Personal({}) {
       )
     }
   ];
+  
   return (
     <Layout className="px-4">
       <Header className="border-1" title={'Thông tin cá nhân'} />

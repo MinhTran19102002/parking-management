@@ -60,6 +60,13 @@ const driverRoutes = [
     path: '/history',
     element: <History />,
     icon: <HistoryOutlined />
+  },
+  {
+    key: 'map',
+    label: 'Bản đồ',
+    path: '/map',
+    element: <Map />,
+    icon: <CarOutlined />
   }
 ];
 

@@ -50,5 +50,15 @@ export default {
       url,
       responseType: 'blob'
     });
+  },
+
+  getEventsOfDriverByPhone: (phone) => {
+    const url = `${DOMAIN}/parkingTurn/event/getByDriver`;
+    return GET({
+      url,
+      payload: {
+        phone
+      }
+    });
   }
 };
