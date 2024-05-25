@@ -68,6 +68,7 @@ function Sider({ routes, ...props }) {
         onSelect={handleChangePage}
         onOpenChange={handleExpandSubmenu}
       />
+      <Typography>Version {import.meta.env.VITE_APP_VERSION}</Typography>
     </Layout.Sider>
   );
 }

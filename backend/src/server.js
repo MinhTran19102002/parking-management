@@ -11,8 +11,6 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import path from 'path';
 
-
-
 const app = express();
 //
 let io;
@@ -34,8 +32,6 @@ io = new Server(httpServer, {
   },
 });
 const START_SEVER = () => {
-
-
   io.on('connection', (socket) => {
     console.log('connect !');
   });
@@ -47,7 +43,9 @@ const START_SEVER = () => {
   if (env.BUILD_MODE == 'dev') {
     httpServer.listen(8010, 8010, () => {
       // eslint-disable-next-line no-console
-      console.log(`Hello Minh, I am running at ${env.APP_HOST}:${env.APP_PORT}}`);
+      console.log(
+        `Hello Minh, I am running at ${env.APP_HOST}:${env.APP_PORT}, version ${process.env.APP_VERSION}`,
+      );
     });
     // httpServer.listen(env.APP_PORT, env.APP_HOST, () => {
     //   // eslint-disable-next-line no-console
@@ -56,11 +54,13 @@ const START_SEVER = () => {
   } else {
     httpServer.listen(process.env.PORT, () => {
       // eslint-disable-next-line no-console
-      console.log(`Hello Minh, I am running hosting at ${process.env.PORT}/`);
+      console.log(
+        `Hello Minh, I am running hosting at ${process.env.PORT}/, version ${process.env.APP_VERSION}`,
+      );
     });
   }
 
-  app.get('/', (req, res) => res.send('Hello'))
+  app.get('/', (req, res) => res.send('Hello'));
 
   exitHook(() => {
     console.log('Disconnecting');
