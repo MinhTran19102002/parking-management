@@ -174,6 +174,135 @@ const findEvent = async ({ pageSize, pageIndex, ...params }) => {
 };
 
 
+const getByDriver = async (phone) => {
+  // Construct the regular expression pattern dynamically
+  let paramMatch = {};
+  try {
+    const event = await GET_DB()
+      .collection(EVENT_COLLECTION_NAME)
+      .aggregate([
+        {
+          $sort: {
+            createdAt: -1, // sắp xếp theo thứ tự giảm dần của trường thoi_gian
+          },
+        },
+        {
+          $lookup: {
+            from: parkingTurnModel.PARKINGTURN_COLLECTION_NAME,
+            localField: 'eventId',
+            foreignField: '_id',
+            as: 'parkingTurn',
+          },
+        },
+        // {
+        //   $unwind: '$parkingTurn',
+        // },
+        {
+          $unwind: {
+            path: '$parkingTurn',
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
+          $lookup: {
+            from: vehicleModel.VEHICLE_COLLECTION_NAME,
+            localField: 'parkingTurn.vehicleId',
+            foreignField: '_id',
+            as: 'vehicle',
+          },
+        },
+        // {
+        //   $unwind: '$vehicle',
+        // },
+        {
+          $unwind: {
+            path: '$vehicle',
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
+          $lookup: {
+            from: personModel.PERSON_COLLECTION_NAME,
+            localField: 'vehicle.driverId',
+            foreignField: '_id',
+            as: 'person',
+          },
+        },
+        {
+          $unwind: {
+            path: '$person',
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
+          $addFields: {
+            person: {
+              $ifNull: ['$person', null],
+            },
+          },
+        },
+        {
+          $lookup: {
+            from: parkingModel.PARKING_COLLECTION_NAME,
+            localField: 'parkingTurn.parkingId',
+            foreignField: '_id',
+            as: 'parking',
+          },
+        },
+        // {
+        //   $unwind: '$parking',
+        // },
+        {
+          $unwind: {
+            path: '$parking',
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            name: 1,
+            createdAt: 1,
+            // zone: '$parking.zone',
+            zone: {
+              $ifNull: ['$parking.zone', '$zone'],
+            },
+            parkingTurn: {
+              position: '$parkingTurn.position',
+              image: '$parkingTurn.image',
+              fee: '$parkingTurn.fee',
+              start: '$parkingTurn.start',
+              end: '$parkingTurn.end',
+            },
+
+            vehicle: {
+              licenePlate: '$vehicle.licenePlate',
+              type: '$vehicle.type',
+              driverId: '$vehicle.driverId',
+            },
+            person: 1,
+          },
+        },
+        {
+          $match: {
+            'person.phone': phone,
+          },
+        },
+      ])
+      .toArray();
+    if (event.person) {
+      delete event.person.driver;
+      delete event.person.createdAt;
+      delete event.person.updatedAt;
+      delete event.person._destroy;
+    }
+    return event;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+
 
 const exportEvent = async ({ pageSize, pageIndex, ...params }) => {
   // Construct the regular expression pattern dynamically
@@ -294,4 +423,5 @@ export const eventModel = {
   createEvent,
   findEvent,
   exportEvent,
+  getByDriver,
 };

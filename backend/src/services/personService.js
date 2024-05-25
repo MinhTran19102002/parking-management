@@ -99,8 +99,11 @@ const changePassword = async (req, res) => {
         'BR_person_password_1',
       );
     }
+    
     const newPassword = await hashPassword(data.newPassword);
     findOne.account.password = newPassword;
+
+    
     const updatePassword = await personModel.updateUser(findOne._id, findOne);
     return updatePassword;
   } catch (error) {
