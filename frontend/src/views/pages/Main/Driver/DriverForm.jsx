@@ -74,7 +74,14 @@ function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
   const hanldeAdd = async (values) => {
     try {
       setLoading(true);
-      const api = await UserApi.addDriver(values);
+      const payload = {
+        ...values,
+        account: {
+          username: values.phone,
+          password: 'Parking@' + values.phone
+        }
+      }
+      const api = await UserApi.addDriver(payload);
       if (api) {
         onNoti({ message: 'Thêm chủ xe thành công', type: 'success' });
       }
