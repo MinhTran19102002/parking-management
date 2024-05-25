@@ -43,11 +43,13 @@ function Main({}) {
     switch (auth.role) {
       case 'Admin':
         rs = [...rs, ...adminRoutes];
+        break;
       case 'driver':
         rs = [...driverRoutes];
+        break;
     }
     return rs;
-  }, [state.auth]);
+  }, [JSON.stringify(state.auth)]);
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
