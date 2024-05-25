@@ -1,6 +1,6 @@
 import express from 'express'
-import {StatusCodes} from 'http-status-codes'
-import {parkingTurnController} from '~/controllers/parkingTurnController'
+import { StatusCodes } from 'http-status-codes'
+import { parkingTurnController } from '~/controllers/parkingTurnController'
 import { verifyTokenMidleware } from '~/middlewares/verifytokenMidleware'
 import { parkingTurnValidation } from '~/validations/parkingTurnValidation'
 
@@ -19,7 +19,7 @@ Router.route('/createPakingTurn')
   .post(parkingTurnController.createNew)
 
 Router.route('/createPakingTurnWithoutPosition')
-  .post( parkingTurnController.createNewWithoutPosition)
+  .post(parkingTurnController.createNewWithoutPosition)
 
 Router.route('/createPakingTurnWithoutZoneAndPosition')
   .post(parkingTurnController.createNewWithoutZone)
@@ -29,16 +29,19 @@ Router.route('/outPaking')
   .post(parkingTurnController.outPaking)
 
 Router.route('/Reports/GetVehicleInOutNumber')
-  .get( parkingTurnController.getVehicleInOutNumber)
+  .get(parkingTurnController.getVehicleInOutNumber)
 
 Router.route('/Reports/GetRevenue')
-  .get(verifyTokenMidleware.verifyTokenAndManager,verifyTokenMidleware.verifyTokenAndAdminManager, parkingTurnController.getRevenue)
+  .get(verifyTokenMidleware.verifyTokenAndManager, verifyTokenMidleware.verifyTokenAndAdminManager, parkingTurnController.getRevenue)
 
 Router.route('/event')
-  .get( parkingTurnController.getEvent)
-  //verifyTokenMidleware.verifyTokenAndManager,verifyTokenMidleware.verifyTokenAndAdminManager,
+  .get(parkingTurnController.getEvent)
+//verifyTokenMidleware.verifyTokenAndManager,verifyTokenMidleware.verifyTokenAndAdminManager,
 
 Router.route('/event/export')
   .get(parkingTurnController.exportEvent)
+
+Router.route('/event/getByDriver')
+  .get(parkingTurnController.getByDriver)
 
 export const parkingTurnRoute = Router
