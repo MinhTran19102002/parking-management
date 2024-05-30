@@ -1,24 +1,8 @@
 import React, { useEffect, useRef } from 'react';
+import ReactHlsPlayer from 'react-hls-player';
 
-function VideoBlock({}) {
-  const hlsUrl = 'http://localhost:8000/output.m3u8';
-
-  return (
-    <ReactHlsPlayer
-      hlsConfig={{
-        fetchSetup: function (context, initParams) {
-          // Always send cookies, even for cross-origin calls.
-          initParams.credentials = 'include';
-          return new Request(context.url, initParams);
-        }
-      }}
-      src={hlsUrl}
-      autoPlay={true}
-      controls={true}
-      width={320}
-      height={500}
-    />
-  );
+function VideoBlock({ src }) {
+  return <ReactHlsPlayer src={src} autoPlay={true} controls={true} width={'100%'} />;
 }
 
 export default VideoBlock;
