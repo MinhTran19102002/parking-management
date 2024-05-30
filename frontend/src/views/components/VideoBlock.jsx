@@ -1,11 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import ReactHlsPlayer from 'react-hls-player';
 
-function VideoBlock({}) {
-  return (
-    <video width="320" height="240" controls>
-      <source src='rtmp://103.130.211.150:10050/stream' type="video/mp4" />
-    </video>
-  );
+function VideoBlock({ src }) {
+  return <ReactHlsPlayer src={src} autoPlay={true} controls={true} width={'100%'} />;
 }
 
 export default VideoBlock;
