@@ -36,6 +36,8 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
   useEffect(() => {
     if (formAction.action === 'edit') {
       form.setFieldsValue({ ...formAction.payload });
+      setFileList([formAction.payload.image]);
+      setImageFile(formAction.payload.image);
     } else {
     }
   }, [formAction]);
