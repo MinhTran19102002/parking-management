@@ -14,6 +14,7 @@ import { useQuery } from '@tanstack/react-query';
 import CameraSetting from './components/CameraSetting';
 import MapLayer from './components/MapLayer';
 import SlotLayer from './components/SlotLayer';
+import VideoBlock from '~/views/components/VideoBlock';
 
 function Map({}) {
   const { token } = theme.useToken();
@@ -73,7 +74,7 @@ function Map({}) {
 
   const onHoverCamera = (camera = {}) => {
     const { slots = [] } = camera;
-    setHoveredSlots(slots)
+    setHoveredSlots(slots);
   };
 
   return (
