@@ -18,8 +18,6 @@ function CameraStream({}) {
       return rs;
     }
   });
-  console.log(data);
-
   const { data: cameras = [] } = data;
 
   const colProps = {
