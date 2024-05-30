@@ -37,6 +37,7 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
     if (formAction.action === 'edit') {
       form.setFieldsValue({ ...formAction.payload });
       setFileList([formAction.payload.image]);
+      setImageFile(formAction.payload.image);
     } else {
     }
   }, [formAction]);
@@ -52,7 +53,8 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
   const hanldeEdit = async (values) => {
     try {
       setLoading(true);
-      const api = await CameraApi.edit(formAction.payload._id, values);
+      delete values['images'];
+      const api = await CameraApi.edit(formAction.payload._id, { ...values, image: imageFile });
       if (api) {
         onNoti({ message: 'Chỉnh sửa camera thành công', type: 'success' });
       }
@@ -117,7 +119,7 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
           />
         </Form.Item>
 
-        <Form.Item name={'images'} label="Hình ảnh">
+        <Form.Item name={'image'} label="Hình ảnh">
           <Upload
             accept="image/jpeg,image/jpg,image/png,image/webp"
             beforeUpload={(file) => {
