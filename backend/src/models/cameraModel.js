@@ -10,7 +10,7 @@ import { parkingModel } from '~/models/parkingModel'
 const CAMERA_COLLECTION_NAME = 'camera';
 const CAMENRA_COLLECTION_SCHEMA = Joi.object({
   cameraId: Joi.string().required().min(1).max(50).trim().strict(),
-  name: Joi.string().required().min(1).max(50).trim().strict(),
+  // name: Joi.string().required().min(1).max(50).trim().strict(),
   image: Joi.string().optional().min(0).max(100).trim().strict().default(''),
   type: Joi.string().valid('normal', 'cam360').required(),
   zone: Joi.string().optional().min(1).max(10).trim().strict(),
@@ -60,7 +60,7 @@ const createNew = async (data) => {
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
     }
     else {
-      throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
     }
   }
 };
@@ -304,7 +304,7 @@ const updateSlot = async (cameraId, data) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 }
 

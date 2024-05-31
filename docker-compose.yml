@@ -12,8 +12,8 @@ services:
     image: mongo
     container_name: data-importer
     volumes:
-      - ./data:/data
-    command: bash -c "sleep 10 && mongoimport --host mongodb --db paking-management --collection event --file /data/event.json --jsonArray && mongoimport --host mongodb --db paking-management --collection parking --file /data/parking.json --jsonArray && mongoimport --host mongodb --db paking-management --collection parkingTurn --file /data/parkingTurn.json --jsonArray && mongoimport --host mongodb --db paking-management --collection persons --file /data/persons.json --jsonArray && mongoimport --host mongodb --db paking-management --collection vehicles --file /data/vehicles.json --jsonArray  && mongoimport --host mongodb --db paking-management --collection station --file /data/station.json --jsonArray && mongoimport --host mongodb --db paking-management --collection camera --file /data/camera.json --jsonArray"
+      - ./database:/database
+    command: bash -c "sleep 10 && mongoimport --host mongodb --db paking-management --collection event --file /database/event.json --jsonArray && mongoimport --host mongodb --db paking-management --collection parking --file /database/parking.json --jsonArray && mongoimport --host mongodb --db paking-management --collection parkingTurn --file /database/parkingTurn.json --jsonArray && mongoimport --host mongodb --db paking-management --collection persons --file /database/persons.json --jsonArray && mongoimport --host mongodb --db paking-management --collection vehicles --file /database/vehicles.json --jsonArray  && mongoimport --host mongodb --db paking-management --collection station --file /database/station.json --jsonArray && mongoimport --host mongodb --db paking-management --collection camera --file /database/camera.json --jsonArray"
     depends_on:
       - mongodb
     networks:
@@ -48,6 +48,14 @@ services:
       - db
     depends_on:
       - backend
+  rtmp:
+    build: ./rtmp
+    ports:
+      - "1935:1935"
+      - "8080:8080"
+    container_name: rtmp_server
+    volumes:
+      - ./data:/tmp/hls
 
   # nginx:
   #   image: nginx:alpine

@@ -73,7 +73,7 @@ const login = async (req, res) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -109,7 +109,7 @@ const changePassword = async (req, res) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -131,7 +131,7 @@ const createUser = async (data) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -154,7 +154,7 @@ const createUserM = async (data) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -195,7 +195,7 @@ const createUserStaff = async (data, image) => {
     }
     else {
       console.log('5445345')
-      throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
     }
   }
 };
@@ -219,7 +219,7 @@ const createMany = async (_data) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -244,7 +244,7 @@ const createManyDriver = async (_data) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -317,7 +317,7 @@ const createDriver = async (data) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -331,7 +331,7 @@ const findByID = async (_id) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -351,7 +351,7 @@ const findDriver = async () => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -371,7 +371,7 @@ const findDriverByFilter = async (filter) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -393,7 +393,7 @@ const findStaffByFilter = async (filter) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -414,7 +414,7 @@ const findManagerByFilter = async (filter) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -438,7 +438,7 @@ const findUsers = async (params) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -458,7 +458,7 @@ const updateUser = async (_id, params) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -478,7 +478,7 @@ const updateAvatar = async (_id, image) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -499,7 +499,7 @@ const updateDriver = async (_id, params) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -519,7 +519,7 @@ const deleteDriver = async (_idDelete) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -547,7 +547,7 @@ const deleteDrivers = async (ids) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -600,7 +600,7 @@ const deleteUser = async (_id, role) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -619,7 +619,7 @@ const deleteAll = async () => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -638,7 +638,7 @@ const deleteMany = async (ids, role) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -657,7 +657,7 @@ const deleteManyE = async (params) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -685,7 +685,7 @@ const checkToken = async (req, res) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -704,7 +704,7 @@ const findEmployees = async (params) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -724,7 +724,7 @@ const createEmployee = async (data) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -744,7 +744,7 @@ const updateEmployee = async (_id, params) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -769,7 +769,7 @@ const createManyEmployee = async (_data) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -788,7 +788,7 @@ const deleteAllEmployee = async () => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -807,7 +807,7 @@ const deleteEmployee = async (_id) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -826,7 +826,7 @@ const getUser = async (phone) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
