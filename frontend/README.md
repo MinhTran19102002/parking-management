@@ -22,6 +22,8 @@ This project is front-end of parking management system.
 
 - Camera management page
 - Monitor camera on Map page
+- Driver page
+- Map setting
 
 ## How to Run:
 

@@ -8,7 +8,8 @@ import {
   UsergroupAddOutlined,
   CameraOutlined,
   SettingOutlined,
-  HistoryOutlined
+  HistoryOutlined,
+  VideoCameraOutlined
 } from '@ant-design/icons';
 import Driver from '~/views/pages/Main/Driver';
 import Employee from '~/views/pages/Main/Employee';
@@ -21,6 +22,7 @@ import Camera from '~/views/pages/Main/Camera';
 import SettingMap from '~/views/pages/Main/Setting-Map';
 import Personal from '~/views/pages/Main/Personal';
 import History from '~/views/pages/Main/History';
+import CameraStream from '~/views/pages/Main/CameraStream';
 // Public routes
 const publicRoutes = [
   {
@@ -36,6 +38,13 @@ const publicRoutes = [
     path: '/map',
     element: <Map />,
     icon: <CarOutlined />
+  },
+  {
+    key: 'cameraStream',
+    label: 'Stream Camera',
+    path: '/cameraStream',
+    element: <CameraStream />,
+    icon: <VideoCameraOutlined />
   },
   {
     key: 'driver',

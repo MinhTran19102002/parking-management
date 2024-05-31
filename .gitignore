@@ -26,6 +26,7 @@
 /frontend/build
 /frontend/logs
 /frontend/*.log
+/frontend/*.local
 /frontend/npm-debug.log*
 /frontend/yarn-debug.log*
 /frontend/yarn-error.log*

@@ -18,7 +18,7 @@ const PERSON_COLLECTION_SCHEMA = Joi.object({
     .strict()
     .pattern(/^[^\d!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]+$/)
     .message('Họ và tên không được phép có ký tự và số'),
-  address: Joi.string().min(6).max(50).trim().strict(),
+  address: Joi.string().max(50).trim().strict().optional(),
   phone: Joi.string().required().min(10).max(11).trim().strict(),
   email: Joi.string().required().min(4).max(200).trim().strict(),
   gender: Joi.string().min(1).max(20).trim().strict(),
@@ -112,7 +112,7 @@ const createDriver = async (data, licenePlate, job, department) => {
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
     else if (error.message.includes('E11000 duplicate key')) {
       throw new ApiError(error.statusCode, 'Trùng SĐT hoặc gmail', 'Email_1', 'Email_1');
-    } else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    } else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -164,7 +164,7 @@ const createMany = async (_data) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 
@@ -508,7 +508,7 @@ const deleteDriver = async (_id) => {
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
-    else throw new Error(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
 

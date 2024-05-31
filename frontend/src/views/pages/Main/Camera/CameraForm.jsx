@@ -36,6 +36,8 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
   useEffect(() => {
     if (formAction.action === 'edit') {
       form.setFieldsValue({ ...formAction.payload });
+      setFileList([formAction.payload.image]);
+      setImageFile(formAction.payload.image);
     } else {
     }
   }, [formAction]);
@@ -51,7 +53,8 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
   const hanldeEdit = async (values) => {
     try {
       setLoading(true);
-      const api = await CameraApi.edit(formAction.payload._id, values);
+      delete values['images'];
+      const api = await CameraApi.edit(formAction.payload._id, { ...values, image: imageFile });
       if (api) {
         onNoti({ message: 'Chỉnh sửa camera thành công', type: 'success' });
       }
@@ -64,11 +67,9 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
   };
 
   const hanldeAdd = async (values) => {
-    console.log('hanlde Add', values);
     try {
       delete values['images'];
       setLoading(true);
-      console.log(values, imageFile, fileList);
       const api = await CameraApi.add({
         ...values,
         image: imageFile
@@ -104,6 +105,10 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
           <Input placeholder="Nhập tên" id="nameInput" />
         </Form.Item>
 
+        <Form.Item name={'streamLink'} label="Stream Link">
+          <Input placeholder="Nhập Link" id="streamLink" />
+        </Form.Item>
+
         <Form.Item name={'type'} label="Kiểu" rules={[{ required: true, message: false }]}>
           <Select
             id="cameraTypeInput"
@@ -114,7 +119,7 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
           />
         </Form.Item>
 
-        <Form.Item name={"images"} label="Hình ảnh">
+        <Form.Item name={'image'} label="Hình ảnh">
           <Upload
             accept="image/jpeg,image/jpg,image/png,image/webp"
             beforeUpload={(file) => {

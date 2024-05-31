@@ -1,0 +1,3883 @@
+[{
+  "_id": {
+    "$oid": "654a1fd36a0751a7e7c0b9ef"
+  },
+  "driverId": null,
+  "licenePlate": "12A-2171",
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1699356625436"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "654ba96d234aec10b7cff971"
+  },
+  "driverId": null,
+  "licenePlate": "12A-3214",
+  "type": "Car",
+  "createdAt": "1699356625436",
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6565b96ba95da66f5ae170b9"
+  },
+  "licenePlate": "12A-2172",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701165419454"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6565dd97d51f00aa389564b7"
+  },
+  "licenePlate": "12A-2182",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701174679459"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6565de055e0bfc9ac2ec1567"
+  },
+  "licenePlate": "12A-2183",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701174788777"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6565df5b8bdfb485cbd376dc"
+  },
+  "licenePlate": "12A-2184",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701175131679"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6567a85cc9e0f428a1d97adb"
+  },
+  "licenePlate": "12A-2191",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701292124205"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6567bcbdea5fa2714ec007f2"
+  },
+  "licenePlate": "12A-1234",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701297341049"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6567bd8aa86689ca32671cc8"
+  },
+  "licenePlate": "12A-1235",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701297546498"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656b9bc5a5a93767da22adf3"
+  },
+  "licenePlate": "12A-1236",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701551045603"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656ba1a8f184931fdb0841f0"
+  },
+  "licenePlate": "12A-1237",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701552552530"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656c2269951dd5c1c30cd3c7"
+  },
+  "licenePlate": "12A-3114",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701585513294"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656c9cd3ec28d1e28c1460db"
+  },
+  "licenePlate": "34B-5678",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701616851331"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656c9cdbec28d1e28c1460dd"
+  },
+  "licenePlate": "56C-9101",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701616858904"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656c9ce2ec28d1e28c1460df"
+  },
+  "licenePlate": "78D-1213",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701616866197"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656c9cf0ec28d1e28c1460e3"
+  },
+  "licenePlate": "11F-1617",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701616880020"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656c9d01ec28d1e28c1460e5"
+  },
+  "licenePlate": "22G-1819",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701616897001"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656c9d15ec28d1e28c1460e8"
+  },
+  "licenePlate": "33H-2021",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701616917306"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656c9d23ec28d1e28c1460eb"
+  },
+  "licenePlate": "44I-2223",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701616931203"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656c9d30ec28d1e28c1460ee"
+  },
+  "licenePlate": "55J-2425",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701616943819"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656ca87436ca4d5690743565"
+  },
+  "licenePlate": "12A-5184",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701619828145"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656ca95836ca4d5690743567"
+  },
+  "licenePlate": "12A-2114",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701620056354"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656ca9b936ca4d569074356a"
+  },
+  "licenePlate": "67A-1184",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701620153112"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656cafd4ae93a3ecc4ec4665"
+  },
+  "licenePlate": "66A-2184",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701621716284"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656cb152ae93a3ecc4ec4667"
+  },
+  "licenePlate": "99A-2184",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701622097797"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656cbf0be35fc1a40abfecb7"
+  },
+  "licenePlate": "82A-2184",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701625611283"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656cbfb3e35fc1a40abfecbb"
+  },
+  "licenePlate": "45A-2114",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701625778813"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656cca4771bdb2ca722772b6"
+  },
+  "licenePlate": "12A-2411",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701628486765"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656cde6d8ba20d3a6bb42e27"
+  },
+  "licenePlate": "56C-9102",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701633645729"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f30b0944be81f27f767bf"
+  },
+  "licenePlate": "68T-3214",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701785776585"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f4efe3fa731898d6340ee"
+  },
+  "licenePlate": "12A-2134",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701793534433"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f4f1f3fa731898d6340f0"
+  },
+  "licenePlate": "12A-2135",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701793567435"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f4f263fa731898d6340f2"
+  },
+  "licenePlate": "11A-2135",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701793573987"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f4f9549ac28ff4f86795d"
+  },
+  "licenePlate": "11A-2132",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701793685546"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f4f9c49ac28ff4f86795f"
+  },
+  "licenePlate": "11A-2999",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701793691796"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f4fd151fece21cc562b22"
+  },
+  "licenePlate": "12A-3434",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701793744817"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f5047e6c615d0a5d55a0b"
+  },
+  "licenePlate": "12A-2138",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701793863687"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f5120c87639d9418a99cd"
+  },
+  "licenePlate": "12A-2130",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701794080702"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f514691dfa2508a9855de"
+  },
+  "licenePlate": "12A-3342",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701794118492"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f5166b36bbf7f8e7b56de"
+  },
+  "licenePlate": "12A-3341",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701794149967"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f52016944060054a2d7b5"
+  },
+  "licenePlate": "88A-2184",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701794305347"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f52703c310594afc2a44b"
+  },
+  "licenePlate": "50L-5071",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701794416525"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f52976944060054a2d7b8"
+  },
+  "licenePlate": "77A-2184",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701794454835"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f54ad42e459d7a983247c"
+  },
+  "licenePlate": "12A-33123",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701794988864"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f58115189ca77c41695b1"
+  },
+  "licenePlate": "33H-2010",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701795857571"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f58c942e459d7a983247e"
+  },
+  "licenePlate": "78C-9103",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701796040767"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "656f644ea550b1493118efc6"
+  },
+  "licenePlate": "68F-3114",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701798989868"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6570355204e77bd86146d5e1"
+  },
+  "licenePlate": "62F-3114",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701852498038"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "657035d18da67cc111233be8"
+  },
+  "licenePlate": "61F-3114",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701852624995"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65706e77d8604bc6fdd315e9"
+  },
+  "licenePlate": "12A-3435",
+  "type": "Car",
+  "driverId": {
+    "$oid": "65706ddcd8604bc6fdd315e8"
+  },
+  "createdAt": {
+    "$numberLong": "1701867127236"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65707abb7dcd0bfd0c215f5a"
+  },
+  "licenePlate": "23C-9213",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701870267447"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65707b9a7dcd0bfd0c215f5d"
+  },
+  "licenePlate": "83C-9213",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701870490036"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65707c087dcd0bfd0c215f60"
+  },
+  "licenePlate": "88C-9213",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701870600569"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65707c5c7dcd0bfd0c215f63"
+  },
+  "licenePlate": "99C-9213",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701870684328"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65707c947e5a935a0cc41ba3"
+  },
+  "licenePlate": "99C-9823",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701870740723"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65707d397e5a935a0cc41ba6"
+  },
+  "licenePlate": "99C-9683",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701870905674"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "657174cb08b5562aaba22fc7"
+  },
+  "licenePlate": "72C-9113",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701934282835"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65717f4051fa5fcab04dd2fc"
+  },
+  "licenePlate": "12A-0134",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1701936959373"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571d9392c631f895fbc711e"
+  },
+  "licenePlate": "55C-9683",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701959992765"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571d9a22c631f895fbc7121"
+  },
+  "licenePlate": "75A-9683",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701960097762"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571d9dc2c631f895fbc7124"
+  },
+  "licenePlate": "23A-9683",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701960156100"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571dae22c631f895fbc7127"
+  },
+  "licenePlate": "51C-9683",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701960417735"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571db5c2c631f895fbc712a"
+  },
+  "licenePlate": "63C-9683",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701960540021"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571dc822c631f895fbc712d"
+  },
+  "licenePlate": "23C-9683",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701960833900"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571dcdc2c631f895fbc7130"
+  },
+  "licenePlate": "12B-9683",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701960924303"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571de252c631f895fbc7133"
+  },
+  "licenePlate": "17B-9683",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701961253221"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571de712c631f895fbc7136"
+  },
+  "licenePlate": "76B-4210",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701961329168"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571de872c631f895fbc7139"
+  },
+  "licenePlate": "76B-2314",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701961351374"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571def52c631f895fbc713c"
+  },
+  "licenePlate": "23A-2314",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701961460933"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571df262c631f895fbc713f"
+  },
+  "licenePlate": "90B-2314",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701961510142"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571fc29dc26c1c42b6164e6"
+  },
+  "licenePlate": "55B-2314",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701968937069"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571fc4fdc26c1c42b6164e9"
+  },
+  "licenePlate": "32B-2314",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701968975501"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571fcabdc26c1c42b6164ec"
+  },
+  "licenePlate": "32B-2314",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701969066890"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571fcb0dc26c1c42b6164ed"
+  },
+  "licenePlate": "11B-2314",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701969072418"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6571fd86dc26c1c42b6164f0"
+  },
+  "licenePlate": "54B-2314",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1701969286414"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6572a95ebfef0e3bd1b8feef"
+  },
+  "licenePlate": "72C-9213",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702013277792"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6572fb8cb9acceab0671324d"
+  },
+  "licenePlate": "79C-9113",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702034316234"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65730a2533b2942ce81771e6"
+  },
+  "licenePlate": "66B-2314",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702038053728"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65731765072c18b354ccde81"
+  },
+  "licenePlate": "12A-54533",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702041445430"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65736f9e7909ffac305eec90"
+  },
+  "licenePlate": "12A-1134",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702064030724"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776ca06b0efb3537a95d"
+  },
+  "licenePlate": "51D-2171",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066026205"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a95e"
+  },
+  "licenePlate": "51D-2174",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066026447"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a95f"
+  },
+  "licenePlate": "51D-2175",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066026691"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a960"
+  },
+  "licenePlate": "51D-2176",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066026934"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a961"
+  },
+  "licenePlate": "51D-2177",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066027178"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a962"
+  },
+  "licenePlate": "51D-2178",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066027424"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a963"
+  },
+  "licenePlate": "51D-2172",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066027514"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a964"
+  },
+  "licenePlate": "51D-2173",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066027545"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a965"
+  },
+  "licenePlate": "51D-2181",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066027665"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a966"
+  },
+  "licenePlate": "51D-2182",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066027753"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a967"
+  },
+  "licenePlate": "51D-2183",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066027789"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a968"
+  },
+  "licenePlate": "51D-2184",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066027907"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a969"
+  },
+  "licenePlate": "51D-2185",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066027993"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a96a"
+  },
+  "licenePlate": "51D-2186",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066028034"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a96b"
+  },
+  "licenePlate": "51D-2187",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066028149"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a96c"
+  },
+  "licenePlate": "51D-2188",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066028233"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a96d"
+  },
+  "licenePlate": "51D-2189",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066028280"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a96e"
+  },
+  "licenePlate": "51D-2190",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066028391"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a96f"
+  },
+  "licenePlate": "51D-2191",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066028473"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a970"
+  },
+  "licenePlate": "51D-2192",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066028537"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776da06b0efb3537a971"
+  },
+  "licenePlate": "51D-2179",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066028715"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776ea06b0efb3537a972"
+  },
+  "licenePlate": "51D-2180",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066028737"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776ea06b0efb3537a974"
+  },
+  "licenePlate": "51D-2198",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066028877"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776ea06b0efb3537a973"
+  },
+  "licenePlate": "51D-2197",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066028793"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776ea06b0efb3537a975"
+  },
+  "licenePlate": "51D-2199",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066028949"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776ea06b0efb3537a976"
+  },
+  "licenePlate": "51D-2200",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066029001"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776ea06b0efb3537a977"
+  },
+  "licenePlate": "51D-2195",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066029947"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776ea06b0efb3537a978"
+  },
+  "licenePlate": "51D-2196",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066029977"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776fa06b0efb3537a97b"
+  },
+  "licenePlate": "51D-2193",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066028634"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573776fa06b0efb3537a97c"
+  },
+  "licenePlate": "51D-2194",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066028722"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737a54fdf9e34f5660bcfd"
+  },
+  "licenePlate": "80R-70294",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066772647"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737a56fdf9e34f5660bcff"
+  },
+  "licenePlate": "06Q-22636",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066774019"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c8b"
+  },
+  "licenePlate": "65A-6195",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066906307"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c8c"
+  },
+  "licenePlate": "81G-11320",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066906540"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c8d"
+  },
+  "licenePlate": "21W-48342",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066906779"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c8f"
+  },
+  "licenePlate": "04F-92809",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066907255"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c90"
+  },
+  "licenePlate": "54C-17525",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066907489"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c91"
+  },
+  "licenePlate": "72U-24403",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066907679"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c92"
+  },
+  "licenePlate": "32D-86300",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066907691"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c94"
+  },
+  "licenePlate": "86X-45410",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066907911"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c95"
+  },
+  "licenePlate": "38O-76551",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066907922"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c96"
+  },
+  "licenePlate": "31K-23038",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066907966"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c97"
+  },
+  "licenePlate": "78C-94600",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066908153"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c98"
+  },
+  "licenePlate": "31U-6834",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066908142"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c99"
+  },
+  "licenePlate": "18Z-86530",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066908198"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c9a"
+  },
+  "licenePlate": "36W-95147",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066908373"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20c9b"
+  },
+  "licenePlate": "37U-22746",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066908385"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20c9c"
+  },
+  "licenePlate": "36P-31651",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066908432"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20ca3"
+  },
+  "licenePlate": "19I-87542",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066908902"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20ca0"
+  },
+  "licenePlate": "46W-18000",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066908835"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20ca1"
+  },
+  "licenePlate": "09J-5332",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066908849"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20c9d"
+  },
+  "licenePlate": "99F-53003",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066908604"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20c9e"
+  },
+  "licenePlate": "64V-67559",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066908616"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20c9f"
+  },
+  "licenePlate": "73A-44715",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066908665"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20ca2"
+  },
+  "licenePlate": "78W-98100",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066908899"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20ca4"
+  },
+  "licenePlate": "83F-76961",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909065"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20ca5"
+  },
+  "licenePlate": "73Z-66670",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066908926"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20ca6"
+  },
+  "licenePlate": "42J-76419",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909079"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20ca7"
+  },
+  "licenePlate": "20C-78516",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909136"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20ca8"
+  },
+  "licenePlate": "02P-2846",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909132"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20ca9"
+  },
+  "licenePlate": "35R-23510",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909175"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20caa"
+  },
+  "licenePlate": "54J-46094",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909296"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cae"
+  },
+  "licenePlate": "71S-69201",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909413"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cac"
+  },
+  "licenePlate": "99S-56417",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909365"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cb0"
+  },
+  "licenePlate": "02E-6114",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909544"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20caf"
+  },
+  "licenePlate": "02X-55693",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909527"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cab"
+  },
+  "licenePlate": "77Z-81582",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909311"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cad"
+  },
+  "licenePlate": "81T-25574",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909372"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cb1"
+  },
+  "licenePlate": "83H-96751",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909600"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cb2"
+  },
+  "licenePlate": "35Y-26925",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909607"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cb3"
+  },
+  "licenePlate": "11L-76612",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909758"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cb4"
+  },
+  "licenePlate": "69M-3936",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909652"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cb5"
+  },
+  "licenePlate": "48C-91368",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909776"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cb6"
+  },
+  "licenePlate": "38P-66878",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909832"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cb7"
+  },
+  "licenePlate": "77K-86235",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909843"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cb9"
+  },
+  "licenePlate": "64Z-82605",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910009"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cba"
+  },
+  "licenePlate": "56Q-50370",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910077"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cbb"
+  },
+  "licenePlate": "13I-92867",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910128"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cb8"
+  },
+  "licenePlate": "69U-78570",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910066"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cbd"
+  },
+  "licenePlate": "78H-3475",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910195"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cbc"
+  },
+  "licenePlate": "38R-72558",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910152"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cbe"
+  },
+  "licenePlate": "15J-97385",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910219"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae0aaf4004940d20cbf"
+  },
+  "licenePlate": "53O-20420",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910239"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cc0"
+  },
+  "licenePlate": "35D-79498",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910366"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cc1"
+  },
+  "licenePlate": "69E-2530",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910312"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cc2"
+  },
+  "licenePlate": "92C-54449",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910398"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cc3"
+  },
+  "licenePlate": "59O-24152",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910300"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cc4"
+  },
+  "licenePlate": "51E-23398",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910445"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cc6"
+  },
+  "licenePlate": "57I-84566",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910533"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cc5"
+  },
+  "licenePlate": "19Z-81908",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910448"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cc7"
+  },
+  "licenePlate": "42T-10455",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910473"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cc8"
+  },
+  "licenePlate": "28Z-70977",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910546"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cc9"
+  },
+  "licenePlate": "55G-77955",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910605"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cca"
+  },
+  "licenePlate": "31D-80779",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910640"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20ccc"
+  },
+  "licenePlate": "91W-48214",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910678"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20ccb"
+  },
+  "licenePlate": "94N-51364",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910704"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20ccd"
+  },
+  "licenePlate": "06V-15190",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910689"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cce"
+  },
+  "licenePlate": "54X-14477",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910767"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c93"
+  },
+  "licenePlate": "32E-48762",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066907722"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cd0"
+  },
+  "licenePlate": "05P-44129",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910781"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737adfaaf4004940d20c8e"
+  },
+  "licenePlate": "37L-83843",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066907022"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cd2"
+  },
+  "licenePlate": "60L-46815",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910909"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cd3"
+  },
+  "licenePlate": "87H-5262",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910933"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cd4"
+  },
+  "licenePlate": "71S-46636",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910935"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cd6"
+  },
+  "licenePlate": "59U-38893",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911120"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cd5"
+  },
+  "licenePlate": "53V-47410",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911000"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cd7"
+  },
+  "licenePlate": "51N-34617",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911087"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cd9"
+  },
+  "licenePlate": "33R-92565",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911139"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cd8"
+  },
+  "licenePlate": "78J-94635",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911015"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cda"
+  },
+  "licenePlate": "53I-91727",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911171"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cdb"
+  },
+  "licenePlate": "05V-33467",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911177"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cdc"
+  },
+  "licenePlate": "58D-37270",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911233"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cdd"
+  },
+  "licenePlate": "50Z-22088",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911250"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cdf"
+  },
+  "licenePlate": "58W-0662",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911326"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cde"
+  },
+  "licenePlate": "43L-10417",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911361"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20ce3"
+  },
+  "licenePlate": "61G-17284",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911402"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20ce0"
+  },
+  "licenePlate": "52B-18635",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911369"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20ce4"
+  },
+  "licenePlate": "52N-29268",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911427"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20ce2"
+  },
+  "licenePlate": "37K-83358",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911383"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20ce5"
+  },
+  "licenePlate": "20U-44743",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911467"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20ce1"
+  },
+  "licenePlate": "01R-85884",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911420"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20ce6"
+  },
+  "licenePlate": "59Z-90698",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911486"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20ce7"
+  },
+  "licenePlate": "57Z-82279",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911564"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20ce8"
+  },
+  "licenePlate": "53M-68755",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066911601"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20ce9"
+  },
+  "licenePlate": "84Y-68517",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909988"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae2aaf4004940d20cea"
+  },
+  "licenePlate": "50F-93215",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066909890"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae2aaf4004940d20ceb"
+  },
+  "licenePlate": "11X-89500",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066912776"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae2aaf4004940d20cec"
+  },
+  "licenePlate": "07A-64647",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066912785"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20ccf"
+  },
+  "licenePlate": "31J-44864",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910843"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65737ae1aaf4004940d20cd1"
+  },
+  "licenePlate": "07O-28578",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702066910880"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573c5883ed627060dfe895d"
+  },
+  "licenePlate": "33H-2110",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702086024381"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573c697b161260421e723b7"
+  },
+  "licenePlate": "12A-5451",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702086295302"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6573f46457571584d441a001"
+  },
+  "licenePlate": "84A-2314",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702098019867"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6574001f9b06f374e1344389"
+  },
+  "licenePlate": "32B-21312",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702101023034"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6574047ba37709a9f8b31905"
+  },
+  "licenePlate": "32B-21092",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702102139546"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65758ed6615587c79b6d4a2e"
+  },
+  "licenePlate": "51D-6666",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702203094076"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579b07ece8624bd75e24a1a"
+  },
+  "licenePlate": "12B-0321",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702473853844"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579b629ce8624bd75e24a1e"
+  },
+  "licenePlate": "12B-6669",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702475305407"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579b6bece8624bd75e24a20"
+  },
+  "licenePlate": "12D-2314",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702475453705"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579b6f1ce8624bd75e24a22"
+  },
+  "licenePlate": "12D-0014",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702475505573"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579b74bce8624bd75e24a24"
+  },
+  "licenePlate": "88D-0014",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702475595483"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579b7a7ce8624bd75e24a26"
+  },
+  "licenePlate": "55D-8899",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702475687389"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579b883ce8624bd75e24a28"
+  },
+  "licenePlate": "51D-2312",
+  "type": "Car",
+  "driverId": {
+    "$oid": "65737771a06b0efb3537a994"
+  },
+  "createdAt": {
+    "$numberLong": "1702475906664"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579ba61ce8624bd75e24a29"
+  },
+  "licenePlate": "55D-8823",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702476385185"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579ba89ce8624bd75e24a2a"
+  },
+  "licenePlate": "51D-3212",
+  "type": "Car",
+  "driverId": {
+    "$oid": "65737771a06b0efb3537a994"
+  },
+  "createdAt": {
+    "$numberLong": "1702476424859"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579ba94ce8624bd75e24a2b"
+  },
+  "licenePlate": "82D-1234",
+  "type": "Car",
+  "driverId": {
+    "$oid": "65737771a06b0efb3537a994"
+  },
+  "createdAt": {
+    "$numberLong": "1702476436184"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579bab5ce8624bd75e24a2c"
+  },
+  "licenePlate": "55D-8822",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702476468866"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579c1fece8624bd75e24a2d"
+  },
+  "licenePlate": "12D-0011",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702478334422"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579c21fce8624bd75e24a2e"
+  },
+  "licenePlate": "88A-2185",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702478367466"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579cb87ce8624bd75e24a30"
+  },
+  "licenePlate": "12B-0322",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702480775677"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579cbaace8624bd75e24a31"
+  },
+  "licenePlate": "12B-6661",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702480810323"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579d0a29c81957f27eb60ad"
+  },
+  "licenePlate": "12B-0069",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702482082655"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579d0aa9c81957f27eb60ae"
+  },
+  "licenePlate": "12B-1069",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702482089766"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579d3572dd2654086718b59"
+  },
+  "licenePlate": "13A-2171",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702482775088"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579d3f5ce8624bd75e24a36"
+  },
+  "licenePlate": "13A-2100",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702482932685"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579d431ce8624bd75e24a37"
+  },
+  "licenePlate": "31H-2110",
+  "type": "Car",
+  "driverId": {
+    "$oid": "6573c67eb161260421e723b6"
+  },
+  "createdAt": {
+    "$numberLong": "1702482992912"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579dbf02dd2654086718b5a"
+  },
+  "licenePlate": "13A-2109",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702484976029"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579dbf72dd2654086718b5b"
+  },
+  "licenePlate": "50F-2111",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702484983595"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579dc022dd2654086718b5c"
+  },
+  "licenePlate": "58D-0002",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702484993840"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579de562dd2654086718b5e"
+  },
+  "licenePlate": "12A-0021",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702485590254"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6579de6e2dd2654086718b60"
+  },
+  "licenePlate": "12A-2222",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1702485614116"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "657d4f5163ea855f0318a137"
+  },
+  "licenePlate": "12A-3231",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1702711120721"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "658267b4bd6ef9c1b7af4ec6"
+  },
+  "licenePlate": "48A-2184",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1703045044502"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "658463e7341ddb162f1382ec"
+  },
+  "licenePlate": "72C-1213",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1703175143371"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65846457f603c7aba2255ada"
+  },
+  "licenePlate": "72C-0213",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1703175254878"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6584647af603c7aba2255add"
+  },
+  "licenePlate": "72C-0113",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1703175289981"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6584649ff603c7aba2255ae0"
+  },
+  "licenePlate": "72C-0111",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1703175327563"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65859b020dd46340ed013d35"
+  },
+  "licenePlate": "60Y-1414",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1703254786594"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65886965759adfa4e7c94a21"
+  },
+  "licenePlate": "12A-2181",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1703438693106"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65886e5dfc0a70b28d938e43"
+  },
+  "licenePlate": "12A-5443",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1703439965336"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "658877aa64aca8fc4b814ed4"
+  },
+  "licenePlate": "12A-7650",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1703442346538"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65887e33027ad01e1541d052"
+  },
+  "licenePlate": "23A-2318",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1703444019050"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65888628edf39a6419d2a19b"
+  },
+  "licenePlate": "56C-8101",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1703446056166"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "658887a1daf26f0619978c33"
+  },
+  "licenePlate": "33H-2019",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1703446432969"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "658888cd5573750594efac9a"
+  },
+  "licenePlate": "56C-9061",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1703446733193"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65888adb11d7dbd832220e1f"
+  },
+  "licenePlate": "56C-9111",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1703447258796"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6593814e0195c62facbac903"
+  },
+  "licenePlate": "12B-2321",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1704165709983"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "659385d70195c62facbac924"
+  },
+  "licenePlate": "68F-3111",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1704166870867"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "659385df0195c62facbac927"
+  },
+  "licenePlate": "68F-3109",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1704166878883"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "659385ea0195c62facbac92a"
+  },
+  "licenePlate": "68F-3012",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1704166890108"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "659386230195c62facbac935"
+  },
+  "licenePlate": "68F-1214",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1704166946907"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6593862c0195c62facbac938"
+  },
+  "licenePlate": "68F-1314",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1704166956508"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6593863a0195c62facbac93b"
+  },
+  "licenePlate": "68F-1114",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1704166970532"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65eac3901460eecdb2eef8fe"
+  },
+  "licenePlate": "12A-1321",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1709884303799"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6618ba8a84301ee4a556ed82"
+  },
+  "licenePlate": "12A-4324",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1712896649790"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6618bb1d22d274e373fed80c"
+  },
+  "licenePlate": "12A-4323",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1712896796814"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6618be9620d4b3a24d3bf6e4"
+  },
+  "licenePlate": "30F-33333",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1712897685775"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6619387da386d47c9bc5f368"
+  },
+  "licenePlate": "30F-22222",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1712928892630"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66193892a386d47c9bc5f36b"
+  },
+  "licenePlate": "75A-14519",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1712928913906"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "661970f92d98fe568030eee9"
+  },
+  "licenePlate": "38A-2222",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1712943353532"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "661973822d98fe568030eeec"
+  },
+  "licenePlate": "88A-28888",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1712944001977"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6619e169aeb7c74d37082902"
+  },
+  "licenePlate": "30A-77777",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1712972137590"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6619e67a0f04fc27d1eee6dc"
+  },
+  "licenePlate": "88A-22999",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1712973434432"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6619e75f56d0659d64b91254"
+  },
+  "licenePlate": "30G-49944",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1712973663068"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6619e87c5fb48dc74ff030e1"
+  },
+  "licenePlate": "23A-2133",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1712973948133"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6619ea02f67a3cf17b75dcf4"
+  },
+  "licenePlate": "80A-91999",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1712974338437"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66470796242bb3d971d80e19"
+  },
+  "licenePlate": "30H-30500",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1715931030265"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6647f836e7220a128eef408e"
+  },
+  "licenePlate": "18A-12345",
+  "type": "Car",
+  "driverId": {
+    "$oid": "66514c7a287f6d379bd82071"
+  },
+  "createdAt": {
+    "$numberLong": "1715992630329"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66504617e179f1dc4a86d998"
+  },
+  "licenePlate": "61A-99912",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1716536855092"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6650467ae179f1dc4a86d99a"
+  },
+  "licenePlate": "61A-99999",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1716536954730"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "665051f073d0d7e963375cf4"
+  },
+  "licenePlate": "61A-99998",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1716539888033"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66505251ac2bed2f845bac79"
+  },
+  "licenePlate": "61A-99997",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1716539985147"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6650a0bc81a5c25d57486fb4"
+  },
+  "licenePlate": "37A-55555",
+  "type": "Car",
+  "driverId": {
+    "$oid": "6650bc0c1e9cc29af991900e"
+  },
+  "createdAt": {
+    "$numberLong": "1716560059782"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6650a1e781c65f7c25a903b9"
+  },
+  "licenePlate": "37A-55557",
+  "type": "Car",
+  "driverId": {
+    "$oid": "6650bc0c1e9cc29af991900e"
+  },
+  "createdAt": {
+    "$numberLong": "1716560359323"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6650b8771c820dc91564af8d"
+  },
+  "licenePlate": "12D-4221",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1716566135107"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6650b8771c820dc91564af8e"
+  },
+  "licenePlate": "13D-4332",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1716566135119"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6650ba681c820dc91564af90"
+  },
+  "licenePlate": "12D-4233",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1716566632544"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6650baed1c820dc91564af91"
+  },
+  "licenePlate": "61A-99922",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1716566765211"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6650baed1c820dc91564af92"
+  },
+  "licenePlate": "61A-99911",
+  "type": "Car",
+  "driverId": null,
+  "createdAt": {
+    "$numberLong": "1716566765220"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6650bc2d1e9cc29af991900f"
+  },
+  "licenePlate": "37A-55558",
+  "type": "Car",
+  "driverId": {
+    "$oid": "6650bc0c1e9cc29af991900e"
+  },
+  "createdAt": {
+    "$numberLong": "1716567085271"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6650bc4d1c820dc91564af93"
+  },
+  "licenePlate": "12D-4223",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1716567116892"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6650bc4d1c820dc91564af94"
+  },
+  "licenePlate": "12O-4223",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1716567116903"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6650bc771c820dc91564af95"
+  },
+  "licenePlate": "13O-4223",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1716567158807"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6650bdc11e9cc29af9919010"
+  },
+  "licenePlate": "61A-81997",
+  "driverId": {
+    "$oid": "665145b290527830e1af7c15"
+  },
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1716567489071"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6650bdc11e9cc29af9919011"
+  },
+  "licenePlate": "61A-90898",
+  "driverId": null,
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1716567489073"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66514503c68d6a5adfbf8e27"
+  },
+  "licenePlate": "12D-2221",
+  "driverId": {
+    "$oid": "6651457a7eb1b99ff23a8d07"
+  },
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1716602114811"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66514504c68d6a5adfbf8e28"
+  },
+  "licenePlate": "90A-4201",
+  "driverId": {
+    "$oid": "6651457a7eb1b99ff23a8d07"
+  },
+  "type": "Car",
+  "createdAt": {
+    "$numberLong": "1716602116224"
+  },
+  "updatedAt": null,
+  "_destroy": false
+}]

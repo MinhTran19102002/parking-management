@@ -1,0 +1,104 @@
+[{
+  "_id": {
+    "$oid": "6636f623cf2025bd8e490a5d"
+  },
+  "cameraId": "CAM_1234222123",
+  "name": "asdfasd",
+  "type": "normal",
+  "image": "Cam003_1-1714877987603.jpg",
+  "createdAt": {
+    "$numberLong": "1714877987858"
+  },
+  "updatedAt": {
+    "$numberLong": "1716562735330"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 40,
+    "height": 40,
+    "top": 50,
+    "left": 79,
+    "iconId": "hori"
+  },
+  "zone": "B",
+  "slots": [
+    "B101",
+    "B202",
+    "B301",
+    "B302",
+    "B201",
+    "B401",
+    "B402"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6636f9961a65b94a816fe56e"
+  },
+  "cameraId": "Cam_131839",
+  "name": "Camera khu b",
+  "type": "cam360",
+  "image": "camera-1714878870322.jpg",
+  "createdAt": {
+    "$numberLong": "1714878870570"
+  },
+  "updatedAt": {
+    "$numberLong": "1716562735330"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 16,
+    "height": 16,
+    "top": 126,
+    "left": 232,
+    "iconId": "cam360"
+  },
+  "zone": "A",
+  "slots": [
+    "A101",
+    "A201",
+    "A202",
+    "A301",
+    "A302",
+    "A305",
+    "A306"
+  ]
+},
+{
+  "_id": {
+    "$oid": "664b6b78ce838e9dc33dc613"
+  },
+  "cameraId": "CAM_001",
+  "name": "CAM-001",
+  "type": "normal",
+  "image": "Cam002_1-1716218744690.jpg",
+  "createdAt": {
+    "$numberLong": "1716218744970"
+  },
+  "updatedAt": {
+    "$numberLong": "1716562735329"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 40,
+    "height": 40,
+    "top": 114,
+    "left": 381,
+    "iconId": "hori"
+  },
+  "zone": "A",
+  "slots": [
+    "A102",
+    "A103",
+    "A106",
+    "A107",
+    "A108",
+    "A109",
+    "A105",
+    "A104",
+    "A401",
+    "A501",
+    "A505",
+    "A502"
+  ]
+}]

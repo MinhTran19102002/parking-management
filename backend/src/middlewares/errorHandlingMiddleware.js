@@ -5,8 +5,8 @@ import { StatusCodes } from 'http-status-codes';
 // Middleware xử lý lỗi tập trung trong ứng dụng Back-end NodeJS (ExpressJS)
 export const errorHandlingMiddleware = (err, req, res, next) => {
   // Nếu dev không cẩn thận thiếu statusCode thì mặc định sẽ để code 500 INTERNAL_SERVER_ERROR
-  console.log(err.message)
-  console.log('Tran Cong Minh')
+  // console.log(err.message)
+  // console.log('Tran Cong Minh')
   if (!err.statusCode) err.statusCode = StatusCodes.INTERNAL_SERVER_ERROR;
 
   if (err.message.includes('MongoServerError: E11000 duplicate'))
@@ -15,14 +15,15 @@ export const errorHandlingMiddleware = (err, req, res, next) => {
   }
   if (!err.type) err.type = 'Undefined';
   if (!err.code) err.code = 'BR_undefined';
-
+  console.log(err.message)
+  console.log(err.stack)
   // Tạo ra một biến responseError để kiểm soát những gì muốn trả về
   const responseError = {
     statusCode: err.statusCode,
     type: err.type,
     code: err.code,
     message: err.message || StatusCodes[err.statusCode], // Nếu lỗi mà không có message thì lấy ReasonPhrases chuẩn theo mã Status Code
-    // stack: err.stack,
+    stack: err.stack,
   };
   // console.error(responseError)
 
