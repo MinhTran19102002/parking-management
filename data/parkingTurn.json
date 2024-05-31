@@ -3593,9 +3593,362 @@
   },
   "position": "B103",
   "image": "30F-33333-1713258831354.jpg",
-  "fee": 20000,
+  "fee": 760000,
   "start": {
     "$numberLong": "1713258832876"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1715930828483"
+  }
+},
+{
+  "_id": {
+    "$oid": "66470797242bb3d971d80e1a"
+  },
+  "vehicleId": {
+    "$oid": "66470796242bb3d971d80e19"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "position": "A307",
+  "image": "images (2)-1715931030004.jpg",
+  "fee": 30000,
+  "start": {
+    "$numberLong": "1715931031050"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1715997523929"
+  }
+},
+{
+  "_id": {
+    "$oid": "66470876242bb3d971d80e1c"
+  },
+  "vehicleId": {
+    "$oid": "6618be9620d4b3a24d3bf6e4"
+  },
+  "parkingId": {
+    "$oid": "656c1862b24fa21202c800b1"
+  },
+  "position": "C106",
+  "image": "images (2)-1715931253537.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715931254047"
+  },
+  "_destroy": false,
+  "end": null
+},
+{
+  "_id": {
+    "$oid": "6647f837e7220a128eef408f"
+  },
+  "vehicleId": {
+    "$oid": "6647f836e7220a128eef408e"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "position": "A601",
+  "image": "choncainay-1715992630069.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715992631118"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1715992913194"
+  }
+},
+{
+  "_id": {
+    "$oid": "6647faa3e7220a128eef4092"
+  },
+  "vehicleId": {
+    "$oid": "6647f836e7220a128eef408e"
+  },
+  "parkingId": {
+    "$oid": "656c1862b24fa21202c800b1"
+  },
+  "position": "C305",
+  "image": "choncainay-1715993250476.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715993250992"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1715993304553"
+  }
+},
+{
+  "_id": {
+    "$oid": "6647fb1ff9433be7dac3a37d"
+  },
+  "vehicleId": {
+    "$oid": "6647f836e7220a128eef408e"
+  },
+  "parkingId": {
+    "$oid": "656c1862b24fa21202c800b1"
+  },
+  "position": "C410",
+  "image": "choncainay-1715993374509.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715993375024"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1715993834961"
+  }
+},
+{
+  "_id": {
+    "$oid": "6647fef4ab3002eb893f558a"
+  },
+  "vehicleId": {
+    "$oid": "6647f836e7220a128eef408e"
+  },
+  "parkingId": {
+    "$oid": "656c172fb24fa21202c800af"
+  },
+  "position": "B601",
+  "image": "choncainay-1715994355306.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715994355818"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1715994366230"
+  }
+},
+{
+  "_id": {
+    "$oid": "6647ff22ab3002eb893f558d"
+  },
+  "vehicleId": {
+    "$oid": "6647f836e7220a128eef408e"
+  },
+  "parkingId": {
+    "$oid": "656c172fb24fa21202c800af"
+  },
+  "position": "B104",
+  "image": "choncainay-1715994400994.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715994401503"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1715994408728"
+  }
+},
+{
+  "_id": {
+    "$oid": "66480096ab3002eb893f5590"
+  },
+  "vehicleId": {
+    "$oid": "6647f836e7220a128eef408e"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "position": "A206",
+  "image": "choncainay-1715994773217.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715994773725"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1715994780821"
+  }
+},
+{
+  "_id": {
+    "$oid": "664805ea38c625157070592e"
+  },
+  "vehicleId": {
+    "$oid": "6647f836e7220a128eef408e"
+  },
+  "parkingId": {
+    "$oid": "656c172fb24fa21202c800af"
+  },
+  "position": "B605",
+  "image": "choncainay-1715996137890.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715996138409"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1715996148531"
+  }
+},
+{
+  "_id": {
+    "$oid": "6648064738c6251570705931"
+  },
+  "vehicleId": {
+    "$oid": "6647f836e7220a128eef408e"
+  },
+  "parkingId": {
+    "$oid": "656c1862b24fa21202c800b1"
+  },
+  "position": "C207",
+  "image": "choncainay-1715996230145.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715996230858"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1715997017344"
+  }
+},
+{
+  "_id": {
+    "$oid": "6648097b38c6251570705934"
+  },
+  "vehicleId": {
+    "$oid": "6647f836e7220a128eef408e"
+  },
+  "parkingId": {
+    "$oid": "656c1862b24fa21202c800b1"
+  },
+  "position": "C402",
+  "image": "choncainay-1715997050425.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715997050933"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1715997073224"
+  }
+},
+{
+  "_id": {
+    "$oid": "66480a2538c6251570705937"
+  },
+  "vehicleId": {
+    "$oid": "6647f836e7220a128eef408e"
+  },
+  "parkingId": {
+    "$oid": "656c172fb24fa21202c800af"
+  },
+  "position": "B106",
+  "image": "choncainay-1715997219998.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715997220508"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1715997227628"
+  }
+},
+{
+  "_id": {
+    "$oid": "66480a8238c625157070593a"
+  },
+  "vehicleId": {
+    "$oid": "6647f836e7220a128eef408e"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "position": "A502",
+  "image": "choncainay-1715997313883.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715997314391"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1715997318429"
+  }
+},
+{
+  "_id": {
+    "$oid": "66480acf38c625157070593d"
+  },
+  "vehicleId": {
+    "$oid": "6647f836e7220a128eef408e"
+  },
+  "parkingId": {
+    "$oid": "656c172fb24fa21202c800af"
+  },
+  "position": "B206",
+  "image": "choncainay-1715997390246.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715997390760"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1715997405461"
+  }
+},
+{
+  "_id": {
+    "$oid": "66480aef38c6251570705940"
+  },
+  "vehicleId": {
+    "$oid": "6647f836e7220a128eef408e"
+  },
+  "parkingId": {
+    "$oid": "656c1862b24fa21202c800b1"
+  },
+  "position": "C207",
+  "image": "choncainay-1715997422519.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715997423027"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1715997431847"
+  }
+},
+{
+  "_id": {
+    "$oid": "66480b7838c6251570705944"
+  },
+  "vehicleId": {
+    "$oid": "66470796242bb3d971d80e19"
+  },
+  "parkingId": {
+    "$oid": "656c172fb24fa21202c800af"
+  },
+  "position": "B301",
+  "image": "images (2)-1715997558379.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715997559412"
+  },
+  "_destroy": false,
+  "end": null
+},
+{
+  "_id": {
+    "$oid": "6648119a00a84e5086a7c4e3"
+  },
+  "vehicleId": {
+    "$oid": "6647f836e7220a128eef408e"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "position": "A104",
+  "image": "choncainay-1715999129007.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1715999129535"
   },
   "_destroy": false,
   "end": null
