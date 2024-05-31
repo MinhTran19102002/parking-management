@@ -13,7 +13,10 @@ Router.route('/createPaking')
   .post(parkingValidation.create, verifyTokenMidleware.verifyTokenAndAdminManager, parkingController.createPaking)
 
 Router.route('/getStatus')
-  .get(parkingController.getStatus)
+  .get(parkingController.getStatus) /// lay ra ban do xe do
+
+Router.route('/getStatusByDriver')
+  .get(parkingController.getStatusByDriver) // lay ra thong tin cua ca nhan trong bai
 
 Router.route('/updateSlot').put(
   // verifyTokenMidleware.verifyTokenAndAdmin,

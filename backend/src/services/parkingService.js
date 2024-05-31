@@ -20,6 +20,26 @@ const getStatus = async (zone) => {
 }
 
 
+const getStatusByDriver = async (zone, phone) => {
+  let parkingMap = await parkingModel.getStatus(zone)
+  parkingMap = parkingMap[0]
+
+
+  parkingMap.slots.forEach((item, index) => {
+    if(item.parkingTurn.persons ==  null || item.parkingTurn.persons.phone != phone)
+      {
+        parkingMap.slots[index].parkingTurn = null
+        // parkingMap.slots[index].persons = null 
+      }
+  });
+
+  if (!parkingMap) {
+    throw new ApiError(StatusCodes.NOT_FOUND, 'Khu vực không được tìm thấy', 'Not Found', 'BR_zone_1')
+  }
+  return parkingMap
+}
+
+
 const createPaking = async (data) => {
   // eslint-disable-next-line no-useless-catch
   try {
@@ -58,4 +78,5 @@ export const parkingService = {
   createPaking,
   getStatus,
   updateSlot,
+  getStatusByDriver,
 }
