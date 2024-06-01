@@ -26,7 +26,7 @@ const CameraApi = {
       if (Array.isArray(value)) {
         const arrayKey = `${key}[]`;
         value.forEach((v) => {
-          console.log(v)
+          console.log(v);
           form.append(arrayKey, v);
         });
       } else {
@@ -46,8 +46,7 @@ const CameraApi = {
     const url = `${DOMAIN}/camera?_id=${_id}`;
     return PUT({
       url,
-      payload,
-      headers: { 'Content-Type': 'multipart/form-data' }
+      payload
     });
   },
 
