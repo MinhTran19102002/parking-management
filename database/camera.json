@@ -10,7 +10,7 @@
     "$numberLong": "1714877987858"
   },
   "updatedAt": {
-    "$numberLong": "1716562735330"
+    "$numberLong": "1717217155726"
   },
   "_destroy": false,
   "location": {
@@ -29,7 +29,8 @@
     "B201",
     "B401",
     "B402"
-  ]
+  ],
+  "streamLink": "http://localhost:5173/data/test1234.m3u8"
 },
 {
   "_id": {
@@ -43,14 +44,14 @@
     "$numberLong": "1714878870570"
   },
   "updatedAt": {
-    "$numberLong": "1716562735330"
+    "$numberLong": "1716611907592"
   },
   "_destroy": false,
   "location": {
     "width": 16,
     "height": 16,
-    "top": 126,
-    "left": 232,
+    "top": 107,
+    "left": 184,
     "iconId": "cam360"
   },
   "zone": "A",
@@ -61,7 +62,17 @@
     "A301",
     "A302",
     "A305",
-    "A306"
+    "A306",
+    "A203",
+    "A204",
+    "A303",
+    "A307",
+    "A205",
+    "A206",
+    "A304",
+    "A308",
+    "A701",
+    "A702"
   ]
 },
 {
@@ -76,7 +87,7 @@
     "$numberLong": "1716218744970"
   },
   "updatedAt": {
-    "$numberLong": "1716562735329"
+    "$numberLong": "1716611907592"
   },
   "_destroy": false,
   "location": {
@@ -101,4 +112,45 @@
     "A505",
     "A502"
   ]
+},
+{
+  "_id": {
+    "$oid": "6651650e8d3a5c3280034702"
+  },
+  "cameraId": "CAM_0021",
+  "name": "CAM_1234222",
+  "type": "cam360",
+  "image": "Cam003_1-1716610318451.jpg",
+  "createdAt": {
+    "$numberLong": "1716610318729"
+  },
+  "updatedAt": {
+    "$numberLong": "1716611907592"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 16,
+    "height": 16,
+    "top": 199,
+    "left": 665,
+    "iconId": "hori"
+  },
+  "zone": "A"
+},
+{
+  "_id": {
+    "$oid": "6651ba04961fceef68d1b263"
+  },
+  "cameraId": "CAM_1234222",
+  "name": "asdfasd",
+  "type": "normal",
+  "image": "Cam002_3-1716632067758.jpg",
+  "createdAt": {
+    "$numberLong": "1716632068030"
+  },
+  "updatedAt": {
+    "$numberLong": "1717207573867"
+  },
+  "_destroy": false,
+  "streamLink": "aoidsfasdjifa123"
 }]

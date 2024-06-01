@@ -3952,4 +3952,23 @@
   },
   "_destroy": false,
   "end": null
+},
+{
+  "_id": {
+    "$oid": "665a8c5016ef35fae3db5779"
+  },
+  "vehicleId": {
+    "$oid": "665a86d99ab65c2d3d3f9de2"
+  },
+  "parkingId": {
+    "$oid": "656c1862b24fa21202c800b1"
+  },
+  "position": "C403",
+  "image": "images-1717210191565.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1717210192069"
+  },
+  "_destroy": false,
+  "end": null
 }]
