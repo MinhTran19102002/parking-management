@@ -14,7 +14,7 @@ import {
 import Driver from '~/views/pages/Main/Driver';
 import Employee from '~/views/pages/Main/Employee';
 import Home from '~/views/pages/Main/Home';
-import Map from '~/views/pages/DriverPages/Map';
+import DriverMap from '~/views/pages/DriverPages/Map';
 import Event from '~/views/pages/Main/Event';
 import UserPage from '~/views/pages/Main/UserPage';
 import Staff from '~/views/pages/Main/Staff';
@@ -23,6 +23,7 @@ import SettingMap from '~/views/pages/Main/Setting-Map';
 import Personal from '~/views/pages/Main/Personal';
 import History from '~/views/pages/Main/History';
 import CameraStream from '~/views/pages/Main/CameraStream';
+import Map from '~/views/pages/Main/Map';
 // Public routes
 const publicRoutes = [
   {
@@ -74,7 +75,7 @@ const driverRoutes = [
     key: 'map',
     label: 'Bản đồ',
     path: '/map',
-    element: <Map />,
+    element: <DriverMap />,
     icon: <CarOutlined />
   }
 ];

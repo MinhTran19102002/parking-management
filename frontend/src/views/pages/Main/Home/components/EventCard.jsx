@@ -113,7 +113,7 @@ function EventCard({ item }) {
               style={{ background: '#FFF', width: 120, height: 120 }}
             />
             <Typography.Text id="eventLisencePlate" strong={'true'}>
-              {vehicle.licenePlate}
+              {vehicle?.licenePlate}
             </Typography.Text>
           </Space>
         )}
