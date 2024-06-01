@@ -9,6 +9,7 @@ import { CameraApi, ParkingApi } from '~/api';
 import { useQuery } from '@tanstack/react-query';
 import SlotLayer from '../../Main/Map/components/SlotLayer';
 import MapLayer from '../../Main/Map/components/MapLayer';
+import Typography from 'antd/es/typography/Typography';
 
 function Map({}) {
   const { token } = theme.useToken();
@@ -53,7 +54,7 @@ function Map({}) {
     try {
       setLoading(true);
       const api = await ParkingApi.getStatusByDriver({ zone, phone: '0357647771' });
-      const newSlots = api[0].slots;
+      const newSlots = api.slots;
       setSlots(newSlots);
     } catch {
       setSlots([]);
@@ -70,7 +71,7 @@ function Map({}) {
     const { slots = [] } = camera;
     setHoveredSlots(slots);
   };
-
+console.log(slots);
   return (
     <Layout className="px-4">
       <Header className="border-1" title={'Bản đồ'} />
@@ -85,14 +86,15 @@ function Map({}) {
             <Radio.Button value="C1">Khu C1</Radio.Button>
           </Radio.Group>
         </Flex>
+        <Typography.Title></Typography.Title>
         <TransformBlock
           className="mt-2 overflow-hidden"
           style={{ backgroundColor: token.neutral5 }}>
           <Spin spinning={loading} wrapperClassName="h-100 w-100">
             <MapInteractionCSS minScale={0.4} maxScale={2}>
               <div className="map-wrapper">
-                <MapLayer zone={zone} />
                 <SlotLayer zone={zone} vehicles={slots} hoveredSlots={hoveredSlots} />
+                <MapLayer zone={zone} />
               </div>
             </MapInteractionCSS>
           </Spin>
