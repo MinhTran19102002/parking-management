@@ -15,15 +15,25 @@ function Map({}) {
   const { token } = theme.useToken();
   const { state, actions } = useContext(AppContext);
   let [searchParams, setSearchParams] = useSearchParams();
-  const { data: slots, refetch: refetchSlots } = useQuery({
+  const { data: slotsData, refetch: refetchSlots } = useQuery({
     queryKey: ['map', 'slots', 'drivers'],
     initialData: [],
     queryFn: async () => {
       let rs = [];
       try {
         setLoading(true);
-        const api = await ParkingApi.getStatusByDriver({ zone, phone: '0357647771' });
-        rs = api.slots;
+        const api = await ParkingApi.getStatusByDriver({ phone: '0357647771' });
+        rs = api.reduce((acc, curr) => {
+          acc.push(
+            ...curr.slots.map((slot) => {
+              return {
+                ...slot,
+                zone: curr.zone
+              };
+            })
+          );
+          return acc;
+        }, []);
       } catch {
       } finally {
         setLoading(false);
@@ -31,8 +41,10 @@ function Map({}) {
       return rs;
     }
   });
-  console.log(slots);
+  const personalSlot = slotsData.find((slot) => slot.parkingTurn);
+  console.log(personalSlot);
   const zone = searchParams.get('zone') || 'A';
+  const slots = slotsData.filter((slot) => slot?.zone === zone);
   const [loading, setLoading] = useState(false);
   const [hoverCamera, setHoverCamera] = useState();
   const [hoveredSlots, setHoveredSlots] = useState([]);
@@ -88,7 +100,14 @@ function Map({}) {
             <Radio.Button value="C1">Khu C1</Radio.Button>
           </Radio.Group>
         </Flex>
-        <Typography.Title></Typography.Title>
+        {personalSlot ? (
+          <Typography.Title level={2} className='mt-2'>
+            Xe bạn đang ở khu {personalSlot?.zone}, vị trí: {personalSlot?.position}
+          </Typography.Title>
+        ) : (
+          <Typography.Title level={2}>Xe bạn không có trong bãi</Typography.Title>
+        )}
+
         <TransformBlock
           className="mt-2 overflow-hidden"
           style={{ backgroundColor: token.neutral5 }}>
