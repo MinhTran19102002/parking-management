@@ -15,7 +15,13 @@ import {
   Pagination
 } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
-import { PlusOutlined, EditOutlined, DeleteOutlined, DeleteFilled, ExclamationCircleFilled } from '@ant-design/icons';
+import {
+  PlusOutlined,
+  EditOutlined,
+  DeleteOutlined,
+  DeleteFilled,
+  ExclamationCircleFilled
+} from '@ant-design/icons';
 import { UserApi } from '~/api';
 import dayjs from 'dayjs';
 import DriverForm from './DriverForm';
@@ -341,11 +347,16 @@ function Driver({}) {
           extra={
             <Space>
               {selectedRows.length > 0 && (
-                <Button id='btnDeleteMany' type="primary" icon={<DeleteFilled />} onClick={onDeleteMany} danger>
+                <Button
+                  id="btnDeleteMany"
+                  type="primary"
+                  icon={<DeleteFilled />}
+                  onClick={onDeleteMany}
+                  danger>
                   Xóa
                 </Button>
               )}
-              <Button id='btnAdd' type="primary" ghost icon={<PlusOutlined />} onClick={onAdd}>
+              <Button id="btnAdd" type="primary" ghost icon={<PlusOutlined />} onClick={onAdd}>
                 Thêm chủ xe
               </Button>
             </Space>
