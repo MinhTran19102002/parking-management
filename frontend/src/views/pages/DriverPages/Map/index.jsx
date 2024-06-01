@@ -15,7 +15,23 @@ function Map({}) {
   const { token } = theme.useToken();
   const { state, actions } = useContext(AppContext);
   let [searchParams, setSearchParams] = useSearchParams();
-  const [slots, setSlots] = useState([]);
+  const { data: slots, refetch: refetchSlots } = useQuery({
+    queryKey: ['map', 'slots', 'drivers'],
+    initialData: [],
+    queryFn: async () => {
+      let rs = [];
+      try {
+        setLoading(true);
+        const api = await ParkingApi.getStatusByDriver({ zone, phone: '0357647771' });
+        rs = api.slots;
+      } catch {
+      } finally {
+        setLoading(false);
+      }
+      return rs;
+    }
+  });
+  console.log(slots);
   const zone = searchParams.get('zone') || 'A';
   const [loading, setLoading] = useState(false);
   const [hoverCamera, setHoverCamera] = useState();
@@ -50,28 +66,14 @@ function Map({}) {
     setSearchParams({ zone: e.target.value });
   };
 
-  const callApi = async () => {
-    try {
-      setLoading(true);
-      const api = await ParkingApi.getStatusByDriver({ zone, phone: '0357647771' });
-      const newSlots = api.slots;
-      setSlots(newSlots);
-    } catch {
-      setSlots([]);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    callApi();
+    refetchSlots();
   }, [zone, state.parkingEvent]);
 
   const onHoverCamera = (camera = {}) => {
     const { slots = [] } = camera;
     setHoveredSlots(slots);
   };
-console.log(slots);
   return (
     <Layout className="px-4">
       <Header className="border-1" title={'Bản đồ'} />
