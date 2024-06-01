@@ -70,14 +70,24 @@ const findOne = async (zone) => {
 
 const getStatus = async (zone) => {
   try {
+    let match = {}
+    if (zone == '0'){
+      match = {
+        $match: {
+        },
+      }
+    }
+    else{
+      match ={
+        $match: {
+          zone: zone,
+        },
+      }
+    }
     const getStatus = await GET_DB()
       .collection(PARKING_COLLECTION_NAME)
       .aggregate([
-        {
-          $match: {
-            zone: zone,
-          },
-        },
+        match,
         {
           $lookup: {
             from: parkingTurnModel.PARKINGTURN_COLLECTION_NAME,

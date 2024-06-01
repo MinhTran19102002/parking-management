@@ -24,8 +24,15 @@ const getStatus = async (req, res, next) => {
 
 const getStatusByDriver = async (req, res, next) => {
   try {
+    let zone = '0'
     // Dieu huong sang tang Service
-    const getStatus = await parkingService.getStatusByDriver(req.query.zone, req.query.phone);
+    if(req.query.zone)
+      {
+        
+        zone = req.query.zone
+        console.log(zone)
+      }
+    const getStatus = await parkingService.getStatusByDriver(zone, req.query.phone);
     res.status(StatusCodes.OK).json(getStatus);
   } catch (error) {
     next(error);
