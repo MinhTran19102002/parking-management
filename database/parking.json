@@ -633,8 +633,10 @@
     },
     {
       "position": "C403",
-      "parkingTurnId": null,
-      "isBlank": true
+      "parkingTurnId": {
+        "$oid": "665a8c5016ef35fae3db5779"
+      },
+      "isBlank": false
     },
     {
       "position": "C404",
@@ -672,7 +674,7 @@
       "isBlank": true
     }
   ],
-  "occupied": 2,
+  "occupied": 3,
   "total": 40,
   "createdAt": {
     "$numberLong": "1701582946092"

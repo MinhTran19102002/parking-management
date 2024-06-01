@@ -55,7 +55,8 @@ services:
       dockerfile: Dockerfile
     restart: always
     ports:
-      - "8077:8077"  
+      - "8077:8077"
+      - "8078:8078"
     volumes:
       - ./data:/tmp/hls
     networks:
