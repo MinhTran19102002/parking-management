@@ -3,7 +3,7 @@ import Authen from './views/pages/Authen';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import Main from './views/pages/Main';
 import AppContext from './context';
-import { Spin, Typography, message, notification, theme } from 'antd';
+import { Layout, Spin, Typography, message, notification, theme } from 'antd';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@progress/kendo-theme-default/dist/all.css';
 import PageError from './views/pages/PageError';
@@ -11,6 +11,8 @@ import { ThemeProvider } from 'styled-components';
 import DayService from './services/DayService';
 import { i18nConfig } from './config';
 import { GlobalStyle } from './shared';
+import Register from './views/pages/Authen/Register';
+import { Content, Footer } from './views/layouts';
 
 function Authencation({ children }) {
   const { state } = useContext(AppContext);
@@ -117,27 +119,33 @@ function App() {
       {notiContextHolder}
       <ThemeProvider theme={{ ...token }}>
         <GlobalStyle />
-        <Routes>
-          <Route path="/auth/login" element={<Authen />} />
-          <Route
-            path="/*"
-            element={
-              <Authencation>
-                <Authorize>
-                  <Main />
-                </Authorize>
-              </Authencation>
-            }
-            errorElement={
-              <PageError
-                status="500"
-                title={false}
-                subTitle="Không tìm thấy trang"
-                btn={{ text: 'Về trang chủ', onClick: () => <Navigate to={'/dashboard'} /> }}
+        <Layout className="vh-100">
+          <Content>
+            <Routes>
+              <Route path="/auth/login" element={<Authen />} />
+              <Route path="/register" element={<Register />} />
+              <Route
+                path="/*"
+                element={
+                  <Authencation>
+                    <Authorize>
+                      <Main />
+                    </Authorize>
+                  </Authencation>
+                }
+                errorElement={
+                  <PageError
+                    status="500"
+                    title={false}
+                    subTitle="Không tìm thấy trang"
+                    btn={{ text: 'Về trang chủ', onClick: () => <Navigate to={'/dashboard'} /> }}
+                  />
+                }
               />
-            }
-          />
-        </Routes>
+            </Routes>
+          </Content>
+          <Footer />
+        </Layout>
       </ThemeProvider>
     </div>
   );

@@ -101,10 +101,6 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
           <Input placeholder="Nhập Camera ID" id="cameraIdInput" />
         </Form.Item>
 
-        <Form.Item name={'name'} label="Tên" rules={[{ required: true }]}>
-          <Input placeholder="Nhập tên" id="nameInput" />
-        </Form.Item>
-
         <Form.Item name={'streamLink'} label="Stream Link">
           <Input placeholder="Nhập Link" id="streamLink" />
         </Form.Item>

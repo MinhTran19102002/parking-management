@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Button, Form, Image, Input, Layout, Radio, Row, Space, Typography } from 'antd';
+import { Button, Divider, Form, Image, Input, Layout, Radio, Row, Space, Typography } from 'antd';
 import LOGO from '~/assets/logo/full-logo.svg';
 import AppContext from '~/context';
 import { useNavigate } from 'react-router-dom';
@@ -40,6 +40,12 @@ function Authen({}) {
     actions.onLogin({ username, password, role, onComplete, onNoti: actions.onNoti });
   };
 
+  const onForgotPassword = () => {};
+
+  const onRegister = () => {
+    navigate('/register');
+  };
+
   const onFinishFailed = (errorInfo) => {};
 
   useEffect(() => {
@@ -49,67 +55,69 @@ function Authen({}) {
   }, [auth]);
 
   return (
-    <Layout className="vh-100">
-      <Content className="d-flex justify-content-center align-items-center w-100">
-        <Space direction="vertical" size="large">
-          <Row justify="center">
-            <Image src={LOGO} preview={false} />
-          </Row>
-          <Row>
-            <Form
-              name="loginForm"
-              style={{
-                width: 400
-              }}
-              initialValues={{ role: 'Admin' }}
-              onFinish={onFinish}
-              onFinishFailed={onFinishFailed}>
-              <Form.Item
-                name="username"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Vui lòng không bỏ trống'
-                  }
-                ]}>
-                <Input size="large" placeholder="Tên đăng nhập" />
-              </Form.Item>
+    <Content className="d-flex justify-content-center align-items-center w-100 h-100">
+      <Space direction="vertical" size="large">
+        <Row justify="center">
+          <Image src={LOGO} preview={false} />
+        </Row>
+        <Row>
+          <Form
+            name="loginForm"
+            style={{
+              width: 400
+            }}
+            initialValues={{ role: 'Admin' }}
+            onFinish={onFinish}
+            onFinishFailed={onFinishFailed}>
+            <Form.Item
+              name="username"
+              rules={[
+                {
+                  required: true,
+                  message: 'Vui lòng không bỏ trống'
+                }
+              ]}>
+              <Input size="large" placeholder="Tên đăng nhập hoặc số điện thoại" />
+            </Form.Item>
 
-              <Form.Item
-                name="password"
-                rules={[
-                  {
-                    required: true,
-                    message: 'Vui lòng không bỏ trống'
-                  }
-                ]}>
-                <Input.Password size="large" placeholder="Mật khẩu" />
-              </Form.Item>
+            <Form.Item
+              name="password"
+              rules={[
+                {
+                  required: true,
+                  message: 'Vui lòng không bỏ trống'
+                }
+              ]}>
+              <Input.Password size="large" placeholder="Mật khẩu" />
+            </Form.Item>
 
-              <Form.Item>
-                <Button
-                  id="btnLogin"
-                  size="large"
-                  type="primary"
-                  htmlType="submit"
-                  block
-                  loading={loading}>
-                  Đăng nhập
-                </Button>
-              </Form.Item>
-            </Form>
-          </Row>
-          <Row justify={'center'}>
-            <Typography.Title level={5} type="secondary" className="text-center">
-              Liên hệ Admin để được cấp tài khoản <br />
-              Gmail: hautrantrung.02@gmail.com <br />
-              Số điện thoại: 0357647771
-            </Typography.Title>
-          </Row>
-        </Space>
-      </Content>
-      <Footer />
-    </Layout>
+            <Form.Item>
+              <Button
+                id="btnLogin"
+                size="large"
+                type="primary"
+                htmlType="submit"
+                block
+                loading={loading}>
+                Đăng nhập
+              </Button>
+            </Form.Item>
+          </Form>
+        </Row>
+        {/* <Row justify={'center'}>
+          <Divider>
+            <Typography.Link className="fs-5" onClick={onForgotPassword}>
+              Quên mật khẩu
+            </Typography.Link>
+          </Divider>
+        </Row> */}
+        <Row>
+          <Button block size="large" onClick={onRegister}>
+            Đăng ký tài khoản mới
+          </Button>
+        </Row>
+      </Space>
+    </Content>
   );
 }
 

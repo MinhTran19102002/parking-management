@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import React from 'react';
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
-import { Avatar, Image, Space, Button, Typography } from 'antd';
+import { Avatar, Image, Space, Button, Typography, Tooltip } from 'antd';
 import CustomedImage from '~/views/components/CustomedImage';
 
 export const CAMERA_TYPES = ['normal', 'cam360'];
@@ -19,10 +19,12 @@ export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }) => [
     key: 'images',
     render: (_, item) => (
       <Avatar.Group shape="square">
-          <CustomedImage
-            style={{ width: 60, height: 60, objectFit: 'cover', border: '1.6px solid #fff' }}
-            src={`${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/camera/${item.image}`}
-          />
+        <CustomedImage
+          style={{ width: 60, height: 60, objectFit: 'cover', border: '1.6px solid #fff' }}
+          src={`${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/camera/${
+            item.image
+          }`}
+        />
       </Avatar.Group>
     )
   },
@@ -31,13 +33,6 @@ export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }) => [
     dataIndex: 'cameraId',
     sorter: (a, b) => a.name - b.name
   },
-  {
-    title: 'Tên',
-    dataIndex: 'name',
-    key: 'name',
-    sorter: (a, b) => a.name - b.name
-  },
-
   {
     title: 'Loại',
     dataIndex: 'type',
@@ -53,7 +48,20 @@ export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }) => [
     title: 'Luồng stream',
     dataIndex: 'streamLink',
     key: 'streamLink',
-    render: (text) => (text ? <Typography.Link href={text}>Link</Typography.Link> : 'Chưa cài đặt')
+    render: (text) =>
+      text ? (
+        <Tooltip title={text}>
+          <Typography.Link
+            href={text}
+            copyable={{
+              text
+            }}>
+            Link
+          </Typography.Link>
+        </Tooltip>
+      ) : (
+        'Chưa cài đặt'
+      )
   },
   {
     title: 'Ngày mua',
