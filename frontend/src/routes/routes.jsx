@@ -14,7 +14,7 @@ import {
 import Driver from '~/views/pages/Main/Driver';
 import Employee from '~/views/pages/Main/Employee';
 import Home from '~/views/pages/Main/Home';
-import Map from '~/views/pages/Main/Map';
+import Map from '~/views/pages/DriverPages/Map';
 import Event from '~/views/pages/Main/Event';
 import UserPage from '~/views/pages/Main/UserPage';
 import Staff from '~/views/pages/Main/Staff';

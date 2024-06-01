@@ -19,6 +19,14 @@ export default {
     });
   },
 
+  getStatusByDriver: (payload) => {
+    const url = `${DOMAIN}/parking/getStatusByDriver`;
+    return GET({
+      url,
+      payload
+    });
+  },
+
   importVehicle: (payload) => {
     const { licenePlate, position, zone } = payload;
     let path = '/createPakingTurn';
