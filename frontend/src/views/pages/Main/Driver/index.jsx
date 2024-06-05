@@ -23,7 +23,8 @@ import {
   DeleteOutlined,
   DeleteFilled,
   ExclamationCircleFilled,
-  CheckOutlined
+  CheckOutlined,
+  FilterOutlined
 } from '@ant-design/icons';
 import { UserApi, VehicleApi } from '~/api';
 import dayjs from 'dayjs';
@@ -96,6 +97,7 @@ function Driver({}) {
       try {
         const api = await VehicleApi.active({ licenePlate, idUser });
         actions.onNoti({ message: `Xác nhận xe ${licenePlate} thành công`, type: 'success' });
+        callApi();
       } catch (error) {
         ErrorService.hanldeError(error, actions.onNoti);
       }
@@ -455,6 +457,9 @@ function Driver({}) {
                   onChange={onChangeFilter}
                   allowClear={true}
                 />
+                <Button type='text' icon={<FilterOutlined />} onClick={callApi}>
+                  Lọc
+                </Button>
               </Space>
             </Row>
           </Row>
