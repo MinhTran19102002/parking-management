@@ -25,7 +25,7 @@ import {
   ExclamationCircleFilled,
   CheckOutlined
 } from '@ant-design/icons';
-import { UserApi } from '~/api';
+import { UserApi, VehicleApi } from '~/api';
 import dayjs from 'dayjs';
 import DriverForm from './DriverForm';
 import { useSearchParams } from 'react-router-dom';
@@ -89,6 +89,18 @@ function Driver({}) {
   }, [data]);
 
   const expandedRowRender = (subData) => {
+    const { _id: idUser } = subData;
+    const newData = subData?.driver?.vehicle || [];
+
+    const onConfirmVehicle = async (licenePlate, idUser) => {
+      try {
+        const api = await VehicleApi.active({ licenePlate, idUser });
+        actions.onNoti({ message: `Xác nhận xe ${licenePlate} thành công`, type: 'success' });
+      } catch (error) {
+        ErrorService.hanldeError(error, actions.onNoti);
+      }
+    };
+
     const columns = [
       {
         title: 'Biển số xe',
@@ -121,8 +133,8 @@ function Driver({}) {
         title: 'Xác nhận',
         dataIndex: 'active',
         key: 'active',
-        render: (_, { active }, index) =>
-          active ? (
+        render: (_, { active = true, driverId }, index) =>
+          driverId === idUser ? (
             <Tag color={token.colorSuccessActive}>Đã xác nhận</Tag>
           ) : (
             <Tag color={token.colorWarningActive}>Chưa xác nhận</Tag>
@@ -136,19 +148,22 @@ function Driver({}) {
       },
       {
         title: ' ',
-        render: (_, { active }, index) =>
-          active ? (
+        render: (_, { active = true, licenePlate, driverId }, index) =>
+          active && driverId === idUser ? (
             <Button size="small" icon={<CheckOutlined />} type="primary" danger>
               Hủy xác nhận
             </Button>
           ) : (
-            <Button size="small" icon={<CheckOutlined />} type="primary">
+            <Button
+              size="small"
+              icon={<CheckOutlined />}
+              type="primary"
+              onClick={() => onConfirmVehicle(licenePlate, idUser)}>
               Xác nhận xe
             </Button>
           )
       }
     ];
-    const newData = subData?.driver?.vehicle || [];
 
     return (
       <div className="container-fluid">
