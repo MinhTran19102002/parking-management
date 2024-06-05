@@ -10,4 +10,8 @@ const Router = express.Router();
 Router.route('/vehicle')
   .post(vehicleValidation.create, verifyTokenMidleware.verifyTokenAndManager,vehicleController.createNew);
 
+Router.route('/active').post(
+  vehicleController.isActive
+)
+
 export const vehicleRoute = Router;

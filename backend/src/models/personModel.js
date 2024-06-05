@@ -42,6 +42,7 @@ const PERSON_COLLECTION_SCHEMA = Joi.object({
     arrayvehicleId: Joi.array().items(Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE).required()),
     job: Joi.string().required().min(4).max(50).trim().strict(),
     department: Joi.string().required().min(4).max(50).trim().strict(),
+    
   }).optional(),
 
   createdAt: Joi.date().timestamp('javascript').default(Date.now),
@@ -90,21 +91,21 @@ const createDriver = async (data, licenePlate, job, department) => {
     // return validateData
     // validateData.driver.vehicleId = new ObjectId(validateData.driver.vehicleId);
     const createNew = await GET_DB().collection(PERSON_COLLECTION_NAME).insertOne(validateData);
-    const updateVihecle = await GET_DB()
-      .collection(vehicleModel.VEHICLE_COLLECTION_NAME)
-      .updateOne(
-        { _id: { $in: validateData.driver.arrayvehicleId } },
-        { $set: { driverId: createNew.insertedId } },
-      );
+    // const updateVihecle = await GET_DB()
+    //   .collection(vehicleModel.VEHICLE_COLLECTION_NAME)
+    //   .updateOne(
+    //     { _id: { $in: validateData.driver.arrayvehicleId } },
+    //     { $set: { driverId: createNew.insertedId } },
+    //   );
 
-    if (updateVihecle.modifiedCount == 0) {
-      throw new ApiError(
-        StatusCodes.INTERNAL_SERVER_ERROR,
-        'Cập nhật không thành công',
-        'Not Found',
-        'BR_person_1',
-      );
-    }
+    // if (updateVihecle.modifiedCount == 0) {
+    //   throw new ApiError(
+    //     StatusCodes.INTERNAL_SERVER_ERROR,
+    //     'Cập nhật không thành công',
+    //     'Not Found',
+    //     'BR_person_1',
+    //   );
+    // }
     return createNew;
   } catch (error) {
     console.log(error.message)
