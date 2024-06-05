@@ -12,7 +12,9 @@ import {
   Button,
   Input,
   Modal,
-  Pagination
+  Pagination,
+  theme,
+  Tag
 } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
 import {
@@ -20,7 +22,8 @@ import {
   EditOutlined,
   DeleteOutlined,
   DeleteFilled,
-  ExclamationCircleFilled
+  ExclamationCircleFilled,
+  CheckOutlined
 } from '@ant-design/icons';
 import { UserApi } from '~/api';
 import dayjs from 'dayjs';
@@ -35,6 +38,7 @@ function Driver({}) {
     totalCount: 0,
     totalPage: 0
   });
+  const { token } = theme.useToken();
   const { totalCount, totalPage } = data;
   const [formAction, setFormAction] = useState({});
   const [openForm, setOpenForm] = useState(false);
@@ -114,10 +118,34 @@ function Driver({}) {
         }
       },
       {
+        title: 'Xác nhận',
+        dataIndex: 'active',
+        key: 'active',
+        render: (_, { active }, index) =>
+          active ? (
+            <Tag color={token.colorSuccessActive}>Đã xác nhận</Tag>
+          ) : (
+            <Tag color={token.colorWarningActive}>Chưa xác nhận</Tag>
+          )
+      },
+      {
         title: 'Ngày đăng ký',
         dataIndex: 'createdAt',
         key: 'createdAt',
         render: (_, record, index) => dayjs(record.createdAt).format('L')
+      },
+      {
+        title: ' ',
+        render: (_, { active }, index) =>
+          active ? (
+            <Button size="small" icon={<CheckOutlined />} type="primary" danger>
+              Hủy xác nhận
+            </Button>
+          ) : (
+            <Button size="small" icon={<CheckOutlined />} type="primary">
+              Xác nhận xe
+            </Button>
+          )
       }
     ];
     const newData = subData?.driver?.vehicle || [];
