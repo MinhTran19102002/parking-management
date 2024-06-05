@@ -14,4 +14,8 @@ Router.route('/active').post(
   vehicleController.isActive
 )
 
+Router.route('/inActive').post(
+  vehicleController.inActive
+)
+
 export const vehicleRoute = Router;

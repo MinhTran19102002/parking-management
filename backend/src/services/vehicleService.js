@@ -53,7 +53,29 @@ const isActive = async (licenePlate, idUser) => {
   }
 };
 
+
+const inActive = async (licenePlate) => {
+  // const data = {
+  //   licenePlate : licenePlate,
+  //   type : type,
+  // }
+  // eslint-disable-next-line no-useless-catch
+  try {
+    // const vehicle = await vehicleModel.findOneByLicenePlate(licenePlate)
+    const inActive = await vehicleModel.inActive(licenePlate)
+    if (inActive.acknowledged == false) {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe tạo không thành công', 'Not Deleted', 'BR_vihicle_4');
+    }
+    return inActive;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
 export const vehicleService = {
   createVehicle,
   isActive,
+  inActive,
 };
