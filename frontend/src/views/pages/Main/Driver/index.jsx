@@ -103,6 +103,16 @@ function Driver({}) {
       }
     };
 
+    const onUnconfirmVehicle = async (licenePlate) => {
+      try {
+        const api = await VehicleApi.inActive({ licenePlate });
+        actions.onNoti({ message: `Xóa xác nhận xe ${licenePlate} thành công`, type: 'success' });
+        callApi();
+      } catch (error) {
+        ErrorService.hanldeError(error, actions.onNoti);
+      }
+    };
+
     const columns = [
       {
         title: 'Biển số xe',
@@ -152,7 +162,12 @@ function Driver({}) {
         title: ' ',
         render: (_, { active = true, licenePlate, driverId }, index) =>
           active && driverId === idUser ? (
-            <Button size="small" icon={<CheckOutlined />} type="primary" danger>
+            <Button
+              size="small"
+              icon={<CheckOutlined />}
+              type="primary"
+              danger
+              onClick={() => onUnconfirmVehicle(licenePlate)}>
               Hủy xác nhận
             </Button>
           ) : (
@@ -457,7 +472,7 @@ function Driver({}) {
                   onChange={onChangeFilter}
                   allowClear={true}
                 />
-                <Button type='text' icon={<FilterOutlined />} onClick={callApi}>
+                <Button type="text" icon={<FilterOutlined />} onClick={callApi}>
                   Lọc
                 </Button>
               </Space>
