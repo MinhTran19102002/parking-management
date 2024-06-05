@@ -27,7 +27,20 @@ const isActive = async (req, res, next) => {
   }
 };
 
+const inActive = async (req, res, next) => {
+  try {
+    const licenePlate = req.body.licenePlate;
+    // Dieu huong sang tang Service
+    const inActive = await vehicleService.inActive(licenePlate);
+
+    res.status(StatusCodes.CREATED).json(inActive);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const vehicleController = {
   createNew,
   isActive,
+  inActive,
 };
