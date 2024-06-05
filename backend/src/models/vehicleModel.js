@@ -13,6 +13,7 @@ const VEHICLE_COLLECTION_SCHEMA = Joi.object({
 
   licenePlate: Joi.string().required().trim().strict().pattern(/^[0-9]{2}[A-Z]-[0-9]{4,5}$/),
   type: Joi.string().min(2).max(20).trim().strict().default('Car'),
+  active: Joi.boolean().default(false),
 
   createdAt: Joi.date().timestamp('javascript').default(Date.now),
   updatedAt: Joi.date().timestamp('javascript').default(null),
@@ -67,6 +68,17 @@ const updateDriverId = async (id, driverId) => {
   }
 };
 
+const isActive = async (licenePlate, idUser) => {
+  try {
+    const update = await GET_DB()
+      .collection(VEHICLE_COLLECTION_NAME)
+      .updateOne({ licenePlate: licenePlate }, { $set: { driverId: new ObjectId(idUser), active : true } });
+    return update;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const deleteOne = async (id) => {
   try {
     const deleteOne = await GET_DB()
@@ -85,4 +97,5 @@ export const vehicleModel = {
   findOneByLicenePlate,
   deleteOne,
   updateDriverId,
+  isActive,
 };

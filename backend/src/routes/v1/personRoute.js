@@ -35,7 +35,7 @@ Router.route('/driver')
     // verifyTokenMidleware.verifyTokenAndAdminManager,
     userController.createDriver,
   ) //
-  .get(verifyTokenMidleware.verifyTokenAndAdminManager, userController.findDriver) //
+  .get( userController.findDriver) //
   .put(
     // userValidation.updateDriver,
     // verifyTokenMidleware.verifyTokenAndAdminManager,
@@ -53,7 +53,7 @@ Router.route('/driver/deletes').post(
 );
 
 Router.route('/driver/filter').get(
-  verifyTokenMidleware.verifyTokenAndAdminManager,
+  // verifyTokenMidleware.verifyTokenAndAdminManager,
   userController.findDriverByFilter,
 );
 
@@ -147,5 +147,7 @@ Router.route('/staff/updateAvatar').put(
 Router.route('/getUser').post(
   userController.getUser
 )
+
+
 
 export const userRoute = Router;
