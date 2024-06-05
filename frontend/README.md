@@ -4,7 +4,6 @@ This project is front-end of parking management system.
 # Milestones
 
 ## Version 0.1.0
-
 - New Project: create new Project
 - Add libraries.
 - Develop Login, Dashboard UI
@@ -19,11 +18,14 @@ This project is front-end of parking management system.
 - Change password function
 
 ## Version 0.2.0
-
 - Camera management page
 - Monitor camera on Map page
 - Driver page
 - Map setting
+
+## Version 0.3.0
+- Stream Camera page
+- Add stream link to Camera table
 
 ## How to Run:
 

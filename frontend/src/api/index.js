@@ -5,4 +5,5 @@ import UserApi from './Collections/UserApi';
 import ParkingApi from './Collections/ParkingApi';
 import StaffApi from './Collections/StaffApi';
 import CameraApi from './Collections/CameraApi';
-export { AccountApi, MonitorApi, UserApi, ParkingApi, StaffApi, CameraApi };
+import VehicleApi from './Collections/VehicleApi';
+export { AccountApi, MonitorApi, UserApi, ParkingApi, StaffApi, CameraApi, VehicleApi };

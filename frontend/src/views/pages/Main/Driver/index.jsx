@@ -12,7 +12,9 @@ import {
   Button,
   Input,
   Modal,
-  Pagination
+  Pagination,
+  theme,
+  Tag
 } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
 import {
@@ -20,9 +22,11 @@ import {
   EditOutlined,
   DeleteOutlined,
   DeleteFilled,
-  ExclamationCircleFilled
+  ExclamationCircleFilled,
+  CheckOutlined,
+  FilterOutlined
 } from '@ant-design/icons';
-import { UserApi } from '~/api';
+import { UserApi, VehicleApi } from '~/api';
 import dayjs from 'dayjs';
 import DriverForm from './DriverForm';
 import { useSearchParams } from 'react-router-dom';
@@ -35,6 +39,7 @@ function Driver({}) {
     totalCount: 0,
     totalPage: 0
   });
+  const { token } = theme.useToken();
   const { totalCount, totalPage } = data;
   const [formAction, setFormAction] = useState({});
   const [openForm, setOpenForm] = useState(false);
@@ -85,6 +90,29 @@ function Driver({}) {
   }, [data]);
 
   const expandedRowRender = (subData) => {
+    const { _id: idUser } = subData;
+    const newData = subData?.driver?.vehicle || [];
+
+    const onConfirmVehicle = async (licenePlate, idUser) => {
+      try {
+        const api = await VehicleApi.active({ licenePlate, idUser });
+        actions.onNoti({ message: `Xác nhận xe ${licenePlate} thành công`, type: 'success' });
+        callApi();
+      } catch (error) {
+        ErrorService.hanldeError(error, actions.onNoti);
+      }
+    };
+
+    const onUnconfirmVehicle = async (licenePlate) => {
+      try {
+        const api = await VehicleApi.inActive({ licenePlate });
+        actions.onNoti({ message: `Xóa xác nhận xe ${licenePlate} thành công`, type: 'success' });
+        callApi();
+      } catch (error) {
+        ErrorService.hanldeError(error, actions.onNoti);
+      }
+    };
+
     const columns = [
       {
         title: 'Biển số xe',
@@ -114,13 +142,45 @@ function Driver({}) {
         }
       },
       {
+        title: 'Xác nhận',
+        dataIndex: 'active',
+        key: 'active',
+        render: (_, { active = true, driverId }, index) =>
+          driverId === idUser ? (
+            <Tag color={token.colorSuccessActive}>Đã xác nhận</Tag>
+          ) : (
+            <Tag color={token.colorWarningActive}>Chưa xác nhận</Tag>
+          )
+      },
+      {
         title: 'Ngày đăng ký',
         dataIndex: 'createdAt',
         key: 'createdAt',
         render: (_, record, index) => dayjs(record.createdAt).format('L')
+      },
+      {
+        title: ' ',
+        render: (_, { active = true, licenePlate, driverId }, index) =>
+          active && driverId === idUser ? (
+            <Button
+              size="small"
+              icon={<CheckOutlined />}
+              type="primary"
+              danger
+              onClick={() => onUnconfirmVehicle(licenePlate)}>
+              Hủy xác nhận
+            </Button>
+          ) : (
+            <Button
+              size="small"
+              icon={<CheckOutlined />}
+              type="primary"
+              onClick={() => onConfirmVehicle(licenePlate, idUser)}>
+              Xác nhận xe
+            </Button>
+          )
       }
     ];
-    const newData = subData?.driver?.vehicle || [];
 
     return (
       <div className="container-fluid">
@@ -412,6 +472,9 @@ function Driver({}) {
                   onChange={onChangeFilter}
                   allowClear={true}
                 />
+                <Button type="text" icon={<FilterOutlined />} onClick={callApi}>
+                  Lọc
+                </Button>
               </Space>
             </Row>
           </Row>
