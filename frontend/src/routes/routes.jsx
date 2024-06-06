@@ -114,6 +114,13 @@ const adminRoutes = [
         element: <SettingMap />
       }
     ]
+  },
+  {
+    key: 'event',
+    label: 'Nhập xuất xe',
+    path: '/event',
+    element: <Event />,
+    icon: <InteractionOutlined />
   }
 ];
 
