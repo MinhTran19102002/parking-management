@@ -48,17 +48,13 @@ services:
       - db
     depends_on:
       - backend
-  rtmp:
-    container_name: rtmp-server
-    build: 
-      context: ./rtmp
-      dockerfile: Dockerfile
-    restart: always
+  rtmp-to-hls:
+    build: ./rtmp-to-hls
     ports:
-      - "8077:8077"
-      - "8078:8078"
+      - "80:80"
+      # - "443:443"
     volumes:
-      - ./data:/tmp/hls
+      - ./hls:/usr/share/nginx/html/hls
     networks:
       - db
 
