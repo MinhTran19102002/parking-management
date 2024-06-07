@@ -52,7 +52,7 @@ services:
     build: ./rtmp-to-hls
     ports:
       - "80:80"
-      # - "443:443"
+      - "443:443"
     volumes:
       - ./hls:/usr/share/nginx/html/hls
     networks:
