@@ -20,4 +20,4 @@ RUN mkdir -p /usr/share/nginx/html/hls
 EXPOSE 80
 EXPOSE 443
 # Start FFmpeg and Nginx
-CMD ["./convert.sh"]
+CMD ["convert.sh"]
