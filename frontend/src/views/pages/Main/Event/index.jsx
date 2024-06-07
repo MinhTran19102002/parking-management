@@ -8,6 +8,7 @@ import { SLOTS_A } from '../Map/data/parkingA';
 import { SLOTS_B } from '../Map/data/parkingB';
 import { SLOTS_C } from '../Map/data/parkingC';
 import { UploadOutlined } from '@ant-design/icons';
+import StreamEvent from './StreamEvent';
 
 const formItemLayout = {
   labelCol: {
@@ -105,6 +106,7 @@ function Event({}) {
     <Layout className="px-4">
       <Header className="border-1" title={'Nhập xuất xe'} />
       <Content className="w-100 py-3">
+        <StreamEvent />
         <Row gutter={16}>
           <Col span={24} xl={12}>
             <Form
@@ -249,13 +251,15 @@ function Event({}) {
                   label="Biển số xe"
                   rules={[{ required: true, message: false }]}>
                   <Select mode="multiple" showSearch>
-                    {occupiedSlots.map((el, ix) => (
-                      <Select.Option
-                        key={'option' + el?.parkingTurn?.vehicles?.licenePlate + ix}
-                        value={el?.parkingTurn?.vehicles?.licenePlate}>
-                        {el?.parkingTurn?.vehicles[0]?.licenePlate}
-                      </Select.Option>
-                    ))}
+                    {occupiedSlots.map((el, ix) => () => {
+                      return (
+                        <Select.Option
+                          key={'option' + el?.parkingTurn?.vehicles?.licenePlate + ix}
+                          value={el?.parkingTurn?.vehicles?.licenePlate}>
+                          {el?.parkingTurn?.vehicles[0]?.licenePlate}
+                        </Select.Option>
+                      );
+                    })}
                   </Select>
                 </Form.Item>
               </Card>

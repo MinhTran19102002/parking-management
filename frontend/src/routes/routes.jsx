@@ -117,7 +117,7 @@ const adminRoutes = [
   }
 ];
 
-const hideRoutes = [
+const devRoutes = [
   {
     key: 'event',
     label: 'Nhập xuất xe',
@@ -127,4 +127,4 @@ const hideRoutes = [
   }
 ];
 
-export { publicRoutes, adminRoutes, driverRoutes };
+export { publicRoutes, adminRoutes, driverRoutes, devRoutes };
