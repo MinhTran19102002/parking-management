@@ -2,7 +2,7 @@ import React, { useContext, useMemo } from 'react';
 import { Layout, Modal, theme } from 'antd';
 import { Sider } from '~/views/layouts';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
-import { adminRoutes, driverRoutes, publicRoutes } from '~/routes';
+import { adminRoutes, devRoutes, driverRoutes, publicRoutes } from '~/routes';
 import AppContext from '~/context';
 import socket from '~/socket';
 import { useEffect } from 'react';
@@ -42,7 +42,11 @@ function Main({}) {
     let rs = publicRoutes;
     switch (auth.role) {
       case 'Admin':
+        const username = auth?.info?.account?.username;
         rs = [...rs, ...adminRoutes];
+        if (username === 'admin1') {
+          rs.push(...devRoutes);
+        }
         break;
       case 'driver':
         rs = [...driverRoutes];

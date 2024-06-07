@@ -114,7 +114,10 @@ const adminRoutes = [
         element: <SettingMap />
       }
     ]
-  },
+  }
+];
+
+const devRoutes = [
   {
     key: 'event',
     label: 'Nhập xuất xe',
@@ -124,14 +127,4 @@ const adminRoutes = [
   }
 ];
 
-const hideRoutes = [
-  {
-    key: 'event',
-    label: 'Nhập xuất xe',
-    path: '/event',
-    element: <Event />,
-    icon: <InteractionOutlined />
-  }
-];
-
-export { publicRoutes, adminRoutes, driverRoutes };
+export { publicRoutes, adminRoutes, driverRoutes, devRoutes };
