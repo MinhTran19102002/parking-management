@@ -8,7 +8,7 @@ COPY convert.sh convert.sh
 RUN chmod +x convert.sh
 
 # Install Nginx
-RUN apt-get install -y nginx
+RUN apt-get update && apt-get install -y nginx
 
 # Copy Nginx configuration file
 COPY nginx.conf /etc/nginx/nginx.conf
@@ -18,7 +18,6 @@ RUN mkdir -p /usr/share/nginx/html/hls
 
 # Expose ports for Nginx
 EXPOSE 80
-# EXPOSE 443
 
 # Start FFmpeg and Nginx
 CMD ["./convert.sh"]
