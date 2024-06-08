@@ -6,4 +6,6 @@ import ParkingApi from './Collections/ParkingApi';
 import StaffApi from './Collections/StaffApi';
 import CameraApi from './Collections/CameraApi';
 import VehicleApi from './Collections/VehicleApi';
-export { AccountApi, MonitorApi, UserApi, ParkingApi, StaffApi, CameraApi, VehicleApi };
+import MediaServerApi from './Collections/MediaServerApi';
+
+export { AccountApi, MonitorApi, UserApi, ParkingApi, StaffApi, CameraApi, VehicleApi, MediaServerApi };
