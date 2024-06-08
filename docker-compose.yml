@@ -48,6 +48,7 @@ services:
       - db
     depends_on:
       - backend
+
   rtmp-to-hls:
     build: ./rtmp-to-hls
     ports:
@@ -55,6 +56,16 @@ services:
       - "443:443"
     volumes:
       - ./hls:/usr/share/nginx/html/hls
+    networks:
+      - db
+
+  web_out_in_parking:
+    build: ./web_out_in_parking
+    ports:
+      - "5000:5000"
+    expose:
+      - 5000
+    restart: always
     networks:
       - db
 
