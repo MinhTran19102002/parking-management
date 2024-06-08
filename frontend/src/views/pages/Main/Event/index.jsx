@@ -8,7 +8,7 @@ import { SLOTS_A } from '../Map/data/parkingA';
 import { SLOTS_B } from '../Map/data/parkingB';
 import { SLOTS_C } from '../Map/data/parkingC';
 import { UploadOutlined } from '@ant-design/icons';
-import StreamEvent from './StreamEvent';
+import StreamEvents from './StreamEvents';
 
 const formItemLayout = {
   labelCol: {
@@ -106,7 +106,7 @@ function Event({}) {
     <Layout className="px-4">
       <Header className="border-1" title={'Nhập xuất xe'} />
       <Content className="w-100 py-3">
-        <StreamEvent />
+        <StreamEvents />
         <Row gutter={16}>
           <Col span={24} xl={12}>
             <Form
