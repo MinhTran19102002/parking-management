@@ -60,7 +60,7 @@ services:
       - db
 
   web_out_in_parking:
-    build: ./web_out_in_parking
+    build: ./service-in-out
     ports:
       - "5000:5000"
     expose:
