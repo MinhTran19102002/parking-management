@@ -546,12 +546,12 @@
 },
 {
   "_id": {
-    "$oid": "6575841757acff4574f1c1b7"
+    "$oid": "6575841757acff4574f1c1b6"
   },
-  "name": "Ngô Văn Tuấn",
-  "phone": "0782233445",
-  "email": "ngovantuan707@gmail.com",
-  "address": "707 Đường LMN, Quận 2, TP HCM",
+  "name": "Lê Thị Thùy Dung",
+  "phone": "0781122334",
+  "email": "lethithuydung606@gmail.com",
+  "address": "606 Đường XYZ, Quận 1, TP HCM",
   "createdAt": {
     "$numberLong": "1702200343346"
   },
@@ -560,12 +560,12 @@
 },
 {
   "_id": {
-    "$oid": "6575841757acff4574f1c1b6"
+    "$oid": "6575841757acff4574f1c1b7"
   },
-  "name": "Lê Thị Thùy Dung",
-  "phone": "0781122334",
-  "email": "lethithuydung606@gmail.com",
-  "address": "606 Đường XYZ, Quận 1, TP HCM",
+  "name": "Ngô Văn Tuấn",
+  "phone": "0782233445",
+  "email": "ngovantuan707@gmail.com",
+  "address": "707 Đường LMN, Quận 2, TP HCM",
   "createdAt": {
     "$numberLong": "1702200343346"
   },
@@ -1365,25 +1365,6 @@
 },
 {
   "_id": {
-    "$oid": "65796c4b2297b37fbd30fed9"
-  },
-  "name": "Vũ Minh Tâm",
-  "address": "456 Đường XYZ, Quận 2, TP HCM",
-  "phone": "0319696622",
-  "email": "tammvu@gmail.com",
-  "account": {
-    "username": "tammvu",
-    "password": "$2b$10$FV2uqRMAQ3kGPovWnyNDv.91lcaQnjZw2jDAPe4uxOrNQdmbXd57m",
-    "role": "Manager"
-  },
-  "createdAt": {
-    "$numberLong": "1702456395300"
-  },
-  "updatedAt": null,
-  "_destroy": false
-},
-{
-  "_id": {
     "$oid": "65796c4b2297b37fbd30fed7"
   },
   "name": "Huỳnh Thị Duy",
@@ -1397,6 +1378,25 @@
   },
   "createdAt": {
     "$numberLong": "1702456395299"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "65796c4b2297b37fbd30fed9"
+  },
+  "name": "Vũ Minh Tâm",
+  "address": "456 Đường XYZ, Quận 2, TP HCM",
+  "phone": "0319696622",
+  "email": "tammvu@gmail.com",
+  "account": {
+    "username": "tammvu",
+    "password": "$2b$10$FV2uqRMAQ3kGPovWnyNDv.91lcaQnjZw2jDAPe4uxOrNQdmbXd57m",
+    "role": "Manager"
+  },
+  "createdAt": {
+    "$numberLong": "1702456395300"
   },
   "updatedAt": null,
   "_destroy": false
@@ -2220,5 +2220,164 @@
   "updatedAt": {
     "$numberLong": "1717208947190"
   },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6660661ee6ec246c584b9bde"
+  },
+  "address": "HCMgfdfsgs",
+  "email": "min333h@gmail.com",
+  "name": "Nguyen Tri Thieu",
+  "phone": "0700721372",
+  "account": {
+    "username": "0700721372",
+    "password": "$2b$10$sQGbn04xtKDJlEHfbntDl.6Ot.FcmjXxGZLau0RHEoRo6QIlaOgkG",
+    "role": "driver"
+  },
+  "driver": {
+    "arrayvehicleId": [
+      {
+        "$oid": "6660661de6ec246c584b9bdd"
+      }
+    ],
+    "job": "Student",
+    "department": "Cong Nghe Thong Tin"
+  },
+  "createdAt": {
+    "$numberLong": "1717593630258"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6660666ee6ec246c584b9bdf"
+  },
+  "address": "HCMgfdfsgs",
+  "email": "min33h@gmail.com",
+  "name": "Nguyen Tri Thieu",
+  "phone": "0700821372",
+  "account": {
+    "username": "0700821372",
+    "password": "$2b$10$FRt/QXbvUWFuz/NU49LBqu6gFFiMfZWtjV3EpR0Mfro3oD1PENDAq",
+    "role": "driver"
+  },
+  "driver": {
+    "arrayvehicleId": [
+      {
+        "$oid": "6660661de6ec246c584b9bdd"
+      }
+    ],
+    "job": "Student",
+    "department": "Cong Nghe Thong Tin"
+  },
+  "createdAt": {
+    "$numberLong": "1717593710728"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66607c56a56228ad8f7d90f4"
+  },
+  "name": "Nguyễn Trường Toản",
+  "email": "hautran1234221@gmail.com",
+  "phone": "0357641524",
+  "address": "Bình Thạnh, TP.HCM",
+  "account": {
+    "username": "0357641524",
+    "password": "$2b$10$qG1MidUfxN/13ig5DWsXDuTwzlxY7fVAzZ9XeTx3zQUzYseN9YqXC",
+    "role": "driver"
+  },
+  "driver": {
+    "arrayvehicleId": [
+      {
+        "$oid": "66607c55a56228ad8f7d90f3"
+      }
+    ],
+    "job": "Student",
+    "department": "Công nghệ thông tin"
+  },
+  "createdAt": {
+    "$numberLong": "1717599318509"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66607cf1a56228ad8f7d90f6"
+  },
+  "name": "Phạm Ngọc Ân",
+  "email": "hautran123@gmail.com",
+  "phone": "0357640001",
+  "address": "Bình Thạnh, TP.HCM",
+  "account": {
+    "username": "0357640001",
+    "password": "$2b$10$JQp8TPCORSYV9IAqgpuroOTte2VB4phJYRgQLCDD9jaC/M9CBZrCy",
+    "role": "driver"
+  },
+  "driver": {
+    "arrayvehicleId": [
+      {
+        "$oid": "66607cf1a56228ad8f7d90f5"
+      }
+    ],
+    "job": "Teacher",
+    "department": "Công nghệ thông tin"
+  },
+  "createdAt": {
+    "$numberLong": "1717599473928"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66607d63a56228ad8f7d90f8"
+  },
+  "name": "Phạm Ngọc Dinh",
+  "email": "hautranI22p@gmail.com",
+  "phone": "0357642312",
+  "address": "Bình Thạnh, TP.HCM",
+  "account": {
+    "username": "0357642312",
+    "password": "$2b$10$3r1tko8W.AxG2pgo3wY2s.1sUQULN/qdWSfmVJLNEF3g0etJ2qapy",
+    "role": "driver"
+  },
+  "driver": {
+    "arrayvehicleId": [
+      {
+        "$oid": "66607cf1a56228ad8f7d90f5"
+      }
+    ],
+    "job": "Employee",
+    "department": "Công nghệ thông tin"
+  },
+  "createdAt": {
+    "$numberLong": "1717599587012"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "666266c58a324301e2c2b968"
+  },
+  "address": "HCMgfdfsgs",
+  "email": "minhtc19101001@gmail.com",
+  "name": "Admin Parking",
+  "phone": "0789585465",
+  "account": {
+    "username": "admin1",
+    "password": "$2b$10$.ct80gb7J1JWBuD94AGP/e/yYxljaMc5KRgOYN2og50qMZy4uK5y6",
+    "role": "Admin"
+  },
+  "createdAt": {
+    "$numberLong": "1717724868910"
+  },
+  "updatedAt": null,
   "_destroy": false
 }]
