@@ -18,7 +18,11 @@ export default {
     return fetch(url,{
       method: 'GET',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, POST, DELETE, OPTIONS',
+       'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Max-Age': 86400,
+        mode: 'no-cors',
       }
     });
   }

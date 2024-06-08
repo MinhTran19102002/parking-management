@@ -19,17 +19,21 @@ export const StreamEventCard = () => {
     queryFn: async () => {
       let rs;
       try {
-        const [data1, data2] = await Promise.allSettled(
-          MediaServerApi.getLicensesFromStream(),
-          MediaServerApi.captureImageFromStream()
-        );
-        console.log(data1, data2);
-        rs = {
-          licenses: data1.result || [],
-          image: data2
-        };
+        // const [data1, data2] = await Promise.allSettled(
+        //   MediaServerApi.getLicensesFromStream(),
+        //   MediaServerApi.captureImageFromStream()
+        // );
+        const data = await MediaServerApi.getLicensesFromStream();
+        consolo.log(data)
+        // console.log(data1, data2);
+        // rs = {
+        //   licenses: data1.result || [],
+        //   image: data2
+        // };
         init();
-      } catch {}
+      } catch(error) {
+        console.log(error)
+      }
       return rs;
     }
   });

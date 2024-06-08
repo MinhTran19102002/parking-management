@@ -1,73 +1,73 @@
 version: '3.4'
 
 services:
-  mongodb:
-    image: mongo
-    container_name: my-mongodb
-    ports:
-      - "27087:27087"
-    networks:
-      - db
-  data-importer:
-    image: mongo
-    container_name: data-importer
-    volumes:
-      - ./database:/database
-    command: bash -c "sleep 10 && mongoimport --host mongodb --db paking-management --collection event --file /database/event.json --jsonArray && mongoimport --host mongodb --db paking-management --collection parking --file /database/parking.json --jsonArray && mongoimport --host mongodb --db paking-management --collection parkingTurn --file /database/parkingTurn.json --jsonArray && mongoimport --host mongodb --db paking-management --collection persons --file /database/persons.json --jsonArray && mongoimport --host mongodb --db paking-management --collection vehicles --file /database/vehicles.json --jsonArray  && mongoimport --host mongodb --db paking-management --collection station --file /database/station.json --jsonArray && mongoimport --host mongodb --db paking-management --collection camera --file /database/camera.json --jsonArray"
-    depends_on:
-      - mongodb
-    networks:
-      - db
-  backend:
-    container_name: backend
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    restart: always
-    networks:
-      - db
-    ports:
-      - 8010:8010
-    environment:
-      MONGODB_URI: mongodb://mongodb/
-    expose:
-      - 8010
-    depends_on:
-      - mongodb
-      - data-importer
-    
-  frontend:
-    container_name: frontend
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    restart: always
-    ports:
-      - 10048:5173
-    networks:
-      - db
-    depends_on:
-      - backend
-
-  # rtmp-to-hls:
-  #   build: ./rtmp-to-hls
+  # mongodb:
+  #   image: mongo
+  #   container_name: my-mongodb
   #   ports:
-  #     - "80:80"
-  #     - "443:443"
-  #   volumes:
-  #     - ./hls:/usr/share/nginx/html/hls
+  #     - "27087:27087"
   #   networks:
   #     - db
+  # data-importer:
+  #   image: mongo
+  #   container_name: data-importer
+  #   volumes:
+  #     - ./database:/database
+  #   command: bash -c "sleep 10 && mongoimport --host mongodb --db paking-management --collection event --file /database/event.json --jsonArray && mongoimport --host mongodb --db paking-management --collection parking --file /database/parking.json --jsonArray && mongoimport --host mongodb --db paking-management --collection parkingTurn --file /database/parkingTurn.json --jsonArray && mongoimport --host mongodb --db paking-management --collection persons --file /database/persons.json --jsonArray && mongoimport --host mongodb --db paking-management --collection vehicles --file /database/vehicles.json --jsonArray  && mongoimport --host mongodb --db paking-management --collection station --file /database/station.json --jsonArray && mongoimport --host mongodb --db paking-management --collection camera --file /database/camera.json --jsonArray"
+  #   depends_on:
+  #     - mongodb
+  #   networks:
+  #     - db
+  # backend:
+  #   container_name: backend
+  #   build:
+  #     context: ./backend
+  #     dockerfile: Dockerfile
+  #   restart: always
+  #   networks:
+  #     - db
+  #   ports:
+  #     - 8010:8010
+  #   environment:
+  #     MONGODB_URI: mongodb://mongodb/
+  #   expose:
+  #     - 8010
+  #   depends_on:
+  #     - mongodb
+  #     - data-importer
+    
+  # frontend:
+  #   container_name: frontend
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   restart: always
+  #   ports:
+  #     - 10048:5173
+  #   networks:
+  #     - db
+  #   depends_on:
+  #     - backend
 
-  web_out_in_parking:
-    build: ./service-in-out
-    ports:
-      - "5000:5000"
-    expose:
-      - 5000
-    restart: always
-    networks:
-      - db
+  # # rtmp-to-hls:
+  # #   build: ./rtmp-to-hls
+  # #   ports:
+  # #     - "80:80"
+  # #     - "443:443"
+  # #   volumes:
+  # #     - ./hls:/usr/share/nginx/html/hls
+  # #   networks:
+  # #     - db
+
+  # web_out_in_parking:
+  #   build: ./service-in-out
+  #   ports:
+  #     - "5000:5000"
+  #   expose:
+  #     - 5000
+  #   restart: always
+  #   networks:
+  #     - db
 
   media-server:
     image: jrottenberg/ffmpeg:4.4-scratch

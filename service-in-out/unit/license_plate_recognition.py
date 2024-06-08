@@ -22,6 +22,7 @@ def select_image1(img):
         result_licenses = []
 
         numberPlates = plateCascade.detectMultiScale(grayscale, 1.1, 4)
+
         for (x, y, w, h) in numberPlates:
             area = w*h
             if area > minArea:  
@@ -49,7 +50,7 @@ def select_image1(img):
                             cv2.rectangle(img, (x, y), (x + w, y + h), (145, 60, 255), 5)
                             cv2.putText(img, license_text, (x-10, y -10), cv2.FONT_HERSHEY_SIMPLEX, 1.75, (255, 0, 0), 2)
                             result_licenses.append(license_text)
-                except:  print("Lỗi: " )
+                except:  print("Lỗi1111: " )
 
         return cv2.imencode('.jpg', img)[1].tobytes(), result_licenses #frame
     except:
