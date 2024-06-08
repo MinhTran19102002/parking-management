@@ -5,14 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2bc51e52-b0d0-4c21-b5b5-d5ac49ad6b38" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/frontend/src/api/Collections/MediaServerApi.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/views/pages/Main/Event/StreamEventCard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/.env" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/Collections/MonitorApi.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/Collections/MonitorApi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/api/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/api/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/pages/Main/Event/StreamEvent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/pages/Main/Event/StreamEvents.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/views/pages/Main/Event/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/pages/Main/Event/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/views/pages/Main/Event/StreamEventCard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/views/pages/Main/Event/StreamEventCard.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +74,7 @@
       <option name="presentableId" value="Default" />
       <updated>1717811461907</updated>
       <workItem from="1717811463689" duration="478000" />
-      <workItem from="1717811955394" duration="3426000" />
+      <workItem from="1717811955394" duration="3929000" />
     </task>
     <servers />
   </component>
