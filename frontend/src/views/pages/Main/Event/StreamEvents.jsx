@@ -18,13 +18,13 @@ function StreamEvents({}) {
                     <StreamEventCard/>
                 </Card>
             </Col>
-            <Col span={24} xl={12}>
+            {/* <Col span={24} xl={12}>
                 <Card title="Xuất xe">
                     <img width={400} src={streamOut}/>
                     <Typography.Title level={5}>Stream: {streamOut}</Typography.Title>
                     <Input value={streamOut} onChange={(e) => setStreamOut(e.target.value)}/>
                 </Card>
-            </Col>
+            </Col> */}
         </Row>
     );
 }

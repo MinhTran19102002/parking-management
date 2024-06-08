@@ -107,7 +107,7 @@ function Event({}) {
       <Header className="border-1" title={'Nhập xuất xe'} />
       <Content className="w-100 py-3">
         <StreamEvents />
-        <Row gutter={16}>
+        {/* <Row gutter={16}>
           <Col span={24} xl={12}>
             <Form
               name="importVehicleForm"
@@ -265,7 +265,7 @@ function Event({}) {
               </Card>
             </Form>
           </Col>
-        </Row>
+        </Row> */}
       </Content>
       <Footer />
     </Layout>
