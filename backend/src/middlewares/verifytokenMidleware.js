@@ -60,19 +60,19 @@ const verifyTokenAndAdmin = (req, res, next) => {
 };
 
 const verifyTokenAndManager = (req, res, next) => {
-  //next(); /// neu test tren postman thi mo doan code nay
-  verifyToken(req, res, () => {
-    if (req.user.role == 'Manager'  || req.user.role == 'Staff') {
-      next();
-    } else {
-      throw new ApiError(
-        StatusCodes.UNAUTHORIZED,
-        'Bạn không được phép thực hiện hành động này',
-        'auth',
-        'BR_auth',
-      );
-    }
-  });
+  next(); /// neu test tren postman thi mo doan code nay
+  // verifyToken(req, res, () => {
+  //   if (req.user.role == 'Manager'  || req.user.role == 'Staff') {
+  //     next();
+  //   } else {
+  //     throw new ApiError(
+  //       StatusCodes.UNAUTHORIZED,
+  //       'Bạn không được phép thực hiện hành động này',
+  //       'auth',
+  //       'BR_auth',
+  //     );
+  //   }
+  // });
 };
 
 export const verifyTokenMidleware = {
