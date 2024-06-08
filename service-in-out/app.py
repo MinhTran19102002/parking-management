@@ -15,7 +15,7 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 
 
-@app.route('/')
+@app.route('/service')
 def home():
     return render_template('index.html', title = 'Parking Management')
 def read_from_webcam():
@@ -31,17 +31,17 @@ def read_from_webcam():
         # g.global_var = licenseS
         yield b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n--frame\r\n'
         
-@app.route("/image_feed")
+@app.route("/service/image_feed")
 def image_feed():
     return Response( read_from_webcam(), mimetype="multipart/x-mixed-replace; boundary=frame" )
 
-@app.route('/imagecap', methods=['GET'])
+@app.route('/service/imagecap', methods=['GET'])
 def imagecap():
     global image_license
     # return jsonify({'message': 'File successfully uploaded', 'result': global_licenseS}), 200
     return Response(response=image_license, status=200, mimetype="image/jpeg")
 
-@app.route('/licenseS', methods=['GET'])
+@app.route('/service/licenseS', methods=['GET'])
 def licenseSFunc():
     global global_licenseS
     return jsonify({'message': 'File successfully uploaded', 'result': global_licenseS}), 200
