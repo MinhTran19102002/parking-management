@@ -72,16 +72,15 @@ async function handleButtonInParking() {
     const url = host + '/api/parkingTurn/createPakingTurnWithoutZoneAndPosition';
 
     try {
+        console.log(typeof(uploadButton.files[0]))
+        
         if (licenePlate.value == '') {
 
         }
         else {
-
-
             // Gửi yêu cầu fetch
             const formData = new FormData();
             formData.append('image', uploadButton.files[0]);
-            console.log(uploadButton.files[0]);
             formData.append('licenePlate', licenePlate.value);
             const response = await fetch(url, {
                 method: 'POST', // Hoặc 'POST', 'PUT', v.v. tùy thuộc vào yêu cầu của bạn
@@ -111,8 +110,8 @@ async function handleButtonInParking() {
 }
 
 async function handleButtonInParkingOut() {
-    const url = 'http://127.0.0.1:5000' + '/licenseS';
-    const urlImage = 'http://127.0.0.1:5000' + '/imagecap';
+    const url = 'http://127.0.0.1:5000/service' + '/licenseS';
+    const urlImage = 'http://127.0.0.1:5000/service' + '/imagecap';
     chosenImage.src = urlImage;
     try {
         const response = await fetch(url, {
@@ -127,6 +126,7 @@ async function handleButtonInParkingOut() {
                 'Content-Type': 'application/json',
             },
         });
+        console.log(response1.body)
         if (!response.ok) {
             const data = await response.json();
             Swal.fire(data.message);
