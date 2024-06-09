@@ -5,25 +5,18 @@ const DOMAIN = import.meta.env.VITE_DOMAIN_MEDIA;
 export default {
   captureImageFromStream: () => {
     const url = `${DOMAIN}/imagecap`;
-    return fetch(url,{
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+    return GET({ url, responseType: "blob", headers: { "Content-Type": "image/png", } })
   },
 
   getLicensesFromStream: () => {
     const url = `${DOMAIN}/licenseS`;
-    return fetch(url,{
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, POST, DELETE, OPTIONS',
-       'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Max-Age': 86400,
-        mode: 'no-cors',
-      }
+    return GET({ url })
+  },
+
+  getImageFromStream: () => {
+    const url = `${DOMAIN}/imagecap`;
+    return new Promise(resolve => {
+      resolve(url);
     });
   }
 };

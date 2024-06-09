@@ -47,6 +47,7 @@ def select_image1(img):
                                 license_text =  license_text[0] +'1' + license_text[2:]
                             if license_text[2] == '6':
                                 license_text =  license_text[:1] +'G' + license_text[3:]
+                            license_text =  license_text[:3] +'-' + license_text[3:]
                             cv2.rectangle(img, (x, y), (x + w, y + h), (145, 60, 255), 5)
                             cv2.putText(img, license_text, (x-10, y -10), cv2.FONT_HERSHEY_SIMPLEX, 1.75, (255, 0, 0), 2)
                             result_licenses.append(license_text)

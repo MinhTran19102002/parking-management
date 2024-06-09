@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify, Response, g, json
+from flask import Flask, render_template, request, redirect, url_for, jsonify, Response, g, json, send_file
 from unit.license_plate_recognition import select_image1
 import os
 import numpy as np
@@ -18,6 +18,7 @@ CORS(app)
 @app.route('/service')
 def home():
     return render_template('index.html', title = 'Parking Management')
+
 def read_from_webcam():
     webcam = Webcam()
     while True:
@@ -40,10 +41,23 @@ def image_feed():
 @app.route('/service/imagecap')
 def imagecap():
     global image_license
-    # return jsonify({'message': 'File successfully uploaded', 'result': global_licenseS}), 200
-    response =  Response(response=image_license, status=200, mimetype="image/jpeg")
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    return response
+    # file_object = io.BytesIO(image_license)
+    # image = Image.open(file_object)
+    # response =  Response(response=image, status=200, mimetype="image/jpeg")
+    
+    # response.headers['Access-Control-Allow-Origin'] = '*'
+    # return response
+    file_object = io.BytesIO(image_license)
+
+    # Mở hình ảnh từ đối tượng file
+    image = Image.open(file_object)
+
+    # Chuyển đổi hình ảnh trở lại thành một đối tượng file nhị phân trong bộ nhớ
+    img_byte_arr = io.BytesIO()
+    image.save(img_byte_arr, format='PNG')
+    img_byte_arr.seek(0)
+
+    return send_file(img_byte_arr, mimetype='image/png', as_attachment=True, download_name='output_image.png')
 
 @app.route('/service/licenseS')
 def licenseSFunc():
