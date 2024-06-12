@@ -10,7 +10,9 @@ import {
   onSetChangePassword,
   onEventParking,
   onAuthorize,
-  editProfile
+  editProfile,
+  changeState,
+  changeTheme
 } from './actions';
 import initState from './initState';
 import reducer from './reducer';
@@ -21,6 +23,8 @@ export const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initState);
 
   const actions = {
+    changeState: async (params) => dispatch(await changeState(params)),
+    changeTheme: async (params) => dispatch(await changeTheme(params)),
     logout: async (params) => dispatch(await logout(params)),
     onLogin: async (params) => dispatch(await onLogin(params)),
     checkAuthenSevice: async (params) => dispatch(await checkAuthenSevice(params)),

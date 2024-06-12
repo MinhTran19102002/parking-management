@@ -1,16 +1,27 @@
 import { Button, Col, Drawer, Form, Radio, Row, Select, Switch } from 'antd';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { SettingOutlined } from '@ant-design/icons';
 import { MoonOutlined, SunOutlined } from '~/views/components/Icons';
+import AppContext from '~/context';
+import { useForm } from 'antd/es/form/Form';
 function LagSelect({}) {
-  const [form] = Form.useForm();
+  const [form] = useForm();
   const [open, setOpen] = useState(false);
+  const { state, actions } = useContext(AppContext);
+  const [initValues, setInitValues] = useState({});
 
   const onValuesChange = (values) => {
     if (values.hasOwnProperty('mode')) {
-      localStorage.setItem('mode', values.mode ? 'light' : 'dark');
+      actions.changeTheme(values.mode ? 'light' : 'dark');
     }
   };
+
+  useEffect(() => {
+    console.log(state.theme);
+    setInitValues({
+      mode: state.theme === 'light',
+    });
+  }, [open]);
 
   return (
     <>
@@ -21,14 +32,7 @@ function LagSelect({}) {
         width={400}
         onClose={() => setOpen(false)}
         open={open}>
-        <Form
-          form={form}
-          gutter={16}
-          onValuesChange={onValuesChange}
-          initialValues={{
-            lag: localStorage.getItem('laguague') || 'vi',
-            mode: localStorage.getItem('laguague') || 'vi' === 'vi'
-          }}>
+        <Form form={form} gutter={16} onValuesChange={onValuesChange} initialValues={initValues}>
           <Form.Item label="Ngôn ngữ" name="lag">
             <Radio.Group
               optionType="button"
@@ -39,7 +43,7 @@ function LagSelect({}) {
               ]}
             />
           </Form.Item>
-          <Form.Item label="Theme" name="mode">
+          <Form.Item label="Theme" name="mode" valuePropName="checked">
             <Switch
               size="large"
               checkedChildren={<SunOutlined />}

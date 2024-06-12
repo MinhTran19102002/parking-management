@@ -3,6 +3,15 @@ import { AccountApi } from '../api';
 import dayjs from 'dayjs';
 import { ErrorService } from '~/services';
 
+export const changeState = async (params = { type: null, payload }) => params;
+
+export const changeTheme = async (payload) => {
+  localStorage.setItem('theme', payload);
+  return {
+    type: 'theme',
+    payload
+  };
+};
 export const onLogin = async (params) => {
   let isLogin = false;
   let type = 'error';
