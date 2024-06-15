@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, Response, g, json, send_file
-from unit.license_plate_recognition import select_image1
+from unit.license_plate_recognition import select_image1, car_into_parking, car_into_slot
 import os
 import numpy as np
 from PIL import Image
@@ -22,7 +22,6 @@ def home():
 def read_from_webcam():
     webcam = Webcam()
     while True:
-        # Đọc ảnh từ class Webcam
         image = next(webcam.get_frame())
         image, licenseS = select_image1(image)
         global global_licenseS
@@ -38,40 +37,67 @@ def image_feed():
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
 
-@app.route('/service/imagecap')
-def imagecap():
-    global image_license
-    # file_object = io.BytesIO(image_license)
-    # image = Image.open(file_object)
-    # response =  Response(response=image, status=200, mimetype="image/jpeg")
-    
-    # response.headers['Access-Control-Allow-Origin'] = '*'
-    # return response
-    file_object = io.BytesIO(image_license)
-
-    # Mở hình ảnh từ đối tượng file
-    image = Image.open(file_object)
-
-    # Chuyển đổi hình ảnh trở lại thành một đối tượng file nhị phân trong bộ nhớ
-    img_byte_arr = io.BytesIO()
-    image.save(img_byte_arr, format='PNG')
-    img_byte_arr.seek(0)
-
-    return send_file(img_byte_arr, mimetype='image/png', as_attachment=True, download_name='output_image.png')
+@app.route("/service/image_feed1")
+def image_feed1():
+    response =  Response( read_from_webcam(), mimetype="multipart/x-mixed-replace; boundary=frame" )
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
 
 @app.route('/service/licenseS')
 def licenseSFunc():
     global global_licenseS
-    # return jsonify({'message': 'File successfully uploaded', 'result': global_licenseS}), 200
     response_data = json.dumps({'message': 'File successfully uploaded', 'result': global_licenseS})
     
     # Create a Response object
     response = Response(response=response_data, status=200, mimetype='application/json')
-    
-    # Add custom headers
-    # response.headers['Access-Control-Allow-Origin'] = '*'
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
+
+def carInOut(url):
+    webcam = Webcam(url)
+    while True:
+        image = next(webcam.get_frame(8))
+        image, licenseS = car_into_parking(image)
+        global global_licenseS
+        global image_license
+        global_licenseS = licenseS
+        image_license = image
+        # g.global_var = licenseS
+        yield b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n--frame\r\n'
+
+
+
+# API nhap xuat xe
+@app.route('/service/carInOut')
+def apiCarInOut():
+    # url = "./unit/dectect1.mp4"
+    url = "./unit/CAM_ngoai_full.mp4"
+    response =  Response( carInOut(url), mimetype="multipart/x-mixed-replace; boundary=frame" )
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
+
+def carInOutSlot(url):
+    webcam = Webcam(url)
+    position = ['A101', 'A102', 'A103']
+    zone = 'A'
+    
+    while True:
+        image = next(webcam.get_frame(22))
+        image = car_into_slot(image, position, zone)
+        # g.global_var = licenseS
+        yield b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n--frame\r\n'
+
+# API xe ra vao trong slot
+@app.route('/service/carInOutSlot')
+def apiCarInOutSlot():
+    url = "./unit/CAM_trong_full.mp4"
+    # url = 0
+    response =  Response( carInOutSlot(url), mimetype="multipart/x-mixed-replace; boundary=frame" )
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port = 5000)
