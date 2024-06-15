@@ -50,4 +50,8 @@
 /frontend/.vercel
 /frontend/yarn.lock
 
+
 /service-in-out/unit/video
+
+/service-in-out/myenv
+
