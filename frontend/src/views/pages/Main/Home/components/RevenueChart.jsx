@@ -26,6 +26,7 @@ function RevenueChart({}) {
   const config = {
     ...defaultConfig,
     height: 200,
+    theme:'dark',
     data,
     xField: 'date',
     yField: 'value',

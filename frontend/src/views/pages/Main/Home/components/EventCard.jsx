@@ -21,6 +21,7 @@ const personInfo = {
 
 function EventCard({ item }) {
   const { token } = theme.useToken();
+  console.log('token', token);
 
   let { name, parkingTurn, vehicle, zone, person = {} } = item;
 
