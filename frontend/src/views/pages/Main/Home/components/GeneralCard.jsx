@@ -15,9 +15,14 @@ function GeneralCard({ zone = 'A' }) {
     unoccupied: 0
   });
 
+  const [currTheme, setCurrTheme] = useState(state.theme);
+  useEffect(() => {
+    setCurrTheme(state.theme);
+  }, [state.theme]);
+
   const config = {
-    height: 168,
-    autoFit: true,
+    theme: currTheme,
+    height: 200,
     percent: data.occupied / data.total,
     range: {
       color: 'l(0) 0:#B8E1FF 1:#3D76DD'
@@ -51,9 +56,9 @@ function GeneralCard({ zone = 'A' }) {
       label: {
         offset: 5,
         offsetY: 25,
-        style: { fill: '#000', fontSize: 14, color: '#000' },
+        style: { fontSize: 14, },
         formatter: (val) => {
-          return "";
+          return '';
           if (val === '0') {
             return '0';
           } else if (val === '1') {
@@ -68,8 +73,7 @@ function GeneralCard({ zone = 'A' }) {
       title: {
         offsetY: -44,
         style: {
-          fontSize: 26,
-          color: '#000'
+          fontSize: 26
         },
         formatter: (e) => {
           return `${data.occupied.toString()}/${data.total}`;
@@ -80,7 +84,7 @@ function GeneralCard({ zone = 'A' }) {
         style: {
           fontSize: '18px',
           lineHeight: '44px',
-          color: '#4B535E'
+          color: token.colorTextSecondary
         },
         formatter: () => 'Xe đang đỗ'
       }

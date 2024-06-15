@@ -1,13 +1,16 @@
 import { Card, Col, Flex, Image, Row, Space, Typography, theme } from 'antd';
 import dayjs from 'dayjs';
-import React from 'react';
+import React, { useMemo } from 'react';
 import IMG_DEVELOPING from '~/assets/images/developing.png';
 import CustomedTag from '~/views/components/CustomedTag';
 import { JobServices } from '~/services';
+import { EventDisplay } from './data';
 
 const eventNames = {
-  in: 'Xe vào',
-  out: 'Xe ra',
+  in: 'Xe vào bãi',
+  out: 'Xe ra bãi',
+  inSlot: 'Xe vào ô đỗ',
+  outSlot: 'Xe rời ô đỗ',
   almost_full: 'Bãi xe sấp đầy',
   parking_full: 'Bãi xe đã đầy'
 };
@@ -19,15 +22,46 @@ const personInfo = {
   phone: 'SĐT'
 };
 
+const labels = {
+  zone: 'Khu vực',
+  position: 'Vị trí',
+  department: 'Đơn vị',
+  phone: 'SĐT'
+};
+
 function EventCard({ item }) {
   const { token } = theme.useToken();
-
+  console.log('item', item);
   let { name, parkingTurn, vehicle, zone, person = {} } = item;
-
   const color = {
     primary: token.event[name][0],
     secondary: token.event[name][1]
   };
+
+  const rows = useMemo(() => {
+    const displays =
+      EventDisplay.find((el) => el.eventType === name)?.displayProps ||
+      EventDisplay[0].displayProps;
+    const rs = displays.map((display) => {
+      let value = 'Không xác định';
+      if (display.dataIndex.length > 0) {
+        value = JSON.parse(JSON.stringify(item));
+        for (let i of display.dataIndex) {
+          value = value && value[i];
+        }
+      }
+      return {
+        id: display.key,
+        label: labels[display.key],
+        value,
+        display: true
+      };
+    });
+    return rs;
+  });
+
+  console.log(rows);
+
   let rs = [];
   let i = 0;
 
@@ -70,7 +104,8 @@ function EventCard({ item }) {
 
   let isImage = false;
 
-  if (name === 'in' || name === 'out') {
+  const carEvent = ['in', 'out', 'inSlot', 'outSlot'];
+  if (carEvent.find((el) => el === name)) {
     isImage = true;
 
     if (rs.length === 0) {
@@ -80,6 +115,9 @@ function EventCard({ item }) {
         </Typography.Title>
       ];
     }
+    try {
+      rows[0]['value'] = rows[1].value.charAt(0);
+    } catch {}
   }
 
   return (
@@ -96,7 +134,7 @@ function EventCard({ item }) {
         border: `2px solid ${color.primary}`
       }}>
       <div id="eventTag" className="event-tag"></div>
-      <Space size='small' align="start" className='px-2'>
+      <Space size="small" align="start" className="px-2">
         {isImage && (
           <Space align="center" direction="vertical" size={1}>
             <Image
@@ -125,7 +163,22 @@ function EventCard({ item }) {
             style={{ color: color.primary }}>
             {eventNames[name]}
           </Typography.Title>
-          {rs.length > 0 && rs}
+          {/* {rs.length > 0 && rs} */}
+          {rows.map(
+            (row, ix) =>
+              row.display && (
+                <Row className="w-100" key={row.label + ix}>
+                  <Typography.Title
+                    level={5}
+                    style={{ fontWeight: 400 }}
+                    key={'label' + row.label + ix}>
+                    <span className="text-label">{row.label}:</span>
+                    <span>&nbsp;</span>
+                    <span> {row.value}</span>
+                  </Typography.Title>
+                </Row>
+              )
+          )}
           {/* <Typography.Text id="eventDriverName">
               <span className="label">Chủ xe: </span>
               <span className="value">{item.driver.name}</span>

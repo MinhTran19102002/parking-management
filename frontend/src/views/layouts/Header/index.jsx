@@ -7,6 +7,7 @@ import {
   Image,
   Layout,
   Modal,
+  Select,
   Space,
   Typography,
   theme
@@ -18,6 +19,7 @@ import AppContext from '~/context';
 import { useNavigate } from 'react-router-dom';
 import EmployeeForm from '~/views/pages/Main/Employee/EmployeeForm';
 import ProfileForm from '~/views/components/Form/ProfileForm';
+import LagSelect from './LagSelect';
 
 const items = [
   {
@@ -156,6 +158,7 @@ function Header({ title }) {
               </Space>
             );
           }, [state.auth, avatar])}
+          <LagSelect />
         </Space>
       </Flex>
       <Modal

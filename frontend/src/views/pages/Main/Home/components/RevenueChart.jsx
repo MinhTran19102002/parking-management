@@ -22,10 +22,15 @@ function RevenueChart({}) {
     x: 'Ngày',
     y: 'VNĐ'
   };
+  const [currTheme, setCurrTheme] = useState(state.theme);
+  useEffect(() => {
+    setCurrTheme(state.theme);
+  }, [state.theme]);
 
   const config = {
     ...defaultConfig,
     height: 200,
+    theme: currTheme,
     data,
     xField: 'date',
     yField: 'value',

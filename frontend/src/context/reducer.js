@@ -6,6 +6,14 @@ const reducer = (state, action) => {
         auth: action.payload
       };
     }
+
+    case 'theme': {
+      return {
+        ...state,
+        theme: action.payload
+      };
+    }
+
     case 'mess': {
       return {
         ...state,
