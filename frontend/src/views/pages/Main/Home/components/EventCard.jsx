@@ -104,7 +104,8 @@ function EventCard({ item }) {
 
   let isImage = false;
 
-  if (name === 'inSlot' || name === 'outSlot') {
+  const carEvent = ['in', 'out', 'inSlot', 'outSlot'];
+  if (carEvent.find((el) => el === name)) {
     isImage = true;
 
     if (rs.length === 0) {
