@@ -49,3 +49,5 @@
 /frontend/*.sw?
 /frontend/.vercel
 /frontend/yarn.lock
+
+/service-in-out/unit/video

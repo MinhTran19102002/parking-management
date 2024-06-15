@@ -20,7 +20,7 @@ const createPakingTurn = async (licenePlate, zone, position, image) => {
     }
     //tim vehicleId
     let vihicle = await vehicleModel.findOneByLicenePlate(licenePlate);
-    
+
     if (!vihicle) {
       const createVehicle = await vehicleModel.createNew({ licenePlate: licenePlate, type: 'Car' });
       vihicle = { _id: createVehicle.insertedId };
@@ -34,7 +34,7 @@ const createPakingTurn = async (licenePlate, zone, position, image) => {
         );
       }
     }
-    
+
     //tim parkingId
     const parking = await parkingModel.findOne(zone);
     // Nếu API cần random dữ liệu của position
@@ -105,6 +105,70 @@ const createPakingTurn = async (licenePlate, zone, position, image) => {
   }
 };
 
+
+const createPakingTurnUpdate = async (licenePlate, zone, position, image) => {
+  try {
+    // Nếu API cần random dữ liệu của zone
+    //tim vehicleId
+    console.log(licenePlate)
+    let vihicle = await vehicleModel.findOneByLicenePlate(licenePlate);
+
+    if (!vihicle) {
+      const createVehicle = await vehicleModel.createNew({ licenePlate: licenePlate, type: 'Car' });
+      vihicle = { _id: createVehicle.insertedId };
+
+      if (createVehicle.acknowledged == false) {
+        throw new ApiError(
+          StatusCodes.INTERNAL_SERVER_ERROR,
+          'Xe tạo không thành công',
+          'Not Created',
+          'BR_vihicle_2',
+        );
+      }
+    }
+
+    //tim parkingId
+    const parking = await parkingModel.findOne(zone);
+    // Nếu API cần random dữ liệu của position
+
+
+    // them anh o day
+    const now = Date.now();
+    const data = {
+      vehicleId: vihicle._id.toString(),
+      parkingId: parking._id.toString(),
+      image: image,
+      fee: 20000,
+      start: now,
+      _destroy: false,
+    };
+
+    let createPakingTurn = await parkingTurnModel.createNewV2(data);
+    if (createPakingTurn.acknowledged == false) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Lượt đỗ tạo không thành công',
+        'Not Created',
+        'BR_parkingTurn_2',
+      );
+    }
+
+    await eventModel.createEvent({
+      name: 'in',
+      eventId: createPakingTurn.insertedId,
+      createdAt: now,
+    });
+    // createPakingTurn.position = position
+    return createPakingTurn;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    }
+  }
+};
+
 const outPaking = async (licenePlate) => {
   try {
     //tim vehicleId
@@ -121,7 +185,7 @@ const outPaking = async (licenePlate) => {
     //
     const now = Date.now();
     const filter = { vehicleId: vihicle._id, _destroy: false };
-    const outPaking = await parkingTurnModel.updateOut(filter, now);
+    const outPaking = await parkingTurnModel.updateOutV2(filter, now);
     if (outPaking.acknowledged == false) {
       throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Error');
     }
@@ -267,7 +331,7 @@ const exportEvent = async (req, res) => {
     // Thêm dòng tiêu đề
     worksheet.columns = [
       { key: 'stt', width: 15 },
-      { key: 'name', width: 15},
+      { key: 'name', width: 15 },
       { key: 'person.name', width: 15 },
       { key: 'person.email', width: 30 },
       { key: 'person.phone', width: 15 },
@@ -309,7 +373,7 @@ const exportEvent = async (req, res) => {
         email = item.person.email;
         phone = item.person.phone;
       }
-      if(item.name == 'out') {
+      if (item.name == 'out') {
         fee = item.parkingTurn.fee + ' VND'
       }
       worksheet.addRow([
@@ -340,6 +404,95 @@ const exportEvent = async (req, res) => {
   }
 };
 
+const carInSlot = async (zone, position) => {
+  try {
+    let parkingTurnId = null
+    const isOut = false
+    const parking = await parkingModel.findOne(zone)
+    let slot = parking.slots.find((element) => element.position === position)
+    if (slot.isBlank == false) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Slot da co xe dau',
+        'Not Found',
+        'BR_event_1',
+      );
+    }
+
+    const parkingHollow = await parkingModel.findOne('O')
+    if (parkingHollow.slots.length == 0) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Khong co xe nao chua co cho dau ca',
+        'Not Found',
+        'BR_event_1',
+      );
+    }
+    if (parkingHollow.slots.length == 1) {
+      parkingTurnId = parkingHollow.slots[0]
+      const updateCarHollow = await parkingTurnModel.carOutHollow('O', parkingTurnId)
+      const updateParkingTurn = await parkingTurnModel.updateParkingTurn(parking._id, position, parkingTurnId)
+      if (updateCarHollow.momodifiedCountdi == 0) {
+        throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe chua cap nhat ra khoi bai chua dau', 'Not Updated', 'BR_parking_3');
+      }
+      const now = Date.now();
+      await eventModel.createEvent({
+        name: 'inSlot',
+        eventId: parkingTurnId,
+        createdAt: now,
+      });
+    }
+    const updateSlot = await parkingTurnModel.updateSlot(zone, position, parkingTurnId, isOut)
+
+
+    return updateSlot
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+}
+
+const carOutSlot = async (zone, position) => {
+  try {
+    let parkingTurnId = null
+    const isOut = true
+    const parking = await parkingModel.findOne(zone)
+    let slot = parking.slots.find((element) => element.position === position)
+    if (slot.isBlank == true) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Slot khong co xe dau',
+        'Not Found',
+        'BR_event_1',
+      );
+    }
+    const now = Date.now();
+    const parkingHollow = await parkingModel.findOne('O')
+    const updateSlot = await parkingTurnModel.updateSlot(zone, position, parkingTurnId, isOut)
+    const updateCarHollow = await parkingTurnModel.carInHollow('O', slot.parkingTurnId)
+    if (updateCarHollow.momodifiedCountdi == 0) {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe chua cap nhat vao bai chua dau', 'Not Updated', 'BR_parking_3');
+    }
+    const updateParkingTurn = await parkingTurnModel.updateParkingTurn(parkingHollow._id, position, slot.parkingTurnId)
+
+
+    if (updateParkingTurn.momodifiedCountdi == 0) {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'chua cap nhat xuat dau', 'Not Updated', 'BR_parking_3');
+    }
+    await eventModel.createEvent({
+      name: 'outSlot',
+      eventId: slot.parkingTurnId,
+      createdAt: now,
+    });
+    return updateSlot
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+}
+
 export const parkingTurnService = {
   createPakingTurn,
   outPaking,
@@ -348,4 +501,7 @@ export const parkingTurnService = {
   getEvent,
   exportEvent,
   getByDriver,
+  createPakingTurnUpdate,
+  carInSlot,
+  carOutSlot,
 };

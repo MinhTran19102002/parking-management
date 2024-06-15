@@ -63,10 +63,49 @@ const createNewWithoutZone = async (req, res, next) => {
   }
 }
 
+const createNewZone = async (req, res, next) => {
+  try {
+    
+    let file= await uploadImageHandler.uploadImageSingle(req, res, 'parkingTurn')
+    let zone = 'O';
+    let position = '';
+    let image = file.filename;
+    let licenePlate = req.body.licenePlate
+    // Dieu huong sang tang Service
+    const createUser = await parkingTurnService.createPakingTurnUpdate(licenePlate, zone, position, image);
+    console.log('loi o day')
+    server.io.emit('notification-parking',{ message:  'Car enters the parking lot'})
+    res.status(StatusCodes.CREATED).json(createUser);
+  } catch (error) {
+    next(error);
+  }
+}
+
+
+// const createPakingOrOut = async (req, res, next) => {
+//   try {
+    
+//     let file= await uploadImageHandler.uploadImageSingle(req, res, 'parkingTurn')
+//     let zone = 'O';
+//     let position = '';
+//     let image = file.filename;
+//     let licenePlate = req.body.licenePlate
+//     // Dieu huong sang tang Service
+//     const createUser = await parkingTurnService.createPakingTurnUpdate(licenePlate, zone, position, image);
+//     console.log('loi o day')
+//     server.io.emit('notification-parking',{ message:  'Car enters the parking lot'})
+//     res.status(StatusCodes.CREATED).json(createUser);
+//   } catch (error) {
+//     next(error);
+//   }
+// }
+
+
 const outPaking = async (req, res, next) => {
   try {
-    console.log(req)
     const licenePlate = req.body.licenePlate;
+    console.log(licenePlate)
+
     // Dieu huong sang tang Service
     const outPaking = await parkingTurnService.outPaking(licenePlate);
     server.io.emit('notification-parking',{ message:  'Car goes to the parking lot'})
@@ -130,6 +169,35 @@ const exportEvent = async (req, res, next) => {
   }
 };
 
+
+const carInSlot = async (req, res, next) => {
+  try {
+    const zone = req.body.zone;
+    const position = req.body.position;
+
+    // Dieu huong sang tang Service
+    const carInSlot = await parkingTurnService.carInSlot(zone, position);
+    // server.io.emit('notification-parking',{ message:  'Car goes to the parking lot'})
+    res.status(StatusCodes.OK).json(carInSlot);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const carOutSlot = async (req, res, next) => {
+  try {
+    
+    const zone = req.body.zone;
+    const position = req.body.position;
+    // Dieu huong sang tang Service
+    const outPaking = await parkingTurnService.carOutSlot(zone, position);
+    server.io.emit('notification-parking',{ message:  'Car goes to the parking lot'})
+    res.status(StatusCodes.OK).json(outPaking);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const parkingTurnController = {
   createNew,
   createNewWithoutPosition,
@@ -140,4 +208,8 @@ export const parkingTurnController = {
   getEvent,
   exportEvent,
   getByDriver,
+  createNewZone,
+  carInSlot, 
+  carOutSlot,
+  // createPakingOrOut,
 };

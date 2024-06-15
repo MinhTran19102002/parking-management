@@ -22,7 +22,10 @@ Router.route('/createPakingTurnWithoutPosition')
   .post(parkingTurnController.createNewWithoutPosition)
 
 Router.route('/createPakingTurnWithoutZoneAndPosition')
-  .post(parkingTurnController.createNewWithoutZone)
+  .post(parkingTurnController.createNewZone)
+
+// Router.route('/createPakingOrOut')
+//   .post(parkingTurnController.createPakingOrOut)
 
 
 Router.route('/outPaking')
@@ -43,5 +46,12 @@ Router.route('/event/export')
 
 Router.route('/event/getByDriver')
   .get(parkingTurnController.getByDriver)
+
+
+Router.route('/carInSlot')
+  .post(parkingTurnController.carInSlot)
+
+Router.route('/carOutSlot')
+  .post(parkingTurnController.carOutSlot)
 
 export const parkingTurnRoute = Router

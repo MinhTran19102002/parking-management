@@ -10,7 +10,7 @@ const PARKINGTURN_COLLECTION_NAME = 'parkingTurn';
 const PARKINGTURN_COLLECTION_SCHEMA = Joi.object({
   vehicleId: Joi.string().required().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE),
   parkingId: Joi.string().required().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE),
-  position: Joi.string().min(4).max(6).trim().strict().required(),
+  position: Joi.string().max(6).trim().strict().optional(),
   image: Joi.string(),
   fee: Joi.number().integer().multiple(1000).required().min(1000),
   start: Joi.date().timestamp('javascript').default(null),
@@ -67,6 +67,43 @@ const createNew = async (data) => {
   }
 };
 
+const createNewV2 = async (data) => {
+  try {
+    const validateData = await validateBeforOperate(data);
+    validateData.start = data.start
+    validateData.vehicleId = new ObjectId(validateData.vehicleId);
+    validateData.parkingId = new ObjectId(validateData.parkingId);
+    const checkvehicleId = await findvehicleId(validateData);
+    if (checkvehicleId) {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe đã ở trong bãi', 'Error', 'BR_vihicle_5');
+    }
+    const createNew = await GET_DB()
+      .collection(PARKINGTURN_COLLECTION_NAME)
+      .insertOne(validateData);
+    if (createNew.acknowledged == false) {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Lượt đỗ tạo không thành công', 'Not Created', 'BR_parkingTurn_2');
+    }
+    const update = await GET_DB()
+      .collection(parkingModel.PARKING_COLLECTION_NAME)
+      .updateOne(
+        { _id: new ObjectId(validateData.parkingId) },
+        {
+          $addToSet: {
+            slots: createNew.insertedId,
+          },
+        },
+      );
+    if (update.acknowledged == false) {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Bãi cập nhật không thành công', 'Not Updated', 'BR_parking_3');
+    }
+    return createNew;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
 const updateOut = async (filter, now) => {
   try {
     const timeOut = now;
@@ -79,7 +116,7 @@ const updateOut = async (filter, now) => {
       const timeDifference = dateOut - dateIn;
       const hoursDifference = timeDifference / (1000 * 60 * 60);
       if (hoursDifference > 10) {
-        fee = fee + Math.floor(hoursDifference / 10)*10000
+        fee = fee + Math.floor(hoursDifference / 10) * 10000
       }
     }
     else {
@@ -111,6 +148,71 @@ const updateOut = async (filter, now) => {
   }
 };
 
+const carOutHollow = async (zone, parkingTurnid) => {
+  const update = await GET_DB()
+      .collection(parkingModel.PARKING_COLLECTION_NAME)
+      .updateOne(
+        { zone: zone },
+        {
+          $pull: { slots: new ObjectId(parkingTurnid) }
+        },
+      );
+  return update
+}
+
+const carInHollow = async (zone, parkingTurnid) => {
+  const update = await GET_DB()
+      .collection(parkingModel.PARKING_COLLECTION_NAME)
+      .updateOne(
+        { zone: zone },
+        {
+          $addToSet: { slots: new ObjectId(parkingTurnid) }
+        },
+      );
+  return update
+}
+
+const updateOutV2 = async (filter, now) => {
+  try {
+    const timeOut = now;
+    const find = await GET_DB().collection(PARKINGTURN_COLLECTION_NAME).findOne(filter);
+    let fee
+    if (find) {
+      fee = find.fee
+      const dateIn = new Date(find.start);
+      const dateOut = new Date(timeOut);
+      const timeDifference = dateOut - dateIn;
+      const hoursDifference = timeDifference / (1000 * 60 * 60);
+      if (hoursDifference > 10) {
+        fee = fee + Math.floor(hoursDifference / 10) * 10000
+      }
+    }
+    else {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe không ở trong bãi', 'Error', 'BR_vihicle_5_1');
+    }
+    const updateOut = await GET_DB()
+      .collection(PARKINGTURN_COLLECTION_NAME)
+      .findOneAndUpdate(filter, { $set: { end: timeOut, _destroy: true, fee: fee } });
+    const update = await GET_DB()
+      .collection(parkingModel.PARKING_COLLECTION_NAME)
+      .updateOne(
+        { _id: new ObjectId(updateOut.parkingId) },
+        {
+          $pull: { slots: new ObjectId(updateOut._id) }
+        },
+      );
+    if (update.momodifiedCountdi == 0) {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Bãi cập nhật không thành công', 'Not Updated', 'BR_parking_3');
+    }
+    return updateOut;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+
 const findvehicleId = async (data) => {
   try {
     const findvehicleId = await GET_DB()
@@ -127,6 +229,7 @@ const findvehicleId = async (data) => {
 const findPosition = async (data) => {
   try {
     // const findPosition = await GET_DB().collection(PARKINGTURN_COLLECTION_NAME).findOne({ 'parkingId' : data.parkingId, 'position' : data.position, '_destroy' : false })
+    console.log(data)
     const findPosition = await GET_DB()
       .collection(parkingModel.PARKING_COLLECTION_NAME)
       .findOne({
@@ -337,6 +440,62 @@ const parseDate = (str) => {
   return null; // Trả về null nếu chuỗi không hợp lệ
 };
 
+const updateSlot =  async (zone, position, parkingTurnId, isOut) => {
+  try {
+    let occupied
+    if(isOut){
+      occupied = -1
+    }else {
+      occupied = 1
+    }
+    const update = await GET_DB()
+      .collection(parkingModel.PARKING_COLLECTION_NAME)
+      .updateOne(
+        { zone: zone, 'slots.position': position },
+        {
+          $inc: { occupied: occupied },
+          $set: {
+            'slots.$.parkingTurnId': parkingTurnId,
+            'slots.$.isBlank': isOut,
+          },
+        },
+      );
+    if (update.momodifiedCountdi == 0) {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Bãi cập nhật không thành công', 'Not Updated', 'BR_parking_3');
+    }
+    return update;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+}
+
+
+const updateParkingTurn =  async (parkingId, position, parkingTurnId) => {
+  try {
+    const update = await GET_DB()
+      .collection(parkingTurnModel.PARKINGTURN_COLLECTION_NAME)
+      .updateOne(
+        { _id:new ObjectId(parkingTurnId)  },
+        {
+          $set: {
+            'position': position,
+            'parkingId': new ObjectId(parkingId),
+          },
+        },
+      );
+    if (update.momodifiedCountdi == 0) {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Cap nhat luot dau khong thanh cong', 'Not Updated', 'BR_parking_3');
+    }
+    return updateOut;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+}
+
 export const parkingTurnModel = {
   PARKINGTURN_COLLECTION_NAME,
   PARKINGTURN_COLLECTION_SCHEMA,
@@ -344,4 +503,11 @@ export const parkingTurnModel = {
   updateOut,
   getVehicleInOutNumber,
   getRevenue,
+  createNewV2,
+  updateOutV2,
+  findPosition,
+  updateSlot,
+  carOutHollow,
+  updateParkingTurn,
+  carInHollow,
 };
