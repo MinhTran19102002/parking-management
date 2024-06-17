@@ -1,6 +1,6 @@
 import { Button, Col, Drawer, Form, Radio, Row, Select, Switch } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
-import { SettingOutlined } from '@ant-design/icons';
+import Icon, { SettingOutlined } from '@ant-design/icons';
 import { MoonOutlined, SunOutlined } from '~/views/components/Icons';
 import AppContext from '~/context';
 import { useForm } from 'antd/es/form/Form';
@@ -19,13 +19,18 @@ function LagSelect({}) {
   useEffect(() => {
     console.log(state.theme);
     setInitValues({
-      mode: state.theme === 'light',
+      mode: state.theme === 'light'
     });
   }, [open]);
 
   return (
     <>
-      <Button icon={<SettingOutlined />} onClick={() => setOpen(!open)} />
+      <Button
+        type="text"
+        size="large"
+        icon={<Icon component={SettingOutlined} />}
+        onClick={() => setOpen(!open)}
+      />
       <Drawer
         title="Cài đặt"
         placement={'right'}

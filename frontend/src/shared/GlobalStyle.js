@@ -173,4 +173,8 @@ export default createGlobalStyle`
         bottom: 0;
         transform: rotate(45deg);
     }
+
+    .k-tilelayout {
+        background-color: transparent;
+    }
 `;

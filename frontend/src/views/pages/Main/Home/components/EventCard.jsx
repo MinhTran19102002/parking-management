@@ -25,18 +25,19 @@ const personInfo = {
 const labels = {
   zone: 'Khu vực',
   position: 'Vị trí',
-  department: 'Đơn vị',
-  phone: 'SĐT'
+  license: 'Biển số xe'
 };
+
+const vehicleEvents = ['in', 'out', 'inSlot', 'outSlot'];
 
 function EventCard({ item }) {
   const { token } = theme.useToken();
-  console.log('item', item);
   let { name, parkingTurn, vehicle, zone, person = {} } = item;
   const color = {
     primary: token.event[name][0],
     secondary: token.event[name][1]
   };
+  let subInfo = null;
 
   const rows = useMemo(() => {
     const displays =
@@ -60,64 +61,18 @@ function EventCard({ item }) {
     return rs;
   });
 
-  console.log(rows);
-
-  let rs = [];
-  let i = 0;
-
-  //get Driver info: Department and job
-  if (person && person.driver) {
-    const { driver } = person;
-    person = {
-      ...person,
-      ...driver
-    };
-    delete person.driver;
-  }
-
-  rs.push(
-    <Typography.Title level={5} className="my-0" key={'info' + 'zone'}>
-      <span className="label">Khu vực</span>
-      <span className="value">
-        {': '} {item.zone}
-      </span>
-    </Typography.Title>
-  );
-
-  for (const [key, value] of Object.entries(personInfo)) {
-    let xValue = person && person[key];
-    if (xValue) {
-      if (key === 'job') {
-        xValue = JobServices.getTextByValue(xValue);
-      }
-      rs.push(
-        <Typography.Text key={'info' + i}>
-          <span className="label">{value}</span>
-          <span className="value">
-            {': '} {xValue}
-          </span>
-        </Typography.Text>
-      );
-    }
-    i++;
-  }
-
   let isImage = false;
-
-  const carEvent = ['in', 'out', 'inSlot', 'outSlot'];
-  if (carEvent.find((el) => el === name)) {
+  if (vehicleEvents.find((el) => el === name)) {
     isImage = true;
+    const isVisting = !person;
 
-    if (rs.length === 0) {
-      rs = [
+    if (isVisting) {
+      subInfo = [
         <Typography.Title level={5} key={'vanglaikhach'}>
           Khách vãng lai
         </Typography.Title>
       ];
     }
-    try {
-      rows[0]['value'] = rows[1].value.charAt(0);
-    } catch {}
   }
 
   return (
@@ -150,9 +105,6 @@ function EventCard({ item }) {
               preview={false}
               style={{ background: '#FFF', width: 120, height: 120 }}
             />
-            <Typography.Text id="eventLisencePlate" strong={'true'}>
-              {vehicle?.licenePlate}
-            </Typography.Text>
           </Space>
         )}
         <Space align="start" direction="vertical" size={1}>
@@ -163,38 +115,22 @@ function EventCard({ item }) {
             style={{ color: color.primary }}>
             {eventNames[name]}
           </Typography.Title>
-          {/* {rs.length > 0 && rs} */}
           {rows.map(
             (row, ix) =>
               row.display && (
                 <Row className="w-100" key={row.label + ix}>
-                  <Typography.Title
+                  <Typography.Text
                     level={5}
-                    style={{ fontWeight: 400 }}
+                    style={{ fontWeight: 400, fontSize: 14 }}
                     key={'label' + row.label + ix}>
                     <span className="text-label">{row.label}:</span>
                     <span>&nbsp;</span>
-                    <span> {row.value}</span>
-                  </Typography.Title>
+                    <span>{row.value}</span>
+                  </Typography.Text>
                 </Row>
               )
           )}
-          {/* <Typography.Text id="eventDriverName">
-              <span className="label">Chủ xe: </span>
-              <span className="value">{item.driver.name}</span>
-            </Typography.Text>
-            <Typography.Text id="eventDriverJob">
-              <span className="label">Nghề nghiệp: </span>
-              <span className="value">{item.driver.job}</span>
-            </Typography.Text>
-            <Typography.Text id="eventDriverDepartment">
-              <span className="label">Đơn vị: </span>
-              <span className="value">{item.driver.department}</span>
-            </Typography.Text>
-            <Typography.Text id="eventDriverPhone">
-              <span className="label">SĐT: </span>
-              <span className="value">{item.driver.phone}</span>
-            </Typography.Text> */}
+          {subInfo}
         </Space>
       </Space>
     </Card>
