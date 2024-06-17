@@ -6,7 +6,18 @@ import { ConfigProvider, theme } from 'antd';
 import vi_VN from 'antd/locale/vi_VN';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AppContext from './context';
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      refetchOnReconnect: true,
+      retry: 1,
+      staleTime: 5 * (60 * 1000), // 5 mins
+      cacheTime: 10 * (60 * 1000) // 10 mins
+    }
+  }
+});
 
 function GlobalConfig({}) {
   const { state } = useContext(AppContext);
