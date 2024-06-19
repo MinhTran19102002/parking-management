@@ -71,7 +71,7 @@ def carInOut(url):
 @app.route('/service/carInOut')
 def apiCarInOut():
     # url = "./unit/dectect1.mp4"
-    url = "./unit/CAM_ngoai_full.mp4"
+    url = "./unit/video/CAM_ngoai_full.mp4"
     response =  Response( carInOut(url), mimetype="multipart/x-mixed-replace; boundary=frame" )
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
@@ -91,7 +91,8 @@ def carInOutSlot(url):
 # API xe ra vao trong slot
 @app.route('/service/carInOutSlot')
 def apiCarInOutSlot():
-    url = "./unit/CAM_trong_full.mp4"
+    url = "./unit/video/CAM_trong_full.mp4"
+    # url = "./unit/video/cam.mp4"
     # url = 0
     response =  Response( carInOutSlot(url), mimetype="multipart/x-mixed-replace; boundary=frame" )
     response.headers['Access-Control-Allow-Origin'] = '*'

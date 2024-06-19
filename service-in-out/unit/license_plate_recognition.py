@@ -268,24 +268,24 @@ def car_into_slot(img, positon, zone):
             cv2.putText(img,str('3'),(175,436),cv2.FONT_HERSHEY_COMPLEX,0.5,(0,0,255),1)
         global a1_defl , a2_defl, a3_defl
         print(a1_defl)
-        if a1 != a1_defl:
-            a1_defl = a1
-            url = ''
-            if a1 == 1:
-                url = "http://localhost:8010/api/parkingTurn/carInSlot"
-            else:
-                url = "http://localhost:8010/api/parkingTurn/carOutSlot"
-            data = {
-                    'zone': zone,
-                    'position': positon[0]
-                }
-            response = requests.post(url, json=data)
+        # if a1 != a1_defl:
+        #     a1_defl = a1
+        #     url = ''
+        #     if a1 == 1:
+        #         url = "http://localhost:8010/api/parkingTurn/carInSlot"
+        #     else:
+        #         url = "http://localhost:8010/api/parkingTurn/carOutSlot"
+        #     data = {
+        #             'zone': zone,
+        #             'position': positon[0]
+        #         }
+        #     response = requests.post(url, json=data)
 
-            # Kiểm tra kết quả trả về
-            if response.status_code == 200:
-                print('Success:', response.json())
-            else:
-                print('Failed:', response.status_code, response.text)
+        #     # Kiểm tra kết quả trả về
+        #     if response.status_code == 200:
+        #         print('Success:', response.json())
+        #     else:
+        #         print('Failed:', response.status_code, response.text)
         return cv2.imencode('.jpg', img)[1].tobytes()
 
     except:

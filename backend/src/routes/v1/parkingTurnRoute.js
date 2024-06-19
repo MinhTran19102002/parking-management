@@ -54,4 +54,9 @@ Router.route('/carInSlot')
 Router.route('/carOutSlot')
   .post(parkingTurnController.carOutSlot)
 
+
+
+Router.route('/event/getByFilter')   // 
+  .get(parkingTurnController.getByFilter)
+
 export const parkingTurnRoute = Router
