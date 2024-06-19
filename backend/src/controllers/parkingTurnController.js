@@ -198,6 +198,18 @@ const carOutSlot = async (req, res, next) => {
   }
 };
 
+const getByFilter = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    const getRevenue = await parkingTurnService.getByFilter(req, res);
+
+    res.status(StatusCodes.OK).json(getRevenue);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 export const parkingTurnController = {
   createNew,
   createNewWithoutPosition,
@@ -211,5 +223,6 @@ export const parkingTurnController = {
   createNewZone,
   carInSlot, 
   carOutSlot,
+  getByFilter,
   // createPakingOrOut,
 };

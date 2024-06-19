@@ -261,7 +261,13 @@ const getEvent = async (req, res) => {
   // const pageSize = req.query.pageSize;
   const filter = req.query;
   try {
-    const findEvent = await eventModel.findEvent(filter);
+    let startDay
+    let endDay
+    if (req.query.startDay !== undefined && req.query.endDay !== undefined) {
+      startDay = moment(req.query.startDay, 'DD/MM/YYYY').format('DD/MM/YYYY');
+      endDay = moment(req.query.endDay, 'DD/MM/YYYY').clone().add(1, 'days').format('DD/MM/YYYY');
+    }
+    const findEvent = await eventModel.findEvent(filter, startDay, endDay);
     if (findEvent.acknowledged == false) {
       throw new ApiError(
         StatusCodes.INTERNAL_SERVER_ERROR,
@@ -277,6 +283,8 @@ const getEvent = async (req, res) => {
     else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
   }
 };
+
+
 
 
 const getByDriver = async (req, res) => {
@@ -437,6 +445,8 @@ const carInSlot = async (zone, position) => {
       }
       const now = Date.now();
       await eventModel.createEvent({
+        zone: zone,
+        position: position,
         name: 'inSlot',
         eventId: parkingTurnId,
         createdAt: now,
@@ -481,6 +491,8 @@ const carOutSlot = async (zone, position) => {
       throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'chua cap nhat xuat dau', 'Not Updated', 'BR_parking_3');
     }
     await eventModel.createEvent({
+      zone: zone,
+      position: position,
       name: 'outSlot',
       eventId: slot.parkingTurnId,
       createdAt: now,
@@ -493,6 +505,29 @@ const carOutSlot = async (zone, position) => {
   }
 }
 
+const getByFilter = async (req, res) => {
+  // const pageIndex = req.query.pageIndex;
+  // const pageSize = req.query.pageSize;
+  const getByFilter = req.query;
+  try {
+    const getByFilter = await eventModel.findEvent(filter);
+    if (getByFilter.acknowledged == false) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Không tìm thấy sự kiện',
+        'Not Found',
+        'BR_event_1',
+      );
+    }
+    return getByFilter;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+
 export const parkingTurnService = {
   createPakingTurn,
   outPaking,
@@ -504,4 +539,5 @@ export const parkingTurnService = {
   createPakingTurnUpdate,
   carInSlot,
   carOutSlot,
+  getByFilter,
 };

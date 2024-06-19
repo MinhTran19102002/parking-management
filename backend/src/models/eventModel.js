@@ -11,6 +11,7 @@ const EVENT_COLLECTION_NAME = 'event';
 const EVENT_COLLECTION_SCHEMA = Joi.object({
   name: Joi.string().required().min(1).max(50).trim().strict(),
   zone: Joi.string().optional().min(1).max(2).trim().strict(),
+  position: Joi.string().max(6).trim().strict().optional(),
   eventId: Joi.string().optional().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE),
   createdAt: Joi.date().timestamp('javascript').default(null),
   _destroy: Joi.boolean().default(false),
@@ -38,10 +39,53 @@ const createEvent = async (data) => {
   }
 };
 
-const findEvent = async ({ pageSize, pageIndex, ...params }) => {
+const findEvent = async ({ pageSize, pageIndex, startTime, endTime, ...params }, startDay, endDay) => {
   // Construct the regular expression pattern dynamically
   let paramMatch = {};
+
+
+  for (let [key, value] of Object.entries(params)) {
+    let regex;
+    if (key == 'licenePlate') {
+      key = 'vehicle.' + key; //driver.vehicle.licenePlate
+    }
+    if(key !== 'startDay' && key !== 'endDay' ){
+      regex = {
+        [key]: new RegExp(`^${value}`, 'i'),
+      };
+    }
+    
+    Object.assign(paramMatch, regex);
+  }
   try {
+    console.log(paramMatch)
+    let pipeline = {};
+    let pipelineDay = {};
+
+    if (startTime !== undefined && endTime !== undefined) {
+      const startHour = parseInt(startTime, 10); // Chuyển đổi từ chuỗi sang số
+      const endHour = parseInt(endTime, 10);
+      pipeline = {
+        time: {
+          $gte: startHour,
+          $lt: endHour,
+        },
+      }
+    }
+    if (startDay !== undefined && endDay !== undefined) {
+      console.log( Date.parse(parseDate(startDay)))
+      const start = Date.parse(parseDate(startDay)) + 7 * 60 * 60 * 1000;
+      const end = Date.parse(parseDate(endDay)) + 7 * 60 * 60 * 1000;
+      pipelineDay = {
+        $match: {
+          createdAt: {
+            $gte: start,
+            $lte: end,
+          },
+        },
+      }
+    }
+    console.log(pipelineDay)
     const event = await GET_DB()
       .collection(EVENT_COLLECTION_NAME)
       .aggregate([
@@ -50,6 +94,24 @@ const findEvent = async ({ pageSize, pageIndex, ...params }) => {
             createdAt: -1, // sắp xếp theo thứ tự giảm dần của trường thoi_gian
           },
         },
+        pipelineDay
+        ,
+        {
+          $addFields: {
+            timezoneOffset: { $literal: new Date().getTimezoneOffset() * 60 * 1000 },
+          },
+        },
+        {
+          $addFields: {
+            time: { $hour: { $subtract: [{ $toDate: '$createdAt' }, '$timezoneOffset'] } },
+          },
+        },
+        {
+          $match: {
+            ...pipeline,
+          },
+        },
+
         {
           $lookup: {
             from: parkingTurnModel.PARKINGTURN_COLLECTION_NAME,
@@ -58,9 +120,6 @@ const findEvent = async ({ pageSize, pageIndex, ...params }) => {
             as: 'parkingTurn',
           },
         },
-        // {
-        //   $unwind: '$parkingTurn',
-        // },
         {
           $unwind: {
             path: '$parkingTurn',
@@ -75,9 +134,6 @@ const findEvent = async ({ pageSize, pageIndex, ...params }) => {
             as: 'vehicle',
           },
         },
-        // {
-        //   $unwind: '$vehicle',
-        // },
         {
           $unwind: {
             path: '$vehicle',
@@ -113,9 +169,6 @@ const findEvent = async ({ pageSize, pageIndex, ...params }) => {
             as: 'parking',
           },
         },
-        // {
-        //   $unwind: '$parking',
-        // },
         {
           $unwind: {
             path: '$parking',
@@ -123,10 +176,24 @@ const findEvent = async ({ pageSize, pageIndex, ...params }) => {
           },
         },
         {
+          $match: {
+            ...paramMatch,
+          },
+        },
+        // {
+        //   $addFields: {
+        //     date: { $toDate: "$createAt" }
+        //   }
+        // },
+
+        
+        
+        {
           $project: {
             _id: 0,
             name: 1,
             createdAt: 1,
+            time: 1,
             // zone: '$parking.zone',
             zone: {
               $ifNull: ['$parking.zone', '$zone'],
@@ -149,6 +216,7 @@ const findEvent = async ({ pageSize, pageIndex, ...params }) => {
         },
       ])
       .toArray();
+
     if (event.person) {
       delete event.person.driver;
       delete event.person.createdAt;
@@ -159,6 +227,8 @@ const findEvent = async ({ pageSize, pageIndex, ...params }) => {
     let totalPage = 1;
     let newEvent = event;
 
+
+    // console.log(pageSize)
     if (pageSize && pageIndex) {
       totalPage = Math.ceil(totalCount / pageSize);
       newEvent = newEvent.slice((pageIndex - 1) * pageSize, pageIndex * pageSize);
@@ -173,6 +243,18 @@ const findEvent = async ({ pageSize, pageIndex, ...params }) => {
   }
 };
 
+const parseDate = (str) => {
+  const parts = str.split('/');
+  if (parts.length === 3) {
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1] - 1, 10); // Trừ 1 vì tháng bắt đầu từ 0
+    const year = parseInt(parts[2], 10);
+    if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
+      return new Date(year, month, day);
+    }
+  }
+  return null; // Trả về null nếu chuỗi không hợp lệ
+};
 
 const getByDriver = async (phone) => {
   // Construct the regular expression pattern dynamically
