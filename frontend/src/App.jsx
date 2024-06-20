@@ -89,8 +89,6 @@ function App() {
   const { token } = theme.useToken();
 
   DayService.setup();
-  i18nConfig();
-
   useEffect(() => {
     if (mess) {
       const { type, content, duration = 3 } = mess;

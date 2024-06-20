@@ -1,5 +1,5 @@
 {
-  "namePage": "Smart Security WTC Tower",
+  "namePage": "Parking Management",
   "version": "Version",
   "camera": {
     "type": {
@@ -7,5 +7,11 @@
       "cam360": "Camera 360",
       "normal": "Normal"
     }
-  }
+  },
+  "rangeDate": "Range Date",
+  "position": "Posotion",
+  "licenePlate": "Licene Plate",
+  "timePickerRange": "Time range",
+  "personName": "Name",
+  "eventName": "Tên sự kiện"
 }

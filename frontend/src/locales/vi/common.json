@@ -1,11 +1,17 @@
 {
-  "namePage": "Smart Security WTC Tower",
-  "version": "Version",
+  "namePage": "Parking Management",
+  "version": "Phiên bản",
   "camera": {
     "type": {
       "title": "Loại",
       "cam360": "Camera 360",
       "normal": "Thường"
     }
-  }
+  },
+  "position": "Vị trí",
+  "licenePlate": "Biển số xe",
+  "rangeDate": "Khoảng thời gian",
+  "timePickerRange": "Thời điểm",
+  "personName": "Tên",
+  "eventName": "Tên sự kiện"
 }

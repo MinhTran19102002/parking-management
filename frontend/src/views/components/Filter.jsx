@@ -1,6 +1,7 @@
 import { Col, DatePicker, Form, Input, Select, Space, TimePicker, Typography } from 'antd';
 import dayjs from 'dayjs';
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const getValue = (name, values, format) => {
   let rs = values[name];
@@ -10,7 +11,8 @@ const getValue = (name, values, format) => {
         rs = [dayjs(values?.startDay, format), dayjs(values?.endDay, format)];
       break;
     case 'timePickerRange':
-      if (values.startTime && values.endTime) rs = [values?.startTime, values?.endTime];
+      if (values.startTime && values.endTime)
+        rs = [dayjs(values?.startTime, format), dayjs(values?.endTime, format)];
       break;
   }
 
@@ -26,25 +28,23 @@ const onSubmit = (values = {}) => {
 };
 
 function Filter({ filter, onChange, filterList = [] }) {
-  useEffect(() => {}, [JSON.stringify(filter)]);
-
+  const { t: lag, i18n } = useTranslation();
   const onChangeItem = (name, value) => {
     let newValue = { [name]: value };
-    if (value)
-      switch (name) {
-        case 'rangeDate':
-          newValue = {
-            startDay: value[0],
-            endDay: value[1]
-          };
-          break;
-        case 'timePickerRange':
-          newValue = {
-            startTime: value[0],
-            endTime: value[1]
-          };
-          break;
-      }
+    switch (name) {
+      case 'rangeDate':
+        newValue = {
+          startDay: value[0],
+          endDay: value[1]
+        };
+        break;
+      case 'timePickerRange':
+        newValue = {
+          startTime: value[0],
+          endTime: value[1]
+        };
+        break;
+    }
     onChange(onSubmit({ ...filter, ...newValue }));
   };
   return (
@@ -56,7 +56,7 @@ function Filter({ filter, onChange, filterList = [] }) {
         };
         return (
           <Space key={name} style={{ marginLeft: index && 16 }} direction="vertical">
-            <Typography.Text>{item.name}</Typography.Text>
+            <Typography.Text>{lag('common:' + item.name)}</Typography.Text>
             <InputRender onChange={(value) => onChangeItem(name, value)} item={item} {...config} />
           </Space>
         );

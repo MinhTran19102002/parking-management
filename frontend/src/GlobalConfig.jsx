@@ -6,6 +6,10 @@ import { ConfigProvider, theme } from 'antd';
 import vi_VN from 'antd/locale/vi_VN';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import AppContext from './context';
+import { I18nextProvider } from 'react-i18next';
+import i18next from './i18n';
+import { getLang } from './config.js';
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -30,10 +34,12 @@ function GlobalConfig({}) {
   return (
     <BrowserRouter>
       <ConfigProvider locale={vi_VN} {...customedAntdTheem}>
-        <QueryClientProvider client={queryClient}>
-          <CustomAntdTheme />
-          <App />
-        </QueryClientProvider>
+        <I18nextProvider i18n={i18next}>
+          <QueryClientProvider client={queryClient}>
+            <CustomAntdTheme />
+            <App />
+          </QueryClientProvider>
+        </I18nextProvider>
       </ConfigProvider>
     </BrowserRouter>
   );
