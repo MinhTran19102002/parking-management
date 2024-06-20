@@ -11,7 +11,6 @@ function Sider({ routes, ...props }) {
   const navigate = useNavigate();
   const [current, setCurrent] = useState({});
   const [collapsed, setCollapsed] = useState(false);
-  console.log(token);
 
   const handleChangePage = ({ item }) => {
     navigate(item.props.path);
@@ -71,7 +70,10 @@ function Sider({ routes, ...props }) {
         onSelect={handleChangePage}
         onOpenChange={handleExpandSubmenu}
       />
-      <Typography.Title level={5} className='text-center mt-auto' style={{ color: token.colorPrimary }}>
+      <Typography.Title
+        level={5}
+        className="text-center mt-auto"
+        style={{ color: token.colorPrimary }}>
         Version {import.meta.env.VITE_APP_VERSION}
       </Typography.Title>
     </Layout.Sider>

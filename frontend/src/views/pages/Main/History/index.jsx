@@ -29,7 +29,7 @@ function History({}) {
       let rs = {};
       try {
         rs = await MonitorApi.getEvents({ ...params });
-        console.log(api);
+        console.log(rs);
       } catch (error) {
         console.log(error);
       }
@@ -62,7 +62,13 @@ function History({}) {
                 name: 'eventName',
                 type: 'select',
                 inputProps: {
-                  options: [],
+                  options: state.eventInfor.map(({ name }) => {
+                    return {
+                      label: name,
+                      value: name
+                    };
+                  }),
+                  allowClear: true,
                   placeholder: 'Chọn'
                 }
               },
@@ -88,15 +94,17 @@ function History({}) {
                 type: 'range',
                 inputProps: {
                   options: [],
+                  allowClear: true,
                   format: 'L'
                 }
               },
               {
-                name: 'timePicker',
-                type: 'timePicker',
+                name: 'timePickerRange',
+                type: 'timePickerRange',
                 inputProps: {
                   options: [],
-                  format: 'HH:mm'
+                  format: 'HH:mm',
+                  allowClear: true
                 }
               },
               {

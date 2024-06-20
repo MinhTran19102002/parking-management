@@ -16,13 +16,10 @@ function CustomedTable({
   scroll = { y: 600, scrollToFirstRowOnChange: true },
   filterList = []
 }) {
-  const onChangeFilter = (values) => {
-    onChange({ ...filter, values });
-  };
   return (
     <div className="table-wrapper">
-      <Row gutter={[16, 16]} className='w-100'>
-        <Filter filter={filter} onChange={onChangeFilter} filterList={filterList} />
+      <Row gutter={[16, 16]} className="w-100">
+        <Filter filter={filter} onChange={onChange} filterList={filterList} />
       </Row>
       <Table
         columns={columns}
