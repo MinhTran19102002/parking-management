@@ -13,12 +13,27 @@ const getIsLogin = () => {
 const initState = {
   auth: getIsLogin(),
   theme: localStorage.getItem('theme') || 'light',
+  language: localStorage.getItem('language') || 'vi',
   mess: null,
   noti: null,
   onChangePassword: false,
   parkingEvent: null,
   authorize: null,
-  zones: ['A', 'B1', 'C1', 'A1', 'B', 'C']
+  zones: ['A', 'B1', 'C1', 'A1', 'B', 'C'],
+  eventInfor: [
+    {
+      name: 'in',
+    },
+    {
+      name: 'out',
+    },
+    {
+      name: 'inSlot',
+    },
+    {
+      name: 'outSlot',
+    },
+  ]
 };
 
 export default initState;

@@ -14,8 +14,8 @@ const dynamicBlock = {
 };
 
 function Home({}) {
-  const [layoutItems, setLayoutItems] = useState([]);
   const tileLayoutRef = useRef(null);
+  const [layoutItems, setLayoutItems] = useState([]);
 
   const hanldeLayout = () => {
     const rs = [

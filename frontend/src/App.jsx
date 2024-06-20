@@ -3,16 +3,17 @@ import Authen from './views/pages/Authen';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import Main from './views/pages/Main';
 import AppContext from './context';
-import { Layout, Spin, Typography, message, notification, theme } from 'antd';
+import { ConfigProvider, Layout, Spin, Typography, message, notification, theme } from 'antd';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '@progress/kendo-theme-default/dist/all.css';
 import PageError from './views/pages/PageError';
 import { ThemeProvider } from 'styled-components';
 import DayService from './services/DayService';
-import { i18nConfig } from './config';
+import { getAntd, i18nConfig } from './config';
 import { GlobalStyle } from './shared';
 import Register from './views/pages/Authen/Register';
 import { Content, Footer } from './views/layouts';
+import { useTranslation } from 'react-i18next';
 
 function Authencation({ children }) {
   const { state } = useContext(AppContext);
@@ -82,15 +83,19 @@ function Authorize({ children }) {
 function App() {
   //Message Function
   const { state } = useContext(AppContext);
+  const { i18n } = useTranslation();
   const { mess, noti } = state;
   const [messageApi, contextHolder] = message.useMessage();
   const [notiApi, notiContextHolder] = notification.useNotification();
   const navigate = useNavigate();
   const { token } = theme.useToken();
+  const [customedAntdTheem, setCustomedAntTheme] = useState(getAntd(state.theme, i18n));
+
+  useEffect(() => {
+    setCustomedAntTheme(getAntd(state.theme, i18n));
+  }, [state.theme, i18n.language]);
 
   DayService.setup();
-  i18nConfig();
-
   useEffect(() => {
     if (mess) {
       const { type, content, duration = 3 } = mess;
@@ -115,38 +120,40 @@ function App() {
 
   return (
     <div className="app">
-      {contextHolder}
-      {notiContextHolder}
-      <ThemeProvider theme={{ ...token }}>
-        <GlobalStyle />
-        <Layout className="vh-100">
-          <Content>
-            <Routes>
-              <Route path="/auth/login" element={<Authen />} />
-              <Route path="/register" element={<Register />} />
-              <Route
-                path="/*"
-                element={
-                  <Authencation>
-                    <Authorize>
-                      <Main />
-                    </Authorize>
-                  </Authencation>
-                }
-                errorElement={
-                  <PageError
-                    status="500"
-                    title={false}
-                    subTitle="Không tìm thấy trang"
-                    btn={{ text: 'Về trang chủ', onClick: () => <Navigate to={'/dashboard'} /> }}
-                  />
-                }
-              />
-            </Routes>
-          </Content>
-          <Footer />
-        </Layout>
-      </ThemeProvider>
+      <ConfigProvider {...customedAntdTheem}>
+        {contextHolder}
+        {notiContextHolder}
+        <ThemeProvider theme={{ ...token }}>
+          <GlobalStyle />
+          <Layout className="vh-100">
+            <Content>
+              <Routes>
+                <Route path="/auth/login" element={<Authen />} />
+                <Route path="/register" element={<Register />} />
+                <Route
+                  path="/*"
+                  element={
+                    <Authencation>
+                      <Authorize>
+                        <Main />
+                      </Authorize>
+                    </Authencation>
+                  }
+                  errorElement={
+                    <PageError
+                      status="500"
+                      title={false}
+                      subTitle="Không tìm thấy trang"
+                      btn={{ text: 'Về trang chủ', onClick: () => <Navigate to={'/dashboard'} /> }}
+                    />
+                  }
+                />
+              </Routes>
+            </Content>
+            <Footer />
+          </Layout>
+        </ThemeProvider>
+      </ConfigProvider>
     </div>
   );
 }

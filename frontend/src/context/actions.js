@@ -12,6 +12,14 @@ export const changeTheme = async (payload) => {
     payload
   };
 };
+
+export const changeLanguage = async (payload) => {
+  localStorage.setItem('language', payload);
+  return {
+    type: 'language',
+    payload
+  };
+};
 export const onLogin = async (params) => {
   let isLogin = false;
   let type = 'error';

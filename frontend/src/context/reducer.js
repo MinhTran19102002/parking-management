@@ -14,6 +14,13 @@ const reducer = (state, action) => {
       };
     }
 
+    case 'language': {
+      return {
+        ...state,
+        language: action.payload
+      };
+    }
+
     case 'mess': {
       return {
         ...state,

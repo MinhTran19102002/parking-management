@@ -1,10 +1,12 @@
 import { Button, Col, Drawer, Form, Radio, Row, Select, Switch } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
-import { SettingOutlined } from '@ant-design/icons';
+import Icon, { SettingOutlined } from '@ant-design/icons';
 import { MoonOutlined, SunOutlined } from '~/views/components/Icons';
 import AppContext from '~/context';
 import { useForm } from 'antd/es/form/Form';
+import { useTranslation } from 'react-i18next';
 function LagSelect({}) {
+  const { i18n } = useTranslation();
   const [form] = useForm();
   const [open, setOpen] = useState(false);
   const { state, actions } = useContext(AppContext);
@@ -14,18 +16,27 @@ function LagSelect({}) {
     if (values.hasOwnProperty('mode')) {
       actions.changeTheme(values.mode ? 'light' : 'dark');
     }
+    if (values.hasOwnProperty('lag')) {
+      i18n.changeLanguage(values.lag);
+      localStorage.setItem('language', values.lag);
+    }
   };
 
   useEffect(() => {
-    console.log(state.theme);
     setInitValues({
       mode: state.theme === 'light',
+      lag: i18n.language
     });
   }, [open]);
 
   return (
     <>
-      <Button icon={<SettingOutlined />} onClick={() => setOpen(!open)} />
+      <Button
+        type="text"
+        size="large"
+        icon={<Icon component={SettingOutlined} />}
+        onClick={() => setOpen(!open)}
+      />
       <Drawer
         title="Cài đặt"
         placement={'right'}
