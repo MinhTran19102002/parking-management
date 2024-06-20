@@ -4,6 +4,7 @@ import i18next from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import common_en from './locales/en/common.json';
 import common_vi from './locales/vi/common.json';
+import { theme } from 'antd';
 
 window._env_ = {
   ...import.meta.env,
@@ -15,13 +16,11 @@ if (process.env.NODE_ENV?.toLocaleLowerCase() === 'production') {
 }
 
 export const getLang = (i18n) => {
-  const { store, language } = i18n;
+  const { language } = i18n;
   let all_locate = {
     vi: vi_locale,
     en: en_locale
   };
-  all_locate[language].table = store.data[language].common.table;
-  all_locate[language].Empty.description = store.data[language].common.table.emptyText;
   return all_locate[language];
 };
 
@@ -40,4 +39,43 @@ export const i18nConfig = () => {
     interpolation: { escapeValue: false, formatSeparator: ',' },
     keySeparator: false
   });
+};
+
+export const getAntd = (mode, i18n) => {
+  return {
+    locale: getLang(i18n),
+    theme: {
+      algorithm: mode === 'dark' && theme.darkAlgorithm,
+      token: themeByMode[mode]
+    }
+  };
+};
+
+const themeByMode = {
+  light: {
+    neutral5: '#D9D9D9',
+    event: {
+      in: ['#389e0d', '#d9f7be'],
+      inSlot: ['#389e0d', '#d9f7be'],
+      out: ['#1d39c4', '#d6e4ff'],
+      outSlot: ['#1d39c4', '#d6e4ff'],
+      entry: ['#389e0d', '#d9f7be'],
+      exit: ['#1d39c4', '#d6e4ff'],
+      almost_full: ['#d48806', '#fff1b8'],
+      parking_full: ['#c41d7f', '#ffd6e7']
+    }
+  },
+  dark: {
+    neutral5: '#D9D9D9',
+    event: {
+      in: ['#52c41a', '#237804'],
+      inSlot: ['#52c41a', '#237804'],
+      out: ['#4096ff', '#002c8c'],
+      outSlot: ['#4096ff', '#002c8c'],
+      entry: ['#389e0d', '#d9f7be'],
+      exit: ['#1d39c4', '#d6e4ff'],
+      almost_full: ['#d48806', '#fff1b8'],
+      parking_full: ['#c41d7f', '#ffd6e7']
+    }
+  }
 };

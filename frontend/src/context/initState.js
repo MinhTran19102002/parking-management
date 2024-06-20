@@ -13,6 +13,7 @@ const getIsLogin = () => {
 const initState = {
   auth: getIsLogin(),
   theme: localStorage.getItem('theme') || 'light',
+  language: localStorage.getItem('language') || 'vi',
   mess: null,
   noti: null,
   onChangePassword: false,

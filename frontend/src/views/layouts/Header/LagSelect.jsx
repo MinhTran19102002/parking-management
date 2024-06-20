@@ -4,7 +4,9 @@ import Icon, { SettingOutlined } from '@ant-design/icons';
 import { MoonOutlined, SunOutlined } from '~/views/components/Icons';
 import AppContext from '~/context';
 import { useForm } from 'antd/es/form/Form';
+import { useTranslation } from 'react-i18next';
 function LagSelect({}) {
+  const { i18n } = useTranslation();
   const [form] = useForm();
   const [open, setOpen] = useState(false);
   const { state, actions } = useContext(AppContext);
@@ -14,12 +16,16 @@ function LagSelect({}) {
     if (values.hasOwnProperty('mode')) {
       actions.changeTheme(values.mode ? 'light' : 'dark');
     }
+    if (values.hasOwnProperty('lag')) {
+      i18n.changeLanguage(values.lag);
+      localStorage.setItem('language', values.lag);
+    }
   };
 
   useEffect(() => {
-    console.log(state.theme);
     setInitValues({
-      mode: state.theme === 'light'
+      mode: state.theme === 'light',
+      lag: i18n.language
     });
   }, [open]);
 

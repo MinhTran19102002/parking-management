@@ -17,7 +17,7 @@ i18next.use(initReactI18next).init({
     }
   },
   fallbackLng: 'vi',
-  lng: localStorage.getItem('lang'),
+  lng: localStorage.getItem('language'),
   interpolation: { escapeValue: false, formatSeparator: ',' },
   keySeparator: false
 });

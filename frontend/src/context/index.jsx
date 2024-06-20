@@ -12,7 +12,8 @@ import {
   onAuthorize,
   editProfile,
   changeState,
-  changeTheme
+  changeTheme,
+  changeLanguage
 } from './actions';
 import initState from './initState';
 import reducer from './reducer';
@@ -25,6 +26,7 @@ export const AppProvider = ({ children }) => {
   const actions = {
     changeState: async (params) => dispatch(await changeState(params)),
     changeTheme: async (params) => dispatch(await changeTheme(params)),
+    changeLanguage: async (params) => dispatch(await changeLanguage(params)),
     logout: async (params) => dispatch(await logout(params)),
     onLogin: async (params) => dispatch(await onLogin(params)),
     checkAuthenSevice: async (params) => dispatch(await checkAuthenSevice(params)),
