@@ -1,6 +1,7 @@
 import { CarOutlined, LineChartOutlined } from '@ant-design/icons';
 import { Flex, Image, Layout, Menu, Space, Typography, theme } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import LOGO from '~/assets/logo/main.svg?url';
 import { publicRoutes } from '~/routes';
@@ -11,6 +12,7 @@ function Sider({ routes, ...props }) {
   const navigate = useNavigate();
   const [current, setCurrent] = useState({});
   const [collapsed, setCollapsed] = useState(false);
+  const { t: lag } = useTranslation();
 
   const handleChangePage = ({ item }) => {
     navigate(item.props.path);
@@ -64,7 +66,7 @@ function Sider({ routes, ...props }) {
         mode="inline"
         theme="dark"
         className={`mt-5 ${!collapsed && 'notCollapsed'}`}
-        items={routes}
+        items={formatRoute(routes, lag)}
         selectedKeys={current?.selectedKeys}
         openKeys={current?.openKeys}
         onSelect={handleChangePage}
@@ -79,5 +81,15 @@ function Sider({ routes, ...props }) {
     </Layout.Sider>
   );
 }
+
+const formatRoute = (routes, lag) => {
+  return routes?.map((r) => {
+    return {
+      ...r,
+      label: lag(`common:pages:${r.key}`),
+      children: (r.children && r.children.length > 0 && formatRoute(r.children, lag)) || null
+    };
+  });
+};
 
 export default Sider;

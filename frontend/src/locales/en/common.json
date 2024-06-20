@@ -13,5 +13,19 @@
   "licenePlate": "Licene Plate",
   "timePickerRange": "Time range",
   "personName": "Name",
-  "eventName": "Tên sự kiện"
+  "eventName": "Event name",
+  "pages": {
+    "dashboard": "Dashboard",
+    "map": "Map",
+    "history": "History",
+    "cameraStream": "Camera stream",
+    "driver": "Driver management",
+    "personal": "Personal",
+    "staff": "Employee",
+    "user": "User management",
+    "camera": "Camera management",
+    "setting": "Setting",
+    "event": "In out",
+    "setting-map": "Map setting"
+  }
 }

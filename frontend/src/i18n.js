@@ -8,7 +8,7 @@ import event_vi from './locales/vi/event.json';
 i18next.use(initReactI18next).init({
   resources: {
     en: {
-      ...common_en,
+      common: common_en,
       event: event_en
     },
     vi: {
