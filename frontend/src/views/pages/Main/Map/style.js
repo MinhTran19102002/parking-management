@@ -70,9 +70,7 @@ export const DetailFloorStyled = styled(Popover)`
 `;
 
 export const InnerDetailFloorStyled = styled.div`
-  span.label {
-    color: ${({ theme }) => theme.colorTextSecondary};
-  }
+
 `;
 
 export const CameraPoint = styled.div`

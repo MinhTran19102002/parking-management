@@ -66,7 +66,7 @@ const themeByMode = {
     }
   },
   dark: {
-    neutral5: '#D9D9D9',
+    neutral5: '#252525',
     event: {
       in: ['#52c41a', '#237804'],
       inSlot: ['#52c41a', '#237804'],

@@ -46,7 +46,9 @@ function History({}) {
     <Layout className="px-4">
       <Header className="border-1" title={'Thông tin cá nhân'} />
       <Content className="w-100 py-3">
-        <Typography.Title level={5}>Phí tháng này: {totalThisMonth / 1000}k VNĐ</Typography.Title>
+        <Typography.Title level={5}>
+          {lag(`common:costByZone`)}: {totalThisMonth / 1000}k VNĐ
+        </Typography.Title>
         <Table dataSource={data} columns={getColumns({ pageSize, pageIndex }, lag)} />
         {/* <Row className="mt-4 w-100" justify={'end'}>
           {null ? (

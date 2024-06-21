@@ -5,23 +5,17 @@ import { InnerDetailFloorStyled } from '../style';
 import { FormatNumber, JobServices } from '~/services';
 import { CustomedImage } from '~/views/components';
 import dayjs from 'dayjs';
+import { useTranslation } from 'react-i18next';
 
 const eventNames = {
   in: 'Xe vào',
   out: 'Xe ra'
 };
 
-const personInfo = {
-  name: 'Chủ xe',
-  job: 'Nghề nghiệp',
-  department: 'Đơn vị',
-  phone: 'SĐT'
-};
-
 function DetailSlot({ position, zone, vehicle, driver, image, startTime }) {
   const { token } = theme.useToken();
   const { colorTextSecondary } = token;
-
+  const { t: lag } = useTranslation();
   // driver = {
   //   name: 'fjgsljgs',
   //   adress: 'TP HCM',
@@ -40,6 +34,13 @@ function DetailSlot({ position, zone, vehicle, driver, image, startTime }) {
   //   _destroy: false
   // };
 
+  const personInfo = {
+    name: lag('common:driver'),
+    job: lag('common:job'),
+    department: lag('common:department'),
+    phone: lag('common:phone')
+  };
+
   let driverInfo = [];
 
   driver = {
@@ -54,7 +55,9 @@ function DetailSlot({ position, zone, vehicle, driver, image, startTime }) {
     }
     driverInfo.push(
       <Typography.Text key={'info' + i}>
-        <span className="label">{value}</span>
+        <span className="label" style={{ color: token.colorTextSecondary }}>
+          {value}
+        </span>
         <span className="value">
           {': '} {xValue}
         </span>
@@ -94,6 +97,7 @@ function DetailSlot({ position, zone, vehicle, driver, image, startTime }) {
 const Expense = ({ startTime }) => {
   const [fee, setFee] = useState(20000);
   const [totalTime, setTotalTime] = useState(0);
+  const { t: lag } = useTranslation();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -114,13 +118,13 @@ const Expense = ({ startTime }) => {
   return (
     <>
       <Typography.Text>
-        <span className="label">Tổng thời gian đỗ</span>
+        <span className="label">{lag('common:totalPark')}</span>
         <span className="value">
           {': '} {FormatNumber(totalTime, { isEndZeroDecimal: false })} {' Giờ'}
         </span>
       </Typography.Text>
       <Typography.Text>
-        <span className="label">Tiền xe</span>
+        <span className="label">{lag('common:fee')}</span>
         <span className="value">
           {': '} {FormatNumber(fee, { isEndZeroDecimal: false })} {' VNĐ'}
         </span>

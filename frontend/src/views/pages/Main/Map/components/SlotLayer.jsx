@@ -64,7 +64,8 @@ function SlotLayer({
                 style={{
                   ...textStyle,
                   lineHeight: '100%',
-                  transform: `rotate(${rotate === -180 ? 180 : 0}deg)`
+                  transform: `rotate(${rotate === -180 ? 180 : 0}deg)`,
+                  color: '#4a4a4a'
                 }}>
                 {slot.position}
               </Typography.Text>

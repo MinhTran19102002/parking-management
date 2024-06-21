@@ -75,5 +75,3 @@ function SlotStatus({ zone, slotInfor = {}, slot }) {
 }
 
 export default SlotStatus;
-{
-}

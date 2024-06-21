@@ -19,7 +19,7 @@ const initState = {
   onChangePassword: false,
   parkingEvent: null,
   authorize: null,
-  zones: ['A', 'B1', 'C1', 'A1', 'B', 'C'],
+  zones: ['A', 'B', 'C'],
   eventInfor: [
     {
       name: 'in',

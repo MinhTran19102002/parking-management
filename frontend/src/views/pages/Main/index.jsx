@@ -1,6 +1,6 @@
 import React, { useContext, useMemo } from 'react';
 import { Layout, Modal, theme } from 'antd';
-import { Sider } from '~/views/layouts';
+import { Header, Sider } from '~/views/layouts';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { adminRoutes, devRoutes, driverRoutes, publicRoutes } from '~/routes';
 import AppContext from '~/context';
@@ -75,15 +75,18 @@ function Main({}) {
         />
       </Modal>
       <Sider routes={currRoute} />
-      <Routes>
-        {currRoute.map((route, ix) => {
-          if (route.children) {
-            return route.children.map((subRoute) => <Route {...subRoute} key={subRoute.key} />);
-          }
-          return <Route {...route} key={'route' + ix} />;
-        })}
-        <Route path="*" element={<Navigate to={currRoute[0].path} />} />
-      </Routes>
+      <Layout className="px-4">
+        <Header className="border-1" title={'Bản đồ'} />
+        <Routes>
+          {currRoute.map((route, ix) => {
+            if (route.children) {
+              return route.children.map((subRoute) => <Route {...subRoute} key={subRoute.key} />);
+            }
+            return <Route {...route} key={'route' + ix} />;
+          })}
+          <Route path="*" element={<Navigate to={currRoute[0].path} />} />
+        </Routes>
+      </Layout>
     </Layout>
   );
 }

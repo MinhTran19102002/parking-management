@@ -47,5 +47,11 @@
   "unRegister": "Chưa đăng ký",
   "extend": "Gia hạn",
   "Car": "Ô tô",
-  "car": "Ô tô"
+  "car": "Ô tô",
+  "zone": "Khu vực",
+  "zoneName": "Khu {{ zone }}",
+  "costByZone": "Phí tháng này",
+  "yourCarStatus": "Xe của bạn đang ở khu {{ zone }}, vị trí: {{ position }}",
+  "carNotZone": "Xe của bạn không có ở trong bãi",
+  "totalPark": "Tổng thời gian đỗ"
 }
