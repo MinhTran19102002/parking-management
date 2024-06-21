@@ -187,94 +187,90 @@ function Camera({}) {
   };
 
   return (
-    <Layout className="px-4">
-      <Header className="border-1" title={'Quản lý camera'} />
-      <Content className="w-100 py-3">
-        <Modal
-          title={formAction.title}
-          open={openForm}
-          onCancel={() => {
-            setOpenForm(false);
-          }}
-          destroyOnClose={true}
-          classNames={{ footer: 'd-none' }}>
-          <CameraForm
-            formAction={formAction}
-            onClose={hanldeCloseForm}
-            noChangeAccount={formAction.action === 'edit'}
-            onNoti={actions.onNoti}
-            onMess={actions.onMess}
-          />
-        </Modal>
-        <Card
-          title={
-            <Typography.Title type="primary" level={4} className="mb-0">
-              Danh sách camera:
-            </Typography.Title>
-          }
-          extra={
-            <Space>
-              {selectedRows.length > 0 && (
-                <Button
-                  id="btnDeleteMany"
-                  type="primary"
-                  icon={<DeleteFilled />}
-                  onClick={onDeleteMany}
-                  danger>
-                  Xóa
-                </Button>
-              )}
-              <Button id="btnAdd" type="primary" icon={<PlusOutlined />} onClick={onAdd}>
-                Thêm camera
+    <Content className="w-100 py-3">
+      <Modal
+        title={formAction.title}
+        open={openForm}
+        onCancel={() => {
+          setOpenForm(false);
+        }}
+        destroyOnClose={true}
+        classNames={{ footer: 'd-none' }}>
+        <CameraForm
+          formAction={formAction}
+          onClose={hanldeCloseForm}
+          noChangeAccount={formAction.action === 'edit'}
+          onNoti={actions.onNoti}
+          onMess={actions.onMess}
+        />
+      </Modal>
+      <Card
+        title={
+          <Typography.Title type="primary" level={4} className="mb-0">
+            Danh sách camera:
+          </Typography.Title>
+        }
+        extra={
+          <Space>
+            {selectedRows.length > 0 && (
+              <Button
+                id="btnDeleteMany"
+                type="primary"
+                icon={<DeleteFilled />}
+                onClick={onDeleteMany}
+                danger>
+                Xóa
               </Button>
+            )}
+            <Button id="btnAdd" type="primary" icon={<PlusOutlined />} onClick={onAdd}>
+              Thêm camera
+            </Button>
+          </Space>
+        }
+        className="box">
+        <Row className="mt-2 mb-4 w-100">
+          <Row>
+            <Space>
+              <Typography.Title level={5} className="mb-0">
+                Bộ lọc:
+              </Typography.Title>
             </Space>
-          }
-          className="box">
-          <Row className="mt-2 mb-4 w-100">
-            <Row>
-              <Space>
-                <Typography.Title level={5} className="mb-0">
-                  Bộ lọc:
-                </Typography.Title>
-              </Space>
-            </Row>
           </Row>
-          <Table
-            columns={hanldeColumes({ pageIndex, pageSize, onEdit, onDelete })}
-            dataSource={data.data || []}
-            rowKey={(record) => record._id}
-            pagination={false}
-            rowSelection={{
-              type: 'checkbox',
-              ...rowSelection
-            }}
-            loading={loading}
-            scroll={{ y: 600, scrollToFirstRowOnChange: true }}
-          />
-          <Row className="mt-4 w-100" justify={'end'}>
-            {data.totalCount ? (
-              <Pagination
-                total={totalCount}
-                showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
-                pageSize={pageSize}
-                current={pageIndex}
-                loading={loading}
-                showSizeChanger={true}
-                pageSizeOptions={[10, 20, 30]}
-                onChange={(page, pageSize) => {
-                  setSearchParams({
-                    ...Object.fromEntries(searchParams.entries()),
-                    pageIndex: page,
-                    pageSize
-                  });
-                }}
-              />
-            ) : null}
-          </Row>
-        </Card>
-      </Content>
-      <Footer />
-    </Layout>
+        </Row>
+        <Table
+          columns={hanldeColumes({ pageIndex, pageSize, onEdit, onDelete })}
+          dataSource={data.data || []}
+          rowKey={(record) => record._id}
+          pagination={false}
+          rowSelection={{
+            type: 'checkbox',
+            ...rowSelection
+          }}
+          loading={loading}
+          scroll={{ y: 600, scrollToFirstRowOnChange: true }}
+        />
+        <Row className="mt-4 w-100" justify={'end'}>
+          {data.totalCount ? (
+            <Pagination
+              total={totalCount}
+              showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
+              pageSize={pageSize}
+              current={pageIndex}
+              loading={loading}
+              showSizeChanger={true}
+              pageSizeOptions={[10, 20, 30]}
+              onChange={(page, pageSize) => {
+                setSearchParams({
+                  ...Object.fromEntries(searchParams.entries()),
+                  pageIndex: page,
+                  pageSize
+                });
+              }}
+            />
+          ) : null}
+        </Row>
+      </Card>
+    </Content>
   );
 }
 

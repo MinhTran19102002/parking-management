@@ -43,36 +43,32 @@ function History({}) {
     else return acc;
   }, 0);
   return (
-    <Layout className="px-4">
-      <Header className="border-1" title={'Thông tin cá nhân'} />
-      <Content className="w-100 py-3">
-        <Typography.Title level={5}>
-          {lag(`common:costByZone`)}: {totalThisMonth / 1000}k VNĐ
-        </Typography.Title>
-        <Table dataSource={data} columns={getColumns({ pageSize, pageIndex }, lag)} />
-        {/* <Row className="mt-4 w-100" justify={'end'}>
-          {null ? (
-            <Pagination
-              total={totalCount}
-              showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
-              pageSize={pageSize}
-              current={pageIndex}
-              loading={loading}
-              showSizeChanger={true}
-              pageSizeOptions={[10, 20, 30]}
-              onChange={(page, pageSize) => {
-                setSearchParams({
-                  ...Object.fromEntries(searchParams.entries()),
-                  pageIndex: page,
-                  pageSize
-                });
-              }}
-            />
-          ) : null}
-        </Row> */}
-      </Content>
-      <Footer />
-    </Layout>
+    <Content className="w-100 py-3">
+      <Typography.Title level={5}>
+        {lag(`common:costByZone`)}: {totalThisMonth / 1000}k VNĐ
+      </Typography.Title>
+      <Table dataSource={data} columns={getColumns({ pageSize, pageIndex }, lag)} />
+      {/* <Row className="mt-4 w-100" justify={'end'}>
+      {null ? (
+        <Pagination
+          total={totalCount}
+          showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
+          pageSize={pageSize}
+          current={pageIndex}
+          loading={loading}
+          showSizeChanger={true}
+          pageSizeOptions={[10, 20, 30]}
+          onChange={(page, pageSize) => {
+            setSearchParams({
+              ...Object.fromEntries(searchParams.entries()),
+              pageIndex: page,
+              pageSize
+            });
+          }}
+        />
+      ) : null}
+    </Row> */}
+    </Content>
   );
 }
 

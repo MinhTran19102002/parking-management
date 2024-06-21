@@ -16,10 +16,11 @@ import FULL_LOGO from '~/assets/logo/logo-text.svg';
 import DEFAULT_AVATAR from '~/assets/images/avatar.png';
 import { DownOutlined, SettingTwoTone } from '@ant-design/icons';
 import AppContext from '~/context';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import EmployeeForm from '~/views/pages/Main/Employee/EmployeeForm';
 import ProfileForm from '~/views/components/Form/ProfileForm';
 import LagSelect from './LagSelect';
+import { useTranslation } from 'react-i18next';
 
 const items = [
   {
@@ -41,16 +42,20 @@ const items = [
   }
 ];
 
-function Header({ title }) {
+function Header() {
   const {
     token: { colorBgContainer, colorPrimary }
   } = theme.useToken();
   const { state, actions } = useContext(AppContext);
   const { auth } = state;
+  const { t: lag } = useTranslation();
+  const location = useLocation();
   const [formAction, setFormAction] = useState({});
   const [openForm, setOpenForm] = useState(false);
   const navigate = useNavigate();
   const [avatar, setAvatar] = useState(DEFAULT_AVATAR);
+  const { pathname = '' } = location;
+  const title = lag(`common:pages:${pathname.slice(1)}`);
 
   const hanldeLogout = async () => {
     actions.logout();

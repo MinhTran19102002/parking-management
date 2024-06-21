@@ -86,57 +86,53 @@ function Personal({}) {
   ];
 
   return (
-    <Layout className="px-4">
-      <Header className="border-1" title={'Thông tin cá nhân'} />
-      <Content className="w-100 py-3">
-        <Card className="w-100">
-          <Descriptions title={''} bordered items={items} size="small" column={3} />
-        </Card>
+    <Content className="w-100 py-3">
+      <Card className="w-100">
+        <Descriptions title={''} bordered items={items} size="small" column={3} />
+      </Card>
 
-        <Table
-          className="mt-2"
-          dataSource={vehicle}
-          pagination={false}
-          columns={[
-            {
-              title: lag('common:licenePlate'),
-              dataIndex: 'licenePlate',
-              key: 'licenePlate'
-            },
-            {
-              title: lag('common:type'),
-              dataIndex: 'type',
-              key: 'type',
-              render: (text) => lag(`common:${text}`)
-            },
-            {
-              title: lag('common:dlRegister'),
-              dataIndex: 'payment',
-              key: 'payment',
-              render: (_, item) => {
-                if (item.payment) {
-                  const { payment = {} } = item;
-                  if (payment.startDate && payment.months) {
-                  }
+      <Table
+        className="mt-2"
+        dataSource={vehicle}
+        pagination={false}
+        columns={[
+          {
+            title: lag('common:licenePlate'),
+            dataIndex: 'licenePlate',
+            key: 'licenePlate'
+          },
+          {
+            title: lag('common:type'),
+            dataIndex: 'type',
+            key: 'type',
+            render: (text) => lag(`common:${text}`)
+          },
+          {
+            title: lag('common:dlRegister'),
+            dataIndex: 'payment',
+            key: 'payment',
+            render: (_, item) => {
+              if (item.payment) {
+                const { payment = {} } = item;
+                if (payment.startDate && payment.months) {
                 }
-                return (
-                  <Space size={'large'}>
-                    <Typography.Text>{lag('common:unRegister')}</Typography.Text>
-                    <Button
-                      type="primary"
-                      onClick={() => hanldePayment(item.licenePlate)}
-                      size="small">
-                      {lag('common:extend')}
-                    </Button>
-                  </Space>
-                );
               }
+              return (
+                <Space size={'large'}>
+                  <Typography.Text>{lag('common:unRegister')}</Typography.Text>
+                  <Button
+                    type="primary"
+                    onClick={() => hanldePayment(item.licenePlate)}
+                    size="small">
+                    {lag('common:extend')}
+                  </Button>
+                </Space>
+              );
             }
-          ]}
-        />
-      </Content>
-      <Footer />
-    </Layout>
+          }
+        ]}
+      />
+    </Content>
   );
 }
 

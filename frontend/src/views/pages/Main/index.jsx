@@ -8,12 +8,14 @@ import socket from '~/socket';
 import { useEffect } from 'react';
 import { managers, users } from './data';
 import PasswordForm from '~/views/components/Form/PasswordForm';
+import { useTranslation } from 'react-i18next';
 
 function Main({}) {
   const { token } = theme.useToken();
   const { state, actions } = useContext(AppContext);
   const { auth } = state;
   const navigate = useNavigate();
+  const { t: lag } = useTranslation();
 
   useEffect(() => {
     const hanldeNotiParking = (event) => {
@@ -76,7 +78,7 @@ function Main({}) {
       </Modal>
       <Sider routes={currRoute} />
       <Layout className="px-4">
-        <Header className="border-1" title={'Bản đồ'} />
+        <Header className="border-1" />
         <Routes>
           {currRoute.map((route, ix) => {
             if (route.children) {

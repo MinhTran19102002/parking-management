@@ -379,145 +379,141 @@ function Driver({}) {
   };
 
   return (
-    <Layout className="px-4">
-      <Header className="border-1" title={'Quản lý chủ xe'} />
-      <Content className="w-100 py-3">
-        <Modal
-          title={formAction.title}
-          open={openForm}
-          onCancel={() => {
-            setOpenForm(false);
-          }}
-          destroyOnClose={true}
-          classNames={{ footer: 'd-none' }}>
-          <DriverForm
-            formAction={formAction}
-            isOpen={openForm}
-            onClose={hanldeCloseForm}
-            onNoti={actions.onNoti}
-            onMess={actions.onMess}
-          />
-        </Modal>
-        <Card
-          title={
-            <Typography.Title type="primary" level={4}>
-              Danh sách:
-            </Typography.Title>
-          }
-          extra={
+    <Content className="w-100 py-3">
+      <Modal
+        title={formAction.title}
+        open={openForm}
+        onCancel={() => {
+          setOpenForm(false);
+        }}
+        destroyOnClose={true}
+        classNames={{ footer: 'd-none' }}>
+        <DriverForm
+          formAction={formAction}
+          isOpen={openForm}
+          onClose={hanldeCloseForm}
+          onNoti={actions.onNoti}
+          onMess={actions.onMess}
+        />
+      </Modal>
+      <Card
+        title={
+          <Typography.Title type="primary" level={4}>
+            Danh sách:
+          </Typography.Title>
+        }
+        extra={
+          <Space>
+            {selectedRows.length > 0 && (
+              <Button
+                id="btnDeleteMany"
+                type="primary"
+                icon={<DeleteFilled />}
+                onClick={onDeleteMany}
+                danger>
+                Xóa
+              </Button>
+            )}
+            <Button id="btnAdd" type="primary" ghost icon={<PlusOutlined />} onClick={onAdd}>
+              Thêm chủ xe
+            </Button>
+          </Space>
+        }
+        className="box">
+        <Row className="mt-2 mb-4 w-100">
+          <Row>
             <Space>
-              {selectedRows.length > 0 && (
-                <Button
-                  id="btnDeleteMany"
-                  type="primary"
-                  icon={<DeleteFilled />}
-                  onClick={onDeleteMany}
-                  danger>
-                  Xóa
-                </Button>
-              )}
-              <Button id="btnAdd" type="primary" ghost icon={<PlusOutlined />} onClick={onAdd}>
-                Thêm chủ xe
+              <Typography.Title level={5} className="mb-0">
+                Bộ lọc:
+              </Typography.Title>
+              <Input
+                style={{
+                  width: 200
+                }}
+                placeholder="Tên"
+                name="name"
+                defaultValue={name}
+                onPressEnter={onEnterFilter}
+                onChange={onChangeFilter}
+                allowClear={true}
+              />
+              <Input
+                style={{
+                  width: 200
+                }}
+                placeholder="Số điện thoại"
+                name="phone"
+                defaultValue={phone}
+                onPressEnter={onEnterFilter}
+                onChange={onChangeFilter}
+                allowClear={true}
+              />
+              <Input
+                style={{
+                  width: 320
+                }}
+                name="email"
+                placeholder="Email"
+                defaultValue={email}
+                onPressEnter={onEnterFilter}
+                onChange={onChangeFilter}
+                allowClear={true}
+              />
+              <Input
+                style={{
+                  width: 200
+                }}
+                name="licenePlate"
+                placeholder="Biển số xe"
+                defaultValue={licenePlate}
+                onPressEnter={onEnterFilter}
+                onChange={onChangeFilter}
+                allowClear={true}
+              />
+              <Button type="text" icon={<FilterOutlined />} onClick={callApi}>
+                Lọc
               </Button>
             </Space>
-          }
-          className="box">
-          <Row className="mt-2 mb-4 w-100">
-            <Row>
-              <Space>
-                <Typography.Title level={5} className="mb-0">
-                  Bộ lọc:
-                </Typography.Title>
-                <Input
-                  style={{
-                    width: 200
-                  }}
-                  placeholder="Tên"
-                  name="name"
-                  defaultValue={name}
-                  onPressEnter={onEnterFilter}
-                  onChange={onChangeFilter}
-                  allowClear={true}
-                />
-                <Input
-                  style={{
-                    width: 200
-                  }}
-                  placeholder="Số điện thoại"
-                  name="phone"
-                  defaultValue={phone}
-                  onPressEnter={onEnterFilter}
-                  onChange={onChangeFilter}
-                  allowClear={true}
-                />
-                <Input
-                  style={{
-                    width: 320
-                  }}
-                  name="email"
-                  placeholder="Email"
-                  defaultValue={email}
-                  onPressEnter={onEnterFilter}
-                  onChange={onChangeFilter}
-                  allowClear={true}
-                />
-                <Input
-                  style={{
-                    width: 200
-                  }}
-                  name="licenePlate"
-                  placeholder="Biển số xe"
-                  defaultValue={licenePlate}
-                  onPressEnter={onEnterFilter}
-                  onChange={onChangeFilter}
-                  allowClear={true}
-                />
-                <Button type="text" icon={<FilterOutlined />} onClick={callApi}>
-                  Lọc
-                </Button>
-              </Space>
-            </Row>
           </Row>
-          <Table
-            columns={columns}
-            expandable={{
-              expandedRowRender,
-              defaultExpandedRowKeys: ['0']
-            }}
-            rowSelection={{
-              type: 'checkbox',
-              ...rowSelection
-            }}
-            loading={loading}
-            pagination={false}
-            dataSource={data.data || []}
-            rowKey={(record) => record._id}
-            scroll={{ y: 600, scrollToFirstRowOnChange: true }}
-          />
-          <Row className="mt-4 w-100" justify={'end'}>
-            {data.totalCount ? (
-              <Pagination
-                total={totalCount}
-                showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
-                pageSize={pageSize}
-                current={pageIndex}
-                disabled={loading}
-                showSizeChanger={true}
-                pageSizeOptions={[10, 20, 30]}
-                onChange={(page, pageSize) => {
-                  setSearchParams({
-                    ...Object.fromEntries(searchParams.entries()),
-                    pageIndex: page,
-                    pageSize
-                  });
-                }}
-              />
-            ) : null}
-          </Row>
-        </Card>
-      </Content>
-      <Footer />
-    </Layout>
+        </Row>
+        <Table
+          columns={columns}
+          expandable={{
+            expandedRowRender,
+            defaultExpandedRowKeys: ['0']
+          }}
+          rowSelection={{
+            type: 'checkbox',
+            ...rowSelection
+          }}
+          loading={loading}
+          pagination={false}
+          dataSource={data.data || []}
+          rowKey={(record) => record._id}
+          scroll={{ y: 600, scrollToFirstRowOnChange: true }}
+        />
+        <Row className="mt-4 w-100" justify={'end'}>
+          {data.totalCount ? (
+            <Pagination
+              total={totalCount}
+              showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
+              pageSize={pageSize}
+              current={pageIndex}
+              disabled={loading}
+              showSizeChanger={true}
+              pageSizeOptions={[10, 20, 30]}
+              onChange={(page, pageSize) => {
+                setSearchParams({
+                  ...Object.fromEntries(searchParams.entries()),
+                  pageIndex: page,
+                  pageSize
+                });
+              }}
+            />
+          ) : null}
+        </Row>
+      </Card>
+    </Content>
   );
 }
 
