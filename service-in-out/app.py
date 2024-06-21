@@ -53,11 +53,11 @@ def licenseSFunc():
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
-def carInOut(url):
+def carInOut(url, flag):
     webcam = Webcam(url)
     while True:
-        image = next(webcam.get_frame(8))
-        image, licenseS = car_into_parking(image)
+        image = next(webcam.get_frame(10))
+        image, licenseS = car_into_parking(image, flag)
         global global_licenseS
         global image_license
         global_licenseS = licenseS
@@ -68,11 +68,23 @@ def carInOut(url):
 
 
 # API nhap xuat xe
-@app.route('/service/carInOut')
-def apiCarInOut():
+@app.route('/service/carIn')
+def apiCarIn():
     # url = "./unit/dectect1.mp4"
-    url = "./unit/video/CAM_ngoai_full.mp4"
-    response =  Response( carInOut(url), mimetype="multipart/x-mixed-replace; boundary=frame" )
+    # url = "./unit/video/CAM_ngoai_full.mp4"
+    url = "./unit/video/XeVao.mp4"
+    response =  Response( carInOut(url, "in"), mimetype="multipart/x-mixed-replace; boundary=frame" )
+    response.headers['Access-Control-Allow-Origin'] = '*'
+    return response
+
+
+# API nhap xuat xe
+@app.route('/service/carOut')
+def apiCarOut():
+    # url = "./unit/dectect1.mp4"
+    # url = "./unit/video/CAM_ngoai_full.mp4"
+    url = "./unit/video/XeRa.mp4"
+    response =  Response( carInOut(url, "out"), mimetype="multipart/x-mixed-replace; boundary=frame" )
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
 
@@ -91,7 +103,7 @@ def carInOutSlot(url):
 # API xe ra vao trong slot
 @app.route('/service/carInOutSlot')
 def apiCarInOutSlot():
-    url = "./unit/video/CAM_trong_full.mp4"
+    url = "./unit/video/Slot_InOut.mp4"
     # url = "./unit/video/cam.mp4"
     # url = 0
     response =  Response( carInOutSlot(url), mimetype="multipart/x-mixed-replace; boundary=frame" )
