@@ -49,12 +49,12 @@ const findEvent = async ({ pageSize, pageIndex, startTime, endTime, ...params },
     if (key == 'licenePlate') {
       key = 'vehicle.' + key; //driver.vehicle.licenePlate
     }
-    if(key !== 'startDay' && key !== 'endDay' ){
+    if (key !== 'startDay' && key !== 'endDay') {
       regex = {
         [key]: new RegExp(`^${value}`, 'i'),
       };
     }
-    
+
     Object.assign(paramMatch, regex);
   }
   try {
@@ -73,15 +73,13 @@ const findEvent = async ({ pageSize, pageIndex, startTime, endTime, ...params },
       }
     }
     if (startDay !== undefined && endDay !== undefined) {
-      console.log( Date.parse(parseDate(startDay)))
+      console.log(Date.parse(parseDate(startDay)))
       const start = Date.parse(parseDate(startDay)) + 7 * 60 * 60 * 1000;
       const end = Date.parse(parseDate(endDay)) + 7 * 60 * 60 * 1000;
       pipelineDay = {
-        $match: {
-          createdAt: {
-            $gte: start,
-            $lte: end,
-          },
+        createdAt: {
+          $gte: start,
+          $lte: end,
         },
       }
     }
@@ -94,8 +92,11 @@ const findEvent = async ({ pageSize, pageIndex, startTime, endTime, ...params },
             createdAt: -1, // sắp xếp theo thứ tự giảm dần của trường thoi_gian
           },
         },
-        pipelineDay
-        ,
+        {
+          $match: {
+            ...pipelineDay,
+          },
+        },
         {
           $addFields: {
             timezoneOffset: { $literal: new Date().getTimezoneOffset() * 60 * 1000 },
@@ -186,8 +187,8 @@ const findEvent = async ({ pageSize, pageIndex, startTime, endTime, ...params },
         //   }
         // },
 
-        
-        
+
+
         {
           $project: {
             _id: 0,
