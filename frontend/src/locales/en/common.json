@@ -35,5 +35,13 @@
   "fee": "Fee",
   "driver": "Driver",
   "phone": "Phone",
-  "image": "Image"
+  "image": "Image",
+  "fullName": "Full name",
+  "job": "Job",
+  "department": "Department",
+  "address": "Address",
+  "createdAt": "Join date",
+  "updatedAt": "Last updated",
+  "type": "Type",
+  "dlRegister": "Registration deadline"
 }

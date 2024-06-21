@@ -1,7 +1,7 @@
 import dayjs from 'dayjs';
 import EventService from '~/services/EventService';
 
-export const getColumns = ({ pageSize, pageIndex, onEdit, onDelete }) => {
+export const getColumns = ({ pageSize, pageIndex, onEdit, onDelete }, lag) => {
   return [
     {
       title: '#',
@@ -10,36 +10,28 @@ export const getColumns = ({ pageSize, pageIndex, onEdit, onDelete }) => {
       render: (_, prop, index) => (pageIndex - 1) * pageSize + index + 1
     },
     {
-      title: 'Thời gian',
+      title: lag('common:time'),
       dataIndex: 'createdAt',
       key: 'createdAt',
       render: (text) => dayjs(text).format('L LTS'),
       sorter: (a, b) => a.createdAt - b.createdAt
     },
     {
-      title: 'Tên sự kiện',
+      title: lag('common:eventName'),
       dataIndex: 'name',
       key: 'eventName',
-      render: (text) => EventService.getEventLabel(text),
-      sorter: (a, b) => a.createdAt - b.createdAt
+      render: (text) => lag(`event:byName:${text}`)
     },
     {
-      title: 'Vị trí',
+      title: lag('common:position'),
       dataIndex: ['parkingTurn', 'position'],
       key: 'position'
     },
     {
-      title: 'Phí',
+      title: lag('common:fee'),
       dataIndex: ['parkingTurn', 'fee'],
       key: 'fee',
       sorter: (a, b) => a.parkingTurn.fee - b.parkingTurn.fee
-    },
-    {
-      title: 'Thời gian',
-      dataIndex: 'createdAt',
-      key: 'createdAt',
-      render: (text) => dayjs(text).format('L LTS'),
-      sorter: (a, b) => a.createdAt - b.createdAt
     }
   ];
 };

@@ -35,5 +35,17 @@
   "fee": "Phí",
   "driver": "Chủ xe",
   "phone": "SĐT",
-  "image": "Hình ảnh"
+  "image": "Hình ảnh",
+  "fullName": "Họ và tên",
+  "job": "Công việc",
+  "department": "Phòng ban",
+  "address": "Địa chỉ",
+  "createdAt": "Ngày tham gia",
+  "updatedAt": "Lần cật nhật gần nhất",
+  "type": "Loại",
+  "dlRegister": "Hạn đăng ký",
+  "unRegister": "Chưa đăng ký",
+  "extend": "Gia hạn",
+  "Car": "Ô tô",
+  "car": "Ô tô"
 }

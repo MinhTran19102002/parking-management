@@ -42,7 +42,6 @@ function Map({}) {
     }
   });
   const personalSlot = slotsData.find((slot) => slot.parkingTurn);
-  console.log(personalSlot);
   const zone = searchParams.get('zone') || 'A';
   const slots = slotsData.filter((slot) => slot?.zone === zone);
   const [loading, setLoading] = useState(false);
@@ -93,15 +92,12 @@ function Map({}) {
         <Flex justify="space-between">
           <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
             <Radio.Button value="A">Khu A</Radio.Button>
-            <Radio.Button value="A1">Khu A1</Radio.Button>
             <Radio.Button value="B">Khu B</Radio.Button>
-            <Radio.Button value="B1">Khu B1</Radio.Button>
             <Radio.Button value="C">Khu C</Radio.Button>
-            <Radio.Button value="C1">Khu C1</Radio.Button>
           </Radio.Group>
         </Flex>
         {personalSlot ? (
-          <Typography.Title level={2} className='mt-2'>
+          <Typography.Title level={2} className="mt-2">
             Xe bạn đang ở khu {personalSlot?.zone}, vị trí: {personalSlot?.position}
           </Typography.Title>
         ) : (

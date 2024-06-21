@@ -84,11 +84,8 @@ function Map({}) {
         <Flex justify="space-between">
           <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
             <Radio.Button value="A">Khu A</Radio.Button>
-            <Radio.Button value="A1">Khu A1</Radio.Button>
             <Radio.Button value="B">Khu B</Radio.Button>
-            <Radio.Button value="B1">Khu B1</Radio.Button>
             <Radio.Button value="C">Khu C</Radio.Button>
-            <Radio.Button value="C1">Khu C1</Radio.Button>
           </Radio.Group>
         </Flex>
         <TransformBlock
