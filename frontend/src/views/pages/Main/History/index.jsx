@@ -8,10 +8,12 @@ import { MonitorApi, ParkingApi } from '~/api';
 import AppContext from '~/context';
 import dayjs from 'dayjs';
 import CustomedTable from '~/views/components/Table';
+import { useTranslation } from 'react-i18next';
 
 function History({}) {
   const { state } = useContext(AppContext);
   const [searchParams, setSearchParams] = useSearchParams();
+  const { t: lag } = useTranslation();
   const pageIndex = Number(searchParams.get('pageIndex')) || 1;
   const pageSize = Number(searchParams.get('pageSize')) || 10;
   const params = { pageSize, pageIndex };
@@ -23,13 +25,12 @@ function History({}) {
     refetch,
     isFetching: loading
   } = useQuery({
-    queryKey: ['history', JSON.stringify(searchParams)],
+    queryKey: ['history', JSON.stringify(params)],
     initialData: {},
     queryFn: async () => {
       let rs = {};
       try {
         rs = await MonitorApi.getEvents({ ...params });
-        console.log(rs);
       } catch (error) {
         console.log(error);
       }
@@ -59,17 +60,17 @@ function History({}) {
             scroll={{ y: 1000, scrollToFirstRowOnChange: true }}
             filterList={[
               {
-                name: 'eventName',
+                name: 'name',
                 type: 'select',
                 inputProps: {
                   options: state.eventInfor.map(({ name }) => {
                     return {
-                      label: name,
+                      label: lag(`event:byName:${name}`),
                       value: name
                     };
                   }),
                   allowClear: true,
-                  placeholder: 'Chọn'
+                  placeholder: lag('common:choose')
                 }
               },
               {
@@ -77,7 +78,7 @@ function History({}) {
                 type: 'input',
                 inputProps: {
                   options: [],
-                  placeholder: 'Nhập'
+                  placeholder: lag('common:enter')
                 }
               },
               {
@@ -85,7 +86,7 @@ function History({}) {
                 type: 'input',
                 inputProps: {
                   options: [],
-                  placeholder: 'Nhập'
+                  placeholder: lag('common:enter')
                 }
               },
 
@@ -112,7 +113,7 @@ function History({}) {
                 type: 'input',
                 inputProps: {
                   options: [],
-                  placeholder: 'Nhập'
+                  placeholder: lag('common:enter')
                 }
               }
             ]}

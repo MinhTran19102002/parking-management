@@ -8,11 +8,12 @@
       "normal": "Thường"
     }
   },
+  "name": "Tên sự kiện",
   "position": "Vị trí",
   "licenePlate": "Biển số xe",
   "rangeDate": "Khoảng thời gian",
   "timePickerRange": "Thời điểm",
-  "personName": "Tên",
+  "personName": "Tên chủ xe",
   "eventName": "Tên sự kiện",
   "pages": {
     "dashboard": "Dashboard",
@@ -27,5 +28,7 @@
     "setting": "Cài đặt",
     "event": "Nhập xuất xe",
     "setting-map": "Cài đặt bản đồ"
-  }
+  },
+  "choose": "Chọn",
+  "enter": "Nhập"
 }

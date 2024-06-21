@@ -8,11 +8,12 @@
       "normal": "Normal"
     }
   },
+  "name": "Event name",
   "rangeDate": "Range Date",
-  "position": "Posotion",
+  "position": "Position",
   "licenePlate": "Licene Plate",
   "timePickerRange": "Time range",
-  "personName": "Name",
+  "personName": "Driver name",
   "eventName": "Event name",
   "pages": {
     "dashboard": "Dashboard",
@@ -27,5 +28,7 @@
     "setting": "Setting",
     "event": "In out",
     "setting-map": "Map setting"
-  }
+  },
+  "choose": "Choose",
+  "enter": "Enter"
 }
