@@ -30,5 +30,10 @@
     "setting-map": "Map setting"
   },
   "choose": "Choose",
-  "enter": "Enter"
+  "enter": "Enter",
+  "time": "Time",
+  "fee": "Fee",
+  "driver": "Driver",
+  "phone": "Phone",
+  "image": "Image"
 }

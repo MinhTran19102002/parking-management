@@ -50,7 +50,7 @@ function History({}) {
           <CustomedTable
             dataSource={data}
             filter={params}
-            columns={getColumns({ pageSize, pageIndex })}
+            columns={getColumns({ pageSize, pageIndex }, lag)}
             loading={loading}
             totalCount={totalCount}
             totalPage={totalPage}

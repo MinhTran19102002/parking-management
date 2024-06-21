@@ -30,5 +30,10 @@
     "setting-map": "Cài đặt bản đồ"
   },
   "choose": "Chọn",
-  "enter": "Nhập"
+  "enter": "Nhập",
+  "time": "Thời gian",
+  "fee": "Phí",
+  "driver": "Chủ xe",
+  "phone": "SĐT",
+  "image": "Hình ảnh"
 }
