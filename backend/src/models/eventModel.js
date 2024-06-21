@@ -47,9 +47,20 @@ const findEvent = async ({ pageSize, pageIndex, startTime, endTime, ...params },
   for (let [key, value] of Object.entries(params)) {
     let regex;
     if (key == 'licenePlate') {
-      key = 'vehicle.' + key; //driver.vehicle.licenePlate
+      key = 'vehicle.' + key; //driver.vehicle.licenePlateq
     }
-    if (key !== 'startDay' && key !== 'endDay') {
+    if (key == 'position') {
+      key = 'parkingTurn.' + key; //driver.vehicle.licenePlate
+    } 
+    if (key == 'personName') {
+      key = 'person.' + 'name'; //driver.vehicle.licenePlate
+    } 
+    if (key == 'person.name') {
+      regex = {
+        [key]: new RegExp(`${value}`, 'i'),
+      };
+    }
+    else if (key !== 'startDay' && key !== 'endDay') {
       regex = {
         [key]: new RegExp(`^${value}`, 'i'),
       };
