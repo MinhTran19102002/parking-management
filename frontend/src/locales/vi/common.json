@@ -53,5 +53,9 @@
   "costByZone": "Phí tháng này",
   "yourCarStatus": "Xe của bạn đang ở khu {{ zone }}, vị trí: {{ position }}",
   "carNotZone": "Xe của bạn không có ở trong bãi",
-  "totalPark": "Tổng thời gian đỗ"
+  "totalPark": "Tổng thời gian đỗ",
+  "paymentRegister": "Đăng ký gia hạn",
+  "months": "Số tháng",
+  "cancel": "Hủy",
+  "confirm": "Xác nhận"
 }

@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useMemo } from 'react';
-import { Button, Card, Descriptions, Layout, Row, Space, Table, Typography } from 'antd';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { Button, Card, Descriptions, Layout, Modal, Row, Space, Table, Typography } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
 import { useQuery } from '@tanstack/react-query';
 import { UserApi, VehicleApi } from '~/api';
@@ -7,10 +7,12 @@ import AppContext from '~/context';
 import dayjs from 'dayjs';
 import { ErrorService } from '~/services';
 import { useTranslation } from 'react-i18next';
+import PaymentRegister from './PaymentRegister';
 
 function Personal({}) {
   const { state, actions } = useContext(AppContext);
   const { t: lag } = useTranslation();
+  const [open, setOpen] = useState(false);
   const { data = {}, refetch } = useQuery({
     queryKey: ['personal'],
     initialData: {},
@@ -27,9 +29,9 @@ function Personal({}) {
   const { name, driver = {} } = data;
   const { vehicle = [] } = driver;
 
-  const hanldePayment = async (licenePlate) => {
+  const hanldePayment = async (values) => {
     try {
-      const api = await VehicleApi.registerPayment(licenePlate);
+      const api = await VehicleApi.registerPayment({ startDate: dayjs().format('x'), ...values });
       if (api) {
         actions.onNoti({ message: 'Chỉnh sửa chủ xe thành công', type: 'success' });
       }
@@ -87,10 +89,19 @@ function Personal({}) {
 
   return (
     <Content className="w-100 py-3">
+      <Modal
+        title={lag('common:paymentRegister')}
+        open={!!open}
+        onCancel={() => {
+          setOpen(false);
+        }}
+        destroyOnClose={true}
+        classNames={{ footer: 'd-none' }}>
+        <PaymentRegister lag={lag} licenePlate={open} hanldeRegister={hanldePayment} />
+      </Modal>
       <Card className="w-100">
         <Descriptions title={''} bordered items={items} size="small" column={3} />
       </Card>
-
       <Table
         className="mt-2"
         dataSource={vehicle}
@@ -114,16 +125,14 @@ function Personal({}) {
             render: (_, item) => {
               if (item.payment) {
                 const { payment = {} } = item;
-                if (payment.startDate && payment.months) {
+                if (payment.isPay && payment.startDate && payment.endDate) {
+                  return `${dayjs(payment.startDate)} - ${dayjs(payment.endDate)}`;
                 }
               }
               return (
                 <Space size={'large'}>
                   <Typography.Text>{lag('common:unRegister')}</Typography.Text>
-                  <Button
-                    type="primary"
-                    onClick={() => hanldePayment(item.licenePlate)}
-                    size="small">
+                  <Button type="primary" onClick={() => setOpen(item.licenePlate)} size="small">
                     {lag('common:extend')}
                   </Button>
                 </Space>
