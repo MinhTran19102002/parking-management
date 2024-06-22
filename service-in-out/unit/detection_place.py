@@ -51,8 +51,8 @@ class dection_place():
                 area = width * height
                 if 'car' in c and area > 10000:
                     cv2.rectangle(frame,(x1,y1),(x2,y2),(0,255,0),2)
-                    cx=int(x1+x2)//3
-                    cy=int(y1+y2)//3
+                    cx=int(x1+x2)//2
+                    cy=int(y1+y2)//2
 
 
                     results1=cv2.pointPolygonTest(np.array(area1,np.int32),((cx,cy)),False)
@@ -92,7 +92,4 @@ class dection_place():
             if a3==1:
                 cv2.polylines(frame,[np.array(area3,np.int32)],True,(0,0,255),2)
                 cv2.putText(frame,str('3'),(175,436),cv2.FONT_HERSHEY_COMPLEX,0.5,(0,0,255),1)
-            else:
-                cv2.polylines(frame,[np.array(area3,np.int32)],True,(0,255,0),2)
-                cv2.putText(frame,str('2'),(106,440),cv2.FONT_HERSHEY_COMPLEX,0.5,(255,255,255),1)
             

@@ -65,7 +65,7 @@ const findEvent = async ({ pageSize, pageIndex, startTime, endTime, ...params },
         [key]: new RegExp(`^${value}`, 'i'),
       };
     }
-
+    
     Object.assign(paramMatch, regex);
   }
   try {
@@ -84,13 +84,15 @@ const findEvent = async ({ pageSize, pageIndex, startTime, endTime, ...params },
       }
     }
     if (startDay !== undefined && endDay !== undefined) {
-      console.log(Date.parse(parseDate(startDay)))
+      console.log( Date.parse(parseDate(startDay)))
       const start = Date.parse(parseDate(startDay)) + 7 * 60 * 60 * 1000;
       const end = Date.parse(parseDate(endDay)) + 7 * 60 * 60 * 1000;
       pipelineDay = {
-        createdAt: {
-          $gte: start,
-          $lte: end,
+        $match: {
+          createdAt: {
+            $gte: start,
+            $lte: end,
+          },
         },
       }
     }
@@ -103,11 +105,8 @@ const findEvent = async ({ pageSize, pageIndex, startTime, endTime, ...params },
             createdAt: -1, // sắp xếp theo thứ tự giảm dần của trường thoi_gian
           },
         },
-        {
-          $match: {
-            ...pipelineDay,
-          },
-        },
+        pipelineDay
+        ,
         {
           $addFields: {
             timezoneOffset: { $literal: new Date().getTimezoneOffset() * 60 * 1000 },
@@ -198,8 +197,8 @@ const findEvent = async ({ pageSize, pageIndex, startTime, endTime, ...params },
         //   }
         // },
 
-
-
+        
+        
         {
           $project: {
             _id: 0,

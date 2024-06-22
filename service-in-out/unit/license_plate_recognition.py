@@ -13,11 +13,8 @@ import pandas as pd
 plateCascade = cv2.CascadeClassifier("./unit/haarcascade_russian_plate_number.xml")
 minArea = 500
 ocr = PaddleOCR(use_angle_cls=True, lang='en')
-global default_licenses_in
-default_licenses_in = ''
-
-global default_licenses_out
-default_licenses_out = ''
+global default_licenses
+default_licenses = ''
 
 global a1_defl , a2_defl, a3_defl
 a1_defl= 0
@@ -28,15 +25,9 @@ cout_frame = 0
 
 model=YOLO('yolov8s.pt')
 
-# area1=[(263,243),(130,396),(345,400),(395,240)]
-# area2=[(395,240),(345,400),(600,400),(535,240)]
-# area3=[(535,240),(600,400),(805,380),(680,240)]
-
-
-area1=[(230,320),(190,445),(395,445),(405,320)]
-area2=[(405,320),(395,445),(620,445),(610,320)]
-area3=[(610,320),(620,445),(805,445),(775,320)]
-
+area1=[(263,243),(130,396),(345,400),(395,240)]
+area2=[(395,240),(345,400),(600,400),(535,240)]
+area3=[(535,240),(600,400),(805,380),(680,240)]
 my_file = open("./unit/coco.txt", "r")
 data = my_file.read()
 class_list = data.split("\n")
@@ -93,7 +84,7 @@ def select_image1(img):
 
 
 
-def car_into_parking(img, flag):
+def car_into_parking(img):
     try:
         url = "http://localhost:8010/api/parkingTurn/createPakingTurnWithoutZoneAndPosition"
         if img is None:
@@ -106,11 +97,11 @@ def car_into_parking(img, flag):
         result_licenses = ''
         
         
-        # gray =  cv2.bilateralFilter(grayscale, 11,17,17)
+        gray =  cv2.bilateralFilter(grayscale, 11,17,17)
 
-        # edged = cv2.Canny(gray, 190, 200)
-        # contours , new = cv2.findContours(edged.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
-        # contours = sorted(contours, key=cv2.contourArea, reverse=True)[:30]
+        edged = cv2.Canny(gray, 190, 200)
+        contours , new = cv2.findContours(edged.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+        contours = sorted(contours, key=cv2.contourArea, reverse=True)[:30]
         contour_license_plate = None
         license_plate = None
         w= None
@@ -120,24 +111,19 @@ def car_into_parking(img, flag):
         numberPlates = []
         # numberPlates = plateCascade.detectMultiScale(grayscale, 1.1, 4) 
         
-        # for contour in contours:
-        #     perimeter =  cv2.arcLength(contour, True)
-        #     approx = cv2.approxPolyDP(contour, 0.018* perimeter, True)
-        #     if len(approx) == 4:
-        #         contour_license_plate = approx
-        #         x,y,w,h = cv2.boundingRect(contour_license_plate)
-        #         cv2.rectangle(img, (x, y), (x + w, y + h), (145, 60, 255), 5)
-        #         area = w*h
-        #         if area > minArea and w > h:  
-        #             numberPlates = list(numberPlates) + [(x,y,w,h)]
-
-        numberPlates = plateCascade.detectMultiScale(grayscale, 1.1, 4)
+        for contour in contours:
+            perimeter =  cv2.arcLength(contour, True)
+            approx = cv2.approxPolyDP(contour, 0.018* perimeter, True)
+            if len(approx) == 4:
+                contour_license_plate = approx
+                x,y,w,h = cv2.boundingRect(contour_license_plate)
+                area = w*h
+                if area > minArea and w > h:  
+                    numberPlates = list(numberPlates) + [(x,y,w,h)]
         for (x, y, w, h) in numberPlates:
-            
             area = w*h
             if area > minArea:  
                 imgRoi = img[y:y+h,x:x+w]
-                
                 try:
                     result = ocr.ocr(imgRoi, cls=True)
                     result = result[0]
@@ -162,28 +148,24 @@ def car_into_parking(img, flag):
                             if license_text[2] == '6':
                                 license_text =  license_text[:1] +'G' + license_text[3:]
                             license_text =  license_text[:3] +'-' + license_text[3:]
-                            # print("ket qua la ")
-                            # print(license_text)
-                            # print(exact[0])
+
                             if exact[0] >= 0.85:
                                 cv2.rectangle(img, (x, y), (x + w, y + h), (145, 60, 255), 5)
                                 result_licenses = license_text
                                 break
                             # result_licenses.append(license_text)
                 except:  print("Lỗi1111: " )
-        # global cout_frame 
-        # cout_frame = cout_frame + 1
+        global cout_frame 
+        cout_frame = cout_frame + 1
         pattern = r'^\d{2}[A-Z]-\d{5}$'
         # result_licenses
         if re.match(pattern, result_licenses):
             print("Bien so xe xac dinh la ")
             print(result_licenses)
-            global default_licenses_in
-            global default_licenses_out
-            if default_licenses_in != result_licenses and flag =="in":
-                # # cout_frame = 0
-                default_licenses_in = result_licenses
-                print("""result_licenses""")
+            global default_licenses
+            if default_licenses != result_licenses or (default_licenses == result_licenses and cout_frame > 10 ):
+                cout_frame = 0
+                default_licenses = result_licenses
                 _, img_encoded = cv2.imencode('.jpg', img)
                 img_bytes = img_encoded.tobytes()
                 data = {
@@ -201,20 +183,18 @@ def car_into_parking(img, flag):
                     print('Success:', response.json())
                 else:
                     print('Failed:', response.status_code, response.text)
-            elif default_licenses_out != result_licenses and flag =="out":
-                default_licenses_out = result_licenses
-                data = {
-                    'licenePlate': result_licenses
-                }
-                response1 = requests.post("http://localhost:8010/api/parkingTurn/outPaking", json=data)
+                    data = {
+                        'licenePlate': result_licenses
+                    }
+                    response1 = requests.post("http://localhost:8010/api/parkingTurn/outPaking", json=data)
 
-                # Kiểm tra kết quả trả về
-                if response1.status_code == 200:
-                    print('Success:', response1.json())
-                else:
-                    print('Failed:', response1.status_code, response.text)
-            # else: 
-            #     print (cout_frame)
+                    # Kiểm tra kết quả trả về
+                    if response1.status_code == 200:
+                        print('Success:', response1.json())
+                    else:
+                        print('Failed:', response1.status_code, response.text)
+            else: 
+                print (cout_frame)
         resized_frame = cv2.resize(img, (640, 480))
         return cv2.imencode('.jpg', resized_frame)[1].tobytes(), result_licenses #frame
     except:
@@ -246,9 +226,9 @@ def car_into_slot(img, positon, zone):
             if 'car' in c and area > 10000:
                 cv2.rectangle(img,(x1,y1),(x2,y2),(0,255,0),2)
                 cx=int(x1+x2)//2
-                cy=int((int(y1+y2)//2) +y2) //2
+                cy=int(y1+y2)//2
 
-                # cv2.circle(img,(cx,cy),3,(0,0,255),-1)
+
                 results1=cv2.pointPolygonTest(np.array(area1,np.int32),((cx,cy)),False)
                 if results1>=0:
                     cv2.rectangle(img,(x1,y1),(x2,y2),(0,255,0),2)
@@ -286,9 +266,6 @@ def car_into_slot(img, positon, zone):
         if a3==1:
             cv2.polylines(img,[np.array(area3,np.int32)],True,(0,0,255),2)
             cv2.putText(img,str('3'),(175,436),cv2.FONT_HERSHEY_COMPLEX,0.5,(0,0,255),1)
-        else:
-            cv2.polylines(img,[np.array(area3,np.int32)],True,(0,255,0),2)
-            cv2.putText(img,str('3'),(106,440),cv2.FONT_HERSHEY_COMPLEX,0.5,(255,255,255),1)
         global a1_defl , a2_defl, a3_defl
         print(a1_defl)
         # if a1 != a1_defl:

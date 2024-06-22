@@ -7,7 +7,6 @@ import { vehicleRoute } from './vehicleRoute'
 import { scheduleRoute } from './scheduleRoute'
 import { stationRoute } from './stationRoute'
 import { cameraRoute } from './cameraRoute'
-import { paymentRoute } from './paymentRoute'
 
 const Router = express.Router()
 
@@ -35,8 +34,5 @@ Router.use('/station', stationRoute)
 
 // API camera
 Router.use('/camera', cameraRoute)
-
-
-Router.use('/payment', paymentRoute)
 
 export const APIs_V1 = Router
