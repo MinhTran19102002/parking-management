@@ -66,10 +66,26 @@
   "confirmNewPassword": "Xác nhận mật khẩu mới",
   "changePassword": "Thay đổi mật khẩu",
   "logout": "Đăng xuất",
+  "login": "Đăng nhập",
   "form": {
-    "formatPassword": "Sai định dang, SĐT phải là 10 số",
+    "addCar": "Thêm xe",
+    "wrongFormat": "Sai định dạng",
+    "formatPassword": "Sai định dạng, SĐT phải là 10 số",
     "passwordNotSame": "Mật khẩu không trùng khớp",
     "editSuccess": "Chỉnh sửa thành công",
-    "addSuccess": "Chỉnh sửa thành công"
+    "addSuccess": "Chỉnh sửa thành công",
+    "username": "Tên đăng nhập hoặc số điện thoại",
+    "plsNotEmpty": "Vui lòng không bỏ trống"
+  },
+  "language": "Ngôn ngữ",
+  "lags": {
+    "vi": "Tiếng Việt",
+    "en": "Tiếng Anh"
+  },
+  "register": "Đăng ký tài khoản mới",
+  "jobs": {
+    "Teacher": "Giảng viên",
+    "Employee": "Nhân viên",
+    "Student": "Sinh viên"
   }
 }

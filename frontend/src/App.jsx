@@ -12,7 +12,7 @@ import DayService from './services/DayService';
 import { getAntd, i18nConfig } from './config';
 import { GlobalStyle } from './shared';
 import Register from './views/pages/Authen/Register';
-import { Content, Footer } from './views/layouts';
+import { Content, Footer, Header } from './views/layouts';
 import { useTranslation } from 'react-i18next';
 
 function Authencation({ children }) {

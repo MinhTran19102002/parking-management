@@ -1,12 +1,12 @@
-import { Button, Col, Drawer, Form, Radio, Row, Select, Switch } from 'antd';
+import { Button, Col, Drawer, FloatButton, Form, Radio, Row, Select, Switch } from 'antd';
 import React, { useContext, useEffect, useState } from 'react';
 import Icon, { SettingOutlined } from '@ant-design/icons';
 import { MoonOutlined, SunOutlined } from '~/views/components/Icons';
 import AppContext from '~/context';
 import { useForm } from 'antd/es/form/Form';
 import { useTranslation } from 'react-i18next';
-function LagSelect({}) {
-  const { i18n } = useTranslation();
+function LagSelect({ floatButton }) {
+  const { t: lag, i18n } = useTranslation();
   const [form] = useForm();
   const [open, setOpen] = useState(false);
   const { state, actions } = useContext(AppContext);
@@ -31,26 +31,35 @@ function LagSelect({}) {
 
   return (
     <>
-      <Button
-        type="text"
-        size="large"
-        icon={<Icon component={SettingOutlined} />}
-        onClick={() => setOpen(!open)}
-      />
+      {floatButton ? (
+        <FloatButton
+          size="large"
+          icon={<Icon component={SettingOutlined} />}
+          onClick={() => setOpen(!open)}
+        />
+      ) : (
+        <Button
+          type="text"
+          size="large"
+          icon={<Icon component={SettingOutlined} />}
+          onClick={() => setOpen(!open)}
+        />
+      )}
+
       <Drawer
-        title="Cài đặt"
+        title={lag('common:pages:setting')}
         placement={'right'}
         width={400}
         onClose={() => setOpen(false)}
         open={open}>
         <Form form={form} gutter={16} onValuesChange={onValuesChange} initialValues={initValues}>
-          <Form.Item label="Ngôn ngữ" name="lag">
+          <Form.Item label={lag('common:language')} name="lag">
             <Radio.Group
               optionType="button"
               buttonStyle="solid"
               options={[
-                { value: 'vi', label: 'Tiếng Việt' },
-                { value: 'en', label: 'Tiếng Anh' }
+                { value: 'vi', label: lag('common:vi') },
+                { value: 'en', label: lag('common:en') }
               ]}
             />
           </Form.Item>

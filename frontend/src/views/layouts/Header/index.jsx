@@ -133,36 +133,32 @@ function Header() {
           {title}
         </Typography.Title>
         <Space>
-          {useMemo(() => {
-            return (
-              <Space id="profileUser">
-                <Avatar
-                  src={
-                    auth.info.avatar
-                      ? `${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/avatar/${
-                          auth.info.avatar
-                        }`
-                      : DEFAULT_AVATAR
-                  }
-                  size={40}
-                />
-                <Dropdown
-                  menu={{ items: getItems(lag), onClick: hanldeClickProfile }}
-                  getPopupContainer={() => document.querySelector('#root')}
-                  trigger={['click']}
-                  placement="bottomRight">
-                  <a onClick={(e) => e.preventDefault()}>
-                    <Space>
-                      <Typography.Title level={5} style={{ margin: 0 }}>
-                        {state?.auth?.info?.name}
-                      </Typography.Title>
-                      <DownOutlined />
-                    </Space>
-                  </a>
-                </Dropdown>
-              </Space>
-            );
-          }, [state.auth, avatar])}
+          <Space id="profileUser">
+            <Avatar
+              src={
+                auth.info.avatar
+                  ? `${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/avatar/${
+                      auth.info.avatar
+                    }`
+                  : DEFAULT_AVATAR
+              }
+              size={40}
+            />
+            <Dropdown
+              menu={{ items: getItems(lag), onClick: hanldeClickProfile }}
+              getPopupContainer={() => document.querySelector('#root')}
+              trigger={['click']}
+              placement="bottomRight">
+              <a onClick={(e) => e.preventDefault()}>
+                <Space>
+                  <Typography.Title level={5} style={{ margin: 0 }}>
+                    {state?.auth?.info?.name}
+                  </Typography.Title>
+                  <DownOutlined />
+                </Space>
+              </a>
+            </Dropdown>
+          </Space>
           <LagSelect />
         </Space>
       </Flex>

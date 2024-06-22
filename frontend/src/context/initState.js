@@ -20,19 +20,20 @@ const initState = {
   parkingEvent: null,
   authorize: null,
   zones: ['A', 'B', 'C'],
+  jobs: ['Teacher', 'Student', 'Employee'],
   eventInfor: [
     {
-      name: 'in',
+      name: 'in'
     },
     {
-      name: 'out',
+      name: 'out'
     },
     {
-      name: 'inSlot',
+      name: 'inSlot'
     },
     {
-      name: 'outSlot',
-    },
+      name: 'outSlot'
+    }
   ]
 };
 

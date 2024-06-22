@@ -60,7 +60,7 @@ function Main({}) {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Modal
-        title={'Thay đổi mật khẩu'}
+        title={lag('common:changePassword')}
         open={state.onChangePassword}
         onCancel={() => {
           actions.onSetChangePassword();
