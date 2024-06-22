@@ -58,8 +58,8 @@ function LagSelect({ floatButton }) {
               optionType="button"
               buttonStyle="solid"
               options={[
-                { value: 'vi', label: lag('common:vi') },
-                { value: 'en', label: lag('common:en') }
+                { value: 'vi', label: lag('common:lags:vi') },
+                { value: 'en', label: lag('common:lags:en') }
               ]}
             />
           </Form.Item>
