@@ -162,9 +162,9 @@ def car_into_parking(img, flag):
                             if license_text[2] == '6':
                                 license_text =  license_text[:1] +'G' + license_text[3:]
                             license_text =  license_text[:3] +'-' + license_text[3:]
-                            # print("ket qua la ")
-                            # print(license_text)
-                            # print(exact[0])
+                            print("ket qua la ")
+                            print(license_text)
+                            print(exact[0])
                             if exact[0] >= 0.85:
                                 cv2.rectangle(img, (x, y), (x + w, y + h), (145, 60, 255), 5)
                                 result_licenses = license_text
@@ -175,46 +175,45 @@ def car_into_parking(img, flag):
         # cout_frame = cout_frame + 1
         pattern = r'^\d{2}[A-Z]-\d{5}$'
         # result_licenses
-        if re.match(pattern, result_licenses):
-            print("Bien so xe xac dinh la ")
-            print(result_licenses)
-            global default_licenses_in
-            global default_licenses_out
-            if default_licenses_in != result_licenses and flag =="in":
-                # # cout_frame = 0
-                default_licenses_in = result_licenses
-                print("""result_licenses""")
-                _, img_encoded = cv2.imencode('.jpg', img)
-                img_bytes = img_encoded.tobytes()
-                data = {
-                    'licenePlate': result_licenses
-                }
-                # Tệp tin hình ảnh
 
-                files = {
-                    'image': ('xevao.jpg', img_bytes, 'image/jpeg')
-                }
-                response = requests.post(url, data=data, files=files)
+        # if re.match(pattern, result_licenses):
+        #     print("Bien so xe xac dinh la ")
+        #     print(result_licenses)
+        #     global default_licenses_in
+        #     global default_licenses_out
+        #     if default_licenses_in != result_licenses and flag =="in":
+        #         # # cout_frame = 0
+        #         default_licenses_in = result_licenses
+        #         print("""result_licenses""")
+        #         _, img_encoded = cv2.imencode('.jpg', img)
+        #         img_bytes = img_encoded.tobytes()
+        #         data = {
+        #             'licenePlate': result_licenses
+        #         }
+        #         # Tệp tin hình ảnh
 
-                # Kiểm tra kết quả trả về
-                if response.status_code == 201:
-                    print('Success:', response.json())
-                else:
-                    print('Failed:', response.status_code, response.text)
-            elif default_licenses_out != result_licenses and flag =="out":
-                default_licenses_out = result_licenses
-                data = {
-                    'licenePlate': result_licenses
-                }
-                response1 = requests.post("http://localhost:8010/api/parkingTurn/outPaking", json=data)
+        #         files = {
+        #             'image': ('xevao.jpg', img_bytes, 'image/jpeg')
+        #         }
+        #         response = requests.post(url, data=data, files=files)
 
-                # Kiểm tra kết quả trả về
-                if response1.status_code == 200:
-                    print('Success:', response1.json())
-                else:
-                    print('Failed:', response1.status_code, response.text)
-            # else: 
-            #     print (cout_frame)
+        #         # Kiểm tra kết quả trả về
+        #         if response.status_code == 201:
+        #             print('Success:', response.json())
+        #         else:
+        #             print('Failed:', response.status_code, response.text)
+        #     elif default_licenses_out != result_licenses and flag =="out":
+        #         default_licenses_out = result_licenses
+        #         data = {
+        #             'licenePlate': result_licenses
+        #         }
+        #         response1 = requests.post("http://localhost:8010/api/parkingTurn/outPaking", json=data)
+
+        #         # Kiểm tra kết quả trả về
+        #         if response1.status_code == 200:
+        #             print('Success:', response1.json())
+        #         else:
+        #             print('Failed:', response1.status_code, response.text)
         resized_frame = cv2.resize(img, (640, 480))
         return cv2.imencode('.jpg', resized_frame)[1].tobytes(), result_licenses #frame
     except:

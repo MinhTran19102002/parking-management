@@ -5,6 +5,7 @@ import { OBJECT_ID_RULE, OBJECT_ID_RULE_MESSAGE } from '~/utils/validators';
 import { GET_DB } from '~/config/mongodb';
 import { StatusCodes } from 'http-status-codes';
 import { vehicleModel } from '~/models/vehicleModel';
+import { paymentModel } from './paymentModel';
 
 const PERSON_COLLECTION_NAME = 'persons';
 const PERSON_COLLECTION_SCHEMA = Joi.object({
@@ -820,6 +821,15 @@ const getUser = async (phone) => {
             as: 'driver.vehicle',
           },
         },
+        {
+          $lookup: {
+            from: paymentModel.PAYMENT_COLLECTION_NAME,
+            localField: 'driver.vehicle.paymentId',
+            foreignField: '_id',
+            as: 'paymentData',
+          },
+        },
+        // { $unwind: '$driver.vehicle.paymentData' }
       ])
       .toArray();
     return findUser.length ? findUser[0] : null;
