@@ -87,7 +87,18 @@ const register = async (req, res, next) => {
       }
 }
 
+const findById = async (req, res, next) => {
+    try {
+        // Dieu huong sang tang Service
+        const register = await paymentService.findById(req.query);
+        res.status(StatusCodes.CREATED).json(register);
+      } catch (error) {
+        next(error);
+      }
+}
+
 export const paymentController = {
     payment,
     register,
+    findById,
 }
