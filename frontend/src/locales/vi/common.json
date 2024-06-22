@@ -57,5 +57,19 @@
   "paymentRegister": "Đăng ký gia hạn",
   "months": "Số tháng",
   "cancel": "Hủy",
-  "confirm": "Xác nhận"
+  "confirm": "Xác nhận",
+  "editProfile": "Chỉnh sửa thông tin",
+  "edit": "Chỉnh sửa",
+  "password": "Mật khẩu",
+  "oldPassword": "Mật khẩu cũ",
+  "newPassword": "Mật khẩu mới",
+  "confirmNewPassword": "Xác nhận mật khẩu mới",
+  "changePassword": "Thay đổi mật khẩu",
+  "logout": "Đăng xuất",
+  "form": {
+    "formatPassword": "Sai định dang, SĐT phải là 10 số",
+    "passwordNotSame": "Mật khẩu không trùng khớp",
+    "editSuccess": "Chỉnh sửa thành công",
+    "addSuccess": "Chỉnh sửa thành công"
+  }
 }

@@ -22,22 +22,22 @@ import ProfileForm from '~/views/components/Form/ProfileForm';
 import LagSelect from './LagSelect';
 import { useTranslation } from 'react-i18next';
 
-const items = [
+const getItems = (lag) => [
   {
     id: 'editProfile',
-    label: 'Chỉnh sửa thông tin',
+    label: lag('common:editProfile'),
     key: 'editProfile',
     disabled: false
   },
   {
     id: 'changePassword',
-    label: 'Thay đổi mật khẩu',
+    label: lag('common:changePassword'),
     key: 'changePassword',
     disabled: false
   },
   {
     id: 'logout',
-    label: <Typography.Text type="danger">Đăng xuất</Typography.Text>,
+    label: <Typography.Text type="danger">{lag('common:logout')}</Typography.Text>,
     key: 'logout'
   }
 ];
@@ -97,8 +97,8 @@ function Header() {
     info.user = info?.account?.username || '';
     setFormAction({
       action: 'edit',
-      actionText: 'Chỉnh sửa',
-      title: 'Chỉnh sửa thông tin cá nhân',
+      actionText: lag('common:edit'),
+      title: lag('common:editProfile'),
       payload: { ...info }
     });
     setOpenForm(true);
@@ -147,7 +147,7 @@ function Header() {
                   size={40}
                 />
                 <Dropdown
-                  menu={{ items, onClick: hanldeClickProfile }}
+                  menu={{ items: getItems(lag), onClick: hanldeClickProfile }}
                   getPopupContainer={() => document.querySelector('#root')}
                   trigger={['click']}
                   placement="bottomRight">

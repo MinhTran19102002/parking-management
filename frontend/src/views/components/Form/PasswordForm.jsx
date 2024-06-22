@@ -4,13 +4,14 @@ import { EyeInvisibleOutlined, EyeTwoTone, RedoOutlined } from '@ant-design/icon
 import AppContext from '~/context';
 import { ErrorService, ValidateService } from '~/services';
 import { UserApi } from '~/api';
+import { useTranslation } from 'react-i18next';
 
 function PasswordForm({ account, isOpen, onClose, noChangeAccount }) {
   const [form] = Form.useForm();
   const { state, actions } = useContext(AppContext);
   const { onNoti, onMess } = actions;
   const [loading, setLoading] = useState(false);
-
+  const { t: lag } = useTranslation();
   const hanldeClose = (action, values) => {
     form.resetFields();
     onClose({});
@@ -62,7 +63,7 @@ function PasswordForm({ account, isOpen, onClose, noChangeAccount }) {
           <Input placeholder="example" id="usernameinput" disabled={noChangeAccount} />
         </Form.Item> */}
         <Form.Item
-          label="Mật khẩu cũ"
+          label={lag('common:oldPassword')}
           name="password"
           rules={[
             {
@@ -73,18 +74,18 @@ function PasswordForm({ account, isOpen, onClose, noChangeAccount }) {
         </Form.Item>
 
         <Form.Item
-          label="Mật khẩu mới"
+          label={lag('common:newPassword')}
           name="newPassword"
           rules={[
             {
               required: true
             },
             ({ getFieldValue }) => ({
-              validator(_, value) {
+              validator(_, value) {f
                 if (ValidateService.password(value)) {
                   return Promise.resolve();
                 }
-                return Promise.reject(new Error('Mật khẩu không đúng định dạng'));
+                return Promise.reject(new Error(lag('common:form:formatPassword')));
               }
             })
           ]}>
@@ -93,7 +94,7 @@ function PasswordForm({ account, isOpen, onClose, noChangeAccount }) {
 
         {/* Field */}
         <Form.Item
-          label="Xác nhận mật khẩu mới"
+          label={lag('common:confirmNewPassword')}
           name="confirmNewPassword"
           dependencies={['password']}
           rules={[
@@ -105,7 +106,7 @@ function PasswordForm({ account, isOpen, onClose, noChangeAccount }) {
                 if (!value || getFieldValue('newPassword') === value) {
                   return Promise.resolve();
                 }
-                return Promise.reject(new Error('Mật khẩu không trùng khớp'));
+                return Promise.reject(new Error(lag('common:form:passwordNotSame')));
               }
             })
           ]}>
@@ -119,9 +120,9 @@ function PasswordForm({ account, isOpen, onClose, noChangeAccount }) {
           }}
           className="mt-4">
           <Space>
-            <Button onClick={hanldeClose}>Hủy</Button>
+            <Button onClick={hanldeClose}>{lag('common:cancel')}</Button>
             <Button htmlType="submit" type="primary">
-              Xác nhận
+              {lag('common:confirm')}
             </Button>
           </Space>
         </Form.Item>
