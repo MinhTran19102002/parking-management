@@ -10,7 +10,7 @@ const VEHICLE_COLLECTION_SCHEMA = Joi.object({
   // boadId: Joi.string().required().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE)
 
   driverId: Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE).default(null),
-
+  paymentId: Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE).default(null),
   licenePlate: Joi.string().required().trim().strict().pattern(/^[0-9]{2}[A-Z]-[0-9]{4,5}$/),
   type: Joi.string().min(2).max(20).trim().strict().default('Car'),
   active: Joi.boolean().default(false),

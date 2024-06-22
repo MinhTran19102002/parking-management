@@ -56,12 +56,23 @@ def licenseSFunc():
 def carInOut(url, flag):
     webcam = Webcam(url)
     while True:
-        image = next(webcam.get_frame(10))
+        image = next(webcam.get_frame(17))
         image, licenseS = car_into_parking(image, flag)
         global global_licenseS
         global image_license
         global_licenseS = licenseS
         image_license = image
+        # g.global_var = licenseS
+        yield b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n--frame\r\n'
+
+def carInOutSlot(url):
+    webcam = Webcam(url)
+    position = ['A101', 'A102', 'A103']
+    zone = 'A'
+    
+    while True:
+        image = next(webcam.get_frame(12))
+        image = car_into_slot(image, position, zone)
         # g.global_var = licenseS
         yield b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n--frame\r\n'
 
@@ -72,11 +83,20 @@ def carInOut(url, flag):
 def apiCarIn():
     # url = "./unit/dectect1.mp4"
     # url = "./unit/video/CAM_ngoai_full.mp4"
+    # camera = request.args.get('camera')
+    # if camera == 'in':
     url = "./unit/video/XeVao.mp4"
     response =  Response( carInOut(url, "in"), mimetype="multipart/x-mixed-replace; boundary=frame" )
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
 
+    # elif camera == 'out':
+    #     url = "./unit/video/XeRa.mp4"
+    #     response =  Response( carInOut(url, "out"), mimetype="multipart/x-mixed-replace; boundary=frame" )
+    #     response.headers['Access-Control-Allow-Origin'] = '*'
+    #     return response
+
+    
 
 # API nhap xuat xe
 @app.route('/service/carOut')
@@ -89,16 +109,7 @@ def apiCarOut():
     return response
 
 
-def carInOutSlot(url):
-    webcam = Webcam(url)
-    position = ['A101', 'A102', 'A103']
-    zone = 'A'
-    
-    while True:
-        image = next(webcam.get_frame(22))
-        image = car_into_slot(image, position, zone)
-        # g.global_var = licenseS
-        yield b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n--frame\r\n'
+
 
 # API xe ra vao trong slot
 @app.route('/service/carInOutSlot')
