@@ -33,7 +33,12 @@ export const getColumns = ({ pageSize, pageIndex, onEdit, onDelete }, lag) => {
       title: lag('common:fee'),
       dataIndex: ['parkingTurn', 'fee'],
       key: 'fee',
-      sorter: (a, b) => a.parkingTurn.fee - b.parkingTurn.fee
+      sorter: (a, b) => a.parkingTurn.fee - b.parkingTurn.fee,
+      render: (text, item) => {
+        const names = ['out', 'outSlot'];
+        const isFee = names.includes(item.name);
+        return isFee && text;
+      }
     },
     {
       title: lag('common:driver'),

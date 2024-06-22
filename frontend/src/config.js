@@ -68,10 +68,10 @@ const themeByMode = {
   dark: {
     neutral5: '#252525',
     event: {
-      in: ['#52c41a', '#237804'],
-      inSlot: ['#52c41a', '#237804'],
-      out: ['#4096ff', '#002c8c'],
-      outSlot: ['#4096ff', '#002c8c'],
+      in: ['#52c41a', '#195004'],
+      inSlot: ['#52c41a', '#195004'],
+      out: ['#4096ff', '#0a2767'],
+      outSlot: ['#4096ff', '#0a2767'],
       entry: ['#389e0d', '#d9f7be'],
       exit: ['#1d39c4', '#d6e4ff'],
       almost_full: ['#d48806', '#fff1b8'],
