@@ -4,6 +4,8 @@ import LOGO from '~/assets/logo/full-logo.svg';
 import AppContext from '~/context';
 import { useNavigate } from 'react-router-dom';
 import { Content, Footer } from '~/views/layouts';
+import LagSelect from '~/views/layouts/Header/LagSelect';
+import { useTranslation } from 'react-i18next';
 
 const roles = [
   {
@@ -24,6 +26,7 @@ function Authen({}) {
   const { state, actions } = useContext(AppContext);
   const { auth } = state;
   const navigate = useNavigate();
+  const { t: lag } = useTranslation();
 
   const [loading, setLoading] = useState(false);
 
@@ -56,6 +59,7 @@ function Authen({}) {
 
   return (
     <Content className="d-flex justify-content-center align-items-center w-100 h-100">
+      <LagSelect floatButton />
       <Space direction="vertical" size="large">
         <Row justify="center">
           <Image src={LOGO} preview={false} />
@@ -74,10 +78,10 @@ function Authen({}) {
               rules={[
                 {
                   required: true,
-                  message: 'Vui lòng không bỏ trống'
+                  message: lag('common:form:plsNotEmpty')
                 }
               ]}>
-              <Input size="large" placeholder="Tên đăng nhập hoặc số điện thoại" />
+              <Input size="large" placeholder={lag('common:form:username')} />
             </Form.Item>
 
             <Form.Item
@@ -85,10 +89,10 @@ function Authen({}) {
               rules={[
                 {
                   required: true,
-                  message: 'Vui lòng không bỏ trống'
+                  message: lag('common:form:plsNotEmpty')
                 }
               ]}>
-              <Input.Password size="large" placeholder="Mật khẩu" />
+              <Input.Password size="large" placeholder={lag('common:password')} />
             </Form.Item>
 
             <Form.Item>
@@ -99,7 +103,7 @@ function Authen({}) {
                 htmlType="submit"
                 block
                 loading={loading}>
-                Đăng nhập
+                {lag('common:login')}
               </Button>
             </Form.Item>
           </Form>
@@ -113,7 +117,7 @@ function Authen({}) {
         </Row> */}
         <Row>
           <Button block size="large" onClick={onRegister}>
-            Đăng ký tài khoản mới
+            {lag('common:register')}
           </Button>
         </Row>
       </Space>

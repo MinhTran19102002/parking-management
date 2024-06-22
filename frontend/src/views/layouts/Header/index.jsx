@@ -16,41 +16,46 @@ import FULL_LOGO from '~/assets/logo/logo-text.svg';
 import DEFAULT_AVATAR from '~/assets/images/avatar.png';
 import { DownOutlined, SettingTwoTone } from '@ant-design/icons';
 import AppContext from '~/context';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import EmployeeForm from '~/views/pages/Main/Employee/EmployeeForm';
 import ProfileForm from '~/views/components/Form/ProfileForm';
 import LagSelect from './LagSelect';
+import { useTranslation } from 'react-i18next';
 
-const items = [
+const getItems = (lag) => [
   {
     id: 'editProfile',
-    label: 'Chỉnh sửa thông tin',
+    label: lag('common:editProfile'),
     key: 'editProfile',
     disabled: false
   },
   {
     id: 'changePassword',
-    label: 'Thay đổi mật khẩu',
+    label: lag('common:changePassword'),
     key: 'changePassword',
     disabled: false
   },
   {
     id: 'logout',
-    label: <Typography.Text type="danger">Đăng xuất</Typography.Text>,
+    label: <Typography.Text type="danger">{lag('common:logout')}</Typography.Text>,
     key: 'logout'
   }
 ];
 
-function Header({ title }) {
+function Header() {
   const {
     token: { colorBgContainer, colorPrimary }
   } = theme.useToken();
   const { state, actions } = useContext(AppContext);
   const { auth } = state;
+  const { t: lag } = useTranslation();
+  const location = useLocation();
   const [formAction, setFormAction] = useState({});
   const [openForm, setOpenForm] = useState(false);
   const navigate = useNavigate();
   const [avatar, setAvatar] = useState(DEFAULT_AVATAR);
+  const { pathname = '' } = location;
+  const title = lag(`common:pages:${pathname.slice(1)}`);
 
   const hanldeLogout = async () => {
     actions.logout();
@@ -92,8 +97,8 @@ function Header({ title }) {
     info.user = info?.account?.username || '';
     setFormAction({
       action: 'edit',
-      actionText: 'Chỉnh sửa',
-      title: 'Chỉnh sửa thông tin cá nhân',
+      actionText: lag('common:edit'),
+      title: lag('common:editProfile'),
       payload: { ...info }
     });
     setOpenForm(true);
@@ -128,36 +133,32 @@ function Header({ title }) {
           {title}
         </Typography.Title>
         <Space>
-          {useMemo(() => {
-            return (
-              <Space id="profileUser">
-                <Avatar
-                  src={
-                    auth.info.avatar
-                      ? `${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/avatar/${
-                          auth.info.avatar
-                        }`
-                      : DEFAULT_AVATAR
-                  }
-                  size={40}
-                />
-                <Dropdown
-                  menu={{ items, onClick: hanldeClickProfile }}
-                  getPopupContainer={() => document.querySelector('#root')}
-                  trigger={['click']}
-                  placement="bottomRight">
-                  <a onClick={(e) => e.preventDefault()}>
-                    <Space>
-                      <Typography.Title level={5} style={{ margin: 0 }}>
-                        {state?.auth?.info?.name}
-                      </Typography.Title>
-                      <DownOutlined />
-                    </Space>
-                  </a>
-                </Dropdown>
-              </Space>
-            );
-          }, [state.auth, avatar])}
+          <Space id="profileUser">
+            <Avatar
+              src={
+                auth.info.avatar
+                  ? `${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/avatar/${
+                      auth.info.avatar
+                    }`
+                  : DEFAULT_AVATAR
+              }
+              size={40}
+            />
+            <Dropdown
+              menu={{ items: getItems(lag), onClick: hanldeClickProfile }}
+              getPopupContainer={() => document.querySelector('#root')}
+              trigger={['click']}
+              placement="bottomRight">
+              <a onClick={(e) => e.preventDefault()}>
+                <Space>
+                  <Typography.Title level={5} style={{ margin: 0 }}>
+                    {state?.auth?.info?.name}
+                  </Typography.Title>
+                  <DownOutlined />
+                </Space>
+              </a>
+            </Dropdown>
+          </Space>
           <LagSelect />
         </Space>
       </Flex>

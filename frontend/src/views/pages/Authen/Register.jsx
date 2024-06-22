@@ -6,6 +6,7 @@ import { UserApi } from '~/api';
 import { Content } from '~/views/layouts';
 import { useNavigate } from 'react-router-dom';
 import AppContext from '~/context';
+import { useTranslation } from 'react-i18next';
 
 const formItemLayout = {
   labelCol: {
@@ -39,11 +40,13 @@ const formItemLayoutWithOutLabel = {
 };
 function Register({}) {
   const { token } = theme.useToken();
+  const { state } = useContext(AppContext);
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { actions } = useContext(AppContext);
   const { onNoti } = actions;
+  const { t: lag } = useTranslation();
 
   const navigateLoginPage = () => {
     navigate('/auth/login');
@@ -81,7 +84,7 @@ function Register({}) {
         className="py-4 px-4"
         style={{ backgroundColor: token.colorBgContainer, borderRadius: token.borderRadiusLG }}>
         <Typography.Title level={2} className="text-center">
-          Đăng ký tài khoản
+          {lag('common:register')}
         </Typography.Title>
         <Form
           form={form}
@@ -89,7 +92,7 @@ function Register({}) {
           disabled={loading}
           {...formItemLayout}
           style={{ width: 600 }}>
-          <Form.Item name={'name'} label="Họ và tên" rules={[{ required: true }]}>
+          <Form.Item name={'name'} label={lag('common:fullName')} rules={[{ required: true }]}>
             <Input placeholder="Nguyễn Văn A" id="nameInput" />
           </Form.Item>
 
@@ -102,7 +105,7 @@ function Register({}) {
 
           <Form.Item
             name={'phone'}
-            label="Số điện thoại"
+            label={lag('common:phone')}
             validateDebounce={1000}
             rules={[
               { required: true, message: false },
@@ -112,29 +115,31 @@ function Register({}) {
                     return Promise.resolve();
                   }
 
-                  return Promise.reject(new Error('Sai định dang, SĐT phải là 10 số'));
+                  return Promise.reject(new Error(lag('common:formatPassword')));
                 }
               })
             ]}>
             <Input placeholder="0357647771" id="phoneInput" addonBefore={'+84'} />
           </Form.Item>
-          <Form.Item name={'address'} label="Địa chỉ" rules={[{ required: true, message: false }]}>
+          <Form.Item
+            name={'address'}
+            label={lag('common:address')}
+            rules={[{ required: true, message: false }]}>
             <Input placeholder="Số 1 Võ Văn Ngân, Linh Chiểu" id="addressInput" />
           </Form.Item>
-          <Form.Item label="Nghề nghiệp" name={['job']} rules={[{ required: true }]}>
+          <Form.Item label={lag('common:job')} name={['job']} rules={[{ required: true }]}>
             <Select id="jobInput">
-              <Select.Option id="selectTeacher" value="Teacher">
-                Giảng viên
-              </Select.Option>
-              <Select.Option id="selectStudent" value="Student">
-                Sinh viên
-              </Select.Option>
-              <Select.Option id="selectEmployee" value="Employee">
-                Nhân viên
-              </Select.Option>
+              {state.jobs.map((job) => (
+                <Select.Option id="selectTeacher" value={job}>
+                  {lag(`common:jobs:${job}`)}
+                </Select.Option>
+              ))}
             </Select>
           </Form.Item>
-          <Form.Item label="Đơn vị" name={['department']} rules={[{ required: true }]}>
+          <Form.Item
+            label={lag('common:department')}
+            name={['department']}
+            rules={[{ required: true }]}>
             <Input placeholder="Công nghệ thông tin" />
           </Form.Item>
           <Form.List name={'licenePlate'}>
@@ -144,7 +149,7 @@ function Register({}) {
                   return (
                     <Form.Item
                       key={'licenePlate' + ix}
-                      label={ix === 0 && 'Biển số xe'}
+                      label={ix === 0 && lag('common:licenePlate')}
                       required={true}
                       {...(ix !== 0 && formItemLayoutWithOutLabel)}>
                       <Form.Item
@@ -159,7 +164,9 @@ function Register({}) {
                               if (ValidateService.licensePlate(value)) {
                                 return Promise.resolve();
                               }
-                              return Promise.reject({ message: 'Sai định dạng (VD: 12A-2184)' });
+                              return Promise.reject({
+                                message: `${lag('common:form:wrongFormat')} (VD: 12A-2184)`
+                              });
                             }
                           })
                         ]}>
@@ -188,7 +195,7 @@ function Register({}) {
                       width: '100%'
                     }}
                     icon={<PlusOutlined />}>
-                    Thêm xe
+                    {lag('common:form:addCar')}
                   </Button>
                 </Form.Item>
               </>
@@ -206,14 +213,14 @@ function Register({}) {
                   if (ValidateService.password(value)) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error('Mật khẩu không đúng định dạng'));
+                  return Promise.reject(new Error(lag('common:form:formatPassword')));
                 }
               })
             ]}>
             <Input.Password visibilityToggle={true} />
           </Form.Item>
           <Form.Item
-            label="Xác nhận mật khẩu"
+            label={lag('common:confirmNewPassword')}
             name="confirmNewPassword"
             dependencies={['password']}
             rules={[
@@ -225,7 +232,7 @@ function Register({}) {
                   if (!value || getFieldValue('password') === value) {
                     return Promise.resolve();
                   }
-                  return Promise.reject(new Error('Mật khẩu không trùng khớp'));
+                  return Promise.reject(new Error(lag('common:form:passwordNotSame')));
                 }
               })
             ]}>
@@ -239,10 +246,10 @@ function Register({}) {
             }}>
             <Space>
               <Button id="btnCancel" onClick={hanldeClose}>
-                Hủy
+                {lag('common:cancel')}
               </Button>
               <Button id="btnSubmit" htmlType="submit" type="primary">
-                Xác nhận
+                {lag('common:confirm')}
               </Button>
             </Space>
           </Form.Item>

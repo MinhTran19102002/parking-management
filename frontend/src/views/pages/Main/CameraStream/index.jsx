@@ -28,27 +28,23 @@ function CameraStream({}) {
     xxl: 6
   };
   return (
-    <Layout className="px-4">
-      <Header className="border-1" title={'Home'} />
-      <Content className="w-100 py-3">
-        <Row className="w-100" gutter={[8, 8]}>
-          {cameras.map((camera = {}, index) => {
-            return (
-              <Col key={camera.cameraId} {...colProps}>
-                <Card title={camera.cameraId}>
-                  {camera.streamLink ? (
-                    <VideoBlock src={camera.streamLink} />
-                  ) : (
-                    <Result title="Stream Camera chưa được cài đặt" />
-                  )}
-                </Card>
-              </Col>
-            );
-          })}
-        </Row>
-      </Content>
-      <Footer />
-    </Layout>
+    <Content className="w-100 py-3">
+      <Row className="w-100" gutter={[8, 8]}>
+        {cameras.map((camera = {}, index) => {
+          return (
+            <Col key={camera.cameraId} {...colProps}>
+              <Card title={camera.cameraId}>
+                {camera.streamLink ? (
+                  <VideoBlock src={camera.streamLink} />
+                ) : (
+                  <Result title="Stream Camera chưa được cài đặt" />
+                )}
+              </Card>
+            </Col>
+          );
+        })}
+      </Row>
+    </Content>
   );
 }
 

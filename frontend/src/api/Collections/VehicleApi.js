@@ -11,5 +11,9 @@ const VehicleApi = {
     const url = `${DOMAIN}/vehicle/inActive`;
     return POST({ url, payload });
   },
+  registerPayment: (payload) => {
+    const url = `${DOMAIN}/payment/register`;
+    return POST({ url, payload });
+  }
 };
 export default VehicleApi;

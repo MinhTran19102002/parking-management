@@ -1,3 +1,11 @@
 {
-  "name": "Event name"
+  "name": "Event name",
+  "byName": {
+    "in": "Car entering",
+    "out": "Car exiting",
+    "inSlot": "Car entering parking slot",
+    "outSlot": "Car exiting parking slot",
+    "almost_full": "Parking almost full",
+    "parking_full": "Parking full"
+  }
 }

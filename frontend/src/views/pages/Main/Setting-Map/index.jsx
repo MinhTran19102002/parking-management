@@ -130,7 +130,7 @@ function SettingMap({}) {
   };
 
   return (
-    <Layout className="px-4">
+    <Content className="w-100 py-3">
       <Modal
         title="Cài đặt camera và ô đỗ"
         width="fit-content"
@@ -143,77 +143,68 @@ function SettingMap({}) {
           onCancel={() => setOpenAssignedSlotModal(false)}
         />
       </Modal>
-      <Header className="border-1" title={'Cài đặt bản đồ'} />
-      <Content className="w-100 py-3">
-        <Flex justify="space-between">
-          <Space>
-            <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
-              <Radio.Button value="A">Khu A</Radio.Button>
-              <Radio.Button value="A1">Khu A1</Radio.Button>
-              <Radio.Button value="B">Khu B</Radio.Button>
-              <Radio.Button value="B1">Khu B1</Radio.Button>
-              <Radio.Button value="C">Khu C</Radio.Button>
-              <Radio.Button value="C1">Khu C1</Radio.Button>
-            </Radio.Group>
-            <Button type="primary" onClick={() => setOpenAssignedSlotModal(true)}>
-              Cài đặt ô đỗ
+      <Flex justify="space-between">
+        <Space>
+          <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
+            <Radio.Button value="A">Khu A</Radio.Button>
+            <Radio.Button value="A1">Khu A1</Radio.Button>
+            <Radio.Button value="B">Khu B</Radio.Button>
+            <Radio.Button value="B1">Khu B1</Radio.Button>
+            <Radio.Button value="C">Khu C</Radio.Button>
+            <Radio.Button value="C1">Khu C1</Radio.Button>
+          </Radio.Group>
+          <Button type="primary" onClick={() => setOpenAssignedSlotModal(true)}>
+            Cài đặt ô đỗ
+          </Button>
+        </Space>
+        <Space>
+          {!settingMode ? (
+            <Button icon={<SettingOutlined />} onClick={() => setSettingMode(true)}>
+              Cài đặt
             </Button>
-          </Space>
-          <Space>
-            {!settingMode ? (
-              <Button icon={<SettingOutlined />} onClick={() => setSettingMode(true)}>
-                Cài đặt
+          ) : (
+            <Space>
+              <Button onClick={() => setSettingMode(false)}>Hủy bỏ</Button>
+              <Button type="primary" onClick={hanldeMapSetting}>
+                Xác nhận
               </Button>
-            ) : (
-              <Space>
-                <Button onClick={() => setSettingMode(false)}>Hủy bỏ</Button>
-                <Button type="primary" onClick={hanldeMapSetting}>
-                  Xác nhận
-                </Button>
-              </Space>
-            )}
-          </Space>
-        </Flex>
-        <TransformBlock
-          className="mt-2 overflow-hidden"
-          style={{ backgroundColor: token.neutral5 }}>
-          <Spin spinning={loading} wrapperClassName="h-100 w-100">
-            {settingMode && <CameraSide defaultData={cameraUnused} />}
-            <MapInteractionCSS
-              {...DISABLED_MAP_INTERACTION(settingMode)}
-              minScale={0.4}
-              maxScale={2}>
-              <div
-                className="map-wrapper"
-                onDrop={onDropCamera}
-                onDragOver={(e) => e.preventDefault()}>
-                {settingMode ? (
-                  <CameraSetting
-                    settingMode={settingMode}
-                    zone={zone}
-                    cameraUsed={cameraUsed}
-                    setCameraUnused={setCameraUnused}
-                    ref={cameraSettingRef}
-                    editManyCameras={editManyCameras}
-                    onRemoveCameraFormMap={onRemoveCameraFormMap}
-                  />
-                ) : (
-                  <CameraLayer
-                    zone={zone}
-                    settingMode={settingMode}
-                    data={totalCameras}
-                    onHoverCamera={onHoverCamera}
-                  />
-                )}
-                <SlotLayer zone={zone} hoveredSlots={hoveredSlots} />
-                <MapLayer zone={zone} />
-              </div>
-            </MapInteractionCSS>
-          </Spin>
-        </TransformBlock>
-      </Content>
-      <Footer />
-    </Layout>
+            </Space>
+          )}
+        </Space>
+      </Flex>
+      <TransformBlock className="mt-2 overflow-hidden" style={{ backgroundColor: token.neutral5 }}>
+        <Spin spinning={loading} wrapperClassName="h-100 w-100">
+          {settingMode && <CameraSide defaultData={cameraUnused} />}
+          <MapInteractionCSS {...DISABLED_MAP_INTERACTION(settingMode)} minScale={0.4} maxScale={2}>
+            <div
+              className="map-wrapper"
+              onDrop={onDropCamera}
+              onDragOver={(e) => e.preventDefault()}>
+              {settingMode ? (
+                <CameraSetting
+                  settingMode={settingMode}
+                  zone={zone}
+                  cameraUsed={cameraUsed}
+                  setCameraUnused={setCameraUnused}
+                  ref={cameraSettingRef}
+                  editManyCameras={editManyCameras}
+                  onRemoveCameraFormMap={onRemoveCameraFormMap}
+                />
+              ) : (
+                <CameraLayer
+                  zone={zone}
+                  settingMode={settingMode}
+                  data={totalCameras}
+                  onHoverCamera={onHoverCamera}
+                />
+              )}
+              <SlotLayer zone={zone} hoveredSlots={hoveredSlots} />
+              <MapLayer zone={zone} />
+            </div>
+          </MapInteractionCSS>
+        </Spin>
+      </TransformBlock>
+    </Content>
   );
 }
 

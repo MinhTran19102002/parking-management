@@ -1,3 +1,11 @@
 {
-  "name": "Tên sự kiện"
+  "name": "Tên sự kiện",
+  "byName": {
+    "in": "Xe vào",
+    "out": "Xe ra",
+    "inSlot": "Xe vào ô đỗ",
+    "outSlot": "Xe ra ô đỗ",
+    "almost_full": "Bãi sắp đầy",
+    "parking_full": "Bãi đầy"
+  }
 }

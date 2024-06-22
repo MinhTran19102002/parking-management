@@ -78,35 +78,26 @@ function Map({}) {
   };
 
   return (
-    <Layout className="px-4">
-      <Header className="border-1" title={'Bản đồ'} />
-      <Content className="w-100 py-3">
-        <Flex justify="space-between">
-          <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
-            <Radio.Button value="A">Khu A</Radio.Button>
-            <Radio.Button value="A1">Khu A1</Radio.Button>
-            <Radio.Button value="B">Khu B</Radio.Button>
-            <Radio.Button value="B1">Khu B1</Radio.Button>
-            <Radio.Button value="C">Khu C</Radio.Button>
-            <Radio.Button value="C1">Khu C1</Radio.Button>
-          </Radio.Group>
-        </Flex>
-        <TransformBlock
-          className="mt-2 overflow-hidden"
-          style={{ backgroundColor: token.neutral5 }}>
-          <Spin spinning={loading} wrapperClassName="h-100 w-100">
-            <MapInteractionCSS minScale={0.4} maxScale={2}>
-              <div className="map-wrapper">
-                <CameraLayer zone={zone} data={cameras} onHoverCamera={onHoverCamera} />
-                <MapLayer zone={zone} />
-                <SlotLayer zone={zone} vehicles={slots} hoveredSlots={hoveredSlots} />
-              </div>
-            </MapInteractionCSS>
-          </Spin>
-        </TransformBlock>
-      </Content>
-      <Footer />
-    </Layout>
+    <Content className="w-100 py-3">
+      <Flex justify="space-between">
+        <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
+          <Radio.Button value="A">Khu A</Radio.Button>
+          <Radio.Button value="B">Khu B</Radio.Button>
+          <Radio.Button value="C">Khu C</Radio.Button>
+        </Radio.Group>
+      </Flex>
+      <TransformBlock className="mt-2 overflow-hidden" style={{ backgroundColor: token.neutral5 }}>
+        <Spin spinning={loading} wrapperClassName="h-100 w-100">
+          <MapInteractionCSS minScale={0.4} maxScale={2}>
+            <div className="map-wrapper">
+              <CameraLayer zone={zone} data={cameras} onHoverCamera={onHoverCamera} />
+              <MapLayer zone={zone} />
+              <SlotLayer zone={zone} vehicles={slots} hoveredSlots={hoveredSlots} />
+            </div>
+          </MapInteractionCSS>
+        </Spin>
+      </TransformBlock>
+    </Content>
   );
 }
 

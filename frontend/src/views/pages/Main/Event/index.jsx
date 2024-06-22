@@ -103,172 +103,168 @@ function Event({}) {
   }, [state.parkingEvent]);
 
   return (
-    <Layout className="px-4">
-      <Header className="border-1" title={'Nhập xuất xe'} />
-      <Content className="w-100 py-3">
-        <StreamEvents />
-        {/* <Row gutter={16}>
-          <Col span={24} xl={12}>
-            <Form
-              name="importVehicleForm"
-              form={importForm}
-              onFinish={hanldeImport}
-              disabled={loading}
-              layout="vertical"
-              {...formItemLayout}
-              style={{ maxWidth: 4000 }}>
-              <Card
-                title="Nhập xe"
-                extra={
-                  <Form.Item className="mb-0">
-                    <Button htmlType="submit" type="primary">
-                      Nhập
-                    </Button>
-                  </Form.Item>
-                }>
-                <Form.Item>
-                  <Switch
-                    checkedChildren="Chọn"
-                    unCheckedChildren="Nhập"
-                    checked={isSelect}
-                    onChange={(checked) => {
-                      setIsSelect(checked);
-                    }}
-                  />
-                </Form.Item>
-                <Form.Item
-                  name="licenePlate"
-                  label="Biển số xe"
-                  rules={[
-                    { required: true, message: false },
-                    ({}) => ({
-                      validator(_, value) {
-                        if (ValidateService.licensePlate(value)) {
-                          return Promise.resolve();
-                        }
-                        return Promise.reject({ message: 'Sai định dạng (VD: 12A-2184)' });
-                      }
-                    })
-                  ]}>
-                  {isSelect ? (
-                    <Select showSearch>
-                      {drivers.map((el, ix) => (
-                        <Select.Option
-                          key={'optionlicenePlate' + ix}
-                          value={el.driver.vehicle[0].licenePlate}>
-                          {el.driver.vehicle[0].licenePlate}
-                        </Select.Option>
-                      ))}
-                    </Select>
-                  ) : (
-                    <Input placeholder="A1-013" />
-                  )}
-                </Form.Item>
-                <Form.Item name="zone" label="Khu vực">
-                  <Radio.Group>
-                    {zones.map((el, ix) => (
-                      <Radio.Button key={'radio' + el + ix} value={el}>
-                        {'Khu ' + el}
-                      </Radio.Button>
-                    ))}
-                  </Radio.Group>
-                </Form.Item>
-                <Form.Item shouldUpdate={(pre, curr) => pre.zone !== curr.zone}>
-                  {({ getFieldValue }) => {
-                    let posList = [];
-                    const currZone = getFieldValue('zone');
-                    const slots = parkings[currZone]?.slots || [];
-                    switch (currZone) {
-                      case 'A':
-                        posList = SLOTS_A;
-                        break;
-                      case 'B':
-                        posList = SLOTS_B;
-                        break;
-                      case 'C':
-                        posList = SLOTS_C;
-                        break;
+    <Content className="w-100 py-3">
+      <StreamEvents />
+      {/* <Row gutter={16}>
+      <Col span={24} xl={12}>
+        <Form
+          name="importVehicleForm"
+          form={importForm}
+          onFinish={hanldeImport}
+          disabled={loading}
+          layout="vertical"
+          {...formItemLayout}
+          style={{ maxWidth: 4000 }}>
+          <Card
+            title="Nhập xe"
+            extra={
+              <Form.Item className="mb-0">
+                <Button htmlType="submit" type="primary">
+                  Nhập
+                </Button>
+              </Form.Item>
+            }>
+            <Form.Item>
+              <Switch
+                checkedChildren="Chọn"
+                unCheckedChildren="Nhập"
+                checked={isSelect}
+                onChange={(checked) => {
+                  setIsSelect(checked);
+                }}
+              />
+            </Form.Item>
+            <Form.Item
+              name="licenePlate"
+              label="Biển số xe"
+              rules={[
+                { required: true, message: false },
+                ({}) => ({
+                  validator(_, value) {
+                    if (ValidateService.licensePlate(value)) {
+                      return Promise.resolve();
                     }
+                    return Promise.reject({ message: 'Sai định dạng (VD: 12A-2184)' });
+                  }
+                })
+              ]}>
+              {isSelect ? (
+                <Select showSearch>
+                  {drivers.map((el, ix) => (
+                    <Select.Option
+                      key={'optionlicenePlate' + ix}
+                      value={el.driver.vehicle[0].licenePlate}>
+                      {el.driver.vehicle[0].licenePlate}
+                    </Select.Option>
+                  ))}
+                </Select>
+              ) : (
+                <Input placeholder="A1-013" />
+              )}
+            </Form.Item>
+            <Form.Item name="zone" label="Khu vực">
+              <Radio.Group>
+                {zones.map((el, ix) => (
+                  <Radio.Button key={'radio' + el + ix} value={el}>
+                    {'Khu ' + el}
+                  </Radio.Button>
+                ))}
+              </Radio.Group>
+            </Form.Item>
+            <Form.Item shouldUpdate={(pre, curr) => pre.zone !== curr.zone}>
+              {({ getFieldValue }) => {
+                let posList = [];
+                const currZone = getFieldValue('zone');
+                const slots = parkings[currZone]?.slots || [];
+                switch (currZone) {
+                  case 'A':
+                    posList = SLOTS_A;
+                    break;
+                  case 'B':
+                    posList = SLOTS_B;
+                    break;
+                  case 'C':
+                    posList = SLOTS_C;
+                    break;
+                }
 
-                    const rs = posList.map((el, ix) => {
-                      const { position } = el;
-                      const isOccupied = slots.findIndex((e) => e.position === position);
-                      return (
-                        <Radio
-                          key={'radio' + el.position + ix}
-                          value={el.position}
-                          disabled={isOccupied !== -1}>
-                          {el.position}
-                        </Radio>
-                      );
-                    });
+                const rs = posList.map((el, ix) => {
+                  const { position } = el;
+                  const isOccupied = slots.findIndex((e) => e.position === position);
+                  return (
+                    <Radio
+                      key={'radio' + el.position + ix}
+                      value={el.position}
+                      disabled={isOccupied !== -1}>
+                      {el.position}
+                    </Radio>
+                  );
+                });
 
-                    return (
-                      <Form.Item name="position" label="Vị trí">
-                        <Radio.Group>{rs}</Radio.Group>
-                      </Form.Item>
-                    );
-                  }}
-                </Form.Item>
-                <Form.Item name="image" label="Hình ảnh biển số xe">
-                  <Upload
-                    accept="image/jpeg,image/jpg,image/png,image/webp"
-                    beforeUpload={(file) => {
-                      return false;
-                    }}
-                    fileList={fileList}
-                    onChange={({ file, fileList: newFileList }) => {
-                      setFileList(newFileList);
-                      setImageFile(file);
-                    }}
-                    listType="picture">
-                    <Button icon={<UploadOutlined />}>Upload</Button>
-                  </Upload>
-                </Form.Item>
-              </Card>
-            </Form>
-          </Col>
-          <Col span={24} xl={12}>
-            <Form
-              name="exportVehicleForm"
-              form={exportForm}
-              onFinish={hanldeExport}
-              disabled={loading}
-              layout="vertical"
-              {...formItemLayout}
-              style={{ maxWidth: 4000 }}>
-              <Card
-                title="Xuất xe"
-                extra={
-                  <Form.Item className="mb-0">
-                    <Button htmlType="submit" type="primary" danger>
-                      Xuất
-                    </Button>
+                return (
+                  <Form.Item name="position" label="Vị trí">
+                    <Radio.Group>{rs}</Radio.Group>
                   </Form.Item>
-                }>
-                <Form.Item
-                  name="licenePlate"
-                  label="Biển số xe"
-                  rules={[{ required: true, message: false }]}>
-                  <Select mode="multiple" showSearch>
-                    {occupiedSlots.map((el, ix) => () => {
-                      return (
-                        <Select.Option
-                          key={'option' + el?.parkingTurn?.vehicles?.licenePlate + ix}
-                          value={el?.parkingTurn?.vehicles?.licenePlate}>
-                          {el?.parkingTurn?.vehicles[0]?.licenePlate}
-                        </Select.Option>
-                      );
-                    })}
-                  </Select>
-                </Form.Item>
-              </Card>
-            </Form>
-          </Col>
-        </Row> */}
-      </Content>
-      <Footer />
-    </Layout>
+                );
+              }}
+            </Form.Item>
+            <Form.Item name="image" label="Hình ảnh biển số xe">
+              <Upload
+                accept="image/jpeg,image/jpg,image/png,image/webp"
+                beforeUpload={(file) => {
+                  return false;
+                }}
+                fileList={fileList}
+                onChange={({ file, fileList: newFileList }) => {
+                  setFileList(newFileList);
+                  setImageFile(file);
+                }}
+                listType="picture">
+                <Button icon={<UploadOutlined />}>Upload</Button>
+              </Upload>
+            </Form.Item>
+          </Card>
+        </Form>
+      </Col>
+      <Col span={24} xl={12}>
+        <Form
+          name="exportVehicleForm"
+          form={exportForm}
+          onFinish={hanldeExport}
+          disabled={loading}
+          layout="vertical"
+          {...formItemLayout}
+          style={{ maxWidth: 4000 }}>
+          <Card
+            title="Xuất xe"
+            extra={
+              <Form.Item className="mb-0">
+                <Button htmlType="submit" type="primary" danger>
+                  Xuất
+                </Button>
+              </Form.Item>
+            }>
+            <Form.Item
+              name="licenePlate"
+              label="Biển số xe"
+              rules={[{ required: true, message: false }]}>
+              <Select mode="multiple" showSearch>
+                {occupiedSlots.map((el, ix) => () => {
+                  return (
+                    <Select.Option
+                      key={'option' + el?.parkingTurn?.vehicles?.licenePlate + ix}
+                      value={el?.parkingTurn?.vehicles?.licenePlate}>
+                      {el?.parkingTurn?.vehicles[0]?.licenePlate}
+                    </Select.Option>
+                  );
+                })}
+              </Select>
+            </Form.Item>
+          </Card>
+        </Form>
+      </Col>
+    </Row> */}
+    </Content>
   );
 }
 
