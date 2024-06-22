@@ -73,7 +73,7 @@
     "formatPassword": "Wrong format, phone number must be 10 digits",
     "passwordNotSame": "Passwords do not match",
     "editSuccess": "Edit successful",
-    "addSuccess": "Addition successful",
+    "addSuccess": "Add successful",
     "username": "Username or phone number",
     "plsNotEmpty": "Please do not leave empty"
   },
@@ -87,5 +87,10 @@
     "Teacher": "Teacher",
     "Employee": "Employee",
     "Student": "Student"
-  }
+  },
+  "payment": {
+    "isNotPay": "Not paid",
+    "isPay": "Paid"
+  },
+  "undefinedDriver": "Visitor"
 }

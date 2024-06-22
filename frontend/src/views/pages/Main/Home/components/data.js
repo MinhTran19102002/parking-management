@@ -1,8 +1,20 @@
+const persons = [
+  {
+    key: 'namePerson',
+    dataIndex: ['person', 'name']
+  },
+  {
+    key: 'phone',
+    dataIndex: ['person', 'phone']
+  }
+];
+
 const inOut = [
   {
     key: 'license',
     dataIndex: ['vehicle', 'licenePlate']
-  }
+  },
+  ...persons
 ];
 
 const inOutSlot = [
@@ -17,7 +29,8 @@ const inOutSlot = [
   {
     key: 'license',
     dataIndex: ['vehicle', 'licenePlate']
-  }
+  },
+  ...persons
 ];
 
 export const EventDisplay = [

@@ -1,5 +1,16 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { Button, Card, Descriptions, Layout, Modal, Row, Space, Table, Typography } from 'antd';
+import {
+  Button,
+  Card,
+  Descriptions,
+  Layout,
+  Modal,
+  Row,
+  Space,
+  Table,
+  Tag,
+  Typography
+} from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
 import { useQuery } from '@tanstack/react-query';
 import { UserApi, VehicleApi } from '~/api';
@@ -27,13 +38,16 @@ function Personal({}) {
   });
 
   const { name, driver = {} } = data;
-  const { vehicle = [] } = driver;
+  const { vehicle = [], paymentData = [] } = driver;
 
   const hanldePayment = async (values) => {
     try {
-      const api = await VehicleApi.registerPayment({ startDate: dayjs().format('x'), ...values });
+      const api = await VehicleApi.registerPayment({
+        startDay: Number(dayjs().format('x')),
+        ...values
+      });
       if (api) {
-        actions.onNoti({ message: 'Chỉnh sửa chủ xe thành công', type: 'success' });
+        actions.onNoti({ message: lag('common:form:addSuccess'), type: 'success' });
       }
     } catch (error) {
       ErrorService.hanldeError(error, actions.onNoti);
@@ -106,6 +120,7 @@ function Personal({}) {
         className="mt-2"
         dataSource={vehicle}
         pagination={false}
+        rowKey={(_, index) => 'rowKey' + index}
         columns={[
           {
             title: lag('common:licenePlate'),
@@ -123,11 +138,23 @@ function Personal({}) {
             dataIndex: 'payment',
             key: 'payment',
             render: (_, item) => {
-              if (item.payment) {
-                const { payment = {} } = item;
-                if (payment.isPay && payment.startDate && payment.endDate) {
-                  return `${dayjs(payment.startDate)} - ${dayjs(payment.endDate)}`;
-                }
+              if (item.paymentId) {
+                const { paymentId } = item;
+                const paymentItem = paymentData.find((el) => el._id === paymentId);
+                const { isPay } = paymentItem;
+                return (
+                  <Space>
+                    <Typography.Text>
+                      {`${dayjs.unix(paymentItem.startDay).format('L LTS')} - ${dayjs
+                        .unix(paymentItem.endDay)
+                        .format('L LTS')}, `}
+                    </Typography.Text>
+
+                    <Tag color={isPay ? 'success' : 'error'}>
+                      {isPay ? lag('common:payment:isPay') : lag('common:payment:isNotPay')}
+                    </Tag>
+                  </Space>
+                );
               }
               return (
                 <Space size={'large'}>

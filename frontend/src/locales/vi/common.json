@@ -73,7 +73,7 @@
     "formatPassword": "Sai định dạng, SĐT phải là 10 số",
     "passwordNotSame": "Mật khẩu không trùng khớp",
     "editSuccess": "Chỉnh sửa thành công",
-    "addSuccess": "Chỉnh sửa thành công",
+    "addSuccess": "Thêm thành công",
     "username": "Tên đăng nhập hoặc số điện thoại",
     "plsNotEmpty": "Vui lòng không bỏ trống"
   },
@@ -87,5 +87,10 @@
     "Teacher": "Giảng viên",
     "Employee": "Nhân viên",
     "Student": "Sinh viên"
-  }
+  },
+  "payment": {
+    "isNotPay": "Chưa thanh toán",
+    "isPay": "Đã thanh toán"
+  },
+  "undefinedDriver": "Khách vãn lai"
 }
