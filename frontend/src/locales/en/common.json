@@ -87,5 +87,10 @@
     "Teacher": "Teacher",
     "Employee": "Employee",
     "Student": "Student"
-  }
+  },
+  "payment": {
+    "isNotPay": "Not paid",
+    "isPay": "Paid"
+  },
+  "undefinedDriver": "Visitor"
 }
