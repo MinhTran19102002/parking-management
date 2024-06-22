@@ -149,7 +149,7 @@ function Register({}) {
                   return (
                     <Form.Item
                       key={'licenePlate' + ix}
-                      label={ix === 0 && 'Biển số xe'}
+                      label={ix === 0 && lag('common:licenePlate')}
                       required={true}
                       {...(ix !== 0 && formItemLayoutWithOutLabel)}>
                       <Form.Item
@@ -246,10 +246,10 @@ function Register({}) {
             }}>
             <Space>
               <Button id="btnCancel" onClick={hanldeClose}>
-                Hủy
+                {lag('common:cancel')}
               </Button>
               <Button id="btnSubmit" htmlType="submit" type="primary">
-                Xác nhận
+                {lag('common:confirm')}
               </Button>
             </Space>
           </Form.Item>

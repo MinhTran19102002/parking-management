@@ -66,10 +66,26 @@
   "confirmNewPassword": "Confirm new password",
   "changePassword": "Change password",
   "logout": "Logout",
+  "login": "Login",
   "form": {
+    "addCar": "Add car",
+    "wrongFormat": "Wrong format",
     "formatPassword": "Wrong format, phone number must be 10 digits",
     "passwordNotSame": "Passwords do not match",
     "editSuccess": "Edit successful",
-    "addSuccess": "Addition successful"
+    "addSuccess": "Addition successful",
+    "username": "Username or phone number",
+    "plsNotEmpty": "Please do not leave empty"
+  },
+  "language": "Language",
+  "lags": {
+    "vi": "Vietnamese",
+    "en": "English"
+  },
+  "register": "Register new account",
+  "jobs": {
+    "Teacher": "Teacher",
+    "Employee": "Employee",
+    "Student": "Student"
   }
 }
