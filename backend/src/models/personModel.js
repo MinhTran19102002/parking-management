@@ -826,10 +826,24 @@ const getUser = async (phone) => {
             from: paymentModel.PAYMENT_COLLECTION_NAME,
             localField: 'driver.vehicle.paymentId',
             foreignField: '_id',
-            as: 'paymentData',
+            as: 'driver.paymentData',
           },
         },
-        // { $unwind: '$driver.vehicle.paymentData' }
+        // { $unwind: '$driver.vehicle' },
+        // {
+        //   $lookup: {
+        //     from: 'driver.paymentData',
+        //     localField: 'driver.vehicle.paymentId',
+        //     foreignField: '_id',
+        //     as: 'driver.vehicle.paymentData',
+        //   },
+        // },
+        // {
+        //   $unwind: {
+        //     path: '$driver.vehicle.paymentData',
+        //     preserveNullAndEmptyArrays: true,
+        //   },
+        // }, 
       ])
       .toArray();
     return findUser.length ? findUser[0] : null;

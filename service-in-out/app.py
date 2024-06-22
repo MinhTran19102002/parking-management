@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, Response, g, json, send_file
-from unit.license_plate_recognition import select_image1, car_into_parking, car_into_slot
+from unit.license_plate_recognition import select_image1, car_into_parking, car_into_slot, car_Out_parking
 import os
 import numpy as np
 from PIL import Image
@@ -53,11 +53,23 @@ def licenseSFunc():
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
-def carInOut(url, flag):
+def carIn(url, flag):
     webcam = Webcam(url)
     while True:
         image = next(webcam.get_frame(17))
         image, licenseS = car_into_parking(image, flag)
+        global global_licenseS
+        global image_license
+        global_licenseS = licenseS
+        image_license = image
+        # g.global_var = licenseS
+        yield b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n--frame\r\n'
+
+def carOut(url, flag):
+    webcam = Webcam(url)
+    while True:
+        image = next(webcam.get_frame(17))
+        image, licenseS = car_Out_parking(image, flag)
         global global_licenseS
         global image_license
         global_licenseS = licenseS
@@ -86,7 +98,7 @@ def apiCarIn():
     # camera = request.args.get('camera')
     # if camera == 'in':
     url = "./unit/video/XeVao.mp4"
-    response =  Response( carInOut(url, "in"), mimetype="multipart/x-mixed-replace; boundary=frame" )
+    response =  Response( carIn(url, "in"), mimetype="multipart/x-mixed-replace; boundary=frame" )
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
 
@@ -104,7 +116,7 @@ def apiCarOut():
     # url = "./unit/dectect1.mp4"
     # url = "./unit/video/CAM_ngoai_full.mp4"
     url = "./unit/video/XeRa.mp4"
-    response =  Response( carInOut(url, "out"), mimetype="multipart/x-mixed-replace; boundary=frame" )
+    response =  Response( carOut(url, "out"), mimetype="multipart/x-mixed-replace; boundary=frame" )
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
 

@@ -9,4 +9,7 @@ Router.route('/momo')   //
 Router.route('/register')   // 
   .post(paymentController.register)
 
+Router.route('/findById')   // 
+  .get(paymentController.findById)
+
 export const paymentRoute = Router

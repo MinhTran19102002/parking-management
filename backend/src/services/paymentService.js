@@ -35,6 +35,29 @@ const register = async (data) => {
     }
 };
 
+const findById = async (data) => {
+
+    try {
+        let _id = data.paymentId;
+        
+        const findById = await paymentModel.findOneById(_id);
+        if (findById.acknowledged == false) {
+            throw new ApiError(
+                StatusCodes.INTERNAL_SERVER_ERROR,
+                'Dang ky khong thanh cong',
+                'Not Success',
+                'BR_parkingTurn_5',
+            );
+        }
+        return findById
+    } catch (error) {
+        if (error.type && error.code)
+            throw new ApiError(error.statusCode, error.message, error.type, error.code);
+        else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    }
+};
+
 export const paymentService = {
     register,
+    findById,
 }
