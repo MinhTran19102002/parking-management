@@ -1,7 +1,6 @@
 import { StatusCodes } from 'http-status-codes';
 import axios from 'axios';
 import { url } from 'inspector';
-import { paymentService } from '~/services/paymentService';
 
 
 const payment = async (req, res, next) => {
@@ -57,37 +56,16 @@ const payment = async (req, res, next) => {
     //Send the request with axios
     const options = {
         method: "POST",
-        url: "https://test-payment.momo.vn/v2/gateway/api/create",
+        url: "https://test-payment.momo.vn//v2/gateway/api/create",
         headers: {
             'Content-Type': 'application/json',
             'Content-Length': Buffer.byteLength(requestBody)
         },
         data: requestBody
     }
-    let result
-    try {
-        result = await axios(options)
-        return res.status(200).json(result.data)
-    } catch (error) {
-        return res.status(500).json({
-            statusCodes : 500,
-            message: "server error"
-        })
-    }
     
 };
 
-const register = async (req, res, next) => {
-    try {
-        // Dieu huong sang tang Service
-        const register = await paymentService.register(req.body);
-        res.status(StatusCodes.CREATED).json(register);
-      } catch (error) {
-        next(error);
-      }
-}
-
 export const paymentController = {
     payment,
-    register,
 }
