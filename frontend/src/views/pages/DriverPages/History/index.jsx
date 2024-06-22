@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Card, Layout, Row, Table, Typography } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
 import { getColumns } from './data';
@@ -42,6 +42,10 @@ function History({}) {
       return acc + curr.parkingTurn.fee;
     else return acc;
   }, 0);
+
+  useEffect(() => {
+    refetch();
+  }, [JSON.stringify(params)]);
   return (
     <Content className="w-100 py-3">
       <Typography.Title level={5}>
