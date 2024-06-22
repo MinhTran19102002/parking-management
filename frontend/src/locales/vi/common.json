@@ -91,5 +91,6 @@
   "payment": {
     "isNotPay": "Chưa thanh toán",
     "isPay": "Đã thanh toán"
-  }
+  },
+  "undefinedDriver": "Khách vãn lai"
 }

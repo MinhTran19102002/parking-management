@@ -5,6 +5,7 @@ import IMG_DEVELOPING from '~/assets/images/developing.png';
 import CustomedTag from '~/views/components/CustomedTag';
 import { JobServices } from '~/services';
 import { EventDisplay } from './data';
+import { useTranslation } from 'react-i18next';
 
 const eventNames = {
   in: 'Xe vào bãi',
@@ -22,22 +23,25 @@ const personInfo = {
   phone: 'SĐT'
 };
 
-const labels = {
-  zone: 'Khu vực',
-  position: 'Vị trí',
-  license: 'Biển số xe'
-};
-
 const vehicleEvents = ['in', 'out', 'inSlot', 'outSlot'];
 
 function EventCard({ item }) {
   const { token } = theme.useToken();
   let { name, parkingTurn, vehicle, zone, person = {} } = item;
+  const { t: lag } = useTranslation();
   const color = {
     primary: token.event[name][0],
     secondary: token.event[name][1]
   };
   let subInfo = null;
+
+  const labels = {
+    zone: lag('common:zone'),
+    position: lag('common:position'),
+    license: lag('common:licenePlate'),
+    namePerson: lag('common:personName'),
+    phone: lag('common:phone')
+  };
 
   const rows = useMemo(() => {
     const displays =
@@ -69,7 +73,7 @@ function EventCard({ item }) {
     if (isVisting) {
       subInfo = [
         <Typography.Title level={5} key={'vanglaikhach'}>
-          Khách vãng lai
+          {lag('common:undefinedDriver')}
         </Typography.Title>
       ];
     }
@@ -113,7 +117,7 @@ function EventCard({ item }) {
             level={5}
             className="mb-0"
             style={{ color: color.primary }}>
-            {eventNames[name]}
+            {lag(`event:byName:${name}`)}
           </Typography.Title>
           {rows.map(
             (row, ix) =>
