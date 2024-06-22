@@ -130,7 +130,7 @@ function Register({}) {
           <Form.Item label={lag('common:job')} name={['job']} rules={[{ required: true }]}>
             <Select id="jobInput">
               {state.jobs.map((job) => (
-                <Select.Option id="selectTeacher" value={job}>
+                <Select.Option id="selectTeacher" key={job} value={job}>
                   {lag(`common:jobs:${job}`)}
                 </Select.Option>
               ))}
