@@ -5,8 +5,10 @@ import { MonitorApi } from '~/api';
 import CardBlock from '~/views/components/CardBlock';
 import CustomedTag from '~/views/components/CustomedTag';
 import AppContext from '~/context';
+import { useTranslation } from 'react-i18next';
 
 function GeneralCard({ zone = 'A' }) {
+  const { t: lag } = useTranslation();
   const { token } = theme.useToken();
   const { state, actions } = useContext(AppContext);
   const [data, setData] = useState({
@@ -25,7 +27,7 @@ function GeneralCard({ zone = 'A' }) {
     height: 200,
     percent: data.occupied / data.total,
     range: {
-      color: 'l(0) 0:#B8E1FF 1:#3D76DD'
+      color: [token.colorPrimary, token.colorFillSecondary]
     },
     startAngle: Math.PI,
     endAngle: 2 * Math.PI,
@@ -56,7 +58,7 @@ function GeneralCard({ zone = 'A' }) {
       label: {
         offset: 5,
         offsetY: 25,
-        style: { fontSize: 14, },
+        style: { fontSize: 14 },
         formatter: (val) => {
           return '';
           if (val === '0') {
@@ -86,7 +88,7 @@ function GeneralCard({ zone = 'A' }) {
           lineHeight: '44px',
           color: token.colorTextSecondary
         },
-        formatter: () => 'Xe đang đỗ'
+        formatter: () => lag('common:dashboard:generalCard')
       }
     },
     gaugeStyle: {
@@ -117,7 +119,7 @@ function GeneralCard({ zone = 'A' }) {
     <Card
       title={
         <CustomedTag bordered={false} entity={zone} entityType={'zone'}>
-          {`Khu ${zone}`}
+          {lag('common:zoneName', { zone })}
         </CustomedTag>
       }
       className="card-main">

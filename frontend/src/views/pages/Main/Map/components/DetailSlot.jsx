@@ -49,7 +49,7 @@ function DetailSlot({ position, zone, vehicle, driver, image, startTime }) {
   };
   let i = 0;
   for (const [key, value] of Object.entries(personInfo)) {
-    let xValue = (driver && driver[key]) || 'Không xác định';
+    let xValue = (driver && driver[key]) || lag('common:underfined');
     if (key === 'job') {
       xValue = JobServices.getTextByValue(xValue);
     }
@@ -120,13 +120,14 @@ const Expense = ({ startTime }) => {
       <Typography.Text>
         <span className="label">{lag('common:totalPark')}</span>
         <span className="value">
-          {': '} {FormatNumber(totalTime, { isEndZeroDecimal: false })} {' Giờ'}
+          {': '} {FormatNumber(totalTime, { isEndZeroDecimal: false })}{' '}
+          {` ${lag('common:times:hour')}`}
         </span>
       </Typography.Text>
       <Typography.Text>
         <span className="label">{lag('common:fee')}</span>
         <span className="value">
-          {': '} {FormatNumber(fee, { isEndZeroDecimal: false })} {' VNĐ'}
+          {': '} {FormatNumber(fee, { isEndZeroDecimal: false })} {' VND'}
         </span>
       </Typography.Text>
     </>

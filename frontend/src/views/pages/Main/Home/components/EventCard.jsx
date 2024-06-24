@@ -24,6 +24,7 @@ const personInfo = {
 };
 
 const vehicleEvents = ['in', 'out', 'inSlot', 'outSlot'];
+const visitorNoProps = ['namePerson', 'phone'];
 
 function EventCard({ item }) {
   const { token } = theme.useToken();
@@ -43,12 +44,12 @@ function EventCard({ item }) {
     phone: lag('common:phone')
   };
 
-  const rows = useMemo(() => {
+  let rows = useMemo(() => {
     const displays =
       EventDisplay.find((el) => el.eventType === name)?.displayProps ||
       EventDisplay[0].displayProps;
     const rs = displays.map((display) => {
-      let value = 'Không xác định';
+      let value = lag('common:underfined');
       if (display.dataIndex.length > 0) {
         value = JSON.parse(JSON.stringify(item));
         for (let i of display.dataIndex) {
@@ -76,6 +77,7 @@ function EventCard({ item }) {
           {lag('common:undefinedDriver')}
         </Typography.Title>
       ];
+      rows = [];
     }
   }
 

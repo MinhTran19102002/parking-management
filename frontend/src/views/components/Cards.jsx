@@ -1,10 +1,12 @@
 import { Card, Col, Row, Typography, theme } from 'antd';
 import React from 'react';
 import CustomedImage from './CustomedImage';
+import { useTranslation } from 'react-i18next';
 
 export const CameraCard = ({ dragable, ...props }) => {
   const { img = [], name, cameraId, type, image } = props;
   const { token } = theme.useToken();
+  const { t: lag } = useTranslation();
 
   return (
     <div
@@ -24,15 +26,19 @@ export const CameraCard = ({ dragable, ...props }) => {
           />
         </Col>
         <Col span={16}>
-          {dragable && <Typography.Title level={5}>Kéo thả vào bản đồ</Typography.Title>}
+          {dragable && (
+            <Typography.Title level={5}>
+              {lag('common:mapPage:dragAndDropIntoMap')}
+            </Typography.Title>
+          )}
           <Typography strong={'true'}>
             <span>{cameraId}</span>
           </Typography>
           <Typography>
-            <span type="secondary">Tên:</span> <span>{name}</span>
+            <span type="secondary">{lag('common:name')}:</span> <span>{name}</span>
           </Typography>
           <Typography>
-            <span type="secondary">Loại:</span> <span>{type}</span>
+            <span type="secondary">{lag('common:type')}:</span> <span>{type}</span>
           </Typography>
         </Col>
       </Row>

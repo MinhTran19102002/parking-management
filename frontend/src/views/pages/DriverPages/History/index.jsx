@@ -49,7 +49,7 @@ function History({}) {
   return (
     <Content className="w-100 py-3">
       <Typography.Title level={5}>
-        {lag(`common:costByZone`)}: {totalThisMonth / 1000}k VNĐ
+        {lag(`common:costByZone`)}: {totalThisMonth / 1000}k VND
       </Typography.Title>
       <Table dataSource={data} columns={getColumns({ pageSize, pageIndex }, lag)} />
       {/* <Row className="mt-4 w-100" justify={'end'}>

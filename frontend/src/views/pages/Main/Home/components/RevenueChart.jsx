@@ -9,6 +9,7 @@ import AppContext from '~/context';
 import { MonitorApi } from '~/api';
 import { CustomedDateRangePicker } from '~/views/components';
 import { FormatNumber } from '~/services/RegularService';
+import { useTranslation } from 'react-i18next';
 
 const zones = ['A', 'B', 'C'];
 function RevenueChart({}) {
@@ -17,10 +18,11 @@ function RevenueChart({}) {
   const [dates, setDates] = useState([dayjs().add(-7, 'd').startOf('d'), dayjs().endOf('d')]);
   const defaultConfig = ChartService.defaultConfig;
   const { token } = theme.useToken();
+  const { t: lag } = useTranslation();
   const color = [token['purple'], token['magenta'], token['orange2']];
   const unit = {
     x: 'Ngày',
-    y: 'VNĐ'
+    y: 'VND'
   };
   const [currTheme, setCurrTheme] = useState(state.theme);
   useEffect(() => {
@@ -45,7 +47,7 @@ function RevenueChart({}) {
       position: 'top',
       itemName: {
         formatter: (text) => {
-          return 'Khu ' + text;
+          return lag('common:zoneName', { zone: text });
         }
       }
     },
@@ -57,7 +59,7 @@ function RevenueChart({}) {
         let rs = originalItems.map((org) => {
           return {
             ...org,
-            name: 'Khu ' + org.name,
+            name: lag('common:zoneName', { zone: org.name }),
             value: FormatNumber(org.value, { isEndZeroDecimal: false }) + ' ' + unit.y
           };
         });
@@ -124,10 +126,10 @@ function RevenueChart({}) {
 
   return (
     <Card
-      title={<Typography.Title level={4}>Biểu đồ thống kê doanh thu theo ngày</Typography.Title>}
+      title={<Typography.Title level={4}>{lag('common:dashboard:costCard')}</Typography.Title>}
       extra={
         <Space>
-          <Typography.Text>Thời gian:</Typography.Text>
+          <Typography.Text>{lag('common:time')}</Typography.Text>
           <CustomedDateRangePicker
             onChange={onChangeDate}
             format={'DD/MM/YYYY'}
