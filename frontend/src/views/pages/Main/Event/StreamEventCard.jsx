@@ -130,10 +130,10 @@ export const StreamEventCard = () => {
       />
       <Space>
         <Button type="primary" onClick={hanldeImport}>
-          {lag('common:actions:import')}
+          {lag('event:actions:import')}
         </Button>
         <Button type="primary" onClick={hanldeExport}>
-          {lag('common:actions:export')}
+          {lag('event:actions:export')}
         </Button>
       </Space>
     </div>

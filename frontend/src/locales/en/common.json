@@ -126,7 +126,7 @@
   },
   "undefinedDriver": "Visitor",
   "dashboard": {
-    "generalCard": "Currently Parked Vehicles",
+    "generalCard": "Currently Parked",
     "staticCard": "Vehicle Count Statistics Chart",
     "costCard": "Revenue Statistics Chart by Day",
     "noEvent": "No Other Events",
