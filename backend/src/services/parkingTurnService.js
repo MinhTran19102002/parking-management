@@ -227,6 +227,28 @@ const getVehicleInOutNumber = async (req, res) => {
   }
 };
 
+
+const getVehicleInOutNumberByHour = async (req, res) => {
+  let startDate = moment(req.query.date, 'DD/MM/YYYY').format('DD/MM/YYYY')
+  let endDate = moment(req.query.date, 'DD/MM/YYYY').clone().add(1, 'days').format('DD/MM/YYYY');
+  try {
+    const getVehicleInOutNumberByHour = await parkingTurnModel.getVehicleInOutNumberByHour(startDate, endDate);
+    if (outPaking.acknowledged == false) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Thống kê lượt xe không thành công',
+        'Not Success',
+        'BR_parkingTurn_4',
+      );
+    }
+    return getVehicleInOutNumberByHour;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
 const getRevenue = async (req, res) => {
   let startDate;
   let endDate;
@@ -249,6 +271,29 @@ const getRevenue = async (req, res) => {
       );
     }
     return getRevenue;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+
+const GetRevenueByHour = async (req, res) => {
+  let startDate = moment(req.query.date, 'DD/MM/YYYY').format('DD/MM/YYYY')
+  let endDate = moment(req.query.date, 'DD/MM/YYYY').clone().add(1, 'days').format('DD/MM/YYYY');
+
+  try {
+    const GetRevenueByHour = await parkingTurnModel.GetRevenueByHour(startDate, endDate);
+    if (GetRevenueByHour.acknowledged == false) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Thống kê doanh số không thành công',
+        'Not Success',
+        'BR_parkingTurn_5',
+      );
+    }
+    return GetRevenueByHour;
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);
@@ -484,7 +529,7 @@ const carOutSlot = async (zone, position) => {
     if (updateCarHollow.momodifiedCountdi == 0) {
       throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe chua cap nhat vao bai chua dau', 'Not Updated', 'BR_parking_3');
     }
-    const updateParkingTurn = await parkingTurnModel.updateParkingTurn(parkingHollow._id, position, slot.parkingTurnId)
+    const updateParkingTurn = await parkingTurnModel.updateParkingTurn(parking._id, position, slot.parkingTurnId)
 
 
     if (updateParkingTurn.momodifiedCountdi == 0) {
@@ -532,7 +577,9 @@ export const parkingTurnService = {
   createPakingTurn,
   outPaking,
   getVehicleInOutNumber,
+  getVehicleInOutNumberByHour,
   getRevenue,
+  GetRevenueByHour,
   getEvent,
   exportEvent,
   getByDriver,

@@ -19,40 +19,6 @@ CORS(app)
 def home():
     return render_template('index.html', title = 'Parking Management')
 
-def read_from_webcam():
-    webcam = Webcam()
-    while True:
-        image = next(webcam.get_frame())
-        image, licenseS = select_image1(image)
-        global global_licenseS
-        global image_license
-        global_licenseS = licenseS
-        image_license = image
-        # g.global_var = licenseS
-        yield b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n--frame\r\n'
-        
-@app.route("/service/image_feed")
-def image_feed():
-    response =  Response( read_from_webcam(), mimetype="multipart/x-mixed-replace; boundary=frame" )
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    return response
-
-@app.route("/service/image_feed1")
-def image_feed1():
-    response =  Response( read_from_webcam(), mimetype="multipart/x-mixed-replace; boundary=frame" )
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    return response
-
-@app.route('/service/licenseS')
-def licenseSFunc():
-    global global_licenseS
-    response_data = json.dumps({'message': 'File successfully uploaded', 'result': global_licenseS})
-    
-    # Create a Response object
-    response = Response(response=response_data, status=200, mimetype='application/json')
-    response.headers.add("Access-Control-Allow-Origin", "*")
-    return response
-
 def carIn(url, flag):
     webcam = Webcam(url)
     while True:
@@ -79,7 +45,7 @@ def carOut(url, flag):
 
 def carInOutSlot(url):
     webcam = Webcam(url)
-    position = ['A101', 'A102', 'A103']
+    position = ['A104', 'A105', 'A106']
     zone = 'A'
     
     while True:
@@ -93,28 +59,15 @@ def carInOutSlot(url):
 # API nhap xuat xe
 @app.route('/service/carIn')
 def apiCarIn():
-    # url = "./unit/dectect1.mp4"
-    # url = "./unit/video/CAM_ngoai_full.mp4"
-    # camera = request.args.get('camera')
-    # if camera == 'in':
     url = "./unit/video/XeVao.mp4"
     response =  Response( carIn(url, "in"), mimetype="multipart/x-mixed-replace; boundary=frame" )
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
-
-    # elif camera == 'out':
-    #     url = "./unit/video/XeRa.mp4"
-    #     response =  Response( carInOut(url, "out"), mimetype="multipart/x-mixed-replace; boundary=frame" )
-    #     response.headers['Access-Control-Allow-Origin'] = '*'
-    #     return response
-
     
 
 # API nhap xuat xe
 @app.route('/service/carOut')
 def apiCarOut():
-    # url = "./unit/dectect1.mp4"
-    # url = "./unit/video/CAM_ngoai_full.mp4"
     url = "./unit/video/XeRa.mp4"
     response =  Response( carOut(url, "out"), mimetype="multipart/x-mixed-replace; boundary=frame" )
     response.headers['Access-Control-Allow-Origin'] = '*'
@@ -127,8 +80,6 @@ def apiCarOut():
 @app.route('/service/carInOutSlot')
 def apiCarInOutSlot():
     url = "./unit/video/Slot_InOut.mp4"
-    # url = "./unit/video/cam.mp4"
-    # url = 0
     response =  Response( carInOutSlot(url), mimetype="multipart/x-mixed-replace; boundary=frame" )
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response

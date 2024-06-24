@@ -126,12 +126,35 @@ const getVehicleInOutNumber = async (req, res, next) => {
   }
 };
 
+const getVehicleInOutNumberByHour = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    const getVehicleInOutNumberByHour = await parkingTurnService.getVehicleInOutNumberByHour(req, res);
+
+    res.status(StatusCodes.OK).json(getVehicleInOutNumberByHour);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 const getRevenue = async (req, res, next) => {
   try {
     // Dieu huong sang tang Service
     const getRevenue = await parkingTurnService.getRevenue(req, res);
 
     res.status(StatusCodes.OK).json(getRevenue);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const GetRevenueByHour = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    const GetRevenueByHour = await parkingTurnService.GetRevenueByHour(req, res);
+
+    res.status(StatusCodes.OK).json(GetRevenueByHour);
   } catch (error) {
     next(error);
   }
@@ -216,7 +239,9 @@ export const parkingTurnController = {
   createNewWithoutZone,
   outPaking,
   getVehicleInOutNumber,
+  getVehicleInOutNumberByHour,
   getRevenue,
+  GetRevenueByHour,
   getEvent,
   exportEvent,
   getByDriver,
