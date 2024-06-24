@@ -8,7 +8,7 @@
       "normal": "Thường"
     }
   },
-  "name": "Tên sự kiện",
+  "name": "Tên",
   "position": "Vị trí",
   "licenePlate": "Biển số xe",
   "rangeDate": "Khoảng thời gian",
@@ -67,6 +67,8 @@
   "changePassword": "Thay đổi mật khẩu",
   "logout": "Đăng xuất",
   "login": "Đăng nhập",
+  "underfined": "Không xác định",
+  "vehicle": "Xe",
   "form": {
     "addCar": "Thêm xe",
     "wrongFormat": "Sai định dạng",
@@ -92,5 +94,28 @@
     "isNotPay": "Chưa thanh toán",
     "isPay": "Đã thanh toán"
   },
-  "undefinedDriver": "Khách vãn lai"
+  "times": {
+    "hour": "Giờ",
+    "day": "Ngày"
+  },
+  "undefinedDriver": "Khách vãn lai",
+  "dashboard": {
+    "generalCard": "Xe đang đỗ",
+    "staticCard": "Biểu đồ thống kê số lượng xe",
+    "costCard": "Biểu đồ thống kê doanh thu theo ngày",
+    "noEvent": "Không còn sự kiện nào khác",
+    "exportReport": "Xuất báo cáo"
+  },
+  "mapPage": {
+    "dragAndDropIntoMap": "Kéo thả vào bản đồ"
+  },
+  "timePicker": {
+    "7": "7 ngày gần nhất",
+    "14": "14 ngày gần nhất",
+    "21": "21 ngày gần nhất",
+    "1Month": "1 tháng gần nhất"
+  },
+  "popup": {
+    "sure": "Bạn chắc chưa ?"
+  }
 }

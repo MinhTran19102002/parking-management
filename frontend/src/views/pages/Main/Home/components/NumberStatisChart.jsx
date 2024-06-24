@@ -8,19 +8,21 @@ import dayjs from 'dayjs';
 import AppContext from '~/context';
 import { MonitorApi } from '~/api';
 import { CustomedDateRangePicker } from '~/views/components';
+import { useTranslation } from 'react-i18next';
 
 const zones = ['A', 'B', 'C'];
 
 function NumberStatisChart({}) {
   const { state, actions } = useContext(AppContext);
   const [data, setData] = useState([]);
+  const { t: lag } = useTranslation();
   const [dates, setDates] = useState([dayjs().add(-7, 'd').startOf('d'), dayjs().endOf('d')]);
   const defaultConfig = ChartService.defaultConfig;
   const { token } = theme.useToken();
   const color = [token['purple'], token['magenta'], token['orange2']];
   const unit = {
-    x: 'Ngày',
-    y: 'Xe'
+    x: lag('common:times:day'),
+    y: lag('common:vehicle')
   };
 
   const [currTheme, setCurrTheme] = useState(state.theme);
@@ -47,7 +49,7 @@ function NumberStatisChart({}) {
       position: 'top',
       itemName: {
         formatter: (text) => {
-          return 'Khu ' + text;
+          return lag('common:zoneName', { zone: text });
         }
       }
     },
@@ -59,8 +61,8 @@ function NumberStatisChart({}) {
         let rs = originalItems.map((org) => {
           return {
             ...org,
-            name: 'Khu ' + org.name,
-            value: org.data.isData ? `${org.value} ${unit.y}` : 'Không xác định'
+            name: lag('common:zoneName', { zone: org.name }),
+            value: org.data.isData ? `${org.value} ${unit.y}` : lag('common:underfined')
           };
         });
         return rs;
@@ -126,10 +128,10 @@ function NumberStatisChart({}) {
 
   return (
     <Card
-      title={<Typography.Title level={4}>Biểu đồ thống kê số lượng xe</Typography.Title>}
+      title={<Typography.Title level={4}>{lag('common:dashboard:staticCard')}</Typography.Title>}
       extra={
         <Space>
-          <Typography.Text>Thời gian:</Typography.Text>
+          <Typography.Text>{lag('common:time')}</Typography.Text>
           <CustomedDateRangePicker
             defaultValue={dates}
             onChange={onChangeDate}

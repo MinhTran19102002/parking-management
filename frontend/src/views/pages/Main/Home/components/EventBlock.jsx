@@ -8,6 +8,7 @@ import { ErrorService } from '~/services';
 import AppContext from '~/context';
 import { useContext } from 'react';
 import { FileExcelOutlined } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 
 let pageSize = 30;
 const loadMoreCount = 10;
@@ -20,6 +21,7 @@ function EventBlock({}) {
   const [loading, setLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
   const isMounted = useRef(false);
+  const { t: lag } = useTranslation();
   const { geekblue6, blue2, colorTextSecondary, colorText, gold2, gold7 } = token;
   const inColor = {
     primary: geekblue6,
@@ -74,9 +76,13 @@ function EventBlock({}) {
     <div>
       <Row justify="space-between" className="pe-4">
         <Typography.Title level={4}>Sự kiện</Typography.Title>
-        <Popconfirm title="Xuất báo cáo ?" onConfirm={onExport} okText="Đồng ý" cancelText="Hủy">
+        <Popconfirm
+          title={lag('common:popup:sure')}
+          onConfirm={onExport}
+          okText={lag('common:confirm')}
+          cancelText={lag('common:cancel')}>
           <Button icon={<FileExcelOutlined />} size="large">
-            Xuất báo cáo
+            {lag('common:dashboard:exportReport')}
           </Button>
         </Popconfirm>
       </Row>
@@ -100,7 +106,7 @@ function EventBlock({}) {
               active
             />
           }
-          endMessage={<Divider plain>Không còn sự kiện khác</Divider>}
+          endMessage={<Divider plain>{lag('common:dashboard:noEvent')}</Divider>}
           scrollableTarget="scrollableDiv">
           <List
             dataSource={data}
