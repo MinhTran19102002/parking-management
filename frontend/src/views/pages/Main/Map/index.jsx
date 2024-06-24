@@ -15,6 +15,7 @@ import CameraSetting from './components/CameraSetting';
 import MapLayer from './components/MapLayer';
 import SlotLayer from './components/SlotLayer';
 import VideoBlock from '~/views/components/VideoBlock';
+import { useTranslation } from 'react-i18next';
 
 function Map({}) {
   const { token } = theme.useToken();
@@ -25,6 +26,7 @@ function Map({}) {
   const [loading, setLoading] = useState(false);
   const [hoverCamera, setHoverCamera] = useState();
   const [hoveredSlots, setHoveredSlots] = useState([]);
+  const { t: lag } = useTranslation();
 
   // const { data: cameraUnused, refetch: refetchCameraUnused } = useQuery({
   //   queryKey: ['camera', 'unused'],
@@ -81,9 +83,9 @@ function Map({}) {
     <Content className="w-100 py-3">
       <Flex justify="space-between">
         <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
-          <Radio.Button value="A">Khu A</Radio.Button>
-          <Radio.Button value="B">Khu B</Radio.Button>
-          <Radio.Button value="C">Khu C</Radio.Button>
+          {state.zones.map((zone) => (
+            <Radio.Button value={zone}>{lag(`common:zoneName`, { zone })}</Radio.Button>
+          ))}
         </Radio.Group>
       </Flex>
       <TransformBlock className="mt-2 overflow-hidden" style={{ backgroundColor: token.neutral5 }}>

@@ -3,7 +3,7 @@ import { Space, Button } from 'antd';
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons';
 import dayjs from 'dayjs';
 
-export default ({ pageSize, pageIndex, onEdit, onDelete }) => {
+export default ({ pageSize, pageIndex, onEdit, onDelete }, lag) => {
   return [
     {
       title: '#',
@@ -12,13 +12,13 @@ export default ({ pageSize, pageIndex, onEdit, onDelete }) => {
       render: (_, prop, index) => (pageIndex - 1) * pageSize + index + 1
     },
     {
-      title: 'Tên',
+      title: lag('common:name'),
       dataIndex: 'name',
       key: 'name',
       sorter: (a, b) => a.name - b.name
     },
     {
-      title: 'Số điện thoại',
+      title: lag('common:phone'),
       dataIndex: 'phone',
       key: 'phone'
     },
@@ -28,12 +28,12 @@ export default ({ pageSize, pageIndex, onEdit, onDelete }) => {
       key: 'email'
     },
     {
-      title: 'Địa chỉ',
+      title: lag('common:address'),
       dataIndex: 'address',
       key: 'address'
     },
     {
-      title: 'Ngày tham gia',
+      title: lag('common:createdAt'),
       dataIndex: 'createdAt',
       key: 'createdAt',
       width: 180,

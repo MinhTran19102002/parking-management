@@ -5,6 +5,7 @@ import { ErrorService, ValidateService } from '~/services';
 import AppContext from '~/context';
 import EmployeeApi from '~/api/Collections/EmployeeApi';
 import { RedoOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
+import { useTranslation } from 'react-i18next';
 
 const formItemLayout = {
   labelCol: {
@@ -22,6 +23,7 @@ function UserForm({ isOpen, onClose, formAction, noChangeAccount, role = 'Manage
   const [loading, setLoading] = useState(false);
   const { state, actions } = useContext(AppContext);
   const { onNoti, onMess } = actions;
+  const { t: lag } = useTranslation();
 
   const hanldeClose = (action, values) => {
     form.resetFields();
@@ -51,7 +53,7 @@ function UserForm({ isOpen, onClose, formAction, noChangeAccount, role = 'Manage
       delete values.pass;
       const api = await UserApi.editManager(formAction.payload._id, values);
       if (api) {
-        onNoti({ message: 'Chỉnh sửa người dùng thành công', type: 'success' });
+        onNoti({ message: lag('common:form:editSuccess'), type: 'success' });
       }
       onClose({ reload: true, newValues: api });
     } catch (error) {
@@ -74,7 +76,7 @@ function UserForm({ isOpen, onClose, formAction, noChangeAccount, role = 'Manage
       setLoading(true);
       const api = await UserApi.addManager(values);
       if (api) {
-        onNoti({ message: 'Thêm người dùng thành công', type: 'success' });
+        onNoti({ message: lag('common:form:addSuccess'), type: 'success' });
       }
       onClose({ reload: true });
     } catch (error) {
@@ -96,7 +98,7 @@ function UserForm({ isOpen, onClose, formAction, noChangeAccount, role = 'Manage
         disabled={loading}
         {...formItemLayout}
         style={{ maxWidth: 4000 }}>
-        <Form.Item name={'name'} label="Họ và tên" rules={[{ required: true }]}>
+        <Form.Item name={'name'} label={lag('common:fullName')} rules={[{ required: true }]}>
           <Input placeholder="Nguyễn Văn A" id="nameInput" />
         </Form.Item>
 
@@ -109,7 +111,7 @@ function UserForm({ isOpen, onClose, formAction, noChangeAccount, role = 'Manage
 
         <Form.Item
           name={'phone'}
-          label="Số điện thoại"
+          label={lag('common:phone')}
           validateDebounce={1000}
           rules={[
             { required: true, message: false },
@@ -119,25 +121,28 @@ function UserForm({ isOpen, onClose, formAction, noChangeAccount, role = 'Manage
                   return Promise.resolve();
                 }
 
-                return Promise.reject(new Error('Sai định dang, SĐT phải là 10 số'));
+                return Promise.reject(new Error(lag('common:validate:phoneFormat')));
               }
             })
           ]}>
           <Input placeholder="0357647771" id="phoneInput" addonBefore={'+87'} />
         </Form.Item>
-        <Form.Item name={'address'} label="Địa chỉ" rules={[{ required: true, message: false }]}>
+        <Form.Item
+          name={'address'}
+          label={lag('common:address')}
+          rules={[{ required: true, message: false }]}>
           <Input placeholder="Số 1 Võ Văn Ngân, Linh Chiểu" id="addressInput" />
         </Form.Item>
         <Form.Item
           name={'user'}
-          label="Tên tài khoản"
+          label={lag('common:addAccount')}
           validateDebounce={1000}
           rules={[{ required: true, message: false }]}>
           <Input placeholder="example" id="usernameinput" disabled={noChangeAccount} />
         </Form.Item>
 
         {!noChangeAccount && (
-          <Form.Item label="Mật khẩu" wrapperCol={{ span: 24 }}>
+          <Form.Item label={lag('common:password')} wrapperCol={{ span: 24 }}>
             <Space.Compact className="w-100">
               <Form.Item
                 name={'pass'}
@@ -162,7 +167,7 @@ function UserForm({ isOpen, onClose, formAction, noChangeAccount, role = 'Manage
           className="mt-4">
           <Space>
             <Button id="btnCancel" onClick={hanldeClose}>
-              Hủy
+              {lag('common:cancel')}
             </Button>
             <Button id="btnSubmit" htmlType="submit" type="primary">
               {formAction.actionText}

@@ -58,39 +58,111 @@
   "months": "Number of months",
   "cancel": "Cancel",
   "confirm": "Confirm",
+  "confirmed": "Confirmed",
   "editProfile": "Edit profile",
   "edit": "Edit",
   "password": "Password",
-  "oldPassword": "Old password",
-  "newPassword": "New password",
-  "confirmNewPassword": "Confirm new password",
-  "changePassword": "Change password",
+  "oldPassword": "Old Password",
+  "newPassword": "New Password",
+  "confirmNewPassword": "Confirm New Password",
+  "changePassword": "Change Password",
   "logout": "Logout",
   "login": "Login",
+  "underfined": "Undefined",
+  "vehicle": "Vehicle",
+  "status": "Status",
+  "filter": "Filter",
+  "add": "Add",
+  "list": "List",
+  "skip": "Skip",
+  "setting": "Settings",
   "form": {
-    "addCar": "Add car",
-    "wrongFormat": "Wrong format",
+    "addCar": "Add Car",
+    "wrongFormat": "Wrong Format",
     "formatPassword": "Wrong format, phone number must be 10 digits",
     "passwordNotSame": "Passwords do not match",
-    "editSuccess": "Edit successful",
-    "addSuccess": "Add successful",
-    "username": "Username or phone number",
-    "plsNotEmpty": "Please do not leave empty"
+    "addSuccess": "Add Successful",
+    "username": "Username or Phone Number",
+    "plsNotEmpty": "Please do not leave blank",
+    "addDriver": "Add Owner",
+    "addEmployee": "Add New Employee",
+    "addUser": "Add New User",
+    "addStaff": "Add Staff",
+    "addAccount": "Add Account",
+    "addCamera": "Add Camera",
+    "editDriver": "Edit Owner Information",
+    "editStaff": "Edit Staff Information",
+    "editEmployee": "Edit Employee Information",
+    "editUser": "Edit User Information",
+    "editCamera": "Edit Camera",
+    "editSuccess": "Edit Successful",
+    "editError": "Edit Failed",
+    "deleting": "Deleting",
+    "deleteSuccess": "Delete Successful",
+    "deleteAllSuccess": "Delete All Successful"
+  },
+  "validate": {
+    "phoneFormat": "Phone number must be 10 digits",
+    "licenePlate": "Wrong format (e.g., 12A-2184)"
   },
   "language": "Language",
   "lags": {
     "vi": "Vietnamese",
     "en": "English"
   },
-  "register": "Register new account",
+  "register": "Register New Account",
   "jobs": {
     "Teacher": "Teacher",
     "Employee": "Employee",
     "Student": "Student"
   },
   "payment": {
-    "isNotPay": "Not paid",
+    "isNotPay": "Not Paid",
     "isPay": "Paid"
   },
-  "undefinedDriver": "Visitor"
+  "times": {
+    "hour": "Hour",
+    "day": "Day"
+  },
+  "undefinedDriver": "Visitor",
+  "dashboard": {
+    "generalCard": "Currently Parked Vehicles",
+    "staticCard": "Vehicle Count Statistics Chart",
+    "costCard": "Revenue Statistics Chart by Day",
+    "noEvent": "No Other Events",
+    "exportReport": "Export Report"
+  },
+  "mapPage": {
+    "dragAndDropIntoMap": "Drag and Drop into Map",
+    "settingSlot": "Parking Slot Settings",
+    "cameraList": "Camera List"
+  },
+  "driverPage": {
+    "carList": "Car List",
+    "add": "Add Owner"
+  },
+  "cameraPage": {
+    "streamLink": "Stream Link",
+    "noSetting": "Not Set"
+  },
+  "timePicker": {
+    "7": "Last 7 Days",
+    "14": "Last 14 Days",
+    "21": "Last 21 Days",
+    "1Month": "Last 1 Month"
+  },
+  "popup": {
+    "sure": "Are you sure?",
+    "dc": "Selected content will be permanently lost",
+    "aggree": "Agree"
+  },
+  "statusList": {
+    "vehicle": {
+      "success": "Active",
+      "error": "Inactive"
+    }
+  },
+  "table": {
+    "paginationText": "Showing {{ start }}-{{ end }}/{{ total }}"
+  }
 }

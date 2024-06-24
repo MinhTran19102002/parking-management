@@ -32,10 +32,12 @@ import CustomedTable from '~/views/components/Table';
 import AppContext from '~/context';
 import { ErrorService } from '~/services';
 import columns from './columns';
+import { useTranslation } from 'react-i18next';
 const { confirm } = Modal;
 
 function UserPage({}) {
   const { actions } = useContext(AppContext);
+  const { t: lag } = useTranslation();
   const [data, setData] = useState({
     data: [],
     totalCount: 0,
@@ -90,7 +92,11 @@ function UserPage({}) {
   }, [data]);
 
   const onAdd = () => {
-    setFormAction({ action: 'add', actionText: 'Thêm', title: 'Thêm người dùng mới' });
+    setFormAction({
+      action: 'add',
+      actionText: lag('common:add'),
+      title: lag('common:form:addUser')
+    });
     setOpenForm(true);
   };
 
@@ -98,8 +104,8 @@ function UserPage({}) {
     values.user = values.account.username;
     setFormAction({
       action: 'edit',
-      actionText: 'Chỉnh sửa',
-      title: 'Chỉnh sửa thông tin người dùng',
+      actionText: lag('common:edit'),
+      title: lag('common:form:editUser'),
       payload: { ...values }
     });
     setOpenForm(true);
@@ -111,7 +117,7 @@ function UserPage({}) {
       const api = await UserApi.deleteManager(values._id);
       setData(api);
       actions.onNoti({
-        message: 'Xóa người dùng thành công',
+        message: lag('common:form:deleteSuccess'),
         type: 'success'
       });
       callApi();
@@ -124,12 +130,12 @@ function UserPage({}) {
 
   const onDeleteMany = async () => {
     confirm({
-      title: 'Bạn có chắc chắc muốn xóa ?',
+      title: lag('common:popup:sure'),
       icon: <ExclamationCircleFilled />,
-      content: 'Các nội dung được chọn sẽ bị mất vĩnh viễn',
-      okText: 'Đồng ý',
+      content: lag('common:popup:dc'),
+      okText: lag('common:popup:aggree'),
       okType: 'danger',
-      cancelText: 'Hủy',
+      cancelText: lag('common:popup:cancel'),
       onOk() {
         hanldeDeleteMany();
       }
@@ -139,7 +145,7 @@ function UserPage({}) {
   const hanldeDeleteMany = async () => {
     try {
       actions.onMess({
-        content: 'Đang xóa',
+        content: lag('common:form:deleting'),
         type: 'loading',
         duration: 1
       });
@@ -147,7 +153,7 @@ function UserPage({}) {
       const api = await UserApi.deleteManyManager(ids);
       setData(api);
       actions.onNoti({
-        message: 'Xóa tất cả thành công',
+        message: lag('common:form:deleteAllSuccess'),
         type: 'success'
       });
       callApi();
@@ -219,11 +225,11 @@ function UserPage({}) {
                 icon={<DeleteFilled />}
                 onClick={onDeleteMany}
                 danger>
-                Xóa
+                {lag('common:delete')}
               </Button>
             )}
             <Button id="addUser" type="primary" ghost icon={<PlusOutlined />} onClick={onAdd}>
-              Thêm người dùng
+              {lag('common:form:addUser')}
             </Button>
           </Space>
         }
@@ -232,13 +238,13 @@ function UserPage({}) {
           <Row>
             <Space>
               <Typography.Title level={5} className="mb-0">
-                Bộ lọc:
+                {lag('common:filter')}:
               </Typography.Title>
               <Input
                 style={{
                   width: 200
                 }}
-                placeholder="Tên"
+                placeholder={lag('common:name')}
                 name="name"
                 defaultValue={name}
                 onPressEnter={onEnterFilter}
@@ -249,7 +255,7 @@ function UserPage({}) {
                 style={{
                   width: 200
                 }}
-                placeholder="Số điện thoại"
+                placeholder={lag('common:phone')}
                 name="phone"
                 defaultValue={phone}
                 onPressEnter={onEnterFilter}
@@ -271,7 +277,7 @@ function UserPage({}) {
           </Row>
         </Row>
         <Table
-          columns={columns({ pageSize, pageIndex, onDelete, onEdit })}
+          columns={columns({ pageSize, pageIndex, onDelete, onEdit }, lag)}
           dataSource={data.data || []}
           rowKey={(record) => record._id}
           pagination={false}
@@ -286,7 +292,9 @@ function UserPage({}) {
           {data.totalCount ? (
             <Pagination
               total={totalCount}
-              showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
+              showTotal={(total, range) =>
+                lag('common:table:paginationText', { start: range[0], end: range[1], total })
+              }
               pageSize={pageSize}
               current={pageIndex}
               loading={loading}

@@ -27,6 +27,7 @@ import StaffForm from './Staff';
 import AppContext from '~/context';
 import { ErrorService } from '~/services';
 import EmployeeApi from '~/api/Collections/EmployeeApi';
+import { useTranslation } from 'react-i18next';
 
 function Staff({}) {
   const { actions } = useContext(AppContext);
@@ -55,6 +56,7 @@ function Staff({}) {
   const [selectedRows, setSeletedRows] = useState([]);
   const [loading, setLoading] = useState(false);
   const isMounted = useRef(false);
+  const { t: lag } = useTranslation();
 
   const callApi = async () => {
     try {
@@ -89,7 +91,7 @@ function Staff({}) {
   }, [data]);
 
   const onAdd = () => {
-    setFormAction({ action: 'add', actionText: 'Thêm', title: 'Thêm nhân viên mới' });
+    setFormAction({ action: 'add', actionText: lag('common:add'), title: lag('common:form:addStaff') });
     setOpenForm(true);
   };
 
@@ -98,8 +100,8 @@ function Staff({}) {
     values.image = values.avatar;
     setFormAction({
       action: 'edit',
-      actionText: 'Chỉnh sửa',
-      title: 'Chỉnh sửa thông tin nhân viên',
+      actionText: lag('common:edit'),
+      title: lag('common:form:editStaff'),
       payload: { ...values }
     });
     setOpenForm(true);
@@ -111,7 +113,7 @@ function Staff({}) {
       const api = await StaffApi.delete(values._id);
       setData(api);
       actions.onNoti({
-        message: 'Xóa nhân viên thành công',
+        message: lag('common:form:deleteSuccess'),
         type: 'success'
       });
       callApi();
@@ -124,12 +126,12 @@ function Staff({}) {
 
   const onDeleteMany = async () => {
     Modal.confirm({
-      title: 'Bạn có chắc chắc muốn xóa ?',
+      title: lag('common:popup:sure'),
       icon: <ExclamationCircleFilled />,
-      content: 'Các nội dung được chọn sẽ bị mất vĩnh viễn',
-      okText: 'Đồng ý',
+      content: lag('common:popup:dc'),
+      okText: lag('common:popup:aggree'),
       okType: 'danger',
-      cancelText: 'Hủy',
+      cancelText: lag('common:popup:cancel'),
       onOk() {
         hanldeDeleteMany();
       }
@@ -139,7 +141,7 @@ function Staff({}) {
   const hanldeDeleteMany = async () => {
     try {
       actions.onMess({
-        content: 'Đang xóa',
+        content: lag('common:form:deleting'),
         type: 'loading',
         duration: 1
       });
@@ -147,7 +149,7 @@ function Staff({}) {
       const api = await EmployeeApi.deleteMany(ids);
       setData(api);
       actions.onNoti({
-        message: 'Xóa tất cả thành công',
+        message: lag('common:form:deleteAllSuccess'),
         type: 'success'
       });
       callApi();
@@ -182,13 +184,13 @@ function Staff({}) {
       )
     },
     {
-      title: 'Tên',
+      title: lag('common:name'),
       dataIndex: 'name',
       key: 'name',
       sorter: (a, b) => a.name - b.name
     },
     {
-      title: 'Số điện thoại',
+      title: lag('common:phone'),
       dataIndex: 'phone',
       key: 'phone'
     },
@@ -198,12 +200,12 @@ function Staff({}) {
       key: 'email'
     },
     {
-      title: 'Địa chỉ',
+      title: lag('common:address'),
       dataIndex: 'address',
       key: 'address'
     },
     {
-      title: 'Ngày tham gia',
+      title: lag('common:createdAt'),
       dataIndex: 'createdAt',
       key: 'createdAt',
       width: 180,
@@ -283,7 +285,7 @@ function Staff({}) {
       <Card
         title={
           <Typography.Title type="primary" level={4}>
-            Danh sách:
+            {lag('common:list')}
           </Typography.Title>
         }
         extra={
@@ -295,11 +297,11 @@ function Staff({}) {
                 icon={<DeleteFilled />}
                 onClick={onDeleteMany}
                 danger>
-                Xóa
+                {lag('common:delete')}
               </Button>
             )}
             <Button id="btnAdd" type="primary" icon={<PlusOutlined />} onClick={onAdd}>
-              Thêm nhân viên
+              {lag('common:form:addStaff')}
             </Button>
           </Space>
         }
@@ -308,13 +310,13 @@ function Staff({}) {
           <Row>
             <Space>
               <Typography.Title level={5} className="mb-0">
-                Bộ lọc:
+                {lag('common:filter')}
               </Typography.Title>
               <Input
                 style={{
                   width: 200
                 }}
-                placeholder="Tên"
+                placeholder={lag('common:name')}
                 name="name"
                 defaultValue={name}
                 onPressEnter={onEnterFilter}
@@ -325,7 +327,7 @@ function Staff({}) {
                 style={{
                   width: 200
                 }}
-                placeholder="Số điện thoại"
+                placeholder={lag('common:phone')}
                 name="phone"
                 defaultValue={phone}
                 onPressEnter={onEnterFilter}
@@ -362,7 +364,9 @@ function Staff({}) {
           {data.totalCount ? (
             <Pagination
               total={totalCount}
-              showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
+              showTotal={(total, range) =>
+                lag('common:table:paginationText', { start: range[0], end: range[1], total })
+              }
               pageSize={pageSize}
               current={pageIndex}
               loading={loading}
@@ -384,11 +388,3 @@ function Staff({}) {
 }
 
 export default Staff;
-
-const avts = [
-  'https://nguoinoitieng.tv/images/thumbnail/96/bbf7.jpg',
-  'https://cafefcdn.com/thumb_w/640/203337114487263232/2024/1/2/avatar1704200715756-17042007161791079596829.jpg',
-  'https://nguoinoitieng.tv/images/thumbnail/101/bfk8.jpg',
-  'https://nguoinoitieng.tv/images/thumbnail/0/gs.jpg',
-  'https://nguoinoitieng.tv/images/thumbnail/104/bhu9.jpg'
-];

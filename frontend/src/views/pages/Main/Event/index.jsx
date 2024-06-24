@@ -9,6 +9,7 @@ import { SLOTS_B } from '../Map/data/parkingB';
 import { SLOTS_C } from '../Map/data/parkingC';
 import { UploadOutlined } from '@ant-design/icons';
 import StreamEvents from './StreamEvents';
+import { useTranslation } from 'react-i18next';
 
 const formItemLayout = {
   labelCol: {
@@ -31,6 +32,7 @@ function Event({}) {
   const [isSelect, setIsSelect] = useState(false);
   const [fileList, setFileList] = useState([]);
   const [imageFile, setImageFile] = useState();
+  const { t: lag } = useTranslation();
   const occupiedSlots = useMemo(() => {
     const { A: zoneA, B: zoneB, C: zoneC } = parkings;
     return [...(zoneA?.slots || []), ...(zoneB?.slots || []), ...(zoneC?.slots || [])];
@@ -66,7 +68,7 @@ function Event({}) {
       });
       actions.onNoti({
         type: 'success',
-        message: 'Nhập xe thành công',
+        message: lag('event:actions:importSuccess'),
         description: values.licenePlate
       });
       importForm.resetFields();
@@ -86,7 +88,7 @@ function Event({}) {
       await Promise.allSettled(apis);
       actions.onNoti({
         type: 'success',
-        message: 'Xuất xe thành công',
+        message: lag('event:actions:exportSuccess'),
         description: values.licenePlate.toString()
       });
 
