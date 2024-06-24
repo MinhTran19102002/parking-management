@@ -6,7 +6,7 @@ import CustomedImage from '~/views/components/CustomedImage';
 
 export const CAMERA_TYPES = ['normal', 'cam360'];
 
-export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }) => [
+export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }, lag) => [
   {
     title: '#',
     dataIndex: 'key',
@@ -14,7 +14,7 @@ export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }) => [
     render: (_, prop, index) => (pageIndex - 1) * pageSize + index + 1
   },
   {
-    title: 'Hình ảnh',
+    title: lag('common:image'),
     dataIndex: 'images',
     key: 'images',
     render: (_, item) => (
@@ -34,18 +34,18 @@ export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }) => [
     sorter: (a, b) => a.name - b.name
   },
   {
-    title: 'Loại',
+    title: lag('common:type'),
     dataIndex: 'type',
     key: 'type'
   },
   {
-    title: 'Khu vực',
+    title: lag('common:zone'),
     dataIndex: 'zone',
     key: 'zone',
     render: (text) => text || 'Chưa lắp'
   },
   {
-    title: 'Luồng stream',
+    title: lag('common:cameraPage:streamLink'),
     dataIndex: 'streamLink',
     key: 'streamLink',
     render: (text) =>
@@ -60,17 +60,17 @@ export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }) => [
           </Typography.Link>
         </Tooltip>
       ) : (
-        'Chưa cài đặt'
+        lag('common:cameraPage:noSetting')
       )
   },
   {
-    title: 'Ngày mua',
+    title: lag('common:createdAt'),
     dataIndex: 'createdAt',
     key: 'createdAt',
     render: (_, item) => dayjs(item.createdAt).format('L')
   },
   {
-    title: 'Ngày chỉnh sửa',
+    title: lag('common:updatedAt'),
     dataIndex: 'updateAt',
     key: 'updateAt',
     render: (_, item) => dayjs(item.updateAt).format('L')

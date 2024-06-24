@@ -56,7 +56,7 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
       delete values['images'];
       const api = await CameraApi.edit(formAction.payload._id, { ...values, image: imageFile });
       if (api) {
-        onNoti({ message: 'Chỉnh sửa camera thành công', type: 'success' });
+        onNoti({ message: lag('common:form:editSuccess'), type: 'success' });
       }
       onClose({ reload: true, newValues: api });
     } catch (error) {
@@ -75,7 +75,7 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
         image: imageFile
       });
       if (api) {
-        onNoti({ message: 'Thêm camera thành công', type: 'success' });
+        onNoti({ message: lag('common:form:addSuccess'), type: 'success' });
       }
       onClose({ reload: true });
     } catch (error) {
@@ -98,24 +98,27 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
         {...formItemLayout}
         style={{ maxWidth: 4000 }}>
         <Form.Item name={'cameraId'} label="Camera ID" rules={[{ required: true }]}>
-          <Input placeholder="Nhập Camera ID" id="cameraIdInput" />
+          <Input placeholder={lag('common:enter')} id="cameraIdInput" />
         </Form.Item>
 
-        <Form.Item name={'streamLink'} label="Stream Link">
-          <Input placeholder="Nhập Link" id="streamLink" />
+        <Form.Item name={'Stream Link'} label={lag('common:cameraPage:streamLink')}>
+          <Input placeholder={lag('common:enter')} id="streamLink" />
         </Form.Item>
 
-        <Form.Item name={'type'} label="Kiểu" rules={[{ required: true, message: false }]}>
+        <Form.Item
+          name={'type'}
+          label={lag('common:type')}
+          rules={[{ required: true, message: false }]}>
           <Select
             id="cameraTypeInput"
-            placeholder="Chọn kiểu camera"
+            placeholder={lag('common:enter')}
             options={CAMERA_TYPES.map((type) => {
               return { value: type, label: lag('common:camera:type:' + type) };
             })}
           />
         </Form.Item>
 
-        <Form.Item name={'image'} label="Hình ảnh">
+        <Form.Item name={'image'} label={lag('common:image')}>
           <Upload
             accept="image/jpeg,image/jpg,image/png,image/webp"
             beforeUpload={(file) => {
@@ -140,7 +143,7 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
           className="mt-4">
           <Space>
             <Button id="btnCancel" onClick={hanldeClose}>
-              Hủy
+              {lag('common:cancel')}
             </Button>
             <Button id="btnSubmit" htmlType="submit" type="primary">
               {formAction.actionText}

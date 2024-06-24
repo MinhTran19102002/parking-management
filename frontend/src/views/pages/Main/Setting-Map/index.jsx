@@ -16,6 +16,7 @@ import MapLayer from '../Map/components/MapLayer';
 import SlotLayer from '../Map/components/SlotLayer';
 import SlotAssigend from '../Map/components/SlotAssigend';
 import { ErrorService } from '~/services';
+import { useTranslation } from 'react-i18next';
 
 function SettingMap({}) {
   const { token } = theme.useToken();
@@ -32,6 +33,7 @@ function SettingMap({}) {
   const [cameraUnused, setCameraUnused] = useState([]);
   const [hoveredSlots, setHoveredSlots] = useState([]);
   const [openAssignedSlotModal, setOpenAssignedSlotModal] = useState(false);
+  const { t: lag } = useTranslation();
 
   // const { data: cameraUnused, refetch: refetchCameraUnused } = useQuery({
   //   queryKey: ['camera', 'unused'],
@@ -105,10 +107,10 @@ function SettingMap({}) {
   const editManyCameras = useCallback(async (cameras) => {
     try {
       const api = await CameraApi.editMany(cameras);
-      actions.onMess({ type: 'success', content: 'Cập nhật camera thành công' });
+      actions.onMess({ type: 'success', content: lag('common:form:editSuccess') });
       setSettingMode(false);
     } catch {
-      actions.onMess({ type: 'error', content: 'Cập nhật camera thấp bại' });
+      actions.onMess({ type: 'error', content: lag('common:form:editError') });
     }
   }, []);
 
@@ -146,27 +148,24 @@ function SettingMap({}) {
       <Flex justify="space-between">
         <Space>
           <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
-            <Radio.Button value="A">Khu A</Radio.Button>
-            <Radio.Button value="A1">Khu A1</Radio.Button>
-            <Radio.Button value="B">Khu B</Radio.Button>
-            <Radio.Button value="B1">Khu B1</Radio.Button>
-            <Radio.Button value="C">Khu C</Radio.Button>
-            <Radio.Button value="C1">Khu C1</Radio.Button>
+            {state.zones.map((zone) => (
+              <Radio.Button value={zone}>{lag('common:zoneName', { zone })}</Radio.Button>
+            ))}
           </Radio.Group>
           <Button type="primary" onClick={() => setOpenAssignedSlotModal(true)}>
-            Cài đặt ô đỗ
+            {lag('common:mapPage:settingSlot')}
           </Button>
         </Space>
         <Space>
           {!settingMode ? (
             <Button icon={<SettingOutlined />} onClick={() => setSettingMode(true)}>
-              Cài đặt
+              {lag('common:setting')}
             </Button>
           ) : (
             <Space>
-              <Button onClick={() => setSettingMode(false)}>Hủy bỏ</Button>
+              <Button onClick={() => setSettingMode(false)}>{lag('common:cancel')}</Button>
               <Button type="primary" onClick={hanldeMapSetting}>
-                Xác nhận
+                {lag('common:confirm')}
               </Button>
             </Space>
           )}

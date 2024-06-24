@@ -89,7 +89,7 @@ function Employee({}) {
   }, [data]);
 
   const onAdd = () => {
-    setFormAction({ action: 'add', actionText: 'Thêm', title: 'Thêm nhân viên mới' });
+    setFormAction({ action: 'add', actionText: 'Thêm', title: lag('common:form:addEmployee') });
     setOpenForm(true);
   };
 
@@ -97,7 +97,7 @@ function Employee({}) {
     setFormAction({
       action: 'edit',
       actionText: 'Chỉnh sửa',
-      title: 'Chỉnh sửa thông tin nhân viên',
+      title: lag('common:form:addEmployee'),
       payload: { ...values }
     });
     setOpenForm(true);
@@ -137,7 +137,7 @@ function Employee({}) {
   const hanldeDeleteMany = async () => {
     try {
       actions.onMess({
-        content: 'Đang xóa',
+        content: lag('common:form:deleting'),
         type: 'loading',
         duration: 1
       });

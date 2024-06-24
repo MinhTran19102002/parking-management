@@ -7,5 +7,14 @@
     "outSlot": "Xe ra ô đỗ",
     "almost_full": "Bãi sắp đầy",
     "parking_full": "Bãi đầy"
+  },
+  "actions": {
+    "import": "Nhập xe",
+    "export": "Xuất xe",
+    "importSuccess": "Nhập xe thành công",
+    "exportSuccess": "Xuất xe thành công",
+    "cut": "Cắt hình",
+    "cutImage": "Hình đã cắt",
+    "licenePlates": "Các biển số xe được nhận diện:"
   }
 }

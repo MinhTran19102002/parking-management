@@ -11,6 +11,7 @@ import { GetSlots } from '../data';
 import { Button, Flex, Space } from 'antd';
 import AppContext from '~/context';
 import { ErrorService } from '~/services';
+import { useTranslation } from 'react-i18next';
 
 const SLOTS = GetSlots();
 function SlotAssigend({ onCancel, triggerUpdateCamera, zone }) {
@@ -19,6 +20,7 @@ function SlotAssigend({ onCancel, triggerUpdateCamera, zone }) {
   const [cameras, setCameras] = useState([]);
   const [selectedCamera, setSelectedCamera] = useState();
   const [selectedSlots, setSelectedSlots] = useState([]);
+  const { t: lag } = useTranslation();
   const checkableSlots = useMemo(() => {
     if (!selectedCamera) return [];
     const unselectedCamera = cameras.filter((el) => el.cameraId !== selectedCamera) || [];
@@ -98,7 +100,7 @@ function SlotAssigend({ onCancel, triggerUpdateCamera, zone }) {
 
       <Flex className="w-100 mt-4">
         <Space style={{ marginLeft: 'auto' }}>
-          <Button onClick={onCancel}>Hủy bỏ</Button>
+          <Button onClick={onCancel}>{lag('common:cancel')}</Button>
           <Button onClick={submit} type="primary">
             Xác nhận
           </Button>

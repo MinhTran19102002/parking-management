@@ -6,11 +6,13 @@ import { CameraCard } from '~/views/components';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { CameraApi } from '~/api';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useTranslation } from 'react-i18next';
 
 function CameraSide({ defaultExpand = true, settingMode, defaultData = [] }) {
   const [data, setData] = useState(defaultData);
   const [expand, setExpand] = useState(defaultExpand);
   const { token } = theme.useToken();
+  const { t: lag } = useTranslation();
 
   useEffect(() => {
     setData(defaultData);
@@ -20,7 +22,7 @@ function CameraSide({ defaultExpand = true, settingMode, defaultData = [] }) {
     <CameraSidebarStyled style={{ position: 'fixed', top: 120, right: 32, zIndex: 1 }}>
       <Button icon={<CameraOutlined />} onClick={() => setExpand((prev) => !prev)}>
         <Space>
-          Danh sách camera{' '}
+          {lag('common:mapPage:cameraList')}
           {expand ? (
             <CaretDownOutlined style={{ margin: 'auto' }} />
           ) : (
@@ -49,7 +51,7 @@ function CameraSide({ defaultExpand = true, settingMode, defaultData = [] }) {
               active
             />
           }
-          endMessage={<Divider plain>Hết</Divider>}
+          endMessage={<Divider plain>{lag('common:skip')}</Divider>}
           scrollableTarget="scrollableDiv">
           <List
             dataSource={data}

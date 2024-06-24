@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Form, Modal, Input, Select, Button, Space, Card } from 'antd';
 import { MinusCircleOutlined, PlusOutlined, CloseOutlined } from '@ant-design/icons';
 import { ErrorService, ValidateService } from '~/services';
 import { UserApi } from '~/api';
+import { useTranslation } from 'react-i18next';
+import AppContext from '~/context';
 
 const formItemLayout = {
   labelCol: {
@@ -38,6 +40,8 @@ const formItemLayoutWithOutLabel = {
 function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
+  const { t: lag } = useTranslation();
+  const { state } = useContext(AppContext);
 
   const hanldeClose = () => {
     form.resetFields();
@@ -61,7 +65,7 @@ function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
       setLoading(true);
       const api = await UserApi.editDriver(formAction.payload._id, values);
       if (api) {
-        onNoti({ message: 'Chỉnh sửa chủ xe thành công', type: 'success' });
+        onNoti({ message: lag('common:form:editSuccess'), type: 'success' });
       }
       onClose({ reload: true });
     } catch (error) {
@@ -80,10 +84,10 @@ function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
           username: values.phone,
           password: 'Parking@' + values.phone
         }
-      }
+      };
       const api = await UserApi.addDriver(payload);
       if (api) {
-        onNoti({ message: 'Thêm chủ xe thành công', type: 'success' });
+        onNoti({ message: lag('common:form:addSuccess'), type: 'success' });
       }
       onClose({ reload: true });
     } catch (error) {
@@ -104,7 +108,7 @@ function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
   return (
     <div className="container-fluid pt-3">
       <Form form={form} onFinish={onFinish} disabled={loading} {...formItemLayout}>
-        <Form.Item name={'name'} label="Họ và tên" rules={[{ required: true }]}>
+        <Form.Item name={'name'} label={lag('common:fullName')} rules={[{ required: true }]}>
           <Input placeholder="Nguyễn Văn A" id="nameInput" />
         </Form.Item>
 
@@ -117,7 +121,7 @@ function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
 
         <Form.Item
           name={'phone'}
-          label="Số điện thoại"
+          label={lag('common:phone')}
           validateDebounce={1000}
           rules={[
             { required: true, message: false },
@@ -127,7 +131,7 @@ function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
                   return Promise.resolve();
                 }
 
-                return Promise.reject(new Error('Sai định dang, SĐT phải là 10 số'));
+                return Promise.reject(new Error(lag('common:validate:phoneFormat')));
               }
             })
           ]}>
@@ -136,17 +140,13 @@ function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
         <Form.Item name={'address'} label="Địa chỉ" rules={[{ required: true, message: false }]}>
           <Input placeholder="Số 1 Võ Văn Ngân, Linh Chiểu" id="addressInput" />
         </Form.Item>
-        <Form.Item label="Nghề nghiệp" name={['job']} rules={[{ required: true }]}>
+        <Form.Item label={lag('common:job')} name={['job']} rules={[{ required: true }]}>
           <Select id="jobInput">
-            <Select.Option id="selectTeacher" value="Teacher">
-              Giảng viên
-            </Select.Option>
-            <Select.Option id="selectStudent" value="Student">
-              Sinh viên
-            </Select.Option>
-            <Select.Option id="selectEmployee" value="Employee">
-              Nhân viên
-            </Select.Option>
+            {state.jobs.map((job) => (
+              <Select.Option id="selectTeacher" value={job}>
+                {lag('common:jobs' + job)}
+              </Select.Option>
+            ))}
           </Select>
         </Form.Item>
         <Form.Item label="Đơn vị" name={['department']} rules={[{ required: true }]}>
@@ -160,7 +160,7 @@ function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
                 return (
                   <Form.Item
                     key={'licenePlate' + ix}
-                    label={ix === 0 && 'Biển số xe'}
+                    label={ix === 0 && lag('common:licenePlate')}
                     required={true}
                     {...(ix !== 0 && formItemLayoutWithOutLabel)}>
                     <Form.Item
@@ -175,7 +175,7 @@ function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
                             if (ValidateService.licensePlate(value)) {
                               return Promise.resolve();
                             }
-                            return Promise.reject({ message: 'Sai định dạng (VD: 12A-2184)' });
+                            return Promise.reject({ message: lag('common:validate:licenePlate') });
                           }
                         })
                       ]}>
@@ -204,7 +204,7 @@ function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
                     width: '100%'
                   }}
                   icon={<PlusOutlined />}>
-                  Thêm xe
+                  {lag('common:add')}
                 </Button>
               </Form.Item>
             </>
@@ -265,7 +265,7 @@ function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
           className="mt-4">
           <Space>
             <Button id="btnCancel" onClick={hanldeClose}>
-              Hủy
+              {lag('common:cancel')}
             </Button>
             <Button id="btnSubmit" htmlType="submit" type="primary">
               {formAction.actionText}

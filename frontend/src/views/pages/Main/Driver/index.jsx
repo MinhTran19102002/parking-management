@@ -32,6 +32,7 @@ import DriverForm from './DriverForm';
 import { useSearchParams } from 'react-router-dom';
 import AppContext from '~/context';
 import { ErrorService, JobServices } from '~/services';
+import { useTranslation } from 'react-i18next';
 
 function Driver({}) {
   const [data, setData] = useState({
@@ -61,6 +62,7 @@ function Driver({}) {
   const [loading, setLoading] = useState(false);
   const [selectedRows, setSeletedRows] = useState([]);
   const isMounted = useRef(false);
+  const { t: lag } = useTranslation();
 
   const callApi = async () => {
     try {
@@ -115,34 +117,34 @@ function Driver({}) {
 
     const columns = [
       {
-        title: 'Biển số xe',
+        title: lag('common:licenePlate'),
         dataIndex: 'licenePlate',
         key: 'licenePlate'
       },
       {
-        title: 'Loại xe',
+        title: lag('common:type'),
         dataIndex: 'type',
         key: 'type'
       },
       {
-        title: 'Trạng thái',
+        title: lag('common:status'),
         key: 'status',
         render: (_, record) => {
           let config = {
             status: 'success',
-            text: 'Còn hoạt động'
+            text: lag('common:statusList:vehicle:success')
           };
           if (record._destroy) {
             config = {
               status: 'error',
-              text: 'Dừng hoạt động'
+              text: lag('common:statusList:vehicle:error')
             };
           }
           return <Badge {...config} />;
         }
       },
       {
-        title: 'Xác nhận',
+        title: lag('common:confirm'),
         dataIndex: 'active',
         key: 'active',
         render: (_, { active = true, driverId }, index) =>
@@ -153,7 +155,7 @@ function Driver({}) {
           )
       },
       {
-        title: 'Ngày đăng ký',
+        title: lag('common:createdAt'),
         dataIndex: 'createdAt',
         key: 'createdAt',
         render: (_, record, index) => dayjs(record.createdAt).format('L')
@@ -168,7 +170,7 @@ function Driver({}) {
               type="primary"
               danger
               onClick={() => onUnconfirmVehicle(licenePlate)}>
-              Hủy xác nhận
+              {lag('common:cancel')}
             </Button>
           ) : (
             <Button
@@ -176,7 +178,7 @@ function Driver({}) {
               icon={<CheckOutlined />}
               type="primary"
               onClick={() => onConfirmVehicle(licenePlate, idUser)}>
-              Xác nhận xe
+              {lag('common:confirm')}
             </Button>
           )
       }
@@ -185,7 +187,7 @@ function Driver({}) {
     return (
       <div className="container-fluid">
         <Typography.Title type="primary" level={5}>
-          Danh sách xe:
+          {lag('common:driverPage:carList')}
         </Typography.Title>
         <Table
           columns={columns}
@@ -198,7 +200,11 @@ function Driver({}) {
   };
 
   const onAdd = () => {
-    setFormAction({ action: 'add', actionText: 'Thêm', title: 'Thêm chủ xe mới' });
+    setFormAction({
+      action: 'add',
+      actionText: lag('common:add'),
+      title: lag('common:form:addDriver')
+    });
     setOpenForm(true);
   };
 
@@ -210,8 +216,8 @@ function Driver({}) {
     };
     setFormAction({
       action: 'edit',
-      actionText: 'Chỉnh sửa',
-      title: 'Chỉnh sửa thông tin chủ xe',
+      actionText: lag('common:edit'),
+      title: lag('common:form:editDriver'),
       payload: { ...values }
     });
     setOpenForm(true);
@@ -220,14 +226,14 @@ function Driver({}) {
   const onDelete = async (values) => {
     try {
       actions.onMess({
-        content: 'Đang xóa',
+        content: lag('common:form:deleting'),
         type: 'loading',
         duration: 1
       });
       const api = await UserApi.deleteDriver(values._id);
       setData(api);
       actions.onNoti({
-        message: 'Xóa chủ xe thành công',
+        message: lag('common:form:deleting'),
         type: 'success'
       });
       callApi();
@@ -239,12 +245,12 @@ function Driver({}) {
 
   const onDeleteMany = async () => {
     Modal.confirm({
-      title: 'Bạn có chắc chắc muốn xóa ?',
+      title: lag('common:popup:sure'),
       icon: <ExclamationCircleFilled />,
-      content: 'Các nội dung được chọn sẽ bị mất vĩnh viễn',
-      okText: 'Đồng ý',
+      content: lag('common:popup:dc'),
+      okText: lag('common:popup:aggree'),
       okType: 'danger',
-      cancelText: 'Hủy',
+      cancelText: lag('common:popup:cancel'),
       onOk() {
         hanldeDeleteMany();
       }
@@ -254,7 +260,7 @@ function Driver({}) {
   const hanldeDeleteMany = async () => {
     try {
       actions.onMess({
-        content: 'Đang xóa',
+        content: lag('common:form:deleting'),
         type: 'loading',
         duration: 1
       });
@@ -262,7 +268,7 @@ function Driver({}) {
       const api = await UserApi.deleteManyDriver(ids);
       setData(api);
       actions.onNoti({
-        message: 'Xóa tất cả thành công',
+        message: lag('common:form:deleteAllSuccess'),
         type: 'success'
       });
       callApi();
@@ -285,13 +291,13 @@ function Driver({}) {
       render: (_, prop, index) => (pageIndex - 1) * pageSize + index + 1
     },
     {
-      title: 'Tên',
+      title: lag('common:name'),
       dataIndex: 'name',
       key: 'name',
       sorter: (a, b) => a.name - b.name
     },
     {
-      title: 'Số điện thoại',
+      title: lag('common:phone'),
       dataIndex: 'phone',
       key: 'phone'
     },
@@ -301,15 +307,15 @@ function Driver({}) {
       key: 'email'
     },
     {
-      title: 'Địa chỉ',
+      title: lag('common:address'),
       dataIndex: 'address',
       key: 'address'
     },
     {
-      title: 'Nghề nghiệp',
+      title: lag('common:job'),
       dataIndex: ['driver', 'job'],
       key: 'job',
-      render: (text, record, index) => JobServices.getTextByValue(text)
+      render: (text) => lag('common:jobs:' + text)
     },
     {
       title: 'Đơn vị (Khoa)',
@@ -399,7 +405,7 @@ function Driver({}) {
       <Card
         title={
           <Typography.Title type="primary" level={4}>
-            Danh sách:
+            {lag('common:list')}
           </Typography.Title>
         }
         extra={
@@ -411,11 +417,11 @@ function Driver({}) {
                 icon={<DeleteFilled />}
                 onClick={onDeleteMany}
                 danger>
-                Xóa
+                {lag('common:delete')}
               </Button>
             )}
             <Button id="btnAdd" type="primary" ghost icon={<PlusOutlined />} onClick={onAdd}>
-              Thêm chủ xe
+              {lag('common:driverPage:add')}
             </Button>
           </Space>
         }
@@ -424,13 +430,13 @@ function Driver({}) {
           <Row>
             <Space>
               <Typography.Title level={5} className="mb-0">
-                Bộ lọc:
+                {lag('common:filter')}:
               </Typography.Title>
               <Input
                 style={{
                   width: 200
                 }}
-                placeholder="Tên"
+                placeholder={lag('common:name')}
                 name="name"
                 defaultValue={name}
                 onPressEnter={onEnterFilter}
@@ -441,7 +447,7 @@ function Driver({}) {
                 style={{
                   width: 200
                 }}
-                placeholder="Số điện thoại"
+                placeholder={lag('common:phone')}
                 name="phone"
                 defaultValue={phone}
                 onPressEnter={onEnterFilter}
@@ -464,14 +470,14 @@ function Driver({}) {
                   width: 200
                 }}
                 name="licenePlate"
-                placeholder="Biển số xe"
+                placeholder={lag('common:licenePlate')}
                 defaultValue={licenePlate}
                 onPressEnter={onEnterFilter}
                 onChange={onChangeFilter}
                 allowClear={true}
               />
               <Button type="text" icon={<FilterOutlined />} onClick={callApi}>
-                Lọc
+                {lag('common:filter')}
               </Button>
             </Space>
           </Row>
@@ -496,7 +502,9 @@ function Driver({}) {
           {data.totalCount ? (
             <Pagination
               total={totalCount}
-              showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} items`}
+              showTotal={(total, range) =>
+                lag('common:table:paginationText', { start: range[0], end: range[1], total })
+              }
               pageSize={pageSize}
               current={pageIndex}
               disabled={loading}

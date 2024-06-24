@@ -7,5 +7,14 @@
     "outSlot": "Car exiting parking slot",
     "almost_full": "Parking almost full",
     "parking_full": "Parking full"
+  },
+  "actions": {
+    "import": "Import Vehicle",
+    "export": "Export Vehicle",
+    "importSuccess": "Vehicle Import Successful",
+    "exportSuccess": "Vehicle Export Successful",
+    "cut": "Cut Image",
+    "cutImage": "Cropped Image",
+    "licenePlates": "Recognized License Plates:"
   }
 }

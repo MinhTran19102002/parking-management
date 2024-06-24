@@ -5,6 +5,7 @@ import { StaffApi, UserApi } from '~/api';
 import { ErrorService, ValidateService } from '~/services';
 import AppContext from '~/context';
 import EmployeeApi from '~/api/Collections/EmployeeApi';
+import { useTranslation } from 'react-i18next';
 
 const formItemLayout = {
   labelCol: {
@@ -24,6 +25,7 @@ function StaffForm({ isOpen, onClose, formAction, noChangeAccount }) {
   const { onNoti, onMess } = actions;
   const [fileList, setFileList] = useState([]);
   const [imageFile, setImageFile] = useState();
+  const { t: lag } = useTranslation();
 
   const hanldeClose = (action, values) => {
     form.resetFields();
@@ -52,7 +54,7 @@ function StaffForm({ isOpen, onClose, formAction, noChangeAccount }) {
       delete values.user;
       const api = await UserApi.edit(formAction.payload._id, values);
       if (api) {
-        onNoti({ message: 'Chỉnh sửa nhân viên thành công', type: 'success' });
+        onNoti({ message: lag('common:form:editSuccess'), type: 'success' });
       }
       onClose({ reload: true, newValues: api });
     } catch (error) {
@@ -75,7 +77,7 @@ function StaffForm({ isOpen, onClose, formAction, noChangeAccount }) {
       delete values.pass;
       const api = await StaffApi.add({ ...values, image: imageFile });
       if (api) {
-        onNoti({ message: 'Thêm nhân viên thành công', type: 'success' });
+        onNoti({ message: lag('common:form:addSuccess'), type: 'success' });
       }
       onClose({ reload: true });
     } catch (error) {
@@ -97,7 +99,7 @@ function StaffForm({ isOpen, onClose, formAction, noChangeAccount }) {
         disabled={loading}
         {...formItemLayout}
         style={{ maxWidth: 4000 }}>
-        <Form.Item name={'name'} label="Họ và tên" rules={[{ required: true }]}>
+        <Form.Item name={'name'} label={lag('common:fullName')} rules={[{ required: true }]}>
           <Input placeholder="Nguyễn Văn A" id="nameInput" />
         </Form.Item>
 
@@ -110,7 +112,7 @@ function StaffForm({ isOpen, onClose, formAction, noChangeAccount }) {
 
         <Form.Item
           name={'phone'}
-          label="Số điện thoại"
+          label={lag('common:phone')}
           validateDebounce={1000}
           rules={[
             { required: true, message: false },
@@ -120,13 +122,16 @@ function StaffForm({ isOpen, onClose, formAction, noChangeAccount }) {
                   return Promise.resolve();
                 }
 
-                return Promise.reject(new Error('Sai định dang, SĐT phải là 10 số'));
+                return Promise.reject(new Error(lag('common:validate:phoneFormat')));
               }
             })
           ]}>
           <Input placeholder="0357647771" id="phoneInput" addonBefore={'+87'} />
         </Form.Item>
-        <Form.Item name={'address'} label="Địa chỉ" rules={[{ required: true, message: false }]}>
+        <Form.Item
+          name={'address'}
+          label={lag('common:address')}
+          rules={[{ required: true, message: false }]}>
           <Input placeholder="Số 1 Võ Văn Ngân, Linh Chiểu" id="addressInput" />
         </Form.Item>
         {/* <Form.Item
@@ -178,13 +183,13 @@ function StaffForm({ isOpen, onClose, formAction, noChangeAccount }) {
 
         <Form.Item
           name={'user'}
-          label="Tên tài khoản"
+          label={lag('common:validate:phoneFormat')}
           validateDebounce={1000}
           rules={[{ required: true, message: false }]}>
           <Input placeholder="example" id="usernameinput" disabled={noChangeAccount} />
         </Form.Item>
         {!noChangeAccount && (
-          <Form.Item label="Mật khẩu" wrapperCol={{ span: 24 }}>
+          <Form.Item label={lag('common:password')} wrapperCol={{ span: 24 }}>
             <Space.Compact className="w-100">
               <Form.Item
                 name={'pass'}
@@ -209,7 +214,7 @@ function StaffForm({ isOpen, onClose, formAction, noChangeAccount }) {
           className="mt-4">
           <Space>
             <Button id="btnCancel" onClick={hanldeClose}>
-              Hủy
+              {lag('common:cancel')}
             </Button>
             <Button id="btnSubmit" htmlType="submit" type="primary">
               {formAction.actionText}

@@ -35,6 +35,7 @@ import EmployeeApi from '~/api/Collections/EmployeeApi';
 import { CAMERAS, hanldeColumes } from './data';
 import CameraForm from './CameraForm';
 import VideoBlock from '~/views/components/VideoBlock';
+import { useTranslation } from 'react-i18next';
 
 function Camera({}) {
   const { actions } = useContext(AppContext);
@@ -61,6 +62,7 @@ function Camera({}) {
   const [formAction, setFormAction] = useState({});
   const [openForm, setOpenForm] = useState(false);
   const [openFormEdit, setOpenFormEdit] = useState(false);
+  const { t: lag } = useTranslation();
 
   const callApi = async () => {
     try {
@@ -91,15 +93,19 @@ function Camera({}) {
   }, [data]);
 
   const onAdd = () => {
-    setFormAction({ action: 'add', actionText: 'Thêm', title: 'Thêm camera mới' });
+    setFormAction({
+      action: 'add',
+      actionText: lag('common:add'),
+      title: lag('common:form:addCamera')
+    });
     setOpenForm(true);
   };
 
   const onEdit = (values) => {
     setFormAction({
       action: 'edit',
-      actionText: 'Chỉnh sửa',
-      title: 'Chỉnh sửa thông tin camera',
+      actionText: lag('common:edit'),
+      title: lag('common:form:editCamera'),
       payload: { ...values }
     });
     setOpenForm(true);
@@ -111,7 +117,7 @@ function Camera({}) {
       const api = await CameraApi.delete(values._id);
       setData(api);
       actions.onNoti({
-        message: 'Xóa camera thành công',
+        message: lag('common:deleteSuccess'),
         type: 'success'
       });
       callApi();
@@ -124,12 +130,12 @@ function Camera({}) {
 
   const onDeleteMany = async () => {
     Modal.confirm({
-      title: 'Bạn có chắc chắc muốn xóa ?',
+      title: lag('common:popup:sure'),
       icon: <ExclamationCircleFilled />,
-      content: 'Các nội dung được chọn sẽ bị mất vĩnh viễn',
-      okText: 'Đồng ý',
+      content: lag('common:popup:dc'),
+      okText: lag('common:popup:aggree'),
       okType: 'danger',
-      cancelText: 'Hủy',
+      cancelText: lag('common:popup:cancel'),
       onOk() {
         hanldeDeleteMany();
       }
@@ -139,7 +145,7 @@ function Camera({}) {
   const hanldeDeleteMany = async () => {
     try {
       actions.onMess({
-        content: 'Đang xóa',
+        content: lag('common:form:deleting'),
         type: 'loading',
         duration: 1
       });
@@ -147,7 +153,7 @@ function Camera({}) {
       const api = await CameraApi.deleteMany(ids);
       setData(api);
       actions.onNoti({
-        message: 'Xóa tất cả thành công',
+        message: lag('common:form:deleteAllSuccess'),
         type: 'success'
       });
       callApi();
@@ -238,7 +244,7 @@ function Camera({}) {
           </Row>
         </Row>
         <Table
-          columns={hanldeColumes({ pageIndex, pageSize, onEdit, onDelete })}
+          columns={hanldeColumes({ pageIndex, pageSize, onEdit, onDelete }, lag)}
           dataSource={data.data || []}
           rowKey={(record) => record._id}
           pagination={false}

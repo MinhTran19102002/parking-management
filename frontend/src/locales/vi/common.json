@@ -58,6 +58,7 @@
   "months": "Số tháng",
   "cancel": "Hủy",
   "confirm": "Xác nhận",
+  "confirmed": "Đã xác nhận",
   "editProfile": "Chỉnh sửa thông tin",
   "edit": "Chỉnh sửa",
   "password": "Mật khẩu",
@@ -69,15 +70,40 @@
   "login": "Đăng nhập",
   "underfined": "Không xác định",
   "vehicle": "Xe",
+  "status": "Trạng thái",
+  "filter": "Lọc",
+  "add": "Thêm",
+  "list": "Danh sách",
+  "skip": "Hết",
+  "setting": "Cài đặt",
   "form": {
     "addCar": "Thêm xe",
     "wrongFormat": "Sai định dạng",
     "formatPassword": "Sai định dạng, SĐT phải là 10 số",
     "passwordNotSame": "Mật khẩu không trùng khớp",
-    "editSuccess": "Chỉnh sửa thành công",
     "addSuccess": "Thêm thành công",
     "username": "Tên đăng nhập hoặc số điện thoại",
-    "plsNotEmpty": "Vui lòng không bỏ trống"
+    "plsNotEmpty": "Vui lòng không bỏ trống",
+    "addDriver": "Thêm chủ xe",
+    "addEmployee": "Thêm nhân viên mới",
+    "addUser": "Thêm người dùng mới",
+    "addStaff": "Thêm nhân viên",
+    "addAccount": "Thêm tài khoản",
+    "addCamera": "Thêm camera",
+    "editDriver": "Chỉnh sửa thông tin chủ xe",
+    "editStaff": "Chỉnh sửa thông tin nhân viên",
+    "editEmployee": "Chỉnh sửa thông tin nhân viên",
+    "editUser": "Chỉnh sửa thông tin người dùng",
+    "editCamera": "Chỉnh sửa camera",
+    "editSuccess": "Chỉnh sửa thành công",
+    "editError": "Chỉnh sửa thất",
+    "deleting": "Đang xóa",
+    "deleteSuccess": "Xóa thành công",
+    "deleteAllSuccess": "Xóa tất cả thành công"
+  },
+  "validate": {
+    "phoneFormat": "Số điện thoại 10 số",
+    "licenePlate": "Sai định dạng (VD: 12A-2184)"
   },
   "language": "Ngôn ngữ",
   "lags": {
@@ -107,7 +133,17 @@
     "exportReport": "Xuất báo cáo"
   },
   "mapPage": {
-    "dragAndDropIntoMap": "Kéo thả vào bản đồ"
+    "dragAndDropIntoMap": "Kéo thả vào bản đồ",
+    "settingSlot": "Cài đặt ô đỗ",
+    "cameraList": "Danh sách camera"
+  },
+  "driverPage": {
+    "carList": "Danh sách xe",
+    "add": "Thêm chủ xe"
+  },
+  "cameraPage": {
+    "streamLink": "Luồng stream",
+    "noSetting": "Chưa cài đặt"
   },
   "timePicker": {
     "7": "7 ngày gần nhất",
@@ -116,6 +152,17 @@
     "1Month": "1 tháng gần nhất"
   },
   "popup": {
-    "sure": "Bạn chắc chưa ?"
+    "sure": "Bạn chắc chưa ?",
+    "dc": "Các nội dung được chọn sẽ bị mất vĩnh viễn",
+    "aggree": "Đồng ý"
+  },
+  "statusList": {
+    "vehicle": {
+      "success": "Còn hoạt động",
+      "error": "Dừng hoạt động"
+    }
+  },
+  "table": {
+    "paginationText": "Đang hiển thị {{ start }}-{{ end }}/{{ total }}"
   }
 }
