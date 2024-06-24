@@ -163,7 +163,7 @@ function SettingMap({}) {
             </Button>
           ) : (
             <Space>
-              <Button onClick={() => setSettingMode(false)}>Hủy bỏ</Button>
+              <Button onClick={() => setSettingMode(false)}>{lag('common:cancel')}</Button>
               <Button type="primary" onClick={hanldeMapSetting}>
                 {lag('common:confirm')}
               </Button>
