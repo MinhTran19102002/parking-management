@@ -11,6 +11,7 @@ import pandas as pd
 
 
 plateCascade = cv2.CascadeClassifier("./unit/haarcascade_russian_plate_number.xml")
+plateCascadeOut = cv2.CascadeClassifier("./unit/haarcascade_russian_plate_number.xml")
 minArea = 500
 ocr = PaddleOCR(use_angle_cls=True, lang='en')
 global default_licenses_in
@@ -176,44 +177,44 @@ def car_into_parking(img, flag):
         pattern = r'^\d{2}[A-Z]-\d{5}$'
         # result_licenses
 
-        # if re.match(pattern, result_licenses):
-        #     print("Bien so xe xac dinh la ")
-        #     print(result_licenses)
-        #     global default_licenses_in
-        #     global default_licenses_out
-        #     if default_licenses_in != result_licenses and flag =="in":
-        #         # # cout_frame = 0
-        #         default_licenses_in = result_licenses
-        #         print("""result_licenses""")
-        #         _, img_encoded = cv2.imencode('.jpg', img)
-        #         img_bytes = img_encoded.tobytes()
-        #         data = {
-        #             'licenePlate': result_licenses
-        #         }
-        #         # Tệp tin hình ảnh
+        if re.match(pattern, result_licenses):
+            print("Bien so xe xac dinh la ")
+            print(result_licenses)
+            global default_licenses_in
+            global default_licenses_out
+            if default_licenses_in != result_licenses and flag =="in":
+                # # cout_frame = 0
+                default_licenses_in = result_licenses
+                print("""result_licenses""")
+                _, img_encoded = cv2.imencode('.jpg', img)
+                img_bytes = img_encoded.tobytes()
+                data = {
+                    'licenePlate': result_licenses
+                }
+                # Tệp tin hình ảnh
 
-        #         files = {
-        #             'image': ('xevao.jpg', img_bytes, 'image/jpeg')
-        #         }
-        #         response = requests.post(url, data=data, files=files)
+                files = {
+                    'image': ('xevao.jpg', img_bytes, 'image/jpeg')
+                }
+                response = requests.post(url, data=data, files=files)
 
-        #         # Kiểm tra kết quả trả về
-        #         if response.status_code == 201:
-        #             print('Success:', response.json())
-        #         else:
-        #             print('Failed:', response.status_code, response.text)
-        #     elif default_licenses_out != result_licenses and flag =="out":
-        #         default_licenses_out = result_licenses
-        #         data = {
-        #             'licenePlate': result_licenses
-        #         }
-        #         response1 = requests.post("http://localhost:8010/api/parkingTurn/outPaking", json=data)
+                # Kiểm tra kết quả trả về
+                if response.status_code == 201:
+                    print('Success:', response.json())
+                else:
+                    print('Failed:', response.status_code, response.text)
+            elif default_licenses_out != result_licenses and flag =="out":
+                default_licenses_out = result_licenses
+                data = {
+                    'licenePlate': result_licenses
+                }
+                response1 = requests.post("http://localhost:8010/api/parkingTurn/outPaking", json=data)
 
-        #         # Kiểm tra kết quả trả về
-        #         if response1.status_code == 200:
-        #             print('Success:', response1.json())
-        #         else:
-        #             print('Failed:', response1.status_code, response.text)
+                # Kiểm tra kết quả trả về
+                if response1.status_code == 200:
+                    print('Success:', response1.json())
+                else:
+                    print('Failed:', response1.status_code, response.text)
         resized_frame = cv2.resize(img, (640, 480))
         return cv2.imencode('.jpg', resized_frame)[1].tobytes(), result_licenses #frame
     except:
@@ -246,20 +247,8 @@ def car_Out_parking(img, flag):
         x= None
         y = None
         numberPlates = []
-        # numberPlates = plateCascade.detectMultiScale(grayscale, 1.1, 4) 
-        
-        # for contour in contours:
-        #     perimeter =  cv2.arcLength(contour, True)
-        #     approx = cv2.approxPolyDP(contour, 0.018* perimeter, True)
-        #     if len(approx) == 4:
-        #         contour_license_plate = approx
-        #         x,y,w,h = cv2.boundingRect(contour_license_plate)
-        #         cv2.rectangle(img, (x, y), (x + w, y + h), (145, 60, 255), 5)
-        #         area = w*h
-        #         if area > minArea and w > h:  
-        #             numberPlates = list(numberPlates) + [(x,y,w,h)]
 
-        numberPlates = plateCascade.detectMultiScale(grayscale, 1.1, 4)
+        numberPlates = plateCascadeOut.detectMultiScale(grayscale, 1.1, 4)
         for (x, y, w, h) in numberPlates:
             
             area = w*h
@@ -299,49 +288,46 @@ def car_Out_parking(img, flag):
                                 break
                             # result_licenses.append(license_text)
                 except:  print("Lỗi1111: " )
-        # global cout_frame 
-        # cout_frame = cout_frame + 1
         pattern = r'^\d{2}[A-Z]-\d{5}$'
-        # result_licenses
 
-        # if re.match(pattern, result_licenses):
-        #     print("Bien so xe xac dinh la ")
-        #     print(result_licenses)
-        #     global default_licenses_in
-        #     global default_licenses_out
-        #     if default_licenses_in != result_licenses and flag =="in":
-        #         # # cout_frame = 0
-        #         default_licenses_in = result_licenses
-        #         print("""result_licenses""")
-        #         _, img_encoded = cv2.imencode('.jpg', img)
-        #         img_bytes = img_encoded.tobytes()
-        #         data = {
-        #             'licenePlate': result_licenses
-        #         }
-        #         # Tệp tin hình ảnh
+        if re.match(pattern, result_licenses):
+            print("Bien so xe xac dinh la ")
+            print(result_licenses)
+            global default_licenses_in
+            global default_licenses_out
+            if default_licenses_in != result_licenses and flag =="in":
+                # # cout_frame = 0
+                default_licenses_in = result_licenses
+                print("""result_licenses""")
+                _, img_encoded = cv2.imencode('.jpg', img)
+                img_bytes = img_encoded.tobytes()
+                data = {
+                    'licenePlate': result_licenses
+                }
+                # Tệp tin hình ảnh
 
-        #         files = {
-        #             'image': ('xevao.jpg', img_bytes, 'image/jpeg')
-        #         }
-        #         response = requests.post(url, data=data, files=files)
+                files = {
+                    'image': ('xevao.jpg', img_bytes, 'image/jpeg')
+                }
+                response = requests.post(url, data=data, files=files)
 
-        #         # Kiểm tra kết quả trả về
-        #         if response.status_code == 201:
-        #             print('Success:', response.json())
-        #         else:
-        #             print('Failed:', response.status_code, response.text)
-        #     elif default_licenses_out != result_licenses and flag =="out":
-        #         default_licenses_out = result_licenses
-        #         data = {
-        #             'licenePlate': result_licenses
-        #         }
-        #         response1 = requests.post("http://localhost:8010/api/parkingTurn/outPaking", json=data)
+                # Kiểm tra kết quả trả về
+                if response.status_code == 201:
+                    print('Success:', response.json())
+                else:
+                    print('Failed:', response.status_code, response.text)
+            elif default_licenses_out != result_licenses and flag =="out":
+                default_licenses_out = result_licenses
+                data = {
+                    'licenePlate': result_licenses
+                }
+                response1 = requests.post("http://localhost:8010/api/parkingTurn/outPaking", json=data)
 
-        #         # Kiểm tra kết quả trả về
-        #         if response1.status_code == 200:
-        #             print('Success:', response1.json())
-        #         else:
-        #             print('Failed:', response1.status_code, response.text)
+                # Kiểm tra kết quả trả về
+                if response1.status_code == 200:
+                    print('Success:', response1.json())
+                else:
+                    print('Failed:', response1.status_code, response.text)
         resized_frame = cv2.resize(img, (640, 480))
         return cv2.imencode('.jpg', resized_frame)[1].tobytes(), result_licenses #frame
     except:
@@ -418,24 +404,42 @@ def car_into_slot(img, positon, zone):
             cv2.putText(img,str('3'),(106,440),cv2.FONT_HERSHEY_COMPLEX,0.5,(255,255,255),1)
         global a1_defl , a2_defl, a3_defl
         print(a1_defl)
-        # if a1 != a1_defl:
-        #     a1_defl = a1
-        #     url = ''
-        #     if a1 == 1:
-        #         url = "http://localhost:8010/api/parkingTurn/carInSlot"
-        #     else:
-        #         url = "http://localhost:8010/api/parkingTurn/carOutSlot"
-        #     data = {
-        #             'zone': zone,
-        #             'position': positon[0]
-        #         }
-        #     response = requests.post(url, json=data)
+        if a1 != a1_defl:
+            a1_defl = a1
+            url = ''
+            if a1 == 1:
+                url = "http://localhost:8010/api/parkingTurn/carInSlot"
+            else:
+                url = "http://localhost:8010/api/parkingTurn/carOutSlot"
+            data = {
+                    'zone': zone,
+                    'position': positon[0]
+                }
+            response = requests.post(url, json=data)
 
-        #     # Kiểm tra kết quả trả về
-        #     if response.status_code == 200:
-        #         print('Success:', response.json())
-        #     else:
-        #         print('Failed:', response.status_code, response.text)
+            # Kiểm tra kết quả trả về
+            if response.status_code == 200:
+                print('Success:', response.json())
+            else:
+                print('Failed:', response.status_code, response.text)
+        if a2 != a2_defl:
+            a2_defl = a2
+            url = ''
+            if a2 == 1:
+                url = "http://localhost:8010/api/parkingTurn/carInSlot"
+            else:
+                url = "http://localhost:8010/api/parkingTurn/carOutSlot"
+            data = {
+                    'zone': zone,
+                    'position': positon[1]
+                }
+            response = requests.post(url, json=data)
+
+            # Kiểm tra kết quả trả về
+            if response.status_code == 200:
+                print('Success:', response.json())
+            else:
+                print('Failed:', response.status_code, response.text)
         return cv2.imencode('.jpg', img)[1].tobytes()
 
     except:

@@ -341,6 +341,97 @@ const getVehicleInOutNumber = async (startDate, endDate) => {
   }
 };
 
+const getVehicleInOutNumberByHour = async (startDate, endDate) => {
+  try {
+    const start = Date.parse(parseDate(startDate)) - 7 * 60 * 60 * 1000;
+    const end = Date.parse(parseDate(endDate)) - 7 * 60 * 60 * 1000;
+    // console.log(parseDate(startDate).getTimezoneOffset() + '         ' + parseDate(endDate).setUTCHours(7))
+    // console.log(start + '         ' + end)
+    const getVehicleInOutNumber = await GET_DB()
+      .collection(PARKINGTURN_COLLECTION_NAME)
+      .aggregate([
+        {
+          $match: {
+            start: {
+              $gte: start,
+              $lte: end,
+            },
+          },
+        },
+        {
+          $lookup: {
+            from: parkingModel.PARKING_COLLECTION_NAME,
+            localField: 'parkingId',
+            foreignField: '_id',
+            as: 'parking',
+          },
+        },
+        {
+          $unwind: '$parking',
+        },
+        {
+          $addFields: {
+            timezoneOffset: { $literal: new Date().getTimezoneOffset() * 60 * 1000 },
+          },
+        },
+        {
+          $group: {
+            _id: {
+              // year: { $year: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
+              // month: { $month: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
+              // day: { $dayOfMonth: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
+              hour: { $hour: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
+              zone: '$parking.zone',
+            },
+            count: { $sum: 1 },
+          },
+        },
+        {
+          $group: {
+            _id: {
+              // year: '$_id.year',
+              // month: '$_id.month',
+              // day: '$_id.day',
+              hour:  '$_id.hour',
+            },
+            data: {
+              $push: {
+                k: '$_id.zone',
+                v: '$count',
+              },
+            },
+            total: { $sum: '$count' },
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            // hour: {
+            //   $dateToString: {
+            //     format: '%d/%m/%Y',
+            //     date: {
+            //       $dateFromParts: {
+            //         year: '$_id.year',
+            //         month: '$_id.month',
+            //         day: '$_id.day',
+            //       },
+            //     },
+            //   },
+            // },
+            hour: '$_id.hour',
+            data: { $arrayToObject: '$data' },
+            total: 1,
+          },
+        },
+      ]);
+    return await getVehicleInOutNumber.toArray();
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
 const getRevenue = async (startDate, endDate) => {
   try {
     const start = Date.parse(parseDate(startDate)) - 7 * 60 * 60 * 1000;
@@ -414,6 +505,95 @@ const getRevenue = async (startDate, endDate) => {
                 },
               },
             },
+            data: { $arrayToObject: '$data' },
+            total: 1,
+          },
+        },
+      ]);
+    return await getVehicleInOutNumber.toArray();
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+const GetRevenueByHour = async (startDate, endDate) => {
+  try {
+    const start = Date.parse(parseDate(startDate)) - 7 * 60 * 60 * 1000;
+    const end = Date.parse(parseDate(endDate)) - 7 * 60 * 60 * 1000;
+    const getVehicleInOutNumber = await GET_DB()
+      .collection(PARKINGTURN_COLLECTION_NAME)
+      .aggregate([
+        {
+          $match: {
+            start: {
+              $gte: start,
+              $lte: end,
+            },
+          },
+        },
+        {
+          $lookup: {
+            from: parkingModel.PARKING_COLLECTION_NAME,
+            localField: 'parkingId',
+            foreignField: '_id',
+            as: 'parking',
+          },
+        },
+        {
+          $unwind: '$parking',
+        },
+        {
+          $addFields: {
+            timezoneOffset: { $literal: new Date().getTimezoneOffset() * 60 * 1000 },
+          },
+        },
+        {
+          $group: {
+            _id: {
+              // year: { $year: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
+              // month: { $month: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
+              // day: { $dayOfMonth: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
+              hour: { $hour: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
+              zone: '$parking.zone',
+            },
+            totalFee: { $sum: '$fee' },
+          },
+        },
+        {
+          $group: {
+            _id: {
+              // year: '$_id.year',
+              // month: '$_id.month',
+              // day: '$_id.day',
+              hour: '$_id.hour',
+            },
+            data: {
+              $push: {
+                k: '$_id.zone',
+                v: '$totalFee',
+              },
+            },
+            total: { $sum: '$totalFee' },
+          },
+        },
+        {
+          $project: {
+            _id: 0,
+            // date: {
+            //   $dateToString: {
+            //     format: '%d/%m/%Y',
+            //     date: {
+            //       $dateFromParts: {
+            //         year: '$_id.year',
+            //         month: '$_id.month',
+            //         day: '$_id.day',
+            //       },
+            //     },
+            //   },
+            // },
+            hour: '$_id.hour',
             data: { $arrayToObject: '$data' },
             total: 1,
           },
@@ -502,7 +682,9 @@ export const parkingTurnModel = {
   createNew,
   updateOut,
   getVehicleInOutNumber,
+  getVehicleInOutNumberByHour,
   getRevenue,
+  GetRevenueByHour,
   createNewV2,
   updateOutV2,
   findPosition,

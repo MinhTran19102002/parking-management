@@ -34,8 +34,15 @@ Router.route('/outPaking')
 Router.route('/Reports/GetVehicleInOutNumber')
   .get(parkingTurnController.getVehicleInOutNumber)
 
+  Router.route('/Reports/GetVehicleInOutNumberByHour')
+  .get(parkingTurnController.getVehicleInOutNumberByHour)
+
 Router.route('/Reports/GetRevenue')
-  .get(verifyTokenMidleware.verifyTokenAndManager, verifyTokenMidleware.verifyTokenAndAdminManager, parkingTurnController.getRevenue)
+  .get(parkingTurnController.getRevenue)
+
+
+  Router.route('/Reports/GetRevenueByHour')
+  .get(parkingTurnController.GetRevenueByHour)
 
 Router.route('/event')
   .get(parkingTurnController.getEvent)
