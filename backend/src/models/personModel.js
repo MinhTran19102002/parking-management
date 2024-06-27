@@ -43,7 +43,7 @@ const PERSON_COLLECTION_SCHEMA = Joi.object({
     arrayvehicleId: Joi.array().items(Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE).required()),
     job: Joi.string().required().min(4).max(50).trim().strict(),
     department: Joi.string().required().min(4).max(50).trim().strict(),
-    
+
   }).optional(),
 
   createdAt: Joi.date().timestamp('javascript').default(Date.now),
@@ -284,6 +284,59 @@ const findDriverByFilter = async ({ pageSize, pageIndex, ...params }) => {
       totalCount,
       totalPage,
     };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+
+const findDriverByLicenePlate = async (licenePlate) => {
+  // Construct the regular expression pattern dynamically
+  // let paramMatch = {};
+  // for (let [key, value] of Object.entries(params)) {
+  //   if (key == 'licenePlate') {
+  //     key = 'driver.vehicle.' + key; //driver.vehicle.licenePlate
+  //   }
+  //   let regex;
+  //   if (key == 'name') {
+  //     regex = {
+  //       [key]: new RegExp(`${value}`, 'i'),
+  //     };
+  //   } else {
+  //     regex = {
+  //       [key]: new RegExp(`^${value}`, 'i'),
+  //     };
+  //   }
+  //   Object.assign(paramMatch, regex);
+  // }
+  try {
+    const driver = await GET_DB()
+      .collection(PERSON_COLLECTION_NAME)
+      .aggregate([
+        {
+          $match: {
+            driver: { $exists: true },
+          },
+        },
+        {
+          $lookup: {
+            from: vehicleModel.VEHICLE_COLLECTION_NAME,
+            localField: 'driver.arrayvehicleId',
+            foreignField: '_id',
+            as: 'driver.vehicle',
+          },
+        },
+        {
+          $match: {
+            "driver.vehicle.licenePlate": licenePlate,
+          },
+        },
+      ])
+      .toArray();
+    if (driver.length == 0) {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, "error.message");
+    }
+    return driver[0]
   } catch (error) {
     throw new Error(error);
   }
@@ -531,16 +584,16 @@ const deleteDrivers = async (_ids) => {
 };
 
 const updateUser = async (_id, _data) => {
-  
+
   _data.updatedAt = Date.now();
   delete _data._id;
   console.log(_data)
   delete _data.driver;
   const data = await validateBeforCreate(_data);
-  
+
   delete data.createdAt;
   data.updatedAt = Date.now();
-  
+
   try {
     const updateOperation = {
       $set: {
@@ -879,4 +932,5 @@ export const personModel = {
   deleteManyEmployee,
   updateAvatar,
   getUser,
+  findDriverByLicenePlate,
 };

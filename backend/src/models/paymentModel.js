@@ -65,9 +65,29 @@ const findOneById = async (_id) => {
   }
 };
 
+const save_payment = async (_id) => {
+  try {
+    const id = new ObjectId(_id)
+    const findOne = await GET_DB()
+      .collection(PAYMENT_COLLECTION_NAME)
+      .findOneAndUpdate({ _id: id },
+        {
+          $set: {
+            isPay: true
+          }
+        },
+        { returnOriginal: false }
+      );
+    return findOne;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 export const paymentModel = {
   PAYMENT_COLLECTION_NAME,
   PAYMENT_COLLECTION_SCHEMA,
   createNew,
   findOneById,
+  save_payment,
 }
