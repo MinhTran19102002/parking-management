@@ -47,11 +47,12 @@ const updateCamera = async (_id, params) => {
 const updateManyCamera = async (listCamrera) => {
   // eslint-disable-next-line no-useless-catch
   try {
+    console.log(listCamrera)
     let listUpdate = []
     let listId = []
     await Promise.allSettled(
       listCamrera.map(async (data) => {
-        // console.log(data)
+        console.log(data._id)
         const cameraUpdate = await cameraModel.updateCamera(data._id, data);
 
         return cameraUpdate;
