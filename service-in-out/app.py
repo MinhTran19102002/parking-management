@@ -68,7 +68,8 @@ def apiCarIn():
 # API nhap xuat xe
 @app.route('/service/carOut')
 def apiCarOut():
-    url = "./unit/video/XeRa.mp4"
+    # url = "./unit/video/XeRa.mp4"
+    url = "rtsp://localhost:8554/CAM_001"
     response =  Response( carOut(url, "out"), mimetype="multipart/x-mixed-replace; boundary=frame" )
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response

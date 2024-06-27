@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 
-const socket = io('https://parking-api-h07g.onrender.com/', {
+const socket = io('http://localhost:8010/', {
   withCredentials: true, // include credentials when making cross-origin requests
   transports: ['websocket'] // use only WebSocket transport (optional)
 });
