@@ -6,7 +6,7 @@ import nodemailer from 'nodemailer'
 import { personModel } from "~/models/personModel";
 
 const register = async (data) => {
-    const feePerMonth = 1000000 // 1 trieu
+    const feePerMonth = 500000 // 1 trieu
 
     try {
         let timeStamp = data.startDay;
@@ -113,12 +113,13 @@ const payment = async (req) => {
         vnp_Params['vnp_CurrCode'] = currCode;
         vnp_Params['vnp_IpAddr'] = ipAddr;
         vnp_Params['vnp_Locale'] = locale;
-        vnp_Params['vnp_OrderInfo'] = orderInfo;
+        vnp_Params['vnp_OrderInfo'] = paymentObj._id;;
         vnp_Params['vnp_OrderType'] = 'orderType';
         vnp_Params['vnp_ReturnUrl'] = returnUrl;
         vnp_Params['vnp_TmnCode'] = tmnCode;
         vnp_Params['vnp_TxnRef'] = orderId;
         vnp_Params['vnp_Version'] = '2.1.0';
+        // vnp_Params['paymentId']  = paymentObj._id;
         vnp_Params = sortObject(vnp_Params);
         var querystring = require('qs');
         var signData = querystring.stringify(vnp_Params, { encode: false });

@@ -39,6 +39,7 @@ const save_payment = async (req, res, next) => {
     try {
         // Dieu huong sang tang Service
         const save_payment = await paymentService.save_payment(req.body);
+        server.io.emit('notification-parking',{ message:  'Thanh toan don hang'})
         res.status(StatusCodes.CREATED).json(save_payment);
     } catch (error) {
         next(error);
