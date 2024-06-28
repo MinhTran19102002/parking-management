@@ -76,6 +76,7 @@
   "list": "List",
   "skip": "Skip",
   "setting": "Settings",
+  "amount": "Amount",
   "form": {
     "addCar": "Add Car",
     "wrongFormat": "Wrong Format",
@@ -117,8 +118,13 @@
     "Student": "Student"
   },
   "payment": {
+    "pay": "Pay",
     "isNotPay": "Not Paid",
-    "isPay": "Paid"
+    "isPay": "Paid",
+    "paySuccessfully": "Payment success",
+    "vnp_BankCode": "Bank nam",
+    "vnp_BankTranNo": "Bank number",
+    "vnp_PayDate": "Bank date"
   },
   "times": {
     "hour": "Hour",

@@ -76,6 +76,7 @@
   "list": "Danh sách",
   "skip": "Hết",
   "setting": "Cài đặt",
+  "amount": "Số tiền",
   "form": {
     "addCar": "Thêm xe",
     "wrongFormat": "Sai định dạng",
@@ -117,8 +118,13 @@
     "Student": "Sinh viên"
   },
   "payment": {
+    "pay": "Thanh toán",
     "isNotPay": "Chưa thanh toán",
-    "isPay": "Đã thanh toán"
+    "isPay": "Đã thanh toán",
+    "paySuccessfully": "Thanh toán thành công",
+    "vnp_BankCode": "Ngân hàng",
+    "vnp_BankTranNo": "STK",
+    "vnp_PayDate": "Thời gian thanh toán"
   },
   "times": {
     "hour": "Giờ",

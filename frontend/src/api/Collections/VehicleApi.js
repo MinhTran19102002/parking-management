@@ -14,6 +14,20 @@ const VehicleApi = {
   registerPayment: (payload) => {
     const url = `${DOMAIN}/payment/register`;
     return POST({ url, payload });
-  }
+  },
+  pay: (payload) => {
+    const url = `${DOMAIN}/payment/create_payment`;
+    return POST({
+      url,
+      payload,
+    });
+  },
+  savePayment: (payload) => {
+    const url = `${DOMAIN}/payment/save_payment`;
+    return POST({
+      url,
+      payload,
+    });
+  },
 };
 export default VehicleApi;
