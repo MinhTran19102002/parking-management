@@ -14,6 +14,7 @@ import { GlobalStyle } from './shared';
 import Register from './views/pages/Authen/Register';
 import { Content, Footer, Header } from './views/layouts';
 import { useTranslation } from 'react-i18next';
+import PaymentSuccess from './views/components/Result/PaymentSuccess';
 
 function Authencation({ children }) {
   const { state } = useContext(AppContext);
@@ -130,6 +131,7 @@ function App() {
               <Routes>
                 <Route path="/auth/login" element={<Authen />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/payment-success" element={<PaymentSuccess />} />
                 <Route
                   path="/*"
                   element={

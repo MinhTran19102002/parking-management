@@ -54,6 +54,17 @@ function Personal({}) {
     }
   };
 
+  const onPay = async (paymentId) => {
+    try {
+      const response = await VehicleApi.pay({
+        paymentId
+      });
+      window.open(response);
+    } catch (error) {
+      ErrorService.hanldeError(error, actions.onNoti);
+    }
+  };
+
   useEffect(() => {
     refetch();
   }, []);
@@ -153,6 +164,11 @@ function Personal({}) {
                     <Tag color={isPay ? 'success' : 'error'}>
                       {isPay ? lag('common:payment:isPay') : lag('common:payment:isNotPay')}
                     </Tag>
+                    {isPay || (
+                      <Button size="small" type="primary" onClick={() => onPay(paymentId)}>
+                        {lag('common:payment:pay')}
+                      </Button>
+                    )}
                   </Space>
                 );
               }

@@ -20,7 +20,7 @@ import UserPage from '~/views/pages/Main/UserPage';
 import Staff from '~/views/pages/Main/Staff';
 import Camera from '~/views/pages/Main/Camera';
 import SettingMap from '~/views/pages/Main/Setting-Map';
-import Personal from '~/views/pages/Main/Personal';
+import Personal from '~/views/pages/DriverPages/Personal';
 import HistoryDriver from '~/views/pages/DriverPages/History';
 import CameraStream from '~/views/pages/Main/CameraStream';
 import Map from '~/views/pages/Main/Map';
