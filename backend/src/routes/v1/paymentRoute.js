@@ -12,6 +12,12 @@ Router.route('/register')   //
 Router.route('/findById')   // 
   .get(paymentController.findById)
 
+Router.route('/findByfilter')   // 
+  .get(paymentController.findByfilter)
+
+// Router.route('/findByfilter')   // 
+//   .post(paymentController.findByfilter)
+
 
 
 Router.route('/save_payment')   // 

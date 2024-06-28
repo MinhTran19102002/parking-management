@@ -291,24 +291,6 @@ const findDriverByFilter = async ({ pageSize, pageIndex, ...params }) => {
 
 
 const findDriverByLicenePlate = async (licenePlate) => {
-  // Construct the regular expression pattern dynamically
-  // let paramMatch = {};
-  // for (let [key, value] of Object.entries(params)) {
-  //   if (key == 'licenePlate') {
-  //     key = 'driver.vehicle.' + key; //driver.vehicle.licenePlate
-  //   }
-  //   let regex;
-  //   if (key == 'name') {
-  //     regex = {
-  //       [key]: new RegExp(`${value}`, 'i'),
-  //     };
-  //   } else {
-  //     regex = {
-  //       [key]: new RegExp(`^${value}`, 'i'),
-  //     };
-  //   }
-  //   Object.assign(paramMatch, regex);
-  // }
   try {
     const driver = await GET_DB()
       .collection(PERSON_COLLECTION_NAME)
