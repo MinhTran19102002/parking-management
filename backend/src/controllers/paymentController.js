@@ -56,10 +56,22 @@ const send_mail = async (req, res, next) => {
     }
 }
 
+
+const findByfilter = async (req, res, next) => {
+    try {
+        // Dieu huong sang tang Service
+        const findByfilter = await paymentService.findByfilter(req.query);
+        res.status(StatusCodes.CREATED).json(findByfilter);
+    } catch (error) {
+        next(error);
+    }
+}
+
 export const paymentController = {
     payment,
     register,
     findById,
     save_payment,
     send_mail,
+    findByfilter,
 }

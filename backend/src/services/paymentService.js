@@ -187,10 +187,33 @@ const send_mail = async (email, licenePlate, fee,startDay, endDay) => {
     }
 };
 
+
+const findByfilter = async (filter) => {
+    // eslint-disable-next-line no-useless-catch
+    try {
+      const findByfilter = await paymentModel.findByfilter(filter);
+      if (findByfilter.acknowledged == false) {
+        throw new ApiError(
+          StatusCodes.NOT_FOUND,
+          'Người lái xe không tồn tại',
+          'Not Found',
+          'BR_person_1_1',
+        );
+      }
+      return findByfilter;
+    } catch (error) {
+      if (error.type && error.code)
+        throw new ApiError(error.statusCode, error.message, error.type, error.code);
+      else throw new new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    }
+  };
+  
+
 export const paymentService = {
     register,
     findById,
     payment,
     save_payment,
     send_mail,
+    findByfilter,
 }
