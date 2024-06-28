@@ -36,6 +36,10 @@ export const TextService = {
   }
 };
 
+export const GetAmountFromMonths = (m) => {
+  return m * 500000;
+};
+
 export const FloorService = {
   getFloors: () => {
     const n = 31;

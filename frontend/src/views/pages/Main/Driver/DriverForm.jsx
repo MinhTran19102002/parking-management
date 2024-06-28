@@ -144,7 +144,7 @@ function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
           <Select id="jobInput">
             {state.jobs.map((job) => (
               <Select.Option id="selectTeacher" value={job}>
-                {lag('common:jobs' + job)}
+                {lag('common:jobs:' + job)}
               </Select.Option>
             ))}
           </Select>
