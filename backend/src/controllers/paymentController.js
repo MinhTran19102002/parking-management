@@ -8,7 +8,7 @@ import moment from 'moment';
 const payment = async (req, res, next) => {
     try { 
         const vnpUrl = await paymentService.payment(req);
-        res.redirect(vnpUrl)
+        res.status(StatusCodes.CREATED).json(vnpUrl);
     } catch (error) {
         next(error);
     }
