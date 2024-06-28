@@ -67,7 +67,7 @@ function Personal({}) {
 
   useEffect(() => {
     refetch();
-  }, []);
+  }, [JSON.stringify(state.parkingEvent)]);
 
   const items = [
     {
@@ -156,9 +156,9 @@ function Personal({}) {
                 return (
                   <Space>
                     <Typography.Text>
-                      {`${dayjs.unix(paymentItem.startDay).format('L LTS')} - ${dayjs
-                        .unix(paymentItem.endDay)
-                        .format('L LTS')}, `}
+                      {`${dayjs(paymentItem.startDay).format('L LTS')} - ${dayjs(
+                        paymentItem.endDay
+                      ).format('L LTS')}, `}
                     </Typography.Text>
 
                     <Tag color={isPay ? 'success' : 'error'}>
