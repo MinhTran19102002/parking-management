@@ -93,4 +93,7 @@ if __name__ == '__main__':
     global image_license
     global_licenseS = []
     image_license = None
+    carIn(url, flag)
+    carIn(url, flag)
+    carInOutSlot(url)
 

@@ -172,6 +172,7 @@ const checkCameraId = async (cameraId) => {
   }
 }
 
+// bo ham nay
 const upload = async (req, res, next) => {
   // eslint-disable-next-line no-useless-catch
   try {
