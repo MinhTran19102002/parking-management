@@ -124,7 +124,10 @@
     "paySuccessfully": "Payment success",
     "vnp_BankCode": "Bank nam",
     "vnp_BankTranNo": "Bank number",
-    "vnp_PayDate": "Bank date"
+    "vnp_PayDate": "Bank date",
+    "registerStart": "Start date",
+    "endDate": "Due date",
+    "createdAt": "Register date"
   },
   "times": {
     "hour": "Hour",

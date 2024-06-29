@@ -68,8 +68,8 @@
   "changePassword": "Thay đổi mật khẩu",
   "logout": "Đăng xuất",
   "login": "Đăng nhập",
-  "underfined": "Không xác định",
   "vehicle": "Xe",
+  "underfined": "Không xác định",
   "status": "Trạng thái",
   "filter": "Lọc",
   "add": "Thêm",
@@ -124,7 +124,10 @@
     "paySuccessfully": "Thanh toán thành công",
     "vnp_BankCode": "Ngân hàng",
     "vnp_BankTranNo": "STK",
-    "vnp_PayDate": "Thời gian thanh toán"
+    "vnp_PayDate": "Thời gian thanh toán",
+    "registerStart": "Ngày bắt đầu",
+    "endDate": "Ngày kết thúc",
+    "createdAt": "Ngày đăng ký"
   },
   "times": {
     "hour": "Giờ",

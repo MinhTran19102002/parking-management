@@ -156,5 +156,5 @@ export default {
       url,
       payload: { phone }
     });
-  }
+  },
 };
