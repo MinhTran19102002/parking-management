@@ -15,6 +15,7 @@
   "timePickerRange": "Time range",
   "personName": "Driver name",
   "eventName": "Event name",
+  "isPay": "Paid",
   "pages": {
     "dashboard": "Dashboard",
     "map": "Map",
@@ -24,6 +25,7 @@
     "personal": "Personal",
     "staff": "Employee",
     "user": "User management",
+    "payment": "Payments history",
     "camera": "Camera management",
     "setting": "Setting",
     "event": "In out",

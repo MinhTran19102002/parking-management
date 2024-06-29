@@ -9,7 +9,8 @@ import {
   CameraOutlined,
   SettingOutlined,
   HistoryOutlined,
-  VideoCameraOutlined
+  VideoCameraOutlined,
+  DollarOutlined
 } from '@ant-design/icons';
 import Driver from '~/views/pages/Main/Driver';
 import Employee from '~/views/pages/Main/Employee';
@@ -25,6 +26,7 @@ import HistoryDriver from '~/views/pages/DriverPages/History';
 import CameraStream from '~/views/pages/Main/CameraStream';
 import Map from '~/views/pages/Main/Map';
 import History from '~/views/pages/Main/History';
+import Payment from '~/views/pages/Main/Payment';
 // Public routes
 const publicRoutes = [
   {
@@ -61,6 +63,13 @@ const publicRoutes = [
     path: '/driver',
     element: <Driver />,
     icon: <UserOutlined />
+  },
+  {
+    key: 'payment',
+    label: 'Quản lý payment',
+    path: '/payment',
+    element: <Payment />,
+    icon: <DollarOutlined />
   }
 ];
 

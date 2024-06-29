@@ -24,6 +24,7 @@
     "personal": "Thông tin cá nhân",
     "staff": "Quản lý nhân viên",
     "user": "Quản lý người dùng",
+    "payment": "Lịch sử thanh toán",
     "camera": "Quản lý camera",
     "setting": "Cài đặt",
     "event": "Nhập xuất xe",
@@ -77,6 +78,7 @@
   "skip": "Hết",
   "setting": "Cài đặt",
   "amount": "Số tiền",
+  "isPay": "Đã thanh toán",
   "form": {
     "addCar": "Thêm xe",
     "wrongFormat": "Sai định dạng",
