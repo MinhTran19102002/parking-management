@@ -4,7 +4,7 @@ import { BarChartOutlined, PieChartOutlined } from "@ant-design/icons";
 import { Descriptions, Row, Skeleton } from "antd";
 import { SmoothChart } from "~/shared/common";
 import { FormatNumber } from "~/services";
-import ChartConfig from "./data";
+import ChartConfig, { DefaultTheme } from "./data";
 const { textStyle, grid, slider, onReady, scrollbar } = ChartConfig;
 
 function BarChart({
@@ -45,11 +45,7 @@ function BarChart({
   }, [height, barCount, minBarWidth]);
 
   const config = {
-    theme: {
-      components: {
-        scrollbar,
-      },
-    },
+    theme: DefaultTheme,
     data,
     xField,
     yField,

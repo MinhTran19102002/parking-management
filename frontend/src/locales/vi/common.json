@@ -79,6 +79,7 @@
   "setting": "Cài đặt",
   "amount": "Số tiền",
   "isPay": "Đã thanh toán",
+  "avg": "Giá trị trung bình",
   "form": {
     "addCar": "Thêm xe",
     "wrongFormat": "Sai định dạng",

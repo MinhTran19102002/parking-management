@@ -79,6 +79,7 @@
   "skip": "Skip",
   "setting": "Settings",
   "amount": "Amount",
+  "avg": "The average value",
   "form": {
     "addCar": "Add Car",
     "wrongFormat": "Wrong Format",

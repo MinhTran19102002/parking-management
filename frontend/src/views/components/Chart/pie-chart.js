@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { BlockPieChart } from "./style";
 import { Pie } from "@ant-design/charts";
 import { FormatNumber, HanldeFloorText } from "~/services";
-import ChartConfig from "./data";
+import ChartConfig, { DefaultTheme } from "./data";
 const { textStyle, grid, slider, onReady, scrollbar } = ChartConfig;
 
 const style = textStyle;
@@ -25,6 +25,7 @@ export default ({
   const total = data.reduce((acc, curr) => acc + curr[angleField], 0);
   const parent = useRef(null);
   const config = {
+    theme: DefaultTheme,
     data,
     animation: false,
     angleField,
@@ -45,7 +46,7 @@ export default ({
     },
     meta: {
       value: {
-        formatter: (v) => `${v} ${unit}`,
+        formatter: (v) => `${FormatNumber(v)} ${unit}`,
       },
     },
     label: {
@@ -64,23 +65,22 @@ export default ({
     tooltip: {
       formatter: (datum) => {
         return {
-          name: `${HanldeFloorText(datum[colorField], t, i18n)}`,
-          value: datum[angleField] + "%",
+          name: yFieldTexts[datum[colorField]],
+          value: `${FormatNumber(datum[angleField])} ${unit}`,
         };
       },
     },
     legend: {
       position: "right",
       offsetX: -100,
-      itemSpacing: 100,
+      itemSpacing: 0,
       itemName: {
         formatter: (text) => {
           return yFieldTexts[text];
         },
-        spacing: 8,
         style: {
           ...style,
-          fontSize: 14,
+          fontSize: 12,
           opacity: 0.8,
         },
       },
@@ -113,7 +113,7 @@ export default ({
           overflow: "hidden",
           textOverflow: "ellipsis",
         },
-        content: `${Math.round(total)} ${unit}`,
+        content: `${FormatNumber(total)} ${unit}`,
       },
     },
     state: {

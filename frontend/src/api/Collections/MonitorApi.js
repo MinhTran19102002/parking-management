@@ -1,78 +1,86 @@
-import {GET, POST} from '../axiosMethods';
+import { GET, POST } from '../axiosMethods';
 
 const DOMAIN = import.meta.env.VITE_DOMAIN;
 
 export default {
-    getStatusByZone: (zone) => {
-        const url = `${DOMAIN}/parking/getStatusByZone`;
-        return GET({
-            url,
-            payload: {
-                zone
-            }
-        });
-    },
+  getStatusByZone: (zone) => {
+    const url = `${DOMAIN}/parking/getStatusByZone`;
+    return GET({
+      url,
+      payload: {
+        zone
+      }
+    });
+  },
 
-    getVehicleInOutNumber: (payload) => {
-        const url = `${DOMAIN}/parkingTurn/Reports/GetVehicleInOutNumber`;
-        return GET({
-            url,
-            payload
-        });
-    },
+  getVehicleInOutNumber: (payload) => {
+    const url = `${DOMAIN}/parkingTurn/Reports/GetVehicleInOutNumber`;
+    return GET({
+      url,
+      payload
+    });
+  },
 
-    getRevenue: (payload) => {
-        const url = `${DOMAIN}/parkingTurn/Reports/GetRevenue`;
-        return GET({
-            url,
-            payload
-        });
-    },
+  getVehicleToday: (payload) => {
+    const url = `${DOMAIN}/parkingTurn/Reports/GetVehicleInOutNumberByHour`;
+    return GET({
+      url,
+      payload
+    });
+  },
 
-    getAllDriver: () => {
-        const url = `${DOMAIN}/user/driver`;
-        return GET({
-            url
-        });
-    },
+  getRevenue: (payload) => {
+    const url = `${DOMAIN}/parkingTurn/Reports/GetRevenue`;
+    return GET({
+      url,
+      payload
+    });
+  },
 
-    getEvents: (payload) => {
-        const url = `${DOMAIN}/parkingTurn/event`;
-        return GET({
-            url,
-            payload
-        });
-    },
+  getAllDriver: () => {
+    const url = `${DOMAIN}/user/driver`;
+    return GET({
+      url
+    });
+  },
 
-    export: () => {
-        const url = `${DOMAIN}/parkingTurn/event/export`;
-        return GET({
-            url,
-            responseType: 'blob'
-        });
-    },
+  getEvents: (payload) => {
+    const url = `${DOMAIN}/parkingTurn/event`;
+    return GET({
+      url,
+      payload
+    });
+  },
 
-    getEventsOfDriverByPhone: (phone) => {
-        const url = `${DOMAIN}/parkingTurn/event/getByDriver`;
-        return GET({
-            url,
-            payload: {
-                phone
-            }
-        });
-    },
+  export: () => {
+    const url = `${DOMAIN}/parkingTurn/event/export`;
+    return GET({
+      url,
+      responseType: 'blob'
+    });
+  },
 
-    captureImageFromStream: () => {
-        const url = `${DOMAIN}/service/imagecap`;
-        return GET({
-            url
-        })
-    },
+  getEventsOfDriverByPhone: (phone) => {
+    const url = `${DOMAIN}/parkingTurn/event/getByDriver`;
+    return GET({
+      url,
+      payload: {
+        phone
+      }
+    });
+  },
 
-    getLicensesFromStream: () => {
-        const url = `${DOMAIN}/service/licenseS`;
-        return GET({
-            url
-        })
-    }
-}
+  captureImageFromStream: () => {
+    const url = `${DOMAIN}/service/imagecap`;
+    return GET({
+      url
+    });
+  },
+
+  getLicensesFromStream: () => {
+    const url = `${DOMAIN}/service/licenseS`;
+    return GET({
+      url
+    });
+  }
+};

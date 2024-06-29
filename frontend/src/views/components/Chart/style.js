@@ -1,5 +1,34 @@
 import styled, { useTheme } from "styled-components";
 
+export const SmoothChart = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+
+  .top-chart-row {
+    text-align: center;
+    .top-chart-row--text {
+      color: #daa520;
+    }
+  }
+
+  .ant-spin-nested-loading {
+    height: 100%;
+    .ant-spin-container {
+      height: 100%;
+    }
+  }
+
+  .chart-block {
+    height: 100%;
+  }
+
+  canvas {
+    height: 100%;
+  }
+`;
+
 export const BlockPieChart = styled.div`
 display: flex;
 justify-content: center;
