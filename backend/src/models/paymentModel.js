@@ -152,65 +152,64 @@ const findByfilter = async ({ pageSize, pageIndex, startDate, endDate, ...params
     const end = Date.parse(parseDate(endDate1)); //- 7 * 60 * 60 * 1000
 
     pipelineDay = {
-      $match: {
         createdAt: {
           $gte: start,
           $lte: end,
         },
-      }
     }
-    Boolean
-    console.log(pipelineDay)
-    try {
-      const driver = await GET_DB()
-        .collection(PAYMENT_COLLECTION_NAME)
-        .aggregate([
-          pipelineDay,
-          {
-            $sort: {
-              createdAt: -1, // sắp xếp theo thứ tự giảm dần của trường thoi_gian
-            },
+  }
+  try {
+    const driver = await GET_DB()
+      .collection(PAYMENT_COLLECTION_NAME)
+      .aggregate([
+        {
+          $match: pipelineDay,
+        },
+        {
+          $sort: {
+            createdAt: -1, // sắp xếp theo thứ tự giảm dần của trường thoi_gian
           },
-          // {
-          //   $lookup: {
-          //     from: vehicleModel.VEHICLE_COLLECTION_NAME,
-          //     localField: 'driver.arrayvehicleId',
-          //     foreignField: '_id',
-          //     as: 'driver.vehicle',
-          //   },
-          // },
-          {
-            $match: {
-              ...paramMatch,
-            },
+        },
+        // {
+        //   $lookup: {
+        //     from: vehicleModel.VEHICLE_COLLECTION_NAME,
+        //     localField: 'driver.arrayvehicleId',
+        //     foreignField: '_id',
+        //     as: 'driver.vehicle',
+        //   },
+        // },
+        {
+          $match: {
+            ...paramMatch,
           },
-        ])
-        .toArray();
+        },
+      ])
+      .toArray();
 
-      let totalCount = driver.length;
-      let totalPage = 1;
-      let newDriver = driver;
+    let totalCount = driver.length;
+    let totalPage = 1;
+    let newDriver = driver;
 
-      if (pageSize && pageIndex) {
-        pageSize = Number(pageSize);
-        pageIndex = Number(pageIndex);
-        if (pageSize != 10 && pageSize != 20 && pageSize != 30) pageSize = 10;
-        // eslint-disable-next-line use-isnan
-        if (pageIndex < 1 || isNaN(pageIndex)) pageIndex = 1;
-        totalPage = Math.ceil(totalCount / pageSize);
-        if (pageIndex > totalPage) pageIndex = totalPage;
-        newDriver = newDriver.slice((pageIndex - 1) * pageSize, pageIndex * pageSize);
-      }
-      return {
-        data: newDriver,
-        totalCount,
-        totalPage,
-      };
-    } catch (error) {
-      throw new Error(error);
+    if (pageSize && pageIndex) {
+      pageSize = Number(pageSize);
+      pageIndex = Number(pageIndex);
+      if (pageSize != 10 && pageSize != 20 && pageSize != 30) pageSize = 10;
+      // eslint-disable-next-line use-isnan
+      if (pageIndex < 1 || isNaN(pageIndex)) pageIndex = 1;
+      totalPage = Math.ceil(totalCount / pageSize);
+      if (pageIndex > totalPage) pageIndex = totalPage;
+      newDriver = newDriver.slice((pageIndex - 1) * pageSize, pageIndex * pageSize);
     }
-  };
-}
+    return {
+      data: newDriver,
+      totalCount,
+      totalPage,
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 
 const parseDate = (str) => {
   const parts = str.split('/');
