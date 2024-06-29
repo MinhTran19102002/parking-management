@@ -4,8 +4,9 @@ import React, { useEffect, useRef, useState } from 'react';
 import { PageHeader } from '~/views/components';
 import { Content, Footer, Header } from '~/views/layouts';
 import { DefaultPosition } from './data';
-import { EventBlock, GeneralCard, NumberStatisChart } from './components';
+import { GeneralCard, NumberStatisChart } from './components';
 import RevenueChart from './components/RevenueChart';
+import EventBlock from '~/views/components/Event';
 
 const dynamicBlock = {
   resizable: false,

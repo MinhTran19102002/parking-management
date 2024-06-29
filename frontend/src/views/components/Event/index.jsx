@@ -146,3 +146,4 @@ function EventBlock({}) {
 }
 
 export default EventBlock;
+export { EventCard };
