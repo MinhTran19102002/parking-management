@@ -24,6 +24,7 @@
     "personal": "Thông tin cá nhân",
     "staff": "Quản lý nhân viên",
     "user": "Quản lý người dùng",
+    "payment": "Lịch sử thanh toán",
     "camera": "Quản lý camera",
     "setting": "Cài đặt",
     "event": "Nhập xuất xe",
@@ -68,8 +69,8 @@
   "changePassword": "Thay đổi mật khẩu",
   "logout": "Đăng xuất",
   "login": "Đăng nhập",
-  "underfined": "Không xác định",
   "vehicle": "Xe",
+  "underfined": "Không xác định",
   "status": "Trạng thái",
   "filter": "Lọc",
   "add": "Thêm",
@@ -77,6 +78,7 @@
   "skip": "Hết",
   "setting": "Cài đặt",
   "amount": "Số tiền",
+  "isPay": "Đã thanh toán",
   "form": {
     "addCar": "Thêm xe",
     "wrongFormat": "Sai định dạng",
@@ -124,7 +126,10 @@
     "paySuccessfully": "Thanh toán thành công",
     "vnp_BankCode": "Ngân hàng",
     "vnp_BankTranNo": "STK",
-    "vnp_PayDate": "Thời gian thanh toán"
+    "vnp_PayDate": "Thời gian thanh toán",
+    "registerStart": "Ngày bắt đầu",
+    "endDate": "Ngày kết thúc",
+    "createdAt": "Ngày đăng ký"
   },
   "times": {
     "hour": "Giờ",

@@ -1,41 +1,54 @@
-import { Col, DatePicker, Form, Input, Select, Space, TimePicker, Typography } from 'antd';
+import {
+  Checkbox,
+  Col,
+  DatePicker,
+  Form,
+  Input,
+  Select,
+  Space,
+  TimePicker,
+  Typography
+} from 'antd';
 import dayjs from 'dayjs';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const getValue = (name, values, format) => {
-  let rs = values[name];
-  switch (name) {
-    case 'rangeDate':
-      if (values.startDay && values.endDay)
-        rs = [dayjs(values?.startDay, format), dayjs(values?.endDay, format)];
-      break;
-    case 'timePickerRange':
-      if (values.startTime && values.endTime)
-        rs = [dayjs(values?.startTime, format), dayjs(values?.endTime, format)];
-      break;
-  }
+function Filter({ filter, onChange, filterList = [], RangePicker, filterNames = {} }) {
+  const { rangeDate = ['startDay', 'endDay'] } = filterNames;
+  const START_DAY = rangeDate[0];
+  const END_DAY = rangeDate[1];
+  const getValue = (name, values, format) => {
+    let rs = values[name];
+    switch (name) {
+      case 'rangeDate':
+        if (values[START_DAY] && values[END_DAY])
+          rs = [dayjs(values[START_DAY], format), dayjs(values[END_DAY], format)];
+        break;
+      case 'timePickerRange':
+        if (values.startTime && values.endTime)
+          rs = [dayjs(values?.startTime, format), dayjs(values?.endTime, format)];
+        break;
+    }
 
-  return rs;
-};
+    return rs;
+  };
 
-const onSubmit = (values = {}) => {
-  let rs = {};
-  for (let [key, value] of Object.entries(values)) {
-    if (value) rs[key] = value;
-  }
-  return rs;
-};
+  const onSubmit = (values = {}) => {
+    let rs = {};
+    for (let [key, value] of Object.entries(values)) {
+      if (value === false || value) rs[key] = value;
+    }
+    return rs;
+  };
 
-function Filter({ filter, onChange, filterList = [] }) {
   const { t: lag, i18n } = useTranslation();
   const onChangeItem = (name, value) => {
     let newValue = { [name]: value };
     switch (name) {
       case 'rangeDate':
         newValue = {
-          startDay: value[0],
-          endDay: value[1]
+          [START_DAY]: value[0],
+          [END_DAY]: value[1]
         };
         break;
       case 'timePickerRange':
@@ -52,7 +65,7 @@ function Filter({ filter, onChange, filterList = [] }) {
       {filterList.map((item, index) => {
         const { name, inputProps } = item;
         const config = {
-          value: getValue(name, filter, inputProps.format)
+          value: getValue(name, filter, inputProps?.format)
         };
         return (
           <Space key={name} style={{ marginLeft: index && 16 }} direction="vertical">
@@ -72,11 +85,14 @@ const InputRender = ({ item = {}, value, width = 200, onChange }) => {
   const onChangeEvent = (e) => {
     onChange(e.target.value);
   };
+  const onChangeChecked = (e) => {
+    onChange(e.target.checked);
+  };
   const onChangeValue = (value) => {
     onChange(value);
   };
 
-  const onClear = () => {
+  const onClear = (rt) => {
     onChange(null);
   };
 
@@ -109,8 +125,10 @@ const InputRender = ({ item = {}, value, width = 200, onChange }) => {
     case 'timePickerRange':
       dom = (
         <TimePicker.RangePicker
-          onChange={([t1, t2]) =>
-            onChangeValue([t1.format(inputProps.format), t2.format(inputProps.format)])
+          onChange={(ranges = []) =>
+            ranges?.length > 0
+              ? onChangeValue([t1.format(inputProps.format), t2.format(inputProps.format)])
+              : onChangeValue([null, null])
           }
           {...inputProps}
         />
@@ -119,12 +137,20 @@ const InputRender = ({ item = {}, value, width = 200, onChange }) => {
     case 'range':
       dom = (
         <DatePicker.RangePicker
-          onChange={([t1, t2]) =>
-            onChangeValue([t1.format(inputProps.format), t2.format(inputProps.format)])
+          onChange={(ranges = []) =>
+            ranges?.length > 0
+              ? onChangeValue([
+                  ranges[0].format(inputProps.format),
+                  ranges[1].format(inputProps.format)
+                ])
+              : onChangeValue([null, null])
           }
           {...inputProps}
         />
       );
+      break;
+    case 'check':
+      dom = <Checkbox onChange={onChangeChecked} {...inputProps} />;
       break;
   }
 

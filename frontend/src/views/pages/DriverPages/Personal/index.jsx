@@ -19,11 +19,14 @@ import dayjs from 'dayjs';
 import { ErrorService } from '~/services';
 import { useTranslation } from 'react-i18next';
 import PaymentRegister from './PaymentRegister';
+import PaymentHistory from './PaymentHistory';
 
 function Personal({}) {
   const { state, actions } = useContext(AppContext);
   const { t: lag } = useTranslation();
   const [open, setOpen] = useState(false);
+  const [vehicles, setVehicles] = useState([]);
+  const [history, setHistory] = useState([]);
   const { data = {}, refetch } = useQuery({
     queryKey: ['personal'],
     initialData: {},
@@ -68,6 +71,50 @@ function Personal({}) {
   useEffect(() => {
     refetch();
   }, [JSON.stringify(state.parkingEvent)]);
+
+  const loadPaymentHistory = async (vehicles) => {
+    try {
+      const apis =
+        vehicles?.map((licenePlate) =>
+          VehicleApi.getPayment({
+            licenePlate
+          })
+        ) || [];
+      const response = await Promise.all(apis);
+      const rs = response.map((el, index) => {
+        const licenePlate = vehicles[index];
+        return {
+          licenePlate,
+          data: el.data
+        };
+      });
+      setHistory(rs);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    try {
+      const rs = data?.driver?.vehicle?.map((e) => e.licenePlate);
+      loadPaymentHistory(rs);
+    } catch (error) {
+      console.log(error);
+    }
+  }, [JSON.stringify(data)]);
+
+  const getPaymentHistoryByFilter = async (licenePlate) => {
+    let rs = [];
+    try {
+      const api = await VehicleApi.getPayment({
+        licenePlate
+      });
+      rs = api.data || [];
+    } catch (error) {
+      ErrorService.hanldeError(error, actions.onNoti);
+    }
+    return rs;
+  };
 
   const items = [
     {
@@ -184,6 +231,15 @@ function Personal({}) {
           }
         ]}
       />
+      <br></br>
+      {history.map((historyItem) => {
+        return (
+          <div key={historyItem.licenePlate}>
+            <Typography.Title level={5}>{lag('common:licenePlate')}: {historyItem.licenePlate}</Typography.Title>
+            <PaymentHistory size='small' dataSource={historyItem.data} />
+          </div>
+        );
+      })}
     </Content>
   );
 }

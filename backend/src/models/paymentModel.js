@@ -6,6 +6,7 @@ import { GET_DB } from '~/config/mongodb';
 import { parkingModel } from '~/models/parkingModel';
 import { StatusCodes } from 'http-status-codes';
 import { vehicleModel } from './vehicleModel';
+import moment from 'moment';
 
 const PAYMENT_COLLECTION_NAME = 'payment';
 const PAYMENT_COLLECTION_SCHEMA = Joi.object({
@@ -68,6 +69,12 @@ const findOneById = async (_id) => {
 const save_payment = async (_id) => {
   try {
     const id = new ObjectId(_id)
+    const findOneCheck = await GET_DB()
+      .collection(PAYMENT_COLLECTION_NAME)
+      .findOne({ _id: id, _destroy: true })
+    if (findOneCheck) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'Thanh toan da bi huy', 'already exist', 'BR_zone_1');
+    }
     const findOne = await GET_DB()
       .collection(PAYMENT_COLLECTION_NAME)
       .findOneAndUpdate({ _id: id },
@@ -80,8 +87,141 @@ const save_payment = async (_id) => {
       );
     return findOne;
   } catch (error) {
+    if (error.type && error.code) {
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    }
+    else {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    }
+  }
+};
+
+
+const cancel = async (_id) => {
+  try {
+    const id = new ObjectId(_id)
+    const findOne = await GET_DB()
+      .collection(PAYMENT_COLLECTION_NAME)
+      .findOneAndUpdate({ _id: id },
+        {
+          $set: {
+            _destroy: true
+          }
+        },
+        { returnDocument: 'after' }
+      );
+    return findOne;
+  } catch (error) {
     throw new Error(error);
   }
+};
+
+const findByfilter = async ({ pageSize, pageIndex, startDate, endDate, ...params }) => {
+  // Construct the regular expression pattern dynamically
+  let paramMatch = {};
+  for (let [key, value] of Object.entries(params)) {
+    // if (key == 'licenePlate') {
+    //   key = 'driver.vehicle.' + key; //driver.vehicle.licenePlate
+    // }
+    let regex;
+    if (key == 'isPay') {
+      if (value == 'true') {
+        regex = {
+          [key]: true,
+        };
+      } else {
+        regex = {
+          [key]: false,
+        };
+      }
+    } else {
+      regex = {
+        [key]: new RegExp(`^${value}`, 'i'),
+      };
+    }
+    Object.assign(paramMatch, regex);
+  }
+  let pipelineDay = {}
+  if (startDate !== undefined && endDate !== undefined) {
+    let startDate1 = moment(startDate, 'DD/MM/YYYY').format('DD/MM/YYYY');
+
+    let endDate1 = moment(endDate, 'DD/MM/YYYY').clone().add(1, 'days').format('DD/MM/YYYY');
+
+
+    const start = Date.parse(parseDate(startDate1));
+    const end = Date.parse(parseDate(endDate1)); //- 7 * 60 * 60 * 1000
+
+    pipelineDay = {
+        createdAt: {
+          $gte: start,
+          $lte: end,
+        },
+    }
+  }
+  try {
+    const driver = await GET_DB()
+      .collection(PAYMENT_COLLECTION_NAME)
+      .aggregate([
+        {
+          $match: pipelineDay,
+        },
+        {
+          $sort: {
+            createdAt: -1, // sắp xếp theo thứ tự giảm dần của trường thoi_gian
+          },
+        },
+        // {
+        //   $lookup: {
+        //     from: vehicleModel.VEHICLE_COLLECTION_NAME,
+        //     localField: 'driver.arrayvehicleId',
+        //     foreignField: '_id',
+        //     as: 'driver.vehicle',
+        //   },
+        // },
+        {
+          $match: {
+            ...paramMatch,
+          },
+        },
+      ])
+      .toArray();
+
+    let totalCount = driver.length;
+    let totalPage = 1;
+    let newDriver = driver;
+
+    if (pageSize && pageIndex) {
+      pageSize = Number(pageSize);
+      pageIndex = Number(pageIndex);
+      if (pageSize != 10 && pageSize != 20 && pageSize != 30) pageSize = 10;
+      // eslint-disable-next-line use-isnan
+      if (pageIndex < 1 || isNaN(pageIndex)) pageIndex = 1;
+      totalPage = Math.ceil(totalCount / pageSize);
+      if (pageIndex > totalPage) pageIndex = totalPage;
+      newDriver = newDriver.slice((pageIndex - 1) * pageSize, pageIndex * pageSize);
+    }
+    return {
+      data: newDriver,
+      totalCount,
+      totalPage,
+    };
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+
+const parseDate = (str) => {
+  const parts = str.split('/');
+  if (parts.length === 3) {
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1] - 1, 10); // Trừ 1 vì tháng bắt đầu từ 0
+    const year = parseInt(parts[2], 10);
+    if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
+      return new Date(year, month, day);
+    }
+  }
+  return null; // Trả về null nếu chuỗi không hợp lệ
 };
 
 export const paymentModel = {
@@ -90,4 +230,6 @@ export const paymentModel = {
   createNew,
   findOneById,
   save_payment,
+  findByfilter,
+  cancel,
 }

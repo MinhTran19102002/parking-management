@@ -163,9 +163,9 @@ def car_into_parking(img, flag):
                             if license_text[2] == '6':
                                 license_text =  license_text[:1] +'G' + license_text[3:]
                             license_text =  license_text[:3] +'-' + license_text[3:]
-                            print("ket qua la ")
-                            print(license_text)
-                            print(exact[0])
+                            # print("ket qua la ")
+                            # print(license_text)
+                            # print(exact[0])
                             if exact[0] >= 0.85:
                                 cv2.rectangle(img, (x, y), (x + w, y + h), (145, 60, 255), 5)
                                 result_licenses = license_text
@@ -184,8 +184,10 @@ def car_into_parking(img, flag):
             global default_licenses_out
             if default_licenses_in != result_licenses and flag =="in":
                 # # cout_frame = 0
+                if default_licenses_out == default_licenses_in:
+                    default_licenses_out = ''
                 default_licenses_in = result_licenses
-                print("""result_licenses""")
+                print("Xe vao bai")
                 _, img_encoded = cv2.imencode('.jpg', img)
                 img_bytes = img_encoded.tobytes()
                 data = {
@@ -279,9 +281,9 @@ def car_Out_parking(img, flag):
                             if license_text[2] == '6':
                                 license_text =  license_text[:1] +'G' + license_text[3:]
                             license_text =  license_text[:3] +'-' + license_text[3:]
-                            print("ket qua la ")
-                            print(license_text)
-                            print(exact[0])
+                            # print("ket qua la ")
+                            # print(license_text)
+                            # print(exact[0])
                             if exact[0] >= 0.85:
                                 cv2.rectangle(img, (x, y), (x + w, y + h), (145, 60, 255), 5)
                                 result_licenses = license_text
@@ -317,6 +319,9 @@ def car_Out_parking(img, flag):
                 else:
                     print('Failed:', response.status_code, response.text)
             elif default_licenses_out != result_licenses and flag =="out":
+                if default_licenses_out == default_licenses_in:
+                    default_licenses_in = ''
+                print("Xe ra bai")
                 default_licenses_out = result_licenses
                 data = {
                     'licenePlate': result_licenses
@@ -423,6 +428,7 @@ def car_into_slot(img, positon, zone):
             else:
                 print('Failed:', response.status_code, response.text)
         if a2 != a2_defl:
+            print("Xe vao slot")
             a2_defl = a2
             url = ''
             if a2 == 1:

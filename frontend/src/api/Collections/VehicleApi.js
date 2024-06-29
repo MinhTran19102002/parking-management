@@ -1,4 +1,4 @@
-import { POST } from '../axiosMethods';
+import { GET, POST } from '../axiosMethods';
 
 const DOMAIN = import.meta.env.VITE_DOMAIN;
 
@@ -25,6 +25,13 @@ const VehicleApi = {
   savePayment: (payload) => {
     const url = `${DOMAIN}/payment/save_payment`;
     return POST({
+      url,
+      payload,
+    });
+  },
+  getPayment: (payload) => {
+    const url = `${DOMAIN}/payment/findByFilter`;
+    return GET({
       url,
       payload,
     });
