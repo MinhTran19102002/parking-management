@@ -15,6 +15,7 @@
   "timePickerRange": "Thời điểm",
   "personName": "Tên chủ xe",
   "eventName": "Tên sự kiện",
+  "events": "Sự kiện",
   "pages": {
     "dashboard": "Dashboard",
     "map": "Bản đồ",

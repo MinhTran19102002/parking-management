@@ -15,6 +15,7 @@
   "timePickerRange": "Time range",
   "personName": "Driver name",
   "eventName": "Event name",
+  "events": "Events",
   "isPay": "Paid",
   "pages": {
     "dashboard": "Dashboard",

@@ -75,7 +75,7 @@ function EventBlock({}) {
   return (
     <div>
       <Row justify="space-between" className="pe-4">
-        <Typography.Title level={4}>Sự kiện</Typography.Title>
+        <Typography.Title level={4}>{lag('common:events')}</Typography.Title>
         <Popconfirm
           title={lag('common:popup:sure')}
           onConfirm={onExport}
