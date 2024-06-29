@@ -43,10 +43,10 @@ const findById = async (data) => {
         let _id = data.paymentId;
 
         const findById = await paymentModel.findOneById(_id);
-        if (findById.acknowledged == false) {
+        if (!findById) {
             throw new ApiError(
                 StatusCodes.INTERNAL_SERVER_ERROR,
-                'Dang ky khong thanh cong',
+                'Khong tim kiem thay payment nao',
                 'Not Success',
                 'BR_parkingTurn_5',
             );
@@ -65,10 +65,10 @@ const save_payment = async (data) => {
     try {
         let _id = data.paymentId;
         const save_payment = await paymentModel.save_payment(_id);
-        if (save_payment.acknowledged == false) {
+        if (!save_payment) {
             throw new ApiError(
                 StatusCodes.INTERNAL_SERVER_ERROR,
-                'Dang ky khong thanh cong',
+                'Luu thong tin thanh toan khong thanh cong',
                 'Not Success',
                 'BR_parkingTurn_5',
             );
@@ -91,7 +91,14 @@ const payment = async (req) => {
             req.socket.remoteAddress ||
             req.connection.socket.remoteAddress;
         const paymentObj = await paymentModel.findOneById(req.body.paymentId);
-
+        if(!paymentObj){
+            throw new ApiError(
+                StatusCodes.INTERNAL_SERVER_ERROR,
+                'Khong tin thay thong tin dang ky',
+                'Not Deleted',
+                'BR_person_4',
+              );
+        }
 
         var tmnCode = "1V2OCED5"
         var secretKey = "BXTYJFU2KGJE3BZ53DJGVQZUT0BDFYJU"
