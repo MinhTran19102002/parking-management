@@ -14,7 +14,7 @@ export const FormatNumber = (number, option) => {
 
   const formattedNumber = Number(number).toFixed(decimal);
   const parts = formattedNumber.split('.');
-  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+  parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   if (!isEndZeroDecimal) {
     // Convert the string to a number to remove leading zeros as well
@@ -26,7 +26,7 @@ export const FormatNumber = (number, option) => {
     }
   }
 
-  return parts.join(',');
+  return parts.join('.');
 };
 
 export const TextService = {
@@ -34,6 +34,10 @@ export const TextService = {
     const name = id === 'B' ? 'hầm' : id;
     return `Tầng ${name}`;
   }
+};
+
+export const GetAmountFromMonths = (m) => {
+  return m * 500000;
 };
 
 export const FloorService = {

@@ -107,7 +107,7 @@ const payment = async (req) => {
         var createDate = moment().clone().format('yyyyMMDDHHmmss')
         var orderId = moment().clone().format('HHmmss');
         var amount = paymentObj.fee;
-        var returnUrl = 'returnUrl'
+        var returnUrl = 'http://localhost:5173/payment-success'
 
         var orderInfo = "Thanh toán phí dữ xe"; // thong tin thanh toan
         var locale = "vn";

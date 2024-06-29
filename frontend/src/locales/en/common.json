@@ -15,6 +15,7 @@
   "timePickerRange": "Time range",
   "personName": "Driver name",
   "eventName": "Event name",
+  "isPay": "Paid",
   "pages": {
     "dashboard": "Dashboard",
     "map": "Map",
@@ -24,6 +25,7 @@
     "personal": "Personal",
     "staff": "Employee",
     "user": "User management",
+    "payment": "Payments history",
     "camera": "Camera management",
     "setting": "Setting",
     "event": "In out",
@@ -76,6 +78,7 @@
   "list": "List",
   "skip": "Skip",
   "setting": "Settings",
+  "amount": "Amount",
   "form": {
     "addCar": "Add Car",
     "wrongFormat": "Wrong Format",
@@ -117,8 +120,16 @@
     "Student": "Student"
   },
   "payment": {
+    "pay": "Pay",
     "isNotPay": "Not Paid",
-    "isPay": "Paid"
+    "isPay": "Paid",
+    "paySuccessfully": "Payment success",
+    "vnp_BankCode": "Bank nam",
+    "vnp_BankTranNo": "Bank number",
+    "vnp_PayDate": "Bank date",
+    "registerStart": "Start date",
+    "endDate": "Due date",
+    "createdAt": "Register date"
   },
   "times": {
     "hour": "Hour",
