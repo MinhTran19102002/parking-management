@@ -67,6 +67,16 @@ const findByfilter = async (req, res, next) => {
     }
 }
 
+const cancel = async (req, res, next) => {
+    try {
+        // Dieu huong sang tang Service
+        const cancel = await paymentService.cancel(req.body.paymentId);
+        res.status(StatusCodes.CREATED).json(cancel);
+    } catch (error) {
+        next(error);
+    }
+}
+
 export const paymentController = {
     payment,
     register,
@@ -74,4 +84,5 @@ export const paymentController = {
     save_payment,
     send_mail,
     findByfilter,
+    cancel,
 }

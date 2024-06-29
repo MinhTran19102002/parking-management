@@ -74,7 +74,7 @@ const save_payment = async (data) => {
             );
         }
 
-        const driver  = await personModel.findDriverByLicenePlate(save_payment.licenePlate)
+        const driver = await personModel.findDriverByLicenePlate(save_payment.licenePlate)
         await send_mail(driver.email, save_payment.licenePlate, save_payment.fee, save_payment.startDay, save_payment.endDay)
         return save_payment
     } catch (error) {
@@ -91,14 +91,14 @@ const payment = async (req) => {
             req.socket.remoteAddress ||
             req.connection.socket.remoteAddress;
         const paymentObj = await paymentModel.findOneById(req.body.paymentId);
-        
+
 
         var tmnCode = "1V2OCED5"
         var secretKey = "BXTYJFU2KGJE3BZ53DJGVQZUT0BDFYJU"
         var vnpUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"
 
         var createDate = moment().clone().format('yyyyMMDDHHmmss')
-        var orderId =moment().clone().format('HHmmss');
+        var orderId = moment().clone().format('HHmmss');
         var amount = paymentObj.fee;
         var returnUrl = 'http://localhost:5173/payment-success'
 
@@ -123,9 +123,9 @@ const payment = async (req) => {
         vnp_Params = sortObject(vnp_Params);
         var querystring = require('qs');
         var signData = querystring.stringify(vnp_Params, { encode: false });
-        var crypto = require("crypto");     
+        var crypto = require("crypto");
         var hmac = crypto.createHmac("sha512", secretKey);
-        var signed = hmac.update(Buffer.from(signData, 'utf-8')).digest("hex"); 
+        var signed = hmac.update(Buffer.from(signData, 'utf-8')).digest("hex");
         vnp_Params['vnp_SecureHash'] = signed;
         vnpUrl += '?' + querystring.stringify(vnp_Params, { encode: false });
         console.log(vnpUrl)
@@ -138,22 +138,22 @@ const payment = async (req) => {
 }
 
 function sortObject(obj) {
-	let sorted = {};
-	let str = [];
-	let key;
-	for (key in obj){
-		if (obj.hasOwnProperty(key)) {
-		str.push(encodeURIComponent(key));
-		}
-	}
-	str.sort();
+    let sorted = {};
+    let str = [];
+    let key;
+    for (key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            str.push(encodeURIComponent(key));
+        }
+    }
+    str.sort();
     for (key = 0; key < str.length; key++) {
         sorted[str[key]] = encodeURIComponent(obj[str[key]]).replace(/%20/g, "+");
     }
     return sorted;
 }
 
-const send_mail = async (email, licenePlate, fee,startDay, endDay) => {
+const send_mail = async (email, licenePlate, fee, startDay, endDay) => {
 
     try {
 
@@ -163,23 +163,23 @@ const send_mail = async (email, licenePlate, fee,startDay, endDay) => {
             host: "smtp.ethereal.email",
             service: "Gmail",
             auth: {
-              user: "minhqd192002@gmail.com",
-              pass: "xjdj dwox zaxj etft",
+                user: "minhqd192002@gmail.com",
+                pass: "xjdj dwox zaxj etft",
             },
-          });
-          let html = "<h1>Cảm ơn bạn đã đăng ký thành viên</h1><h2>Thông tin đăng ký</h2><ul><li>Biển số xe: " + licenePlate
-           +"</li>  <li>Số tiền đã thanh toán: "+ fee
-           +"</li> <li>Thời gian: "+ start + " - " + end
-           +" </li></ul>"
-          const message = {
+        });
+        let html = "<h1>Cảm ơn bạn đã đăng ký thành viên</h1><h2>Thông tin đăng ký</h2><ul><li>Biển số xe: " + licenePlate
+            + "</li>  <li>Số tiền đã thanh toán: " + fee
+            + "</li> <li>Thời gian: " + start + " - " + end
+            + " </li></ul>"
+        const message = {
             from: "Admin Parking Management",
             to: email,
             subject: "Thanh toán thành công ",
-            html: html 
-          }
-          const result = await transporter.sendMail(message)
-          console.log(result)
-          return result
+            html: html
+        }
+        const result = await transporter.sendMail(message)
+        console.log(result)
+        return result
     } catch (error) {
         if (error.type && error.code)
             throw new ApiError(error.statusCode, error.message, error.type, error.code);
@@ -191,23 +191,43 @@ const send_mail = async (email, licenePlate, fee,startDay, endDay) => {
 const findByfilter = async (filter) => {
     // eslint-disable-next-line no-useless-catch
     try {
-      const findByfilter = await paymentModel.findByfilter(filter);
-      if (findByfilter.acknowledged == false) {
-        throw new ApiError(
-          StatusCodes.NOT_FOUND,
-          'Người lái xe không tồn tại',
-          'Not Found',
-          'BR_person_1_1',
-        );
-      }
-      return findByfilter;
+        const findByfilter = await paymentModel.findByfilter(filter);
+        if (findByfilter.acknowledged == false) {
+            throw new ApiError(
+                StatusCodes.NOT_FOUND,
+                'Người lái xe không tồn tại',
+                'Not Found',
+                'BR_person_1_1',
+            );
+        }
+        return findByfilter;
     } catch (error) {
-      if (error.type && error.code)
-        throw new ApiError(error.statusCode, error.message, error.type, error.code);
-      else throw new new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+        if (error.type && error.code)
+            throw new ApiError(error.statusCode, error.message, error.type, error.code);
+        else throw new new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
     }
-  };
-  
+};
+
+const cancel = async (id) => {
+    // eslint-disable-next-line no-useless-catch
+    try {
+        const cancel = await paymentModel.cancel(id);
+        if (cancel.acknowledged == false) {
+            throw new ApiError(
+                StatusCodes.NOT_FOUND,
+                'Người lái xe không tồn tại',
+                'Not Found',
+                'BR_person_1_1',
+            );
+        }
+        return cancel;
+    } catch (error) {
+        if (error.type && error.code)
+            throw new ApiError(error.statusCode, error.message, error.type, error.code);
+        else throw new new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    }
+};
+
 
 export const paymentService = {
     register,
@@ -216,4 +236,5 @@ export const paymentService = {
     save_payment,
     send_mail,
     findByfilter,
+    cancel,
 }

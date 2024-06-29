@@ -69,6 +69,12 @@ const findOneById = async (_id) => {
 const save_payment = async (_id) => {
   try {
     const id = new ObjectId(_id)
+    const findOneCheck = await GET_DB()
+      .collection(PAYMENT_COLLECTION_NAME)
+      .findOne({ _id: id, _destroy: true })
+    if (findOneCheck) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'Thanh toan da bi huy', 'already exist', 'BR_zone_1');
+    }
     const findOne = await GET_DB()
       .collection(PAYMENT_COLLECTION_NAME)
       .findOneAndUpdate({ _id: id },
@@ -78,6 +84,31 @@ const save_payment = async (_id) => {
           }
         },
         { returnOriginal: false }
+      );
+    return findOne;
+  } catch (error) {
+    if (error.type && error.code) {
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    }
+    else {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    }
+  }
+};
+
+
+const cancel = async (_id) => {
+  try {
+    const id = new ObjectId(_id)
+    const findOne = await GET_DB()
+      .collection(PAYMENT_COLLECTION_NAME)
+      .findOneAndUpdate({ _id: id },
+        {
+          $set: {
+            _destroy: true
+          }
+        },
+        { returnDocument: 'after' }
       );
     return findOne;
   } catch (error) {
@@ -117,8 +148,8 @@ const findByfilter = async ({ pageSize, pageIndex, startDate, endDate, ...params
     let endDate1 = moment(endDate, 'DD/MM/YYYY').clone().add(1, 'days').format('DD/MM/YYYY');
 
 
-    const start = Date.parse(parseDate(startDate1)) ;
-    const end = Date.parse(parseDate(endDate1)) ; //- 7 * 60 * 60 * 1000
+    const start = Date.parse(parseDate(startDate1));
+    const end = Date.parse(parseDate(endDate1)); //- 7 * 60 * 60 * 1000
 
     pipelineDay = {
       $match: {
@@ -128,6 +159,7 @@ const findByfilter = async ({ pageSize, pageIndex, startDate, endDate, ...params
         },
       }
     }
+    Boolean
     console.log(pipelineDay)
     try {
       const driver = await GET_DB()
@@ -200,4 +232,5 @@ export const paymentModel = {
   findOneById,
   save_payment,
   findByfilter,
+  cancel,
 }

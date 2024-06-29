@@ -15,8 +15,8 @@ Router.route('/findById')   //
 Router.route('/findByfilter')   // 
   .get(paymentController.findByfilter)
 
-// Router.route('/findByfilter')   // 
-//   .post(paymentController.findByfilter)
+Router.route('/cancel')   // 
+  .post(paymentController.cancel)
 
 
 
