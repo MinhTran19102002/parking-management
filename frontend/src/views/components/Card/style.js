@@ -48,6 +48,11 @@ export const CustomedCard = styled(Card)`
       margin: auto;
     }
   }
+
+  .layout-flex-center {
+    height: 100%;
+    display: flex;
+  }
 `;
 
 export const HeaderCardStyled = styled.div`

@@ -45,8 +45,6 @@ function NumberStatisChart({ xField = 'dateTime', yField = 'value', seriesField 
           'h',
           'H'
         );
-
-        console.log(api);
         let avg = 0;
         const newData = [];
         xFileds.map((dateTime) => {
@@ -62,6 +60,7 @@ function NumberStatisChart({ xField = 'dateTime', yField = 'value', seriesField 
             });
           });
         });
+
         avg = avg / Number(dayjs().format('H')) || 0;
 
         rs = {
@@ -74,8 +73,6 @@ function NumberStatisChart({ xField = 'dateTime', yField = 'value', seriesField 
       return rs;
     }
   });
-
-  console.log(data, avg);
 
   const config = {
     xField,
@@ -105,7 +102,7 @@ function NumberStatisChart({ xField = 'dateTime', yField = 'value', seriesField 
 
   return (
     <PureCard
-      title={<Typography.Title level={4}>{lag('common:dashboard:staticCard')}</Typography.Title>}
+      title={lag('common:dashboard:inoutByHour')}
       extra={
         <Space>
           {/* <CustomedDateRangePicker

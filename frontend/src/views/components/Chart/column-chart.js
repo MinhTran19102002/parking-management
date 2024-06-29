@@ -91,9 +91,6 @@ export default ({
         const value = item[yField];
         return value > 0 ? FormatNumber(value || 0, { isEndZeroDecimal: false }) : '';
       },
-      style: {
-        ...textStyle
-      },
       position: 'middle',
       ...label
     },
@@ -116,11 +113,11 @@ export default ({
     yAxis: {
       max: max && max * 1.2,
       label: {
-        formatter: (text) => FormatNumber(Number(text), { isEndZeroDecimal: false }),
+        formatter: (text) => FormatNumber(Number(text), { isEndZeroDecimal: false })
       },
       title: {
-        text: unit.y,
-      },
+        text: unit.y
+      }
     },
     tooltip: {
       title: (text) => (tooltipTitle ? tooltipTitle(text) : text),
@@ -176,9 +173,11 @@ export default ({
 
   if (loading)
     return (
-      <Skeleton.Node className="loading-state skeleton" style={{ margin: 'auto' }} active>
-        <BarChartOutlined style={{ fontSize: 50 }} />
-      </Skeleton.Node>
+      <div className='layout-flex-center'>
+        <Skeleton.Node className="loading-state skeleton" style={{ margin: 'auto' }} active>
+          <BarChartOutlined style={{ fontSize: 50 }} />
+        </Skeleton.Node>
+      </div>
     );
 
   return (
