@@ -30,7 +30,7 @@ const createNew = async (data) => {
     if (!vehicle) {
       throw new ApiError(StatusCodes.NOT_FOUND, 'Xe khong ton tai trong du lieu', 'already exist', 'BR_zone_1');
     }
-    const checkDay = await GET_DB().collection(PAYMENT_COLLECTION_NAME).findOne({ "licenePlate": data.licenePlate });
+    const checkDay = await GET_DB().collection(PAYMENT_COLLECTION_NAME).findOne({ "licenePlate": data.licenePlate, _destroy: false });
 
     if (checkDay) {
       if (checkDay.endDay > data.startDay)
