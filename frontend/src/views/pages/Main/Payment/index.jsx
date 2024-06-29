@@ -73,10 +73,6 @@ function Payment({}) {
                 allowClear: true,
                 format: 'L'
               }
-            },
-            {
-              name: 'isPay',
-              type: 'check'
             }
           ]}
           filterNames={{
