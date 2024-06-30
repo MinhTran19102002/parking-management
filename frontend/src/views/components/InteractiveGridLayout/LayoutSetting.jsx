@@ -1,27 +1,19 @@
-import {
-  RetweetOutlined,
-  SaveOutlined,
-  SettingOutlined,
-} from "@ant-design/icons";
-import { Button, Dropdown } from "antd";
-import React, { useContext } from "react";
-import AppContext from "~/contexts";
+import { RetweetOutlined, SaveOutlined, SettingOutlined } from '@ant-design/icons';
+import { Button, Dropdown } from 'antd';
+import React, { useContext } from 'react';
+import { useTranslation } from 'react-i18next';
+import AppContext from '~/context';
 
-function LayoutSetting({}) {
+function LayoutSetting({ onReset, onSave }) {
+  const { t: lag } = useTranslation();
   const { state, actions } = useContext(AppContext);
   const { changeLayout } = state;
   const hanldeLayout = ({ key }) => {
-    if (key === "reset") {
-      actions.changeByType({
-        type: "changeLayout",
-        payload: { count: 1 + (changeLayout.count || 0), action: "reset" },
-      });
+    if (key === 'reset') {
+      onReset();
     }
-    if (key === "save") {
-      actions.changeByType({
-        type: "changeLayout",
-        payload: { count: 1 + (changeLayout.count || 0), action: "save" },
-      });
+    if (key === 'save') {
+      onSave();
     }
   };
   return (
@@ -29,19 +21,18 @@ function LayoutSetting({}) {
       menu={{
         items: [
           {
-            label: "Lưu bố cục",
+            label: lag('common:layout:save'),
             icon: <SaveOutlined />,
-            key: "save",
+            key: 'save'
           },
           {
-            label: "Đặt lại bố cục",
+            label: lag('common:layout:reset'),
             icon: <RetweetOutlined />,
-            key: "reset",
-          },
+            key: 'reset'
+          }
         ],
-        onClick: hanldeLayout,
-      }}
-    >
+        onClick: hanldeLayout
+      }}>
       <Button icon={<SettingOutlined />} type="text" />
     </Dropdown>
   );

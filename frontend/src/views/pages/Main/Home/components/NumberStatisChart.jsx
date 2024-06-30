@@ -50,7 +50,6 @@ function NumberStatisChart({ xField = 'dateTime', yField = 'value', seriesField 
         xFileds.map((dateTime) => {
           const item = api.find((el) => Number(dateTime) === el.hour) || {};
           const dt = item?.data || {};
-          console.log(item);
           types.map((type) => {
             avg += dt[type] || 0;
             newData.push({

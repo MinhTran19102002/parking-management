@@ -179,5 +179,9 @@
   },
   "table": {
     "paginationText": "Showing {{ start }}-{{ end }}/{{ total }}"
+  },
+  "layout": {
+    "save": "Save layout",
+    "reset": "Reset layout"
   }
 }

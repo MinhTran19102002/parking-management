@@ -19,6 +19,8 @@ export const CustomedCard = styled(Card)`
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+  
   &.bg {
   }
 

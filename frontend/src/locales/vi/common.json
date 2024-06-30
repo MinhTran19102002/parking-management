@@ -179,5 +179,9 @@
   },
   "table": {
     "paginationText": "Đang hiển thị {{ start }}-{{ end }}/{{ total }}"
+  },
+  "layout": {
+    "save": "Lưu bố cục",
+    "reset": "Đặt lại bố cục"
   }
 }

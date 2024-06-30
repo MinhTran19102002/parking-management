@@ -1,11 +1,14 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
-import { GetDefaultLayouts, GetLayouts, LOCAL_KEY } from "./data";
-import AppContext from "~/contexts";
-import { ResponsiveGridLayoutStyled } from "./style";
-import { useTranslation } from "react-i18next";
+import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { GetDefaultLayouts, GetLayouts, LOCAL_KEY } from './data';
+import { ResponsiveGridLayoutStyled } from './style';
+import { useTranslation } from 'react-i18next';
+import AppContext from '~/context';
+import { Button, Flex, Space, Typography } from 'antd';
+import LayoutSetting from './LayoutSetting';
 
 let didmount = false;
 function InteractiveGridLayout({
+  title,
   layoutKey,
   containerPadding = [0, 0],
   margin = [8, 8],
@@ -22,10 +25,10 @@ function InteractiveGridLayout({
 
   useEffect(() => {
     if (didmount) {
-      if (changeLayout.action === "reset") {
+      if (changeLayout.action === 'reset') {
         onReset();
       }
-      if (changeLayout.action === "save") {
+      if (changeLayout.action === 'save') {
         onSaveLayouts();
       }
     }
@@ -37,15 +40,16 @@ function InteractiveGridLayout({
     rowHeight,
     breakpoints,
     cols,
-    ...props,
+    ...props
   };
 
   const onSaveLayouts = () => {
     const oldData = JSON.parse(localStorage.getItem(LOCAL_KEY)) || {};
     const newData = {
       ...oldData,
-      [layoutKey]: layouts,
+      [layoutKey]: layouts
     };
+    localStorage.removeItem(LOCAL_KEY);
     localStorage.setItem(LOCAL_KEY, JSON.stringify(newData));
   };
 
@@ -56,7 +60,7 @@ function InteractiveGridLayout({
   };
 
   const onReset = () => {
-    setLayouts(GetDefaultLayouts(layoutKey));
+    setLayouts(GetLayouts(layoutKey));
   };
 
   useEffect(() => {
@@ -68,10 +72,16 @@ function InteractiveGridLayout({
 
   useEffect(() => {
     onReset();
-  }, [localStorage.getItem("collapsed")]);
+  }, [localStorage.getItem('collapsed')]);
 
   return (
     <div>
+      <Flex justify="space-between">
+        <Typography.Title level={4}>{title}</Typography.Title>
+        <Space>
+          <LayoutSetting onReset={onReset} onSave={onSaveLayouts} />
+        </Space>
+      </Flex>
       <ResponsiveGridLayoutStyled
         onLayoutChange={onLayoutChange}
         onWidthChange={onWidthChange}
@@ -83,17 +93,16 @@ function InteractiveGridLayout({
             delete el.static;
             return {
               ...el,
-              i: `card${index}`,
+              i: `card${index}`
             };
           });
 
           return {
             ...acc,
-            [curr]: obj,
+            [curr]: obj
           };
         }, {})}
-        {...config}
-      >
+        {...config}>
         {children}
       </ResponsiveGridLayoutStyled>
     </div>
