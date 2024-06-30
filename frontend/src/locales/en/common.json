@@ -184,5 +184,6 @@
   "layout": {
     "save": "Save layout",
     "reset": "Reset layout"
-  }
+  },
+  "footer": "Website developed by Tran Trung Hau and Tran Cong Minh"
 }

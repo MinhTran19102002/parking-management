@@ -154,7 +154,6 @@ function App() {
                 />
               </Routes>
             </Content>
-            <Footer />
           </Layout>
         </ThemeProvider>
       </ConfigProvider>

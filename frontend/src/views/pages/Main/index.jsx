@@ -1,6 +1,6 @@
 import React, { Suspense, useContext, useMemo } from 'react';
 import { Layout, Modal, theme } from 'antd';
-import { Header, Sider } from '~/views/layouts';
+import { Footer, Header, Sider } from '~/views/layouts';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import { adminRoutes, devRoutes, driverRoutes, publicRoutes } from '~/routes';
 import AppContext from '~/context';
@@ -90,6 +90,7 @@ function Main({}) {
             <Route path="*" element={<Navigate to={currRoute[0].path} />} />
           </Routes>
         </Suspense>
+        <Footer />
       </Layout>
     </Layout>
   );
