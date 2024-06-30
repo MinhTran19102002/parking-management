@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { Suspense, useContext, useMemo } from 'react';
 import { Layout, Modal, theme } from 'antd';
 import { Header, Sider } from '~/views/layouts';
 import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
@@ -79,15 +79,17 @@ function Main({}) {
       <Sider routes={currRoute} />
       <Layout className="px-4">
         <Header className="border-1" />
-        <Routes>
-          {currRoute.map((route, ix) => {
-            if (route.children) {
-              return route.children.map((subRoute) => <Route {...subRoute} key={subRoute.key} />);
-            }
-            return <Route {...route} key={'route' + ix} />;
-          })}
-          <Route path="*" element={<Navigate to={currRoute[0].path} />} />
-        </Routes>
+        <Suspense>
+          <Routes>
+            {currRoute.map((route, ix) => {
+              if (route.children) {
+                return route.children.map((subRoute) => <Route {...subRoute} key={subRoute.key} />);
+              }
+              return <Route {...route} key={'route' + ix} />;
+            })}
+            <Route path="*" element={<Navigate to={currRoute[0].path} />} />
+          </Routes>
+        </Suspense>
       </Layout>
     </Layout>
   );
