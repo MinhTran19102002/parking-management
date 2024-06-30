@@ -34,14 +34,16 @@ function PaymentSuccess({}) {
       <Result
         status="success"
         title={lag('common:payment:paySuccessfully')}
-        subTitle=<Typography.Text>
-          {lag('common:amount')}: {FormatNumber(vnp_Amount, { isEndZeroDecimal: false })} VND{' '}
-          <br></br>
-          {lag('common:payment:vnp_BankCode')}: {vnp_BankCode}
-          <br></br>
-          {lag('common:payment:vnp_PayDate')}: {dayjs(vnp_PayDate).format('L LTS')}
-          <br></br>
-        </Typography.Text>
+        subTitle={
+          <Typography.Text>
+            {lag('common:amount')}: {FormatNumber(vnp_Amount, { isEndZeroDecimal: false })} VND{' '}
+            <br></br>
+            {lag('common:payment:vnp_BankCode')}: {vnp_BankCode}
+            <br></br>
+            {lag('common:payment:vnp_PayDate')}: {dayjs(vnp_PayDate).format('L LTS')}
+            <br></br>
+          </Typography.Text>
+        }
         style={{ margin: 'auto' }}
       />
     </Layout>

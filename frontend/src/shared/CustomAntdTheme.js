@@ -38,6 +38,7 @@ export default createGlobalStyle`
         display: flex;
         flex-direction: column;
         border: none;
+        overflow: hidden;
 
         .ant-card-head {
             padding: 10px 10px 0px;
@@ -54,7 +55,7 @@ export default createGlobalStyle`
 
         .ant-card-body {
             flex: 1;
-            padding: 0 16px;
+            padding: 8px 16px;
         }
     }
 

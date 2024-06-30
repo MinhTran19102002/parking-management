@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useRef, useMemo } from "react";
-import { Column } from "@ant-design/plots";
-import { Row, Skeleton } from "antd";
-import { BarChartOutlined } from "@ant-design/icons";
-import { BlockColumnChart } from "./style";
-import { SmoothChart } from "~/shared/common";
-import { useTranslation } from "react-i18next";
-import { FormatNumber } from "~/services";
-import dayjs from "dayjs";
-import ChartConfig from "./data";
+import React, { useState, useEffect, useRef, useMemo, useContext } from 'react';
+import { Column } from '@ant-design/plots';
+import { Empty, Row, Skeleton } from 'antd';
+import { BarChartOutlined } from '@ant-design/icons';
+import { SmoothChart } from './style';
+import { useTranslation } from 'react-i18next';
+import { FormatNumber } from '~/services';
+import dayjs from 'dayjs';
+import ChartConfig, { DefaultTheme } from './data';
+import AppContext from '~/context';
 const { textStyle, grid, slider, onReady, scrollbar } = ChartConfig;
 
 export default ({
@@ -35,11 +35,17 @@ export default ({
   label = {},
   max,
   isScrollbar,
+  isGroup,
   columnWidthRatio = false,
-  defaultSliderState = { start: 0, end: 0.4 },
+  defaultSliderState = { start: 0, end: 0.4 }
 }) => {
+  const { state, actions } = useContext(AppContext);
+  const [currTheme, setCurrTheme] = useState(state.theme);
+  useEffect(() => {
+    setCurrTheme(state.theme);
+  }, [state.theme]);
   const columnStyle = {
-    radius: isStack || [4, 4, 0, 0],
+    radius: isStack || [4, 4, 0, 0]
   };
   const [width, setWidth] = useState();
   const [sliderState, setSliderState] = useState(defaultSliderState);
@@ -47,7 +53,7 @@ export default ({
     types.reduce((acc, curr) => {
       return {
         ...acc,
-        [curr]: true,
+        [curr]: true
       };
     }, {})
   );
@@ -66,75 +72,52 @@ export default ({
   }, [width, columnCount, minColumnWidth]);
   const parent = useRef(null);
   const config = {
+    theme: currTheme,
     data,
     appendPadding,
     xField,
     yField,
     seriesField,
+    isGroup,
     animation: false,
     maxColumnWidth,
     minColumnWidth,
     columnStyle,
     isStack,
     autoFit: true,
-    color,
     columnWidthRatio,
-    connectedArea: {
-      style: (oldStyle, element) => {
-        return {
-          fill: "rgba(255, 255, 255, 0.25)",
-          stroke: oldStyle.fill,
-          lineWidth: 0.5,
-        };
-      },
-    },
     label: isLabel && {
       formatter: (item, x, y) => {
         const value = item[yField];
-        return value > 0
-          ? FormatNumber(value || 0, { isEndZeroDecimal: false })
-          : "";
+        return value > 0 ? FormatNumber(value || 0, { isEndZeroDecimal: false }) : '';
       },
-      style: {
-        ...textStyle,
-      },
-      position: "middle",
-      ...label,
+      position: 'middle',
+      ...label
     },
     legend: legend && {
       selected: legendSelected,
-      position: "top",
+      position: 'top',
       itemName: {
-        style: textStyle,
         formatter: (_, item) => {
           const i = types.find((e) => e === item.value);
           return yFieldTexts[i];
-        },
+        }
       },
-      ...legend,
+      ...legend
     },
     xAxis: {
-      label: {
-        style: textStyle,
-      },
       title: {
-        text: unit.x,
-        style: textStyle,
-      },
-      grid,
+        text: unit.x
+      }
     },
     yAxis: {
       max: max && max * 1.2,
       label: {
-        formatter: (text) =>
-          FormatNumber(Number(text), { isEndZeroDecimal: false }),
-        style: textStyle,
+        formatter: (text) => FormatNumber(Number(text), { isEndZeroDecimal: false })
       },
       title: {
-        text: unit.y,
-        style: textStyle,
-      },
-      grid,
+        text: unit.y
+      }
     },
     tooltip: {
       title: (text) => (tooltipTitle ? tooltipTitle(text) : text),
@@ -144,22 +127,22 @@ export default ({
           const name = yFieldTexts[isFind];
           let value =
             `${FormatNumber(org.value, {
-              isEndZeroDecimal: false,
+              isEndZeroDecimal: false
             })} ` + unit.y;
 
           return {
             ...org,
             name,
-            value,
+            value
           };
         });
         return rs;
-      },
+      }
     },
     annotations,
     slider: isSliderMemo && {
       ...sliderState,
-      ...slider,
+      ...slider
     },
     scrollbar: isScrollbar && { ...scrollbar },
     onReady: (plot = {}) => {
@@ -170,9 +153,9 @@ export default ({
       onReady(plot, {
         legendSelected,
         setLegendSelected,
-        setSliderState,
+        setSliderState
       });
-    },
+    }
   };
 
   // useEffect(() => {
@@ -190,15 +173,16 @@ export default ({
 
   if (loading)
     return (
-      <Skeleton.Node className="loading-state skeleton" style={{ margin: "auto" }} active>
-        <BarChartOutlined style={{ fontSize: 50 }} />
-      </Skeleton.Node>
+      <div className='layout-flex-center'>
+        <Skeleton.Node className="loading-state skeleton" style={{ margin: 'auto' }} active>
+          <BarChartOutlined style={{ fontSize: 50 }} />
+        </Skeleton.Node>
+      </div>
     );
+
   return (
     <SmoothChart ref={parent}>
-      {description && (
-        <Row className="w-100 d-flex justify-content-center">{description}</Row>
-      )}
+      {description && <Row className="w-100 d-flex justify-content-center">{description}</Row>}
       <Column {...config} />
     </SmoothChart>
   );

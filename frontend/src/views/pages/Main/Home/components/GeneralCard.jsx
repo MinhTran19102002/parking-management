@@ -123,11 +123,7 @@ function GeneralCard({ zone = 'A' }) {
         </CustomedTag>
       }
       className="card-main">
-      <CardBlock>
-        <div className="py-1">
-          <Gauge {...config} />
-        </div>
-      </CardBlock>
+      <Gauge {...config} />
     </Card>
   );
 }

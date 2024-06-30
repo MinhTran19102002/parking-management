@@ -15,6 +15,7 @@
   "timePickerRange": "Thời điểm",
   "personName": "Tên chủ xe",
   "eventName": "Tên sự kiện",
+  "events": "Sự kiện",
   "pages": {
     "dashboard": "Dashboard",
     "map": "Bản đồ",
@@ -79,6 +80,7 @@
   "setting": "Cài đặt",
   "amount": "Số tiền",
   "isPay": "Đã thanh toán",
+  "avg": "Giá trị trung bình",
   "form": {
     "addCar": "Thêm xe",
     "wrongFormat": "Sai định dạng",
@@ -138,6 +140,8 @@
   "undefinedDriver": "Khách vãn lai",
   "dashboard": {
     "generalCard": "Xe đang đỗ",
+    "inoutByHour": "Thống kê số lượng xe theo giờ",
+    "inoutByDay": "Thống kê số lượng xe theo ngày",
     "staticCard": "Biểu đồ thống kê số lượng xe",
     "costCard": "Biểu đồ thống kê doanh thu theo ngày",
     "noEvent": "Không còn sự kiện nào khác",
@@ -175,5 +179,9 @@
   },
   "table": {
     "paginationText": "Đang hiển thị {{ start }}-{{ end }}/{{ total }}"
+  },
+  "layout": {
+    "save": "Lưu bố cục",
+    "reset": "Đặt lại bố cục"
   }
 }

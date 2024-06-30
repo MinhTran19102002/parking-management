@@ -99,20 +99,6 @@ const driverRoutes = [
 
 const adminRoutes = [
   {
-    key: 'staff',
-    label: 'Quản lý nhân viên',
-    path: '/staff',
-    element: <Staff />,
-    icon: <UsergroupAddOutlined />
-  },
-  {
-    key: 'user',
-    label: 'Quản lý người dùng',
-    path: '/user',
-    element: <UserPage />,
-    icon: <ContactsOutlined />
-  },
-  {
     key: 'camera',
     label: 'Quản lý Camera',
     path: '/camera',
@@ -129,6 +115,18 @@ const adminRoutes = [
         label: 'Bản đồ',
         path: '/setting-map',
         element: <SettingMap />
+      },
+      {
+        key: 'staff',
+        label: 'Quản lý nhân viên',
+        path: '/staff',
+        element: <Staff />,
+      },
+      {
+        key: 'user',
+        label: 'Quản lý người dùng',
+        path: '/user',
+        element: <UserPage />,
       }
     ]
   }

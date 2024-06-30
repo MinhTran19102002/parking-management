@@ -15,6 +15,7 @@
   "timePickerRange": "Time range",
   "personName": "Driver name",
   "eventName": "Event name",
+  "events": "Events",
   "isPay": "Paid",
   "pages": {
     "dashboard": "Dashboard",
@@ -79,6 +80,7 @@
   "skip": "Skip",
   "setting": "Settings",
   "amount": "Amount",
+  "avg": "The average value",
   "form": {
     "addCar": "Add Car",
     "wrongFormat": "Wrong Format",
@@ -138,6 +140,8 @@
   "undefinedDriver": "Visitor",
   "dashboard": {
     "generalCard": "Currently Parked",
+    "inoutByHour": "Vehicle Count Statistics Chart By Hour",
+    "inoutByDay": "Vehicle Count Statistics Chart By Day",
     "staticCard": "Vehicle Count Statistics Chart",
     "costCard": "Revenue Statistics Chart by Day",
     "noEvent": "No Other Events",
@@ -175,5 +179,9 @@
   },
   "table": {
     "paginationText": "Showing {{ start }}-{{ end }}/{{ total }}"
+  },
+  "layout": {
+    "save": "Save layout",
+    "reset": "Reset layout"
   }
 }

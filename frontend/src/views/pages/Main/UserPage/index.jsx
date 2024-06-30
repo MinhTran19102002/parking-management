@@ -135,7 +135,7 @@ function UserPage({}) {
       content: lag('common:popup:dc'),
       okText: lag('common:popup:aggree'),
       okType: 'danger',
-      cancelText: lag('common:popup:cancel'),
+      cancelText: lag('common:cancel'),
       onOk() {
         hanldeDeleteMany();
       }

@@ -1,10 +1,39 @@
 const textStyle = {
-  fill: "rgba(255, 255, 255, 1)",
+  fill: "rgba(255, 255, 255, 0.8)",
   fontSize: 12,
+};
+
+const style = {
+  fill: "rgba(255, 255, 255, 0.8)",
+  fontSize: 12,
+};
+export const scrollbar = {
+  type: "horizontal",
+  default: {
+    style: {
+      thumbColor: "#00CAFF",
+      trackColor: "#0F1C29",
+    },
+  },
+  hover: {
+    style: {
+      thumbColor: "#00B6E6",
+    },
+  },
+};
+
+export const DefaultTheme = {
+  styleSheet: {
+    fontFamily: "Lexend",
+  },
+  components: {
+    scrollbar,
+  },
 };
 
 const ChartConfig = {
   textStyle,
+  style,
   grid: {
     closed: true,
     line: {
@@ -28,20 +57,7 @@ const ChartConfig = {
     foregroundStyle: {},
     formatter: () => "",
   },
-  scrollbar: {
-    type: "horizontal",
-    default: {
-      style: {
-        thumbColor: "#00CAFF",
-        trackColor: "#0F1C29",
-      },
-    },
-    hover: {
-      style: {
-        thumbColor: "#00B6E6",
-      },
-    },
-  },
+  scrollbar,
   onReady: (plot, { legendSelected, setLegendSelected, setSliderState }) => {
     plot.on("legend-item:click", (evt) => {
       let rs = legendSelected;
@@ -60,6 +76,12 @@ const ChartConfig = {
         setLegendSelected(rs);
       }
     });
+  },
+  legend: {
+    position: "top",
+    itemName: {
+      style,
+    },
   },
 };
 

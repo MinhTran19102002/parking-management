@@ -15,6 +15,8 @@ import Register from './views/pages/Authen/Register';
 import { Content, Footer, Header } from './views/layouts';
 import { useTranslation } from 'react-i18next';
 import PaymentSuccess from './views/components/Result/PaymentSuccess';
+import "react-grid-layout/css/styles.css";
+import "react-resizable/css/styles.css";
 
 function Authencation({ children }) {
   const { state } = useContext(AppContext);
