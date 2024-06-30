@@ -52,14 +52,14 @@ function Home({}) {
   return (
     <Content className="w-100 py-3">
       <Row id="dashboard-block" gutter={16}>
-        <Col className="gutter-row" span={16}>
+        <Col className="gutter-row" xs={24} sm={24} md={24} lg={16} xl={16} xxl={18}>
           <InteractiveGridLayout layoutKey="Dashboard" rowHeight={80}>
             {getTileLayout().map((el, ix) => (
               <div key={`card${ix}`}>{el.body}</div>
             ))}
           </InteractiveGridLayout>
         </Col>
-        <Col className="gutter-row" span={8}>
+        <Col className="gutter-row" xs={24} sm={24} md={24} lg={8} xl={8} xxl={6}>
           <EventBlock />
         </Col>
       </Row>

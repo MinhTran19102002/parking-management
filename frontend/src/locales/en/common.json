@@ -30,7 +30,8 @@
     "camera": "Camera management",
     "setting": "Setting",
     "event": "In out",
-    "setting-map": "Map setting"
+    "setting-map": "Map setting",
+    "report": "Report"
   },
   "choose": "Choose",
   "enter": "Enter",
@@ -183,5 +184,6 @@
   "layout": {
     "save": "Save layout",
     "reset": "Reset layout"
-  }
+  },
+  "footer": "Website developed by Tran Trung Hau and Tran Cong Minh"
 }

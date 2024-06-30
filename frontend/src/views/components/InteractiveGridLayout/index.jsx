@@ -3,7 +3,7 @@ import { GetDefaultLayouts, GetLayouts, LOCAL_KEY } from './data';
 import { ResponsiveGridLayoutStyled } from './style';
 import { useTranslation } from 'react-i18next';
 import AppContext from '~/context';
-import { Button, Flex, Space, Typography } from 'antd';
+import { Button, Flex, Layout, Space, Typography } from 'antd';
 import LayoutSetting from './LayoutSetting';
 
 let didmount = false;
@@ -75,7 +75,7 @@ function InteractiveGridLayout({
   }, [localStorage.getItem('collapsed')]);
 
   return (
-    <div>
+    <div className='w-100'>
       <Flex justify="space-between">
         <Typography.Title level={4}>{title}</Typography.Title>
         <Space>

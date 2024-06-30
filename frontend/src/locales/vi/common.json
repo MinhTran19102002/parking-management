@@ -29,7 +29,8 @@
     "camera": "Quản lý camera",
     "setting": "Cài đặt",
     "event": "Nhập xuất xe",
-    "setting-map": "Cài đặt bản đồ"
+    "setting-map": "Cài đặt bản đồ",
+    "report": "Báo cáo"
   },
   "choose": "Chọn",
   "enter": "Nhập",
@@ -183,5 +184,6 @@
   "layout": {
     "save": "Lưu bố cục",
     "reset": "Đặt lại bố cục"
-  }
+  },
+  "footer": "Website được phát triển bởi Trần Trung Hậu và Trần Công Minh"
 }

@@ -10,23 +10,25 @@ import {
   SettingOutlined,
   HistoryOutlined,
   VideoCameraOutlined,
-  DollarOutlined
+  DollarOutlined,
+  FileTextOutlined
 } from '@ant-design/icons';
-import Driver from '~/views/pages/Main/Driver';
-import Employee from '~/views/pages/Main/Employee';
-import Home from '~/views/pages/Main/Home';
-import DriverMap from '~/views/pages/DriverPages/Map';
-import Event from '~/views/pages/Main/Event';
-import UserPage from '~/views/pages/Main/UserPage';
-import Staff from '~/views/pages/Main/Staff';
-import Camera from '~/views/pages/Main/Camera';
-import SettingMap from '~/views/pages/Main/Setting-Map';
-import Personal from '~/views/pages/DriverPages/Personal';
-import HistoryDriver from '~/views/pages/DriverPages/History';
-import CameraStream from '~/views/pages/Main/CameraStream';
-import Map from '~/views/pages/Main/Map';
-import History from '~/views/pages/Main/History';
-import Payment from '~/views/pages/Main/Payment';
+import { lazy } from 'react';
+const Driver = lazy(() => import('~/views/pages/Main/Driver'));
+const Home = lazy(() => import('~/views/pages/Main/Home'));
+const DriverMap = lazy(() => import('~/views/pages/DriverPages/Map'));
+const Event = lazy(() => import('~/views/pages/Main/Event'));
+const UserPage = lazy(() => import('~/views/pages/Main/UserPage'));
+const Staff = lazy(() => import('~/views/pages/Main/Staff'));
+const Camera = lazy(() => import('~/views/pages/Main/Camera'));
+const SettingMap = lazy(() => import('~/views/pages/Main/Setting-Map'));
+const Personal = lazy(() => import('~/views/pages/DriverPages/Personal'));
+const HistoryDriver = lazy(() => import('~/views/pages/DriverPages/History'));
+const CameraStream = lazy(() => import('~/views/pages/Main/CameraStream'));
+const Map = lazy(() => import('~/views/pages/Main/Map'));
+const History = lazy(() => import('~/views/pages/Main/History'));
+const Payment = lazy(() => import('~/views/pages/Main/Payment'));
+const Report = lazy(() => import('~/views/pages/Main/Report'));
 // Public routes
 const publicRoutes = [
   {
@@ -70,6 +72,13 @@ const publicRoutes = [
     path: '/payment',
     element: <Payment />,
     icon: <DollarOutlined />
+  },
+  {
+    key: 'report',
+    label: 'Báo cáo',
+    path: '/report',
+    element: <Report />,
+    icon: <FileTextOutlined />
   }
 ];
 
@@ -120,13 +129,13 @@ const adminRoutes = [
         key: 'staff',
         label: 'Quản lý nhân viên',
         path: '/staff',
-        element: <Staff />,
+        element: <Staff />
       },
       {
         key: 'user',
         label: 'Quản lý người dùng',
         path: '/user',
-        element: <UserPage />,
+        element: <UserPage />
       }
     ]
   }

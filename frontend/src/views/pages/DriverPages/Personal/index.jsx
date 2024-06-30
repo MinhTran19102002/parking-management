@@ -172,7 +172,13 @@ function Personal({}) {
         <PaymentRegister lag={lag} licenePlate={open} hanldeRegister={hanldePayment} />
       </Modal>
       <Card className="w-100">
-        <Descriptions title={''} bordered items={items} size="small" column={3} />
+        <Descriptions
+          title={''}
+          bordered
+          items={items}
+          size="small"
+          column={{ xs: 1, sm: 2, md: 2, xxl: 3 }}
+        />
       </Card>
       <Table
         className="mt-2"
@@ -232,11 +238,14 @@ function Personal({}) {
         ]}
       />
       <br></br>
+      <Typography.Title level={4}>{lag('common:pages:payment')}</Typography.Title>
       {history.map((historyItem) => {
         return (
           <div key={historyItem.licenePlate}>
-            <Typography.Title level={5}>{lag('common:licenePlate')}: {historyItem.licenePlate}</Typography.Title>
-            <PaymentHistory size='small' dataSource={historyItem.data} />
+            <Typography.Title level={5}>
+              {lag('common:licenePlate')}: {historyItem.licenePlate}
+            </Typography.Title>
+            <PaymentHistory size="small" dataSource={historyItem.data} />
           </div>
         );
       })}
