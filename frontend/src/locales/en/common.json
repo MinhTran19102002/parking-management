@@ -136,7 +136,10 @@
   },
   "times": {
     "hour": "Hour",
-    "day": "Day"
+    "day": "Day",
+    "date": "Date",
+    "month": "Month",
+    "year": "Year"
   },
   "undefinedDriver": "Visitor",
   "dashboard": {
@@ -147,6 +150,14 @@
     "costCard": "Revenue Statistics Chart by Day",
     "noEvent": "No Other Events",
     "exportReport": "Export Report"
+  },
+  "reportPage": {
+    "general": "General Statistics",
+    "visitorRate": "Visitor Rate",
+    "inoutByTime": "Statistics of Entries/Exits by Time",
+    "inoutByJob": "Statistics of Entries/Exits by Job",
+    "inoutByUnit": "Statistics of Entries/Exits by Unit",
+    "topDriver": "Statistics of Most Frequent Parked Vehicle Owners"
   },
   "mapPage": {
     "dragAndDropIntoMap": "Drag and Drop into Map",

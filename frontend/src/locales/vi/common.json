@@ -136,7 +136,10 @@
   },
   "times": {
     "hour": "Giờ",
-    "day": "Ngày"
+    "day": "Ngày",
+    "date": "Ngày",
+    "month": "Tháng",
+    "year": "Năm"
   },
   "undefinedDriver": "Khách vãn lai",
   "dashboard": {
@@ -147,6 +150,14 @@
     "costCard": "Biểu đồ thống kê doanh thu theo ngày",
     "noEvent": "Không còn sự kiện nào khác",
     "exportReport": "Xuất báo cáo"
+  },
+  "reportPage": {
+    "general": "Thống kê tổng quan",
+    "visitorRate": "Tỉ lệ khách vãng lai",
+    "inoutByTime": "Thống kê lượt vào/ra theo thời gian",
+    "inoutByJob": "Thống kê lượt vào/ra theo công việc",
+    "inoutByUnit": "Thống kê lượt vào/ra theo đơn vị",
+    "topDriver": "Thống kê chủ xe đỗ nhiều nhất"
   },
   "mapPage": {
     "dragAndDropIntoMap": "Kéo thả vào bản đồ",

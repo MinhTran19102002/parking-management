@@ -17,6 +17,7 @@ function InteractiveGridLayout({
   cols = { xxl: 12, xl: 12, lg: 12, md: 12, sm: 6, xs: 4, xxs: 2 },
   children,
   className,
+  extra,
   ...props
 }) {
   const { state } = useContext(AppContext);
@@ -75,10 +76,11 @@ function InteractiveGridLayout({
   }, [localStorage.getItem('collapsed')]);
 
   return (
-    <div className='w-100'>
+    <div className="w-100">
       <Flex justify="space-between">
         <Typography.Title level={4}>{title}</Typography.Title>
         <Space>
+          {extra}
           <LayoutSetting onReset={onReset} onSave={onSaveLayouts} />
         </Space>
       </Flex>
