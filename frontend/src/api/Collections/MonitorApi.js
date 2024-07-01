@@ -171,7 +171,7 @@ export default {
   },
 
   getInoutByTime: (payload) => {
-    const url = `${DOMAIN}/report/inoutByJob`;
+    const url = `${DOMAIN}/report/inoutByTime`;
     const { xFileds, types } = payload;
     const data = xFileds.reduce((acc, time) => {
       acc.push({
