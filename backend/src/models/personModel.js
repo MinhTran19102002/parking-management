@@ -6,6 +6,7 @@ import { GET_DB } from '~/config/mongodb';
 import { StatusCodes } from 'http-status-codes';
 import { vehicleModel } from '~/models/vehicleModel';
 import { paymentModel } from './paymentModel';
+import { deparmentModel } from './deparmentModel';
 
 const PERSON_COLLECTION_NAME = 'persons';
 const PERSON_COLLECTION_SCHEMA = Joi.object({
@@ -42,7 +43,7 @@ const PERSON_COLLECTION_SCHEMA = Joi.object({
     // vehicleId: Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE),
     arrayvehicleId: Joi.array().items(Joi.string().pattern(OBJECT_ID_RULE).message(OBJECT_ID_RULE_MESSAGE).required()),
     job: Joi.string().required().min(4).max(50).trim().strict(),
-    department: Joi.string().required().min(4).max(50).trim().strict(),
+    department: Joi.string().required().min(1).max(50).trim().strict(),
 
   }).optional(),
 
@@ -80,7 +81,16 @@ const createDriver = async (data, licenePlate, job, department) => {
         );
       }
     }))
-    data.driver = { arrayvehicleId: array_vehicle, job: job, department: department };
+    const departmentFind = await deparmentModel.findOneByVi(department)
+    if(!departmentFind){
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Không có phòng ban',
+        'Not Found',
+        'BR_person_1',
+      );
+    }
+    data.driver = { arrayvehicleId: array_vehicle, job: job, department: departmentFind.id };
     const validateData = await validateBeforCreate(data);
 
 
@@ -480,12 +490,19 @@ const updateDriver = async (_id, data, licenePlate, job, department) => {
   // ly lien bien so xe
 
 
-
-
+  const departmentFind = await deparmentModel.findOneByVi(department)
+    if(!departmentFind){
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Không có phòng ban',
+        'Not Found',
+        'BR_person_1',
+      );
+    }
   data = {
     ...data,
     createdAt: findDriver.createdAt,
-    driver: { job: job, department: department, arrayvehicleId: array_vehicleId },
+    driver: { job: job, department: departmentFind.id, arrayvehicleId: array_vehicleId },
   };
 
   let validateData = await validateBeforCreate(data);

@@ -34,14 +34,14 @@ Router.route('/outPaking')
 Router.route('/Reports/GetVehicleInOutNumber')
   .get(parkingTurnController.getVehicleInOutNumber)
 
-  Router.route('/Reports/GetVehicleInOutNumberByHour')
+Router.route('/Reports/GetVehicleInOutNumberByHour')
   .get(parkingTurnController.getVehicleInOutNumberByHour)
 
 Router.route('/Reports/GetRevenue')
   .get(parkingTurnController.getRevenue)
 
 
-  Router.route('/Reports/GetRevenueByHour')
+Router.route('/Reports/GetRevenueByHour')
   .get(parkingTurnController.GetRevenueByHour)
 
 Router.route('/event')
@@ -65,5 +65,23 @@ Router.route('/carOutSlot')
 
 Router.route('/event/getByFilter')   // 
   .get(parkingTurnController.getByFilter)
+
+
+Router.route('/Reports/visistorRate')
+  .get(parkingTurnController.visistorRate)
+
+  Router.route('/Reports/inoutByTime')
+  .get(parkingTurnController.inoutByTime)
+
+
+  Router.route('/Reports/inoutByJob')
+  .get(parkingTurnController.inoutByJob)
+
+  Router.route('/Reports/inoutByDepa')
+  .get(parkingTurnController.inoutByDepa)
+
+  Router.route('/Reports/mostParkedVehicle')
+  .get(parkingTurnController.mostParkedVehicle)
+  
 
 export const parkingTurnRoute = Router

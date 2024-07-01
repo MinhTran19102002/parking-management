@@ -233,6 +233,64 @@ const getByFilter = async (req, res, next) => {
 };
 
 
+
+const visistorRate = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    const GetRevenueByHour = await parkingTurnService.visistorRate(req, res);
+
+    res.status(StatusCodes.OK).json(GetRevenueByHour);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const inoutByTime = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    const inoutByTime = await parkingTurnService.inoutByTime(req, res);
+
+    res.status(StatusCodes.OK).json(inoutByTime);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
+const inoutByJob = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    const inoutByJob = await parkingTurnService.inoutByJob(req, res);
+
+    res.status(StatusCodes.OK).json(inoutByJob);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const inoutByDepa = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    const inoutByDepa = await parkingTurnService.inoutByDepa(req, res);
+
+    res.status(StatusCodes.OK).json(inoutByDepa);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const mostParkedVehicle = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    const mostParkedVehicle = await parkingTurnService.mostParkedVehicle(req, res);
+
+    res.status(StatusCodes.OK).json(mostParkedVehicle);
+  } catch (error) {
+    next(error);
+  }
+};
+
+
 export const parkingTurnController = {
   createNew,
   createNewWithoutPosition,
@@ -249,5 +307,10 @@ export const parkingTurnController = {
   carInSlot, 
   carOutSlot,
   getByFilter,
+  visistorRate,
+  inoutByTime,
+  inoutByJob,
+  inoutByDepa,
+  mostParkedVehicle,
   // createPakingOrOut,
 };

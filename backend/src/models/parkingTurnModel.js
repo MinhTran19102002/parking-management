@@ -5,6 +5,8 @@ import { OBJECT_ID_RULE, OBJECT_ID_RULE_MESSAGE } from '~/utils/validators';
 import { GET_DB } from '~/config/mongodb';
 import { parkingModel } from '~/models/parkingModel';
 import { StatusCodes } from 'http-status-codes';
+import { vehicleModel } from './vehicleModel';
+import { personModel } from './personModel';
 
 const PARKINGTURN_COLLECTION_NAME = 'parkingTurn';
 const PARKINGTURN_COLLECTION_SCHEMA = Joi.object({
@@ -150,25 +152,25 @@ const updateOut = async (filter, now) => {
 
 const carOutHollow = async (zone, parkingTurnid) => {
   const update = await GET_DB()
-      .collection(parkingModel.PARKING_COLLECTION_NAME)
-      .updateOne(
-        { zone: zone },
-        {
-          $pull: { slots: new ObjectId(parkingTurnid) }
-        },
-      );
+    .collection(parkingModel.PARKING_COLLECTION_NAME)
+    .updateOne(
+      { zone: zone },
+      {
+        $pull: { slots: new ObjectId(parkingTurnid) }
+      },
+    );
   return update
 }
 
 const carInHollow = async (zone, parkingTurnid) => {
   const update = await GET_DB()
-      .collection(parkingModel.PARKING_COLLECTION_NAME)
-      .updateOne(
-        { zone: zone },
-        {
-          $addToSet: { slots: new ObjectId(parkingTurnid) }
-        },
-      );
+    .collection(parkingModel.PARKING_COLLECTION_NAME)
+    .updateOne(
+      { zone: zone },
+      {
+        $addToSet: { slots: new ObjectId(parkingTurnid) }
+      },
+    );
   return update
 }
 
@@ -332,6 +334,11 @@ const getVehicleInOutNumber = async (startDate, endDate) => {
             total: 1,
           },
         },
+        {
+          $sort: {
+            total: -1 // Sắp xếp giảm dần theo 'value'
+          }
+      }
       ]);
     return await getVehicleInOutNumber.toArray();
   } catch (error) {
@@ -392,7 +399,7 @@ const getVehicleInOutNumberByHour = async (startDate, endDate) => {
               // year: '$_id.year',
               // month: '$_id.month',
               // day: '$_id.day',
-              hour:  '$_id.hour',
+              hour: '$_id.hour',
             },
             data: {
               $push: {
@@ -607,6 +614,349 @@ const GetRevenueByHour = async (startDate, endDate) => {
   }
 };
 
+
+const visistorRate = async (start, end) => {
+  try {
+    const getVehicleInOutNumber = await GET_DB()
+      .collection(PARKINGTURN_COLLECTION_NAME)
+      .aggregate([
+        {
+          $match: {
+            start: {
+              $gte: start,
+              $lte: end,
+            },
+          },
+        },
+        {
+          $lookup: {
+            from: vehicleModel.VEHICLE_COLLECTION_NAME,
+            localField: 'vehicleId',
+            foreignField: '_id',
+            as: 'vehicle',
+          },
+        },
+        {
+          $unwind: '$vehicle',
+        },
+        {
+          $group: {
+            _id: {
+              driverIdNull: { $eq: ["$vehicle.driverId", null] }
+            },
+            count: { $sum: 1 }
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            type: {
+              $cond: {
+                if: { $eq: ["$_id.driverIdNull", true] },
+                then: "visitor",
+                else: "driver"
+              }
+            },
+            value: "$count"
+          }
+        }
+      ]);
+    return await getVehicleInOutNumber.toArray();
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+const inoutByTime = async (start, end, timeType) => {
+  try {
+    if (timeType == "date") {
+    const getVehicleInOutNumber = await GET_DB()
+      .collection(PARKINGTURN_COLLECTION_NAME)
+      .aggregate([
+        {
+          $match: {
+            start: {
+              $gte: start,
+              $lte: end,
+            },
+          },
+        },
+
+        {
+          $addFields: {
+            timezoneOffset: { $literal: new Date().getTimezoneOffset() * 60 * 1000 },
+          },
+        },
+        {
+          $group: {
+            _id: {
+              year: { $year: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
+              month: { $month: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
+              day: { $dayOfMonth: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
+            },
+            count: { $sum: 1 }
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            date: {
+              $dateToString: {
+                format: '%d/%m/%Y',
+                date: {
+                  $dateFromParts: {
+                    year: '$_id.year',
+                    month: '$_id.month',
+                    day: '$_id.day',
+                  },
+                },
+              },
+            },
+            count: 1,
+          },
+        },
+      ]);
+    return await getVehicleInOutNumber.toArray();
+    }else{
+      const getVehicleInOutNumber = await GET_DB()
+      .collection(PARKINGTURN_COLLECTION_NAME)
+      .aggregate([
+        {
+          $match: {
+            start: {
+              $gte: start,
+              $lte: end,
+            },
+          },
+        },
+
+        {
+          $addFields: {
+            timezoneOffset: { $literal: new Date().getTimezoneOffset() * 60 * 1000 },
+          },
+        },
+        {
+          $group: {
+            _id: {
+              year: { $year: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
+              month: { $month: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
+            },
+            count: { $sum: 1 }
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            date: {
+              $dateToString: {
+                format: '%m/%Y',
+                date: {
+                  $dateFromParts: {
+                    year: '$_id.year',
+                    month: '$_id.month'
+                  },
+                },
+              },
+            },
+            count: 1,
+          },
+        },
+      ]);
+    return await getVehicleInOutNumber.toArray();
+    }
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+
+const inoutByJob = async (start, end) => {
+  try {
+    const getVehicleInOutNumber = await GET_DB()
+      .collection(PARKINGTURN_COLLECTION_NAME)
+      .aggregate([
+        {
+          $match: {
+            start: {
+              $gte: start,
+              $lte: end,
+            },
+          },
+        },
+        {
+          $lookup: {
+            from: vehicleModel.VEHICLE_COLLECTION_NAME,
+            localField: 'vehicleId',
+            foreignField: '_id',
+            as: 'vehicle',
+          },
+        },
+        {
+          $unwind: '$vehicle',
+        },
+
+        {
+          $lookup: {
+            from: personModel.PERSON_COLLECTION_NAME,
+            localField: 'vehicle.driverId',
+            foreignField: '_id',
+            as: 'driver',
+          },
+        },
+        {
+          $unwind: '$driver',
+        },
+        {
+          $group: {
+            _id: {
+              driverJob: "$driver.driver.job"
+            },
+            count: { $sum: 1 }
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            job: "$_id.driverJob",
+            value: "$count"
+          }
+        }
+      ]);
+    return await getVehicleInOutNumber.toArray();
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+
+const inoutByDepa = async (start, end) => {
+  try {
+    const getVehicleInOutNumber = await GET_DB()
+      .collection(PARKINGTURN_COLLECTION_NAME)
+      .aggregate([
+        {
+          $match: {
+            start: {
+              $gte: start,
+              $lte: end,
+            },
+          },
+        },
+        {
+          $lookup: {
+            from: vehicleModel.VEHICLE_COLLECTION_NAME,
+            localField: 'vehicleId',
+            foreignField: '_id',
+            as: 'vehicle',
+          },
+        },
+        {
+          $unwind: '$vehicle',
+        },
+
+        {
+          $lookup: {
+            from: personModel.PERSON_COLLECTION_NAME,
+            localField: 'vehicle.driverId',
+            foreignField: '_id',
+            as: 'driver',
+          },
+        },
+        {
+          $unwind: '$driver',
+        },
+        {
+          $group: {
+            _id: {
+              driverDepartment: "$driver.driver.department"
+            },
+            count: { $sum: 1 }
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            department: "$_id.driverDepartment",
+            value: "$count"
+          }
+        }
+      ]);
+    return await getVehicleInOutNumber.toArray();
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+
+const mostParkedVehicle = async (start, end) => {
+  try {
+    const getVehicleInOutNumber = await GET_DB()
+      .collection(PARKINGTURN_COLLECTION_NAME)
+      .aggregate([
+        {
+          $match: {
+            start: {
+              $gte: start,
+              $lte: end,
+            },
+          },
+        },
+        {
+          $lookup: {
+            from: vehicleModel.VEHICLE_COLLECTION_NAME,
+            localField: 'vehicleId',
+            foreignField: '_id',
+            as: 'vehicle',
+          },
+        },
+        {
+          $unwind: '$vehicle',
+        },
+
+        {
+          $lookup: {
+            from: personModel.PERSON_COLLECTION_NAME,
+            localField: 'vehicle.driverId',
+            foreignField: '_id',
+            as: 'driver',
+          },
+        },
+        {
+          $unwind: '$driver',
+        },
+        {
+          $group: {
+            _id: {
+              driverDepartment: "$driver"
+            },
+            count: { $sum: 1 }
+          }
+        },
+        {
+          $project: {
+            _id: 0,
+            vehicle: "$vehicle",
+            driver: "$_id.driverDepartment",
+            turn: "$count"
+          }
+        }
+      ]);
+    return await getVehicleInOutNumber.toArray();
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
 const parseDate = (str) => {
   const parts = str.split('/');
   if (parts.length === 3) {
@@ -620,12 +970,12 @@ const parseDate = (str) => {
   return null; // Trả về null nếu chuỗi không hợp lệ
 };
 
-const updateSlot =  async (zone, position, parkingTurnId, isOut) => {
+const updateSlot = async (zone, position, parkingTurnId, isOut) => {
   try {
     let occupied
-    if(isOut){
+    if (isOut) {
       occupied = -1
-    }else {
+    } else {
       occupied = 1
     }
     const update = await GET_DB()
@@ -652,12 +1002,12 @@ const updateSlot =  async (zone, position, parkingTurnId, isOut) => {
 }
 
 
-const updateParkingTurn =  async (parkingId, position, parkingTurnId) => {
+const updateParkingTurn = async (parkingId, position, parkingTurnId) => {
   try {
     const update = await GET_DB()
       .collection(parkingTurnModel.PARKINGTURN_COLLECTION_NAME)
       .updateOne(
-        { _id:new ObjectId(parkingTurnId)  },
+        { _id: new ObjectId(parkingTurnId) },
         {
           $set: {
             'position': position,
@@ -692,4 +1042,9 @@ export const parkingTurnModel = {
   carOutHollow,
   updateParkingTurn,
   carInHollow,
+  visistorRate,
+  inoutByTime,
+  inoutByJob,
+  inoutByDepa,
+  mostParkedVehicle,
 };
