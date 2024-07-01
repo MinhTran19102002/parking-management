@@ -145,5 +145,72 @@ export default {
     //   url,
     //   payload
     // });
+  },
+
+  getVisistorRate: (payload) => {
+    const url = `${DOMAIN}/report/visistorRate`;
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve([
+          {
+            type: 'visistor',
+            value: 342
+          },
+          {
+            type: 'driver',
+            value: 652
+          }
+        ]);
+      }, 1000);
+    });
+    // return GET({
+    //   url,
+    //   payload
+    // });
+  },
+
+  getInoutByTime: (payload) => {
+    const url = `${DOMAIN}/report/inoutByJob`;
+    const { xFileds, types } = payload;
+    const data = xFileds.reduce((acc, time) => {
+      acc.push({
+        time,
+        turn: Number(Math.random() * 1000).toFixed()
+      });
+
+      return acc;
+    }, []);
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(data);
+      }, 1000);
+    });
+    // return GET({
+    //   url,
+    //   payload
+    // });
+  },
+
+  getInoutByJob: (payload) => {
+    const url = `${DOMAIN}/report/inoutByJob`;
+    const { jobs } = payload;
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(
+          jobs.map((job) => {
+            return {
+              job,
+              value: Math.random() * 1000
+            };
+          })
+        );
+      }, 1000);
+    });
+    // return GET({
+    //   url,
+    //   payload
+    // });
   }
 };

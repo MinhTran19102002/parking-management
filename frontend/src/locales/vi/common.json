@@ -86,6 +86,7 @@
   "amount": "Số tiền",
   "isPay": "Đã thanh toán",
   "avg": "Giá trị trung bình",
+  "turn": "Lượt",
   "form": {
     "addCar": "Thêm xe",
     "wrongFormat": "Sai định dạng",
@@ -124,7 +125,8 @@
   "jobs": {
     "Teacher": "Giảng viên",
     "Employee": "Nhân viên",
-    "Student": "Sinh viên"
+    "Student": "Sinh viên",
+    "other": "Không xác định"
   },
   "payment": {
     "pay": "Thanh toán",
@@ -146,6 +148,7 @@
     "year": "Năm"
   },
   "undefinedDriver": "Khách vãn lai",
+  "definedDriver": "Xe được đăng ký",
   "dashboard": {
     "generalCard": "Xe đang đỗ",
     "inoutByHour": "Thống kê số lượng xe theo giờ",
@@ -158,9 +161,9 @@
   "reportPage": {
     "general": "Thống kê tổng quan",
     "visitorRate": "Tỉ lệ khách vãng lai",
-    "inoutByTime": "Thống kê lượt vào/ra theo thời gian",
-    "inoutByJob": "Thống kê lượt vào/ra theo công việc",
-    "inoutByUnit": "Thống kê lượt vào/ra theo đơn vị",
+    "inoutByTime": "Thống kê lượt đỗ theo thời gian",
+    "inoutByJob": "Thống kê lượt đỗ theo công việc",
+    "inoutByUnit": "Thống kê lượt đỗ theo đơn vị",
     "topDriver": "Chủ xe đỗ nhiều nhất"
   },
   "mapPage": {

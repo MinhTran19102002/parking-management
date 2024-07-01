@@ -86,6 +86,7 @@
   "setting": "Settings",
   "amount": "Amount",
   "avg": "The average value",
+  "turn": "Turn",
   "form": {
     "addCar": "Add Car",
     "wrongFormat": "Wrong Format",
@@ -124,7 +125,8 @@
   "jobs": {
     "Teacher": "Teacher",
     "Employee": "Employee",
-    "Student": "Student"
+    "Student": "Student",
+    "other": "Other"
   },
   "payment": {
     "pay": "Pay",
@@ -146,6 +148,7 @@
     "year": "Year"
   },
   "undefinedDriver": "Visitor",
+  "definedDriver": "Vehicle is registered",
   "dashboard": {
     "generalCard": "Currently Parked",
     "inoutByHour": "Vehicle Count Statistics Chart By Hour",
@@ -158,9 +161,9 @@
   "reportPage": {
     "general": "General Statistics",
     "visitorRate": "Visitor Rate",
-    "inoutByTime": "Statistics of Entries/Exits by Time",
-    "inoutByJob": "Statistics of Entries/Exits by Job",
-    "inoutByUnit": "Statistics of Entries/Exits by Unit",
+    "inoutByTime": "Statistics of parking turn by Time",
+    "inoutByJob": "Statistics of parking turn by Job",
+    "inoutByUnit": "Statistics of parking turn by Unit",
     "topDriver": "Most Frequent Parked Vehicle Owners"
   },
   "mapPage": {

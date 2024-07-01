@@ -18,7 +18,7 @@ function Report({}) {
   const params = {
     start: dayjs().add(-30, 'd').format('L'),
     end: dayjs().format('L'),
-    unit: 'date'
+    timeType: 'date'
   };
   for (let [key, value] of searchParams.entries()) {
     params[key] = value;
@@ -58,7 +58,7 @@ function Report({}) {
       <InteractiveGridLayout
         title={
           <DatePickerWithUnit
-            name={['unit', 'start', 'end']}
+            name={['timeType', 'start', 'end']}
             {...params}
             onChange={onChangeFilter}
           />
