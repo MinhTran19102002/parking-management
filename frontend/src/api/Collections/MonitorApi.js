@@ -212,5 +212,28 @@ export default {
     //   url,
     //   payload
     // });
+  },
+
+  getInoutByDepartments: (payload) => {
+    const url = `${DOMAIN}/report/inoutByJob`;
+    const { xFileds } = payload;
+    const data = xFileds.reduce((acc, department) => {
+      acc.push({
+        department,
+        turn: Number(Math.random() * 1000).toFixed()
+      });
+
+      return acc;
+    }, []);
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(data);
+      }, 1000);
+    });
+    // return GET({
+    //   url,
+    //   payload
+    // });
   }
 };

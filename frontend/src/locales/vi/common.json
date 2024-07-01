@@ -164,7 +164,7 @@
     "inoutByTime": "Thống kê lượt đỗ theo thời gian",
     "inoutByJob": "Thống kê lượt đỗ theo công việc",
     "inoutByUnit": "Thống kê lượt đỗ theo đơn vị",
-    "topDriver": "Chủ xe đỗ nhiều nhất"
+    "topDriver": "Xe đỗ nhiều nhất"
   },
   "mapPage": {
     "dragAndDropIntoMap": "Kéo thả vào bản đồ",

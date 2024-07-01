@@ -164,7 +164,7 @@
     "inoutByTime": "Statistics of parking turn by Time",
     "inoutByJob": "Statistics of parking turn by Job",
     "inoutByUnit": "Statistics of parking turn by Unit",
-    "topDriver": "Most Frequent Parked Vehicle Owners"
+    "topDriver": "Most parked vehicles"
   },
   "mapPage": {
     "dragAndDropIntoMap": "Drag and Drop into Map",

@@ -34,6 +34,38 @@ const initState = {
     {
       name: 'outSlot'
     }
+  ],
+  departments: [
+    'KLLCT',
+    'KKHUD',
+    'KCKCTM',
+    'KDĐT',
+    'KCKDL',
+    'KKT',
+    'KCNTT',
+    'KITTT',
+    'KCNMVT',
+    'KCNHHVTP',
+    'KXD',
+    'KNN',
+    'KĐTCLC',
+    'VSPKT',
+    'TTHKTTH',
+    'PDT',
+    'PDTKCQ',
+    'PTSVCTS',
+    'PTT',
+    'PKHCNQHQT',
+    'PQHDN',
+    'PTTGD',
+    'PĐBCL',
+    'PTCHC',
+    'PKHTC',
+    'PQTCSVC',
+    'PTBVT',
+    'BQLKTX',
+    'TYT',
+    'BQLHSDA'
   ]
 };
 
