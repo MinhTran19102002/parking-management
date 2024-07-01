@@ -56,6 +56,7 @@ export default createGlobalStyle`
         .ant-card-body {
             flex: 1;
             padding: 8px 16px;
+            overflow: auto;
         }
     }
 

@@ -8,6 +8,10 @@
       "normal": "Thường"
     }
   },
+  "entries": "Lượt vào",
+  "exists": "Lượt ra",
+  "avgParkTime": "Thời gian đỗ trung bình",
+  "fullParkCount": "Số lần bãi đầy",
   "name": "Tên",
   "position": "Vị trí",
   "licenePlate": "Biển số xe",
@@ -82,6 +86,7 @@
   "amount": "Số tiền",
   "isPay": "Đã thanh toán",
   "avg": "Giá trị trung bình",
+  "turn": "Lượt",
   "form": {
     "addCar": "Thêm xe",
     "wrongFormat": "Sai định dạng",
@@ -120,7 +125,8 @@
   "jobs": {
     "Teacher": "Giảng viên",
     "Employee": "Nhân viên",
-    "Student": "Sinh viên"
+    "Student": "Sinh viên",
+    "other": "Không xác định"
   },
   "payment": {
     "pay": "Thanh toán",
@@ -136,9 +142,13 @@
   },
   "times": {
     "hour": "Giờ",
-    "day": "Ngày"
+    "day": "Ngày",
+    "date": "Ngày",
+    "month": "Tháng",
+    "year": "Năm"
   },
   "undefinedDriver": "Khách vãn lai",
+  "definedDriver": "Xe được đăng ký",
   "dashboard": {
     "generalCard": "Xe đang đỗ",
     "inoutByHour": "Thống kê số lượng xe theo giờ",
@@ -147,6 +157,14 @@
     "costCard": "Biểu đồ thống kê doanh thu theo ngày",
     "noEvent": "Không còn sự kiện nào khác",
     "exportReport": "Xuất báo cáo"
+  },
+  "reportPage": {
+    "general": "Thống kê tổng quan",
+    "visitorRate": "Tỉ lệ khách vãng lai",
+    "inoutByTime": "Thống kê lượt đỗ theo thời gian",
+    "inoutByJob": "Thống kê lượt đỗ theo công việc",
+    "inoutByUnit": "Thống kê lượt đỗ theo đơn vị",
+    "topDriver": "Xe đỗ nhiều nhất"
   },
   "mapPage": {
     "dragAndDropIntoMap": "Kéo thả vào bản đồ",

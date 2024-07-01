@@ -1,5 +1,7 @@
-import dayjs from "dayjs";
-
+import dayjs from 'dayjs';
+const DAY = 'date';
+const MONTH = 'month';
+const YEAR = 'year';
 export default {
   defaultConfig: {
     columnStyle: {
@@ -51,6 +53,7 @@ export default {
 
   generateRange: (start, end, unit, format = 'L') => {
     let rs = [start.format(format)];
+    unit = unit === 'date' ? 'day' : unit;
     //unit = day || month || year || hour
     if (dayjs.isDayjs(start)) {
       start = start.format('YYYY-MM-DD');
@@ -60,10 +63,46 @@ export default {
     const len = end.diff(start, unit);
     start = dayjs(start);
 
-    for (let i = 1; i <= len; i++) {
+    for (let i = 1; i <= (len < 30 ? len : 30); i++) {
       const e = start.add(i, unit);
       rs.push(e.format(format));
     }
     return rs;
+  },
+
+  getFormatByTimetype: (unit) => {
+    let format = 'L';
+
+    switch (unit) {
+      case DAY:
+        format = 'L';
+        break;
+      case MONTH:
+        format = 'MM/YYYY';
+        break;
+      case YEAR:
+        format = 'YYYY';
+        break;
+    }
+
+    return format;
+  },
+
+  getDisplayFormatByTimetype: (unit) => {
+    let format = 'DD/MM';
+
+    switch (unit) {
+      case DAY:
+        format = 'DD/MM';
+        break;
+      case MONTH:
+        format = 'MM/YY';
+        break;
+      case YEAR:
+        format = 'YYYY';
+        break;
+    }
+
+    return format;
   }
 };
