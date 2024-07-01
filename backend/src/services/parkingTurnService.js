@@ -572,6 +572,208 @@ const getByFilter = async (req, res) => {
   }
 };
 
+const parseDate = (str) => {
+  const parts = str.split('/');
+  if (parts.length === 3) {
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1] - 1, 10); // Trừ 1 vì tháng bắt đầu từ 0
+    const year = parseInt(parts[2], 10);
+    if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
+      return new Date(year, month, day);
+    }
+  }
+  return null; // Trả về null nếu chuỗi không hợp lệ
+};
+
+
+const parseMonth = (str) => {
+  const parts = str.split('/');
+  if (parts.length === 2) {
+    const day = 1;
+    const month = parseInt(parts[0] - 1, 10); // Trừ 1 vì tháng bắt đầu từ 0
+    const year = parseInt(parts[1], 10);
+    if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
+      return new Date(year, month, day);
+    }
+  }
+  return null; // Trả về null nếu chuỗi không hợp lệ
+};
+const visistorRate = async (req, res) => {
+  const timeType = req.query.timeType
+  let startDate
+  let endDate
+  let start
+  let end
+  if (timeType == "date") {
+    startDate = moment(req.query.start, 'DD/MM/YYYY').format('DD/MM/YYYY')
+    endDate = moment(req.query.end, 'DD/MM/YYYY').clone().add(1, 'days').format('DD/MM/YYYY');
+    start = Date.parse(parseDate(startDate));
+    end = Date.parse(parseDate(endDate));
+  } else if (timeType == "month") {
+    startDate = moment(req.query.start, 'MM/YYYY').format('MM/YYYY')
+    endDate = moment(req.query.end, 'MM/YYYY').clone().add(1, 'months').format('MM/YYYY');
+    start = Date.parse(parseMonth(startDate));
+    end = Date.parse(parseMonth(endDate));
+  }
+  try {
+    const visistorRate = await parkingTurnModel.visistorRate(start, end);
+    if (visistorRate.acknowledged == false) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Thống kê doanh số không thành công',
+        'Not Success',
+        'BR_parkingTurn_5',
+      );
+    }
+    return visistorRate;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+const inoutByTime = async (req, res) => {
+  const timeType = req.query.timeType
+  let startDate
+  let endDate
+  let start
+  let end
+  if (timeType == "date") {
+    startDate = moment(req.query.start, 'DD/MM/YYYY').format('DD/MM/YYYY')
+    endDate = moment(req.query.end, 'DD/MM/YYYY').clone().add(1, 'days').format('DD/MM/YYYY');
+    start = Date.parse(parseDate(startDate));
+    end = Date.parse(parseDate(endDate));
+  } else if (timeType == "month") {
+    startDate = moment(req.query.start, 'MM/YYYY').format('MM/YYYY')
+    endDate = moment(req.query.end, 'MM/YYYY').clone().add(1, 'months').format('MM/YYYY');
+
+    start = Date.parse(parseMonth(startDate));
+
+    end = Date.parse(parseMonth(endDate));
+  }
+  try {
+    const inoutByTime = await parkingTurnModel.inoutByTime(start, end, timeType);
+    if (inoutByTime.acknowledged == false) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Thống kê doanh số không thành công',
+        'Not Success',
+        'BR_parkingTurn_5',
+      );
+    }
+    return inoutByTime;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+const inoutByJob = async (req, res) => {
+  const timeType = req.query.timeType
+  let startDate
+  let endDate
+  let start
+  let end
+  if (timeType == "date") {
+    startDate = moment(req.query.start, 'DD/MM/YYYY').format('DD/MM/YYYY')
+    endDate = moment(req.query.end, 'DD/MM/YYYY').clone().add(1, 'days').format('DD/MM/YYYY');
+    start = Date.parse(parseDate(startDate));
+    end = Date.parse(parseDate(endDate));
+  } else if (timeType == "month") {
+    startDate = moment(req.query.start, 'MM/YYYY').format('MM/YYYY')
+    endDate = moment(req.query.end, 'MM/YYYY').clone().add(1, 'months').format('MM/YYYY');
+    start = Date.parse(parseMonth(startDate));
+    end = Date.parse(parseMonth(endDate));
+  }
+  try {
+    const inoutByJob = await parkingTurnModel.inoutByJob(start, end);
+    if (inoutByJob.acknowledged == false) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Thống kê doanh số không thành công',
+        'Not Success',
+        'BR_parkingTurn_5',
+      );
+    }
+    return inoutByJob;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+const inoutByDepa = async (req, res) => {
+  const timeType = req.query.timeType
+  let startDate
+  let endDate
+  let start
+  let end
+  if (timeType == "date") {
+    startDate = moment(req.query.start, 'DD/MM/YYYY').format('DD/MM/YYYY')
+    endDate = moment(req.query.end, 'DD/MM/YYYY').clone().add(1, 'days').format('DD/MM/YYYY');
+    start = Date.parse(parseDate(startDate));
+    end = Date.parse(parseDate(endDate));
+  } else if (timeType == "month") {
+    startDate = moment(req.query.start, 'MM/YYYY').format('MM/YYYY')
+    endDate = moment(req.query.end, 'MM/YYYY').clone().add(1, 'months').format('MM/YYYY');
+    start = Date.parse(parseMonth(startDate));
+    end = Date.parse(parseMonth(endDate));
+  }
+  try {
+    const inoutByDepa = await parkingTurnModel.inoutByDepa(start, end);
+    if (inoutByDepa.acknowledged == false) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Thống kê doanh số không thành công',
+        'Not Success',
+        'BR_parkingTurn_5',
+      );
+    }
+    return inoutByDepa;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+const mostParkedVehicle = async (req, res) => {
+  const timeType = req.query.timeType
+  let startDate
+  let endDate
+  let start
+  let end
+  if (timeType == "date") {
+    startDate = moment(req.query.start, 'DD/MM/YYYY').format('DD/MM/YYYY')
+    endDate = moment(req.query.end, 'DD/MM/YYYY').clone().add(1, 'days').format('DD/MM/YYYY');
+    start = Date.parse(parseDate(startDate));
+    end = Date.parse(parseDate(endDate));
+  } else if (timeType == "month") {
+    startDate = moment(req.query.start, 'MM/YYYY').format('MM/YYYY')
+    endDate = moment(req.query.end, 'MM/YYYY').clone().add(1, 'months').format('MM/YYYY');
+    start = Date.parse(parseMonth(startDate));
+    end = Date.parse(parseMonth(endDate));
+  }
+  try {
+    const mostParkedVehicle = await parkingTurnModel.mostParkedVehicle(start, end);
+    if (mostParkedVehicle.acknowledged == false) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Thống kê doanh số không thành công',
+        'Not Success',
+        'BR_parkingTurn_5',
+      );
+    }
+    return mostParkedVehicle;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
 
 export const parkingTurnService = {
   createPakingTurn,
@@ -587,4 +789,9 @@ export const parkingTurnService = {
   carInSlot,
   carOutSlot,
   getByFilter,
+  visistorRate,
+  inoutByTime,
+  inoutByJob,
+  inoutByDepa,
+  mostParkedVehicle,
 };
