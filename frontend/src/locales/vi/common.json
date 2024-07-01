@@ -8,6 +8,10 @@
       "normal": "Thường"
     }
   },
+  "entries": "Lượt vào",
+  "exists": "Lượt ra",
+  "avgParkTime": "Thời gian đỗ trung bình",
+  "fullParkCount": "Số lần bãi đầy",
   "name": "Tên",
   "position": "Vị trí",
   "licenePlate": "Biển số xe",
@@ -157,7 +161,7 @@
     "inoutByTime": "Thống kê lượt vào/ra theo thời gian",
     "inoutByJob": "Thống kê lượt vào/ra theo công việc",
     "inoutByUnit": "Thống kê lượt vào/ra theo đơn vị",
-    "topDriver": "Thống kê chủ xe đỗ nhiều nhất"
+    "topDriver": "Chủ xe đỗ nhiều nhất"
   },
   "mapPage": {
     "dragAndDropIntoMap": "Kéo thả vào bản đồ",

@@ -82,5 +82,68 @@ export default {
     return GET({
       url
     });
+  },
+
+  getReportGeneral: (payload) => {
+    const url = `${DOMAIN}/report/general`;
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve([
+          {
+            zone: 'A',
+            entries: 1234,
+            exists: 1243,
+            fee: 23123212,
+            avgParkTime: 4,
+            parkingLotFullCount: 23
+          },
+          {
+            zone: 'B',
+            entries: 1234,
+            exists: 1243,
+            fee: 23123212,
+            avgParkTime: 4,
+            parkingLotFullCount: 23
+          },
+          {
+            zone: 'C',
+            entries: 1234,
+            exists: 1243,
+            fee: 23123212,
+            avgParkTime: 4,
+            parkingLotFullCount: 23
+          },
+          {
+            zone: 'D',
+            entries: 1234,
+            exists: 1243,
+            fee: 23123212,
+            avgParkTime: 4,
+            parkingLotFullCount: 23
+          },
+          {
+            zone: 'E',
+            entries: 1234,
+            exists: 1243,
+            fee: 23123212,
+            avgParkTime: 4,
+            parkingLotFullCount: 23
+          },
+          {
+            zone: 'F',
+            entries: 1234,
+            exists: 1243,
+            fee: 23123212,
+            avgParkTime: 4,
+            parkingLotFullCount: 23
+          }
+        ]);
+      }, 1000);
+    });
+    // return GET({
+    //   url,
+    //   payload
+    // });
   }
 };

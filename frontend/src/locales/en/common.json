@@ -8,6 +8,10 @@
       "normal": "Normal"
     }
   },
+  "entries": "Entries",
+  "exists": "Entries",
+  "avgParkTime": "Average parking time",
+  "fullParkCount": "Parking lot is lot",
   "name": "Event name",
   "rangeDate": "Range Date",
   "position": "Position",
@@ -157,7 +161,7 @@
     "inoutByTime": "Statistics of Entries/Exits by Time",
     "inoutByJob": "Statistics of Entries/Exits by Job",
     "inoutByUnit": "Statistics of Entries/Exits by Unit",
-    "topDriver": "Statistics of Most Frequent Parked Vehicle Owners"
+    "topDriver": "Most Frequent Parked Vehicle Owners"
   },
   "mapPage": {
     "dragAndDropIntoMap": "Drag and Drop into Map",

@@ -25,27 +25,27 @@ function Report({}) {
   }
   const getTileLayout = () => [
     {
-      body: <General id="general" />,
+      body: <General id="general" params={params} />,
       ...dynamicBlock
     },
     {
-      body: <VisistorRate id="visitorRate" />,
+      body: <VisistorRate id="visitorRate" params={params} />,
       ...dynamicBlock
     },
     {
-      body: <InOutByTime id="inoutByTime" />,
+      body: <InOutByTime id="inoutByTime" params={params} />,
       ...dynamicBlock
     },
     {
-      body: <InoutByJob id="inoutByJob" />,
+      body: <InoutByJob id="inoutByJob" params={params} />,
       ...dynamicBlock
     },
     {
-      body: <TopDriver id="topDriver" />,
+      body: <TopDriver id="topDriver" params={params} />,
       ...dynamicBlock
     },
     {
-      body: <InoutByDepartment id="inoutByUnit" />,
+      body: <InoutByDepartment id="inoutByUnit" params={params} />,
       ...dynamicBlock
     }
   ];
@@ -63,7 +63,7 @@ function Report({}) {
             onChange={onChangeFilter}
           />
         }
-        layoutKey="Dashboard"
+        layoutKey="Report"
         rowHeight={80}>
         {getTileLayout().map((el, ix) => (
           <div key={`card${ix}`}>{el.body}</div>

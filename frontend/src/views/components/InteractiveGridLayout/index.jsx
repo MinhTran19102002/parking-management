@@ -57,6 +57,7 @@ function InteractiveGridLayout({
   const onWidthChange = (containerWidth) => {};
 
   const onLayoutChange = (_, allLayouts) => {
+    console.log(allLayouts);
     setLayouts(allLayouts);
   };
 

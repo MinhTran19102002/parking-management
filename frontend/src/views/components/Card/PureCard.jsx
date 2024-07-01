@@ -12,10 +12,16 @@ function PureCard({
   classNames = {},
   className = '',
   setting,
-  onChangeSetting
+  onChangeSetting,
+  ...props
 }) {
   return (
-    <CustomedCard title={title} extra={extra} className={`border h-100 ${className}`}>
+    <CustomedCard
+      title={title}
+      extra={extra}
+      className={`border h-100 ${className}`}
+      {...props}
+      classNames={classNames}>
       {children}
     </CustomedCard>
   );
