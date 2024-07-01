@@ -215,7 +215,7 @@ export default {
   },
 
   getInoutByDepartments: (payload) => {
-    const url = `${DOMAIN}/report/inoutByJob`;
+    const url = `${DOMAIN}/report/inoutByDepartment`;
     const { xFileds } = payload;
     const data = xFileds.reduce((acc, department) => {
       acc.push({
