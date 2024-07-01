@@ -37,7 +37,6 @@ function InoutByJob({ id, params, angleField = 'value', colorField = 'type' }) {
       return rs;
     }
   });
-  console.log(data);
   const unit = '';
   const yFieldTexts = types.reduce((acc, type) => {
     acc[type] = lag('common:jobs:' + type);

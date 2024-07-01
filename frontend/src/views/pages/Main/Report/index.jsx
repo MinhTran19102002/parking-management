@@ -11,10 +11,12 @@ import { Button } from 'antd';
 import DatePickerWithUnit from '~/views/components/DatePickerWithUnit';
 import { useSearchParams } from 'react-router-dom';
 import dayjs from 'dayjs';
+import { useTranslation } from 'react-i18next';
 
 const dynamicBlock = {};
 function Report({}) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { t: lag } = useTranslation();
   const params = {
     start: dayjs().add(-30, 'd').format('L'),
     end: dayjs().format('L'),
@@ -60,9 +62,11 @@ function Report({}) {
           <DatePickerWithUnit
             name={['timeType', 'start', 'end']}
             {...params}
+            unit={params.timeType}
             onChange={onChangeFilter}
           />
         }
+        extra={<Button>{lag('common:dashboard:exportReport')}</Button>}
         layoutKey="Report"
         rowHeight={80}>
         {getTileLayout().map((el, ix) => (

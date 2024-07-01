@@ -57,18 +57,18 @@ const DefaultLayout = {
     xl: [
       { w: 8, h: 4, x: 0, y: 0, i: 'card0' },
       { w: 4, h: 4, x: 8, y: 0, i: 'card1' },
-      { w: 6, h: 3, x: 4, y: 4, i: 'card2' },
+      { w: 5, h: 3, x: 4, y: 4, i: 'card2' },
       { w: 4, h: 3, x: 0, y: 4, i: 'card3' },
-      { w: 2, h: 6, x: 10, y: 4, i: 'card4' },
-      { w: 10, h: 3, x: 0, y: 7, i: 'card5' }
+      { w: 3, h: 6, x: 9, y: 4, i: 'card4' },
+      { w: 9, h: 3, x: 0, y: 7, i: 'card5' }
     ],
     lg: [
       { w: 12, h: 4, x: 0, y: 0, i: 'card0' },
-      { w: 4, h: 3, x: 6, y: 4, i: 'card1' },
-      { w: 10, h: 3, x: 0, y: 7, i: 'card2' },
-      { w: 6, h: 3, x: 0, y: 4, i: 'card3' },
-      { w: 12, h: 3, x: 0, y: 10, i: 'card4' },
-      { w: 2, h: 6, x: 10, y: 4, i: 'card5' }
+      { w: 4, h: 3, x: 5, y: 4, i: 'card1' },
+      { w: 9, h: 3, x: 0, y: 7, i: 'card2' },
+      { w: 5, h: 3, x: 0, y: 4, i: 'card3' },
+      { w: 3, h: 6, x: 9, y: 4, i: 'card4' },
+      { w: 12, h: 3, x: 0, y: 10, i: 'card5' }
     ],
     md: [
       { w: 12, h: 4, x: 0, y: 0, i: 'card0' },

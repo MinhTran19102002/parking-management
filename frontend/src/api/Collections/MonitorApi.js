@@ -235,5 +235,34 @@ export default {
     //   url,
     //   payload
     // });
+  },
+
+  getMostParkedVehicle: (payload) => {
+    const url = `${DOMAIN}/report/mostParkedVehicle`;
+    const data = [];
+    for (let i = 0; i < 30; i++) {
+      data.push({
+        vehicle: {
+          licenePlate: '12A-3214',
+          type: 'Car'
+        },
+        driver: {
+          name: 'Trần Trung Hậu'
+        },
+        data: {
+          turn: Math.random() * 10000
+        }
+      });
+    }
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(data);
+      }, 1000);
+    });
+    // return GET({
+    //   url,
+    //   payload
+    // });
   }
 };
