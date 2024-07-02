@@ -164,75 +164,26 @@ export default {
   },
 
   getInoutByJob: (payload) => {
-    const url = `${DOMAIN}/report/inoutByJob`;
-    const { jobs } = payload;
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(
-          jobs.map((job) => {
-            return {
-              job,
-              value: Math.random() * 1000
-            };
-          })
-        );
-      }, 1000);
+    const url = `${DOMAIN}/parkingTurn/Reports/inoutByJob`;
+    return GET({
+      url,
+      payload
     });
-    // return GET({
-    //   url,
-    //   payload
-    // });
   },
 
   getInoutByDepartments: (payload) => {
-    const url = `${DOMAIN}/report/inoutByDepartment`;
-    const { xFileds } = payload;
-    const data = xFileds.reduce((acc, department) => {
-      acc.push({
-        department,
-        turn: Number(Math.random() * 1000).toFixed()
-      });
-
-      return acc;
-    }, []);
-
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(data);
-      }, 1000);
+    const url = `${DOMAIN}/parkingTurn/Reports/inoutByDepa`;
+    return GET({
+      url,
+      payload
     });
-    // return GET({
-    //   url,
-    //   payload
-    // });
   },
 
   getMostParkedVehicle: (payload) => {
-    const url = `${DOMAIN}/report/mostParkedVehicle`;
-    const data = [];
-    for (let i = 0; i < 30; i++) {
-      data.push({
-        vehicle: {
-          licenePlate: '12A-3214',
-          type: 'Car'
-        },
-        driver: {
-          name: 'Trần Trung Hậu'
-        },
-        data: {
-          turn: Math.random() * 10000
-        }
-      });
-    }
-
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(data);
-      }, 1000);
+    const url = `${DOMAIN}/parkingTurn/Reports/mostParkedVehicle`;
+    return GET({
+      url,
+      payload
     });
-    // return GET({
-    //   url,
-    //   payload
-    // });
   }
 };

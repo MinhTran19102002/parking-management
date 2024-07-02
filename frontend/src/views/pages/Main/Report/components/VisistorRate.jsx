@@ -41,6 +41,7 @@ function VisistorRate({ id, params, angleField = 'value', colorField = 'type' })
     unit,
     legend: {
       offsetY: -0,
+      offsetX: -80,
       style: {
         fill: color
       }
