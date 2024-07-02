@@ -41,7 +41,7 @@ function InoutByDepartment({
         const newData = [];
         xFileds.map((dateTime) => {
           const item = api.find((el) => dateTime === el[xField]) || {};
-          const dt = item?.turn;
+          const dt = item?.value;
           types.map((type) => {
             newData.push({
               [xField]: dateTime,
@@ -55,7 +55,6 @@ function InoutByDepartment({
       } catch (error) {
         console.log(error);
       }
-
       return rs;
     }
   });

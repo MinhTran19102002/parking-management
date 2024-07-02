@@ -22,7 +22,11 @@ export default ({
   appendPadding = 0,
   legend = {},
   loading,
-  style
+  style,
+  numberFormatOptions = {
+    options: 0,
+    isEndZeroDecimal: false,
+  }
 }) => {
   const { state, actions } = useContext(AppContext);
   const [currTheme, setCurrTheme] = useState(state.theme);
@@ -51,7 +55,7 @@ export default ({
     },
     meta: {
       value: {
-        formatter: (v) => `${FormatNumber(v)} ${unit}`
+        formatter: (v) => `${FormatNumber(v), numberFormatOptions} ${unit}`
       }
     },
     label: {
@@ -67,7 +71,7 @@ export default ({
       formatter: (datum) => {
         return {
           name: yFieldTexts[datum[colorField]],
-          value: `${FormatNumber(datum[angleField])} ${unit}`
+          value: `${FormatNumber(datum[angleField], numberFormatOptions)} ${unit}`
         };
       }
     },
@@ -85,7 +89,7 @@ export default ({
       },
       itemValue: {
         formatter: (_, __, index) => {
-          return `${FormatNumber(data[index][angleField])} ${unit}`;
+          return `${FormatNumber(data[index][angleField], numberFormatOptions)} ${unit}`;
         },
         style: {
           fontSize: 14,
@@ -112,7 +116,7 @@ export default ({
           textOverflow: 'ellipsis',
           ...style
         },
-        content: `${FormatNumber(total)} ${unit}`
+        content: `${FormatNumber(total, numberFormatOptions)} ${unit}`
       }
     },
     state: {

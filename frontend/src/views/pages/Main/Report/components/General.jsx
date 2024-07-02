@@ -1,12 +1,15 @@
 import { useQuery } from '@tanstack/react-query';
 import { Table } from 'antd';
-import React from 'react';
+import dayjs from 'dayjs';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MonitorApi } from '~/api';
+import AppContext from '~/context';
 import { PureCard } from '~/views/components/Card';
 
 function General({ id, params }) {
   const { t: lag } = useTranslation();
+  const { state } = useContext(AppContext);
   const {
     data,
     refetch,
@@ -17,12 +20,24 @@ function General({ id, params }) {
       let rs = [];
       try {
         const api = await MonitorApi.getReportGeneral(params);
-        rs = api;
+        rs = state.zones.map((zone) => {
+          return api.find((el) => el.zone === zone) || {
+            zone,
+            entries: 0,
+            exists: 0,
+            fee: 0,
+            averageDuration: 0
+          };
+        });
       } catch {}
 
       return rs;
     }
   });
+
+  useEffect(() => {
+    refetch();
+  }, [JSON.stringify(params)]);
   return (
     <PureCard
       title={lag(`common:reportPage:${id}`)}
@@ -48,12 +63,9 @@ function General({ id, params }) {
             dataIndex: 'fee'
           },
           {
-            title: lag('common:avgParkTime'),
-            dataIndex: 'avgParkTime'
-          },
-          {
-            title: lag('common:fullParkCount'),
-            dataIndex: 'parkingLotFullCount'
+            title: `${lag('common:avgParkTime')} (${lag('common:times:hour').toLocaleLowerCase()})`,
+            dataIndex: 'averageDuration',
+            render: (text) => text && dayjs(Number(text)).format('HH:mm')
           }
         ]}
         dataSource={data}

@@ -50,6 +50,28 @@ export default createGlobalStyle`
         --bg-main-color: linear-gradient(360deg, #040B2D 0%, #0C2163 53.65%, #103258 100%);
     }
 
+    /* Width of the scrollbar */
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    /* Background of the scrollbar track */
+    ::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+    }
+
+    /* Handle of the scrollbar */
+    ::-webkit-scrollbar-thumb {
+        background: #5c5c5c;
+        border-radius: 10px;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #919191;
+    }
+
     iframe#webpack-dev-server-client-overlay{display:none!important}
 
     body {

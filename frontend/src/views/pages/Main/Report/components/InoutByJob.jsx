@@ -37,7 +37,7 @@ function InoutByJob({ id, params, angleField = 'value', colorField = 'type' }) {
       return rs;
     }
   });
-  const unit = '';
+  const unit = lag('common:turn');
   const yFieldTexts = types.reduce((acc, type) => {
     acc[type] = lag('common:jobs:' + type);
     return acc;
@@ -57,8 +57,9 @@ function InoutByJob({ id, params, angleField = 'value', colorField = 'type' }) {
       }
     },
     style: {
-      fill: color
-    }
+      fill: color,
+      color
+    },
   };
 
   useEffect(() => {
