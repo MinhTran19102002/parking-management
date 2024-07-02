@@ -598,6 +598,49 @@ const parseMonth = (str) => {
   }
   return null; // Trả về null nếu chuỗi không hợp lệ
 };
+
+const general = async (req, res) => {
+  const timeType = req.query.timeType
+  let startDate
+  let endDate
+  let start
+  let end
+  if (timeType == "date") {
+    startDate = moment(req.query.start, 'DD/MM/YYYY').format('DD/MM/YYYY')
+    endDate = moment(req.query.end, 'DD/MM/YYYY').clone().add(1, 'days').format('DD/MM/YYYY');
+    start = Date.parse(parseDate(startDate));
+    end = Date.parse(parseDate(endDate));
+  } else if (timeType == "month") {
+    startDate = moment(req.query.start, 'MM/YYYY').format('MM/YYYY')
+    endDate = moment(req.query.end, 'MM/YYYY').clone().add(1, 'months').format('MM/YYYY');
+    start = Date.parse(parseMonth(startDate));
+    end = Date.parse(parseMonth(endDate));
+  }
+  try {
+    let general = await parkingTurnModel.general(start, end);
+    if (general.acknowledged == false) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Thống kê doanh số không thành công',
+        'Not Success',
+        'BR_parkingTurn_5',
+      );
+    }
+    // general.forEach(function(item, index){
+    //   general[index].averageDuration = 
+    // })
+    // "parking_full"
+
+
+
+    return general;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
 const visistorRate = async (req, res) => {
   const timeType = req.query.timeType
   let startDate
@@ -789,6 +832,7 @@ export const parkingTurnService = {
   carInSlot,
   carOutSlot,
   getByFilter,
+  general,
   visistorRate,
   inoutByTime,
   inoutByJob,

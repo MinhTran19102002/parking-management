@@ -66,6 +66,8 @@ Router.route('/carOutSlot')
 Router.route('/event/getByFilter')   // 
   .get(parkingTurnController.getByFilter)
 
+  Router.route('/Reports/general')
+  .get(parkingTurnController.general)
 
 Router.route('/Reports/visistorRate')
   .get(parkingTurnController.visistorRate)

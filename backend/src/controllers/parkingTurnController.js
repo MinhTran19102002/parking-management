@@ -232,6 +232,16 @@ const getByFilter = async (req, res, next) => {
   }
 };
 
+const general = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    const general = await parkingTurnService.general(req, res);
+
+    res.status(StatusCodes.OK).json(general);
+  } catch (error) {
+    next(error);
+  }
+};
 
 
 const visistorRate = async (req, res, next) => {
@@ -307,6 +317,7 @@ export const parkingTurnController = {
   carInSlot, 
   carOutSlot,
   getByFilter,
+  general,
   visistorRate,
   inoutByTime,
   inoutByJob,
