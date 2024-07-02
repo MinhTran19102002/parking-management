@@ -110,7 +110,7 @@ export default ({
           whiteSpace: 'pre-wrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
-          ...style
+          ...style,
         },
         content: `${FormatNumber(total)} ${unit}`
       }

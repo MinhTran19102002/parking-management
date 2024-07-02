@@ -28,7 +28,7 @@ function VisistorRate({ id, params, angleField = 'value', colorField = 'type' })
   });
   const unit = '';
   const yFieldTexts = {
-    visistor: lag('common:undefinedDriver'),
+    visitor: lag('common:undefinedDriver'),
     driver: lag('common:definedDriver')
   };
   const config = {
@@ -46,7 +46,8 @@ function VisistorRate({ id, params, angleField = 'value', colorField = 'type' })
       }
     },
     style: {
-      fill: color
+      fill: color,
+      color,
     }
   };
 

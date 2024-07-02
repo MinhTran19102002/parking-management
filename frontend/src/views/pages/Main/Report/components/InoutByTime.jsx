@@ -9,7 +9,7 @@ import { PureCard } from '~/views/components/Card';
 import ChartSetting from '~/views/components/Card/ChartSetting';
 import ColumnChart from '~/views/components/Chart/column-chart';
 
-function InoutByTime({ id, xField = 'time', yField = 'value', seriesField = 'type', params = {} }) {
+function InoutByTime({ id, xField = 'date', yField = 'value', seriesField = 'type', params = {} }) {
   const { start, end, timeType } = params;
   const [setting, setSetting] = useState({ isLabel: true });
   const { isLabel } = setting;
@@ -25,7 +25,7 @@ function InoutByTime({ id, xField = 'time', yField = 'value', seriesField = 'typ
     refetch,
     isRefetching: loading
   } = useQuery({
-    queryKey: ['Report', 'InOutByJob'],
+    queryKey: ['Report', 'InOutByTime'],
     queryFn: async () => {
       let rs = [];
       try {
@@ -40,7 +40,7 @@ function InoutByTime({ id, xField = 'time', yField = 'value', seriesField = 'typ
         const newData = [];
         xFileds.map((dateTime) => {
           const item = api.find((el) => dateTime === el[xField]) || {};
-          const dt = item?.turn;
+          const dt = item?.count;
           types.map((type) => {
             newData.push({
               [xField]: dateTime,
