@@ -24,7 +24,7 @@ function TopDriver({ id, params }) {
           return {
             licenePlate: item.vehicle.licenePlate,
             name: item.driver.name,
-            turn: item.data.turn
+            turn: item.turn
           };
         });
       } catch {}
@@ -54,7 +54,7 @@ function TopDriver({ id, params }) {
                   <List.Item.Meta
                     avatar={index + 1}
                     title={`${item.licenePlate}`}
-                    description={`${item.name}, ${FormatNumber(Number(item.turn).toFixed(), { isEndZeroDecimal: false })}`}
+                    description={`${item.name}, ${FormatNumber(Number(item.turn).toFixed(), { isEndZeroDecimal: false })} ${lag('common:turn').toLocaleLowerCase()}`}
                   />
                 </List.Item>
               );
