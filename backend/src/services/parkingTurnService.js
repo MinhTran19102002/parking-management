@@ -5,11 +5,14 @@ import { parkingTurnModel } from '~/models/parkingTurnModel';
 import { vehicleModel } from '~/models/vehicleModel';
 import { eventModel } from '~/models/eventModel';
 import { StatusCodes } from 'http-status-codes';
-import express from 'express';
-import { ObjectId } from 'mongodb';
 import moment from 'moment';
-// import { Excel } from 'exceljs';
-const ExcelJS = require('exceljs');
+import XLSXChart from 'xlsx-chart';
+
+import { writeXLSX } from 'xlsx';
+
+// import { writeXLSX } from 'xlsx';
+
+
 
 const createPakingTurn = async (licenePlate, zone, position, image) => {
   try {
@@ -106,7 +109,7 @@ const createPakingTurn = async (licenePlate, zone, position, image) => {
 };
 
 
-const createPakingTurnUpdate = async (licenePlate, zone, position, image) => {
+const createPakingTurnUpdate = async (licenePlate, zone, position, image, datetime) => {
   try {
     // Nếu API cần random dữ liệu của zone
     //tim vehicleId
@@ -133,7 +136,13 @@ const createPakingTurnUpdate = async (licenePlate, zone, position, image) => {
 
 
     // them anh o day
-    const now = Date.now();
+    let now = Date.now();
+
+    if (datetime != "") {
+      const timestamp = parseInt(datetime, 10);
+      const date = new Date(timestamp);
+      now = date.getTime()
+    }
     const data = {
       vehicleId: vihicle._id.toString(),
       parkingId: parking._id.toString(),
@@ -169,7 +178,7 @@ const createPakingTurnUpdate = async (licenePlate, zone, position, image) => {
   }
 };
 
-const outPaking = async (licenePlate) => {
+const outPaking = async (licenePlate, datetime) => {
   try {
     //tim vehicleId
     const vihicle = await vehicleModel.findOneByLicenePlate(licenePlate);
@@ -183,7 +192,12 @@ const outPaking = async (licenePlate) => {
       );
     }
     //
-    const now = Date.now();
+    let now = Date.now();
+    if (datetime != "") {
+      const timestamp = parseInt(datetime, 10);
+      const date = new Date(timestamp);
+      now = date.getTime()
+    }
     const filter = { vehicleId: vihicle._id, _destroy: false };
     const outPaking = await parkingTurnModel.updateOutV2(filter, now);
     if (outPaking.acknowledged == false) {
@@ -457,8 +471,15 @@ const exportEvent = async (req, res) => {
   }
 };
 
-const carInSlot = async (zone, position) => {
+const carInSlot = async (zone, position, licenePlate, datetime) => {
   try {
+
+    let now = Date.now();
+    if (datetime != "") {
+      const timestamp = parseInt(datetime, 10);
+      const date = new Date(timestamp);
+      now = date.getTime()
+    }
     let parkingTurnId = null
     const isOut = false
     const parking = await parkingModel.findOne(zone)
@@ -481,14 +502,47 @@ const carInSlot = async (zone, position) => {
         'BR_event_1',
       );
     }
-    if (parkingHollow.slots.length == 1) {
+
+    
+    if (parkingHollow.slots.length == 1 && licenePlate == '') {
+      
       parkingTurnId = parkingHollow.slots[0]
       const updateCarHollow = await parkingTurnModel.carOutHollow('O', parkingTurnId)
       const updateParkingTurn = await parkingTurnModel.updateParkingTurn(parking._id, position, parkingTurnId)
       if (updateCarHollow.momodifiedCountdi == 0) {
         throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe chua cap nhat ra khoi bai chua dau', 'Not Updated', 'BR_parking_3');
       }
-      const now = Date.now();
+      await eventModel.createEvent({
+        zone: zone,
+        position: position,
+        name: 'inSlot',
+        eventId: parkingTurnId,
+        createdAt: now,
+      });
+    }
+    let parkingTurnLicene = []
+    if (licenePlate != '') {
+      parkingTurnLicene = await parkingTurnModel.findOneByLicenePlate(licenePlate)
+    }
+
+    if (parkingTurnLicene != [] && parkingHollow.slots.length >= 1) {
+      parkingTurnId = parkingTurnLicene[0]._id
+      // console.log(parkingHollow.slots[0])
+      // console.log(parkingTurnId)
+      // if(parkingHollow.slots[0] == parkingTurnId){
+      //   console.log('111111')
+      // }
+      // if (!parkingHollow.slots.includes(parkingTurnId)) {
+      //   throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe chua duoc nhap vao bai', 'Not Updated', 'BR_parking_3');
+      // }
+      const updateCarHollow = await parkingTurnModel.carOutHollow('O', parkingTurnId)
+      if (updateCarHollow.momodifiedCountdi == 0) {
+        throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe chua cap nhat ra khoi bai chua dau', 'Not Updated', 'BR_parking_3');
+      }
+      const updateParkingTurn = await parkingTurnModel.updateParkingTurn(parking._id, position, parkingTurnId)
+
+      console.log(updateParkingTurn)
+
       await eventModel.createEvent({
         zone: zone,
         position: position,
@@ -508,7 +562,7 @@ const carInSlot = async (zone, position) => {
   }
 }
 
-const carOutSlot = async (zone, position) => {
+const carOutSlot = async (zone, position, datetime) => {
   try {
     let parkingTurnId = null
     const isOut = true
@@ -522,7 +576,12 @@ const carOutSlot = async (zone, position) => {
         'BR_event_1',
       );
     }
-    const now = Date.now();
+    let now = Date.now();
+    if (datetime != "") {
+      const timestamp = parseInt(datetime, 10);
+      const date = new Date(timestamp);
+      now = date.getTime()
+    }
     const parkingHollow = await parkingModel.findOne('O')
     const updateSlot = await parkingTurnModel.updateSlot(zone, position, parkingTurnId, isOut)
     const updateCarHollow = await parkingTurnModel.carInHollow('O', slot.parkingTurnId)
@@ -818,6 +877,65 @@ const mostParkedVehicle = async (req, res) => {
   }
 };
 
+
+const exportReport = async (req, res) => {
+  // const filter = { pageSize: 50, pageIndex: 1 };
+
+  const timeType = req.query.timeType
+  let startDate
+  let endDate
+  let start
+  let end
+  if (timeType == "date") {
+    startDate = moment(req.query.start, 'DD/MM/YYYY').format('DD/MM/YYYY')
+    endDate = moment(req.query.end, 'DD/MM/YYYY').clone().add(1, 'days').format('DD/MM/YYYY');
+    start = Date.parse(parseDate(startDate));
+    end = Date.parse(parseDate(endDate));
+  } else if (timeType == "month") {
+    startDate = moment(req.query.start, 'MM/YYYY').format('MM/YYYY')
+    endDate = moment(req.query.end, 'MM/YYYY').clone().add(1, 'months').format('MM/YYYY');
+    start = Date.parse(parseMonth(startDate));
+    end = Date.parse(parseMonth(endDate));
+  }
+  try {
+
+    const data = await parkingTurnModel.visistorRate(start, end);
+    var xlsxChart = new XLSXChart();
+    let opts = {
+      chart: "pie",
+      titles: [
+        "Title 1",
+      ],
+      fields: [
+        "visitor",
+        "driver"
+      ],
+      data: {
+        "Title 1": {
+          "visitor": 5,
+          "driver": 10,
+        },
+      },
+      chartTitle: "Title 1"
+    }
+
+
+    xlsxChart.generate(opts, function (err, data) {
+      res.set({
+        "Content-Type": "application/vnd.ms-excel",
+        "Content-Disposition": "attachment; filename=chart.xlsx",
+        "Content-Length": data.length
+      });
+      res.status(200).send(data);
+    });
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+
 export const parkingTurnService = {
   createPakingTurn,
   outPaking,
@@ -838,4 +956,5 @@ export const parkingTurnService = {
   inoutByJob,
   inoutByDepa,
   mostParkedVehicle,
+  exportReport,
 };

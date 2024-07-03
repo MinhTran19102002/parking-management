@@ -1120,9 +1120,37 @@ const updateParkingTurn = async (parkingId, position, parkingTurnId) => {
   }
 }
 
+
+const findOneByLicenePlate = async (licenePlate) => {
+  try {
+    const findOneByLicenePlate = await GET_DB()
+      .collection(PARKINGTURN_COLLECTION_NAME)
+      .aggregate([     
+        {
+          $lookup: {
+            from: vehicleModel.VEHICLE_COLLECTION_NAME,
+            localField: 'vehicleId',
+            foreignField: '_id',
+            as: 'driver',
+          },
+        },
+        {
+          $match: {
+            "driver.licenePlate": licenePlate,
+            "end" : null
+          },
+        },
+      ]).toArray();
+    return findOneByLicenePlate;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 export const parkingTurnModel = {
   PARKINGTURN_COLLECTION_NAME,
   PARKINGTURN_COLLECTION_SCHEMA,
+  findOneByLicenePlate,
   createNew,
   updateOut,
   getVehicleInOutNumber,
