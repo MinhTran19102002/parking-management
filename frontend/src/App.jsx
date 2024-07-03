@@ -5,7 +5,6 @@ import Main from './views/pages/Main';
 import AppContext from './context';
 import { ConfigProvider, Layout, Spin, Typography, message, notification, theme } from 'antd';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '@progress/kendo-theme-default/dist/all.css';
 import PageError from './views/pages/PageError';
 import { ThemeProvider } from 'styled-components';
 import DayService from './services/DayService';

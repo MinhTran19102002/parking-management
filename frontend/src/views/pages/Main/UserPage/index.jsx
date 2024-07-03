@@ -1,10 +1,6 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { TileLayout } from '@progress/kendo-react-layout';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import {
-  Badge,
   Card,
-  Col,
-  Layout,
   Row,
   Table,
   Typography,
@@ -12,23 +8,17 @@ import {
   Button,
   Modal,
   Pagination,
-  Select,
   Input
 } from 'antd';
-import { Content, Footer, Header } from '~/views/layouts';
+import { Content } from '~/views/layouts';
 import {
   PlusOutlined,
-  EditOutlined,
-  DeleteOutlined,
   DeleteFilled,
   ExclamationCircleFilled
 } from '@ant-design/icons';
 import { UserApi } from '~/api';
-import dayjs from 'dayjs';
-import { useSearchParams, useParams } from 'react-router-dom';
-import { GetAllParams } from '~/services/RegularService';
+import { useSearchParams } from 'react-router-dom';
 import UserForm from './UserForm';
-import CustomedTable from '~/views/components/Table';
 import AppContext from '~/context';
 import { ErrorService } from '~/services';
 import columns from './columns';

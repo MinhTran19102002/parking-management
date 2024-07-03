@@ -1,40 +1,25 @@
-import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
-import { TileLayout } from '@progress/kendo-react-layout';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import {
-  Badge,
   Card,
-  Col,
-  Layout,
   Row,
   Table,
   Typography,
   Space,
   Button,
   Modal,
-  Pagination,
-  Select,
-  Input,
-  Avatar
-} from 'antd';
-import { Content, Footer, Header } from '~/views/layouts';
+  Pagination} from 'antd';
+import { Content } from '~/views/layouts';
 import {
   PlusOutlined,
-  EditOutlined,
-  DeleteOutlined,
   DeleteFilled,
   ExclamationCircleFilled
 } from '@ant-design/icons';
-import { CameraApi, UserApi } from '~/api';
-import dayjs from 'dayjs';
-import { useSearchParams, useParams } from 'react-router-dom';
-import { GetAllParams } from '~/services/RegularService';
-import CustomedTable from '~/views/components/Table';
+import { CameraApi } from '~/api';
+import { useSearchParams } from 'react-router-dom';
 import AppContext from '~/context';
 import { ErrorService } from '~/services';
-import EmployeeApi from '~/api/Collections/EmployeeApi';
-import { CAMERAS, hanldeColumes } from './data';
+import { hanldeColumes } from './data';
 import CameraForm from './CameraForm';
-import VideoBlock from '~/views/components/VideoBlock';
 import { useTranslation } from 'react-i18next';
 
 function Camera({}) {

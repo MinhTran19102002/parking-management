@@ -1,10 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { TileLayout } from '@progress/kendo-react-layout';
 import {
   Badge,
   Card,
-  Col,
-  Layout,
   Row,
   Table,
   Typography,
@@ -16,7 +13,7 @@ import {
   theme,
   Tag
 } from 'antd';
-import { Content, Footer, Header } from '~/views/layouts';
+import { Content } from '~/views/layouts';
 import {
   PlusOutlined,
   EditOutlined,
@@ -31,7 +28,7 @@ import dayjs from 'dayjs';
 import DriverForm from './DriverForm';
 import { useSearchParams } from 'react-router-dom';
 import AppContext from '~/context';
-import { ErrorService, JobServices } from '~/services';
+import { ErrorService } from '~/services';
 import { useTranslation } from 'react-i18next';
 
 function Driver({}) {

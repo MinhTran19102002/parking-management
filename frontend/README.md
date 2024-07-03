@@ -27,6 +27,10 @@ This project is front-end of parking management system.
 - Stream Camera page
 - Add stream link to Camera table
 
+## Version 0.4.0
+- Report page
+- Download report file into the device
+
 ## How to Run:
 
 #### Requirement:
