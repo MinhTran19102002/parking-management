@@ -491,6 +491,7 @@ const updateDriver = async (_id, data, licenePlate, job, department) => {
 
 
   const departmentFind = await deparmentModel.findOneByVi(department)
+  return departmentFind
     if(!departmentFind){
       throw new ApiError(
         StatusCodes.INTERNAL_SERVER_ERROR,
