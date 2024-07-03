@@ -32,7 +32,12 @@ const findOne = async (id) => {
 
 const findOneByVi = async (vi) => {
     try {
-        const findOne = await GET_DB().collection(DEPARMENT_COLLECTION_NAME).findOne({ vi: vi });
+        const findOne = await GET_DB().collection(DEPARMENT_COLLECTION_NAME).findOne( {
+            "$or": [
+                {"vi": vi},
+                {"en": vi}
+            ]
+        });
         return findOne;
     } catch (error) {
         throw new Error(error);
