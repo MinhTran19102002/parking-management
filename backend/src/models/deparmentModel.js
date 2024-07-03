@@ -35,7 +35,9 @@ const findOneByVi = async (vi) => {
         const findOne = await GET_DB().collection(DEPARMENT_COLLECTION_NAME).findOne( {
             "$or": [
                 {"vi": vi},
-                {"en": vi}
+                {"en": vi},
+                {"vi": vi},
+                {"id": vi}
             ]
         });
         return findOne;
