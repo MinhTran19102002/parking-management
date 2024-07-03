@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import { managers, users } from './data';
 import PasswordForm from '~/views/components/Form/PasswordForm';
 import { useTranslation } from 'react-i18next';
+import DataFaker from './DataFaker';
 
 function Main({}) {
   const { token } = theme.useToken();
@@ -59,6 +60,7 @@ function Main({}) {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
+      <DataFaker />
       <Modal
         title={lag('common:changePassword')}
         open={state.onChangePassword}

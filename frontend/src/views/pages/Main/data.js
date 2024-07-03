@@ -678,6 +678,32 @@ export const users = () => {
   return rs;
 };
 
+const GetLicenePlateArr = () => {
+  const rs = [];
+  const len = Math.round(Math.random() * 1);
+  for (let i = 0; i < len; i++) {
+    rs.push(generateLicenePlate());
+  }
+  return rs;
+};
+
+export const GetDrivers = (departments, jobs) => {
+  const names = fullNames();
+  return licenePlates.map((lp, i) => {
+    const name = names[i];
+    const username = generateUsername(name);
+    return {
+      name: name,
+      email: generateEmail(username),
+      deparment: departments[Math.floor(Math.random() * departments.length)],
+      job: jobs[Math.floor(Math.random() * jobs.length)],
+      address: addresses[i],
+      phone: generatePhone(),
+      licenePlate: [lp, ...GetLicenePlateArr()]
+    };
+  });
+};
+
 export const addManyUser = async () => {
   const userList = users();
   const rs = await UserApi.addMany(userList);
@@ -709,7 +735,7 @@ export const addManyDriver = async () => {
   // const rs = await UserApi.addMany(userList);
 };
 
-function generateLicenePlate(pattern) {
+function generateLicenePlate(pattern = /^\d{2}[A-Z]-\d{4,5}$/) {
   const twoDigits = Math.floor(Math.random() * 100)
     .toString()
     .padStart(2, '0');
@@ -720,3 +746,57 @@ function generateLicenePlate(pattern) {
 
   return `${twoDigits}${capitalLetter}-${fourToFiveDigits}`;
 }
+
+const licenePlates = [
+  '38A-22222',
+  '88A-28888',
+  '30A-77777',
+  '51A-88888',
+  '99K-99999',
+  '29A-09999',
+  '38A-27203',
+  '95L-3456',
+  '37A-44444',
+  '30E-92291',
+  '88A-48888',
+  '64A-04075',
+  '51H-59565',
+  '95A-01379',
+  '88H-8888',
+  '80A-91999',
+  '51H-58825',
+  '88A-22999',
+  '15K-17707',
+  '51G-55555',
+  '30G 49944',
+  '51G-55555',
+  '30G-499944',
+  '51G-55555',
+  '75A-11412',
+  '51G-00776',
+  '51A-13883',
+  '76A-22222',
+  '29A-09999',
+  '30A-77777',
+  '99K-99999',
+  '37A-86868',
+  '35A-33333',
+  '30F-66666',
+  '51A-17556',
+  '51F-82743',
+  '95L-3456',
+  '30F-66666',
+  '51F-88838',
+  '36A-66666',
+  '51H99999',
+  '37A-55555',
+  '20A-12894',
+  '37A-85667',
+  '30G-53507',
+  '66C-03827',
+  '80A-91999',
+  '30G-53507',
+  '88A-39307',
+  '30G91632',
+  '30G-63611'
+];
