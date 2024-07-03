@@ -85,5 +85,7 @@ Router.route('/Reports/visistorRate')
   Router.route('/Reports/mostParkedVehicle')
   .get(parkingTurnController.mostParkedVehicle)
   
+  Router.route('/Reports/exportReport')
+  .get(parkingTurnController.exportReport)
 
 export const parkingTurnRoute = Router
