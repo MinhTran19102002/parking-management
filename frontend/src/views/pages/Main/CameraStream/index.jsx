@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Button, Card, Col, Layout, Result, Row } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
 import { useQuery } from '@tanstack/react-query';
@@ -27,6 +27,10 @@ function CameraStream({}) {
     xl: 8,
     xxl: 6
   };
+
+  useEffect(() => {
+    refetch();
+  }, []);
   return (
     <Content className="w-100 py-3">
       <Row className="w-100" gutter={[8, 8]}>
