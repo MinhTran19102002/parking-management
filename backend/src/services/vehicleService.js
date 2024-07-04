@@ -74,6 +74,7 @@ const inActive = async (licenePlate) => {
   }
 };
 
+
 export const vehicleService = {
   createVehicle,
   isActive,
