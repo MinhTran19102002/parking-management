@@ -82,7 +82,7 @@ const createDriver = async (data, licenePlate, job, department) => {
       }
     }))
     const departmentFind = await deparmentModel.findOneByVi(department)
-    if(!departmentFind){
+    if (!departmentFind) {
       throw new ApiError(
         StatusCodes.INTERNAL_SERVER_ERROR,
         'Không có phòng ban',
@@ -414,6 +414,14 @@ const updateDriver = async (_id, data, licenePlate, job, department) => {
   let vehicleId;
   let array_vehicleId = [];
 
+  // await Promise.all(findDriver.driver.arrayvehicleId.map(async (valid) => {
+  //   //////
+
+  // }))
+
+  let array_vehicle_old = findDriver.driver.arrayvehicleId
+
+  console.log(array_vehicle_old)
   if (Array.isArray(licenePlate)) {
     await Promise.all(licenePlate.map(async (valid) => {
       const findVehicleOfDataUpdate = await GET_DB()
@@ -421,7 +429,10 @@ const updateDriver = async (_id, data, licenePlate, job, department) => {
         .findOne({ licenePlate: valid });
       // vehicleId = findDriver.driver.vehicleId.toString();
 
-
+      // if(findDriver.driver.arrayvehicleId.some(id => id.equals(findVehicleOfDataUpdate._id)))
+      //   {
+      //     console.log('so 1' + findVehicleOfDataUpdate.licenePlate)
+      //   }
 
       if (findVehicleOfDataUpdate == null) {
         //Neu xe khong ton tai
@@ -434,7 +445,7 @@ const updateDriver = async (_id, data, licenePlate, job, department) => {
         // await vehicleModel.deleteOne(findDriver.driver.vehicleId);
       } else if (findVehicleOfDataUpdate.driverId == null) {
         //Neu xe ton tai nhung chua co chu
-        const update = await vehicleModel.updateDriverId(findVehicleOfDataUpdate._id, findDriver._id);
+        // const update = await vehicleModel.updateDriverId(findVehicleOfDataUpdate._id, findDriver._id);
         vehicleId = findVehicleOfDataUpdate._id.toString();
         // await vehicleModel.deleteOne(findDriver.driver.vehicleId);
       } else if (!findVehicleOfDataUpdate.driverId.equals(findDriver._id)) {
@@ -447,7 +458,13 @@ const updateDriver = async (_id, data, licenePlate, job, department) => {
         );
       } else if (findVehicleOfDataUpdate.driverId.equals(findDriver._id)) {
         //Neu xe ton tai va la xe cua chu nay
+
         vehicleId = findVehicleOfDataUpdate._id.toString();
+        // bo no ra khoi danh sach old de kiem tra xe nao bi xoa
+        const indexToRemove = array_vehicle_old.findIndex(id => id.equals(findVehicleOfDataUpdate._id));
+        if (indexToRemove !== -1) {
+          array_vehicle_old.splice(indexToRemove, 1);
+        } 
       }
       array_vehicleId.push(vehicleId)
     }))
@@ -457,9 +474,6 @@ const updateDriver = async (_id, data, licenePlate, job, department) => {
       .collection(vehicleModel.VEHICLE_COLLECTION_NAME)
       .findOne({ licenePlate: licenePlate });
     vehicleId = findDriver.driver.vehicleId.toString();
-
-
-
     if (findVehicleOfDataUpdate == null) {
       //Neu xe khong ton tai
       const createVehicle = await vehicleModel.createNew({
@@ -490,16 +504,24 @@ const updateDriver = async (_id, data, licenePlate, job, department) => {
   // ly lien bien so xe
 
 
-  const departmentFind = await deparmentModel.findOneByVi(department)
-  return departmentFind
-    if(!departmentFind){
-      throw new ApiError(
-        StatusCodes.INTERNAL_SERVER_ERROR,
-        'Không có phòng ban',
-        'Not Found',
-        'BR_person_1',
-      );
+  console.log(array_vehicle_old)
+  await Promise.all(array_vehicle_old.map(async (valid) => {
+    //////
+    const inActive = await vehicleModel.inActiveById(valid)
+    if (inActive.acknowledged == false) {
+      throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe tạo không thành công', 'Not Deleted', 'BR_vihicle_4');
     }
+  }))
+
+  const departmentFind = await deparmentModel.findOneByVi(department)
+  if (!departmentFind) {
+    throw new ApiError(
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      'Không có phòng ban',
+      'Not Found',
+      'BR_person_1',
+    );
+  }
   data = {
     ...data,
     createdAt: findDriver.createdAt,
