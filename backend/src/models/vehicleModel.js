@@ -90,6 +90,17 @@ const inActive = async (licenePlate) => {
   }
 };
 
+const inActiveById = async (id) => {
+  try {
+    const inActive = await GET_DB()
+      .collection(VEHICLE_COLLECTION_NAME)
+      .updateOne({ _id: new ObjectId(id) }, { $set: { driverId: null, active : false } });
+    return inActive;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const deleteOne = async (id) => {
   try {
     const deleteOne = await GET_DB()
@@ -110,4 +121,5 @@ export const vehicleModel = {
   updateDriverId,
   isActive,
   inActive,
+  inActiveById,
 };
