@@ -6,15 +6,15 @@ import { GetDrivers } from './data';
 function DataFaker({}) {
   const { state } = useContext(AppContext);
   const fake = async () => {
-    try {
-      const api = UserApi.addDriver();
-    } catch (error) {
-      console.log(error);
-    }
+    // try {
+    //   const data = GetDrivers(state.departments, state.jobs);
+    //   const reponse = await Promise.all(data.map((item) => UserApi.addDriver(item)));
+    // } catch (error) {
+    //   console.log(error);
+    // }
   };
   useEffect(() => {
     fake();
-    console.log(GetDrivers(state.departments, state.jobs));
   }, []);
   return <div></div>;
 }

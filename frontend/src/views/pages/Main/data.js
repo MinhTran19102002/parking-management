@@ -692,14 +692,19 @@ export const GetDrivers = (departments, jobs) => {
   return licenePlates.map((lp, i) => {
     const name = names[i];
     const username = generateUsername(name);
+    const phone = generatePhone();
     return {
       name: name,
       email: generateEmail(username),
-      deparment: departments[Math.floor(Math.random() * departments.length)],
+      department: departments[Math.floor(Math.random() * departments.length)],
       job: jobs[Math.floor(Math.random() * jobs.length)],
       address: addresses[i],
-      phone: generatePhone(),
-      licenePlate: [lp, ...GetLicenePlateArr()]
+      phone,
+      licenePlate: [lp, ...GetLicenePlateArr()],
+      account: {
+        username: phone,
+        password: `Parking@${phone}`
+      }
     };
   });
 };
