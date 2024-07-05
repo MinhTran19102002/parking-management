@@ -6,7 +6,7 @@ import nodemailer from 'nodemailer'
 import { personModel } from "~/models/personModel";
 
 const register = async (data) => {
-    const feePerMonth = 500000 // 1 trieu
+    const feePerMonth = 500000 // 500 000
 
     try {
         let timeStamp = data.startDay;

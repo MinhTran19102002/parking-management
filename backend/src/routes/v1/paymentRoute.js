@@ -3,10 +3,10 @@ import { paymentController } from '~/controllers/paymentController'
 
 const Router = express.Router()
 
-Router.route('/create_payment')   // 
+Router.route('/create_payment')   // dang ky xong roi thanh toan  
   .post(paymentController.payment)
 
-Router.route('/register')   // 
+Router.route('/register')   //  dang ky 
   .post(paymentController.register)
 
 Router.route('/findById')   // 

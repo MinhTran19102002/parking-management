@@ -7,6 +7,7 @@ import { parkingModel } from '~/models/parkingModel';
 import { StatusCodes } from 'http-status-codes';
 import { vehicleModel } from './vehicleModel';
 import { personModel } from './personModel';
+import { paymentModel } from './paymentModel';
 
 const PARKINGTURN_COLLECTION_NAME = 'parkingTurn';
 const PARKINGTURN_COLLECTION_SCHEMA = Joi.object({
@@ -174,7 +175,7 @@ const carInHollow = async (zone, parkingTurnid) => {
   return update
 }
 
-const updateOutV2 = async (filter, now) => {
+const updateOutV2 = async (filter, now, licenePlate) => {
   try {
     const timeOut = now;
     const find = await GET_DB().collection(PARKINGTURN_COLLECTION_NAME).findOne(filter);
@@ -191,6 +192,10 @@ const updateOutV2 = async (filter, now) => {
     }
     else {
       throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe không ở trong bãi', 'Error', 'BR_vihicle_5_1');
+    }
+    const arrayPayment = paymentModel.findByLicenePlate(licenePlate,find.start, timeOut )
+    if(arrayPayment != []){
+      fee = 0
     }
     const updateOut = await GET_DB()
       .collection(PARKINGTURN_COLLECTION_NAME)
