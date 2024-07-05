@@ -312,13 +312,14 @@ function Driver({}) {
       title: lag('common:job'),
       dataIndex: ['driver', 'job'],
       key: 'job',
+      width: 100,
       render: (text) => lag('common:jobs:' + text)
     },
     {
       title: 'Đơn vị (Khoa)',
       dataIndex: ['driver', 'department'],
       key: 'department',
-      render: (text, record, index) => text
+      render: (text, record, index) => lag('department:' + text)
     },
     {
       title: 'Ngày tham gia',
@@ -417,7 +418,7 @@ function Driver({}) {
                 {lag('common:delete')}
               </Button>
             )}
-            <Button id="btnAdd" type="primary" ghost icon={<PlusOutlined />} onClick={onAdd}>
+            <Button id="btnAdd" type="primary" icon={<PlusOutlined />} onClick={onAdd}>
               {lag('common:driverPage:add')}
             </Button>
           </Space>

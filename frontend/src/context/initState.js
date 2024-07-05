@@ -55,7 +55,6 @@ const initState = {
     'PDTKCQ',
     'PTSVCTS',
     'PTT',
-    'PKHCNQHQT',
     'PQHDN',
     'PTTGD',
     'PĐBCL',
