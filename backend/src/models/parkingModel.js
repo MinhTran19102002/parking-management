@@ -68,6 +68,15 @@ const findOne = async (zone) => {
   }
 };
 
+const findOneById = async (id) => {
+  try {
+    const findZoon = await GET_DB().collection(PARKING_COLLECTION_NAME).findOne({ _id: new ObjectId(id) });
+    return findZoon;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const getStatus = async (zone) => {
   try {
     let match = {}
@@ -269,4 +278,5 @@ export const parkingModel = {
   findOne,
   getStatus,
   updateSlot,
+  findOneById,
 };
