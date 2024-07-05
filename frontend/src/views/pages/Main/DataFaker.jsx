@@ -21,13 +21,21 @@ function DataFaker({}) {
       //   return ParkingApi.importVehicle(el);
       // });
 
-      const inSlotApi = Promise.all(
-        parkingTurns.map((el) => {
-          return ParkingApi.exportSlotVehicle({
-            licenePlate: el.licenePlate
-          });
-        })
-      );
+      // const inSlotApi = await Promise.all(
+      //   parkingTurns.map((el) => {
+      //     return ParkingApi.exportSlotVehicle({
+      //       licenePlate: el.licenePlate
+      //     });
+      //   })
+      // );
+
+      // const inSlotApi = await Promise.all(
+      //   parkingTurns.map((el) => {
+      //     return ParkingApi.exportVehicle({
+      //       licenePlate: el.licenePlate
+      //     });
+      //   })
+      // );
       console.log(inApi);
     } catch {}
   };
