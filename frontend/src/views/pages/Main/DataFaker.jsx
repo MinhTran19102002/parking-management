@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
-import { UserApi } from '~/api';
+import { ParkingApi, UserApi } from '~/api';
 import AppContext from '~/context';
-import { GetDrivers } from './data';
+import { GetDrivers, GetParkingsTurn } from './data';
 
 function DataFaker({}) {
   const { state } = useContext(AppContext);
@@ -15,6 +15,20 @@ function DataFaker({}) {
     // }
 
     try {
+      const parkingTurns = await Promise.all(GetParkingsTurn());
+
+      // const inApi = parkingTurns.map((el) => {
+      //   return ParkingApi.importVehicle(el);
+      // });
+
+      const inSlotApi = Promise.all(
+        parkingTurns.map((el) => {
+          return ParkingApi.exportSlotVehicle({
+            licenePlate: el.licenePlate
+          });
+        })
+      );
+      console.log(inApi);
     } catch {}
   };
   useEffect(() => {

@@ -45,9 +45,27 @@ export default {
     });
   },
 
+  importSlotVehicle: (payload) => {
+    const url = `${DOMAIN}/parkingTurn/carInSlot`;
+
+    return POST({
+      url,
+      payload
+    });
+  },
+
+  exportSlotVehicle: (payload) => {
+    const url = `${DOMAIN}/parkingTurn/carOutSlot`;
+
+    return POST({
+      url,
+      payload
+    });
+  },
+
   exportVehicle: (payload) => {
     const url = `${DOMAIN}/parkingTurn/outPaking`;
-
+3
     return POST({
       url,
       payload

@@ -6,7 +6,6 @@ import { adminRoutes, devRoutes, driverRoutes, publicRoutes } from '~/routes';
 import AppContext from '~/context';
 import socket from '~/socket';
 import { useEffect } from 'react';
-import { managers, users } from './data';
 import PasswordForm from '~/views/components/Form/PasswordForm';
 import { useTranslation } from 'react-i18next';
 import DataFaker from './DataFaker';

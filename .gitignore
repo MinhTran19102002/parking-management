@@ -49,7 +49,7 @@
 /frontend/*.sw?
 /frontend/.vercel
 /frontend/yarn.lock
-/frontend/src/views/pages/Main/Images
+/frontend/public/Images
 
 
 /service-in-out/unit/video
