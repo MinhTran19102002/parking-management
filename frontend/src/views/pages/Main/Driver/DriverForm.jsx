@@ -57,6 +57,8 @@ function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
       }
       delete payload.vehicle;
       form.setFieldsValue({ ...payload, licenePlate });
+    } else {
+      form.setFieldValue('licenePlate', ['']);
     }
   }, [formAction]);
 
@@ -149,10 +151,19 @@ function DriverForm({ isOpen, onClose, formAction = {}, onNoti, onMess }) {
             ))}
           </Select>
         </Form.Item>
-        <Form.Item label="Đơn vị" name={['department']} rules={[{ required: true }]}>
-          <Input placeholder="Công nghệ thông tin" />
+        <Form.Item
+          label={lag('common:department')}
+          name={['department']}
+          rules={[{ required: true }]}>
+          <Select
+            options={state.departments.map((de) => {
+              return {
+                value: de,
+                label: lag(`department:${de}`)
+              };
+            })}
+          />
         </Form.Item>
-
         <Form.List name={'licenePlate'}>
           {(fields, { add, remove }) => (
             <>

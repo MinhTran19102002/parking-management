@@ -84,7 +84,7 @@ function Map({}) {
       <Flex justify="space-between">
         <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
           {state.zones.map((zone) => (
-            <Radio.Button value={zone}>{lag(`common:zoneName`, { zone })}</Radio.Button>
+            <Radio.Button key={zone} value={zone}>{lag(`common:zoneName`, { zone })}</Radio.Button>
           ))}
         </Radio.Group>
       </Flex>

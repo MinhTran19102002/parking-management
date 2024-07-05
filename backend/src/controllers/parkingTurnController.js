@@ -238,15 +238,35 @@ const carInSlot = async (req, res, next) => {
 
 const carOutSlot = async (req, res, next) => {
   try {
-
-    const zone = req.body.zone;
-    const position = req.body.position;
     let datetime = ''
     if (req.body.datetime) {
       datetime = req.body.datetime
     }
+
+
+    let zone = ''
+    if (req.body.zone) {
+      zone = req.body.zone
+    }
+
+    let position = ''
+    if (req.body.position) {
+      position = req.body.position
+    }
+
+    let licenePlate = ''
+    if (req.body.licenePlate) {
+      licenePlate = req.body.licenePlate
+    }
+    let outPaking
+    if(zone != '' && position != ''){
+      outPaking = await parkingTurnService.carOutSlot(zone, position, datetime);
+    }
     // Dieu huong sang tang Service
-    const outPaking = await parkingTurnService.carOutSlot(zone, position, datetime);
+    else{
+      outPaking = await parkingTurnService.carOutSlotByLicenePlate( licenePlate, datetime);
+    }
+
     server.io.emit('notification-parking', { message: 'Car goes to the parking lot' })
     res.status(StatusCodes.OK).json(outPaking);
   } catch (error) {
