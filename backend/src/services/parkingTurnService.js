@@ -199,7 +199,7 @@ const outPaking = async (licenePlate, datetime) => {
       now = date.getTime()
     }
     const filter = { vehicleId: vihicle._id, _destroy: false };
-    const outPaking = await parkingTurnModel.updateOutV2(filter, now);
+    const outPaking = await parkingTurnModel.updateOutV2(filter, now, licenePlate);
     if (outPaking.acknowledged == false) {
       throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Error');
     }
@@ -474,6 +474,30 @@ const exportEvent = async (req, res) => {
 const carInSlot = async (zone, position, licenePlate, datetime) => {
   try {
 
+    if (zone == '') {
+      const zone_random = ['A', 'B', 'C'];
+      zone = zone_random[Math.floor(Math.random() * zone_random.length)];
+    }
+
+    const parking = await parkingModel.findOne(zone);
+    // Nếu API cần random dữ liệu của position
+    let slotRandom;
+    if (position == '') {
+      if (parking.total == parking.occupied) {
+        throw new ApiError(
+          StatusCodes.INTERNAL_SERVER_ERROR,
+          'Bãi đỗ ' + parking.zone + ' đầy',
+          'full',
+          'BR_parkingTurn_5',
+        );
+      }
+      do {
+        slotRandom = parking.slots[Math.floor(Math.random() * parking.slots.length)];
+      } while (!slotRandom.isBlank);
+      position = slotRandom.position;
+      console.log(slotRandom);
+    }
+
     let now = Date.now();
     if (datetime != "") {
       const timestamp = parseInt(datetime, 10);
@@ -482,7 +506,7 @@ const carInSlot = async (zone, position, licenePlate, datetime) => {
     }
     let parkingTurnId = null
     const isOut = false
-    const parking = await parkingModel.findOne(zone)
+    // const parking = await parkingModel.findOne(zone)
     let slot = parking.slots.find((element) => element.position === position)
     if (slot.isBlank == false) {
       throw new ApiError(
@@ -524,7 +548,8 @@ const carInSlot = async (zone, position, licenePlate, datetime) => {
     if (licenePlate != '') {
       parkingTurnLicene = await parkingTurnModel.findOneByLicenePlate(licenePlate)
     }
-
+    console.log(parkingTurnLicene)
+    // console.log(parkingTurnLicene)
     if (parkingTurnLicene != [] && parkingHollow.slots.length >= 1) {
       parkingTurnId = parkingTurnLicene[0]._id
       // console.log(parkingHollow.slots[0])

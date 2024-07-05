@@ -30,6 +30,9 @@ const createNew = async (data) => {
     if (!vehicle) {
       throw new ApiError(StatusCodes.NOT_FOUND, 'Xe khong ton tai trong du lieu', 'already exist', 'BR_zone_1');
     }
+    if (vehicle.active == false) {
+      throw new ApiError(StatusCodes.NOT_FOUND, 'Xe hien tai chua duoc xac nhan', 'already exist', 'BR_zone_1');
+    }
     const checkDay = await GET_DB().collection(PAYMENT_COLLECTION_NAME).findOne({ "licenePlate": data.licenePlate, _destroy: false });
 
     if (checkDay) {
@@ -152,10 +155,10 @@ const findByfilter = async ({ pageSize, pageIndex, startDate, endDate, ...params
     const end = Date.parse(parseDate(endDate1)); //- 7 * 60 * 60 * 1000
 
     pipelineDay = {
-        createdAt: {
-          $gte: start,
-          $lte: end,
-        },
+      createdAt: {
+        $gte: start,
+        $lte: end,
+      },
     }
   }
   try {
@@ -224,6 +227,35 @@ const parseDate = (str) => {
   return null; // Trả về null nếu chuỗi không hợp lệ
 };
 
+
+
+const findByLicenePlate = async (licenePlate, start, end) => {
+  // Construct the regular expression pattern dynamically
+  try {
+    const driver = await GET_DB()
+      .collection(PAYMENT_COLLECTION_NAME)
+      .aggregate([
+        {
+          $match: {
+            $expr: {
+              $and: [
+                { $gt: ["$end", end] },
+                { $lt: ["$start", start] },
+                { $eq: ["$licensePlate", licenePlate] },
+                { $eq: ["$isPay", true] }, // Lọc theo ispay là true
+                { $eq: ["$_destroy", false] } // Lọc theo destroy là false
+              ]
+            }
+          }
+        },
+      ])
+      .toArray();
+    return driver
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 export const paymentModel = {
   PAYMENT_COLLECTION_NAME,
   PAYMENT_COLLECTION_SCHEMA,
@@ -232,4 +264,5 @@ export const paymentModel = {
   save_payment,
   findByfilter,
   cancel,
+  findByLicenePlate,
 }
