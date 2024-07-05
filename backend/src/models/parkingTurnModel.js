@@ -258,6 +258,8 @@ const findPosition = async (data) => {
 
 const getVehicleInOutNumber = async (startDate, endDate) => {
   try {
+    let start1 = Date.parse(parseDate(startDate))
+    let end1 = Date.parse(parseDate(endDate))
     const start = Date.parse(parseDate(startDate)) - 7 * 60 * 60 * 1000;
     const end = Date.parse(parseDate(endDate)) - 7 * 60 * 60 * 1000;
     console.log(parseDate(startDate).getTimezoneOffset() + '         ' + parseDate(endDate).setUTCHours(7))
@@ -268,8 +270,8 @@ const getVehicleInOutNumber = async (startDate, endDate) => {
         {
           $match: {
             start: {
-              $gte: start,
-              $lte: end,
+              $gte: start1,
+              $lte: end1,
             },
           },
         },
@@ -299,7 +301,7 @@ const getVehicleInOutNumber = async (startDate, endDate) => {
               // year: { $year: { $toDate: '$start' } },
               // month: { $month:{ $toDate: '$start' } },
               // day: { $dayOfMonth: { $toDate: '$start' } },
-              zone: '$parking.zone',
+              zone: { $substr: ["$position", 0, 1] },
             },
             count: { $sum: 1 },
           },
@@ -355,6 +357,9 @@ const getVehicleInOutNumber = async (startDate, endDate) => {
 
 const getVehicleInOutNumberByHour = async (startDate, endDate) => {
   try {
+    let start1 = Date.parse(parseDate(startDate))
+    let end1 = Date.parse(parseDate(endDate))
+
     const start = Date.parse(parseDate(startDate)) - 7 * 60 * 60 * 1000;
     const end = Date.parse(parseDate(endDate)) - 7 * 60 * 60 * 1000;
     // console.log(parseDate(startDate).getTimezoneOffset() + '         ' + parseDate(endDate).setUTCHours(7))
@@ -365,8 +370,8 @@ const getVehicleInOutNumberByHour = async (startDate, endDate) => {
         {
           $match: {
             start: {
-              $gte: start,
-              $lte: end,
+              $gte: start1,
+              $lte: end1,
             },
           },
         },
@@ -393,7 +398,7 @@ const getVehicleInOutNumberByHour = async (startDate, endDate) => {
               // month: { $month: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
               // day: { $dayOfMonth: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
               hour: { $hour: { $subtract: [{ $toDate: '$start' }, '$timezoneOffset'] } },
-              zone: '$parking.zone',
+              zone: { $substr: ["$position", 0, 1] },
             },
             count: { $sum: 1 },
           },
