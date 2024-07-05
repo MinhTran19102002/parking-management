@@ -686,7 +686,7 @@ const GetLicenePlateArr = () => {
   }
   return rs;
 };
-
+d
 export const GetDrivers = (departments, jobs) => {
   const names = fullNames();
   return licenePlates.map((lp, i) => {
@@ -707,6 +707,11 @@ export const GetDrivers = (departments, jobs) => {
       }
     };
   });
+};
+
+export const GetParkingsTurn = () => {
+  
+  return licenePlates;
 };
 
 export const addManyUser = async () => {

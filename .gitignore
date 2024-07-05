@@ -22,7 +22,7 @@
 /frontend/yarn.lock
 # .env
 
-# Logs
+# Logsd
 /frontend/build
 /frontend/logs
 /frontend/*.log
@@ -49,6 +49,7 @@
 /frontend/*.sw?
 /frontend/.vercel
 /frontend/yarn.lock
+/frontend/src/views/pages/Main/Images
 
 
 /service-in-out/unit/video
