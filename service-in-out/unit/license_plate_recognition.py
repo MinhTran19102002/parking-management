@@ -8,6 +8,12 @@ from PIL import ImageTk, Image, ImageDraw
 import requests
 from ultralytics import YOLO
 import pandas as pd
+import os
+# from dotenv import load
+from dotenv import load_dotenv
+
+# Tải các biến môi trường từ tệp .env
+load_dotenv()
 
 
 plateCascade = cv2.CascadeClassifier("./unit/haarcascade_russian_plate_number.xml")
@@ -41,6 +47,122 @@ area3=[(610,320),(620,445),(805,445),(775,320)]
 my_file = open("./unit/coco.txt", "r")
 data = my_file.read()
 class_list = data.split("\n")
+
+
+def select_image(file_storage):
+
+    file_data = file_storage.read()
+    np_data = np.frombuffer(file_data, np.uint8)
+
+    image = cv2.imdecode(np_data, cv2.IMREAD_COLOR)
+    if image is None:
+        return "Error: Unable to read image.", ''
+    img_gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    img_gray =  cv2.bilateralFilter(img_gray, 11,17,17)
+
+    edged = cv2.Canny(img_gray, 190, 200)
+    contours , new = cv2.findContours(edged.copy(), cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+    contours = sorted(contours, key=cv2.contourArea, reverse=True)[:30]
+    contour_license_plate = None
+    license_plate = None
+    w= None
+    h = None
+    x= None
+    y = None
+    res = ''
+    for contour in contours:
+        perimeter =  cv2.arcLength(contour, True)
+        approx = cv2.approxPolyDP(contour, 0.018* perimeter, True)
+        if len(approx) == 4:
+            contour_license_plate = approx
+            x,y,w,h = cv2.boundingRect(contour_license_plate)
+            print(x, y, w, h)
+            license_plate = img_gray[y: y+h, x:x+w]
+            # cv2.imshow("Result2",license_plate)
+            result = ocr.ocr(license_plate, cls=True)
+            res = result[0]
+            # txts = [line[1][0] for line in res]
+            if(res):
+                break
+
+    file_path = ''
+    if res:
+        result = ocr.ocr(license_plate, cls=True)
+        for idx in range(len(result)):
+            res = result[idx]
+            for line in res:
+                print(line)
+
+
+        result = result[0]
+
+        img = image
+
+        
+        boxes = [line[0] for line in result]
+        txts = [line[1][0] for line in result]
+        # scores = [line[1][1] for line in result]
+
+        for line in result:
+            if len(line[1][0]) == 10:
+                print(line[1][0])
+        im_show = draw_ocr(img, boxes)
+        im_show = Image.fromarray(im_show)
+
+        im_show = im_show.resize((300, 300))  # Thay đổi kích thước hình ảnh
+        # im_show = ImageTk.PhotoImage(im_show)
+
+        # image_label.config(image=im_show)
+        # image_label.image = im_show 
+        license_text = ''
+        if(len(txts)==2):
+            license_text= txts[0]+ '-' + txts[1]
+        if(len(txts)==1):
+            license_text= txts[0]
+        license_text = license_text.replace(".", "")
+        return license_text, image
+    elif file_storage:
+        
+        result = ocr.ocr(img_gray, cls=True)
+        for idx in range(len(result)):
+            res = result[idx]
+            print(res)
+            for line in res:
+                print(line)
+        result = result[0]
+
+        img = image
+
+        
+        boxes = [line[0] for line in result]
+        txts = [line[1][0] for line in result]
+        # scores = [line[1][1] for line in result]
+        license_text = ''
+        for line in result:
+            if len(line[1][0]) == 10:
+
+                license_text = line[1][0]
+                print(line[1][0])
+        im_show = draw_ocr(img, boxes)
+        im_show = Image.fromarray(im_show)
+
+        im_show = im_show.resize((300, 300))  # Thay đổi kích thước hình ảnh
+        # im_show = ImageTk.PhotoImage(im_show)
+        
+        if len(txts)==2 and license_text == '':
+            print(license_text)
+            license_text= txts[0]+ '-' + txts[1]
+        if(len(txts)==1):
+            license_text= txts[0]
+        license_text = license_text.replace(".", "")
+        license_text = license_text.replace("-", "")
+        license_text = license_text.replace(" ", "")
+        if license_text and len(license_text)== 8:
+            license_text =  license_text[:3] +'-' + license_text[3:]
+        return license_text,image
+
+
+
 
 def select_image1(img):
     try:
@@ -96,7 +218,7 @@ def select_image1(img):
 
 def car_into_parking(img, flag):
     try:
-        url = "http://localhost:8010/api/parkingTurn/createPakingTurnWithoutZoneAndPosition"
+        url = os.getenv("APP_HOST") +  "/parkingTurn/createPakingTurnWithoutZoneAndPosition"
         if img is None:
             return cv2.imencode('.jpg', img)[1].tobytes()
         grayscale = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -178,7 +300,7 @@ def car_into_parking(img, flag):
         # result_licenses
 
         if re.match(pattern, result_licenses):
-            print("Bien so xe xac dinh la ")
+            print("Bien so xe xac dinh la ------------------------1")
             print(result_licenses)
             global default_licenses_in
             global default_licenses_out
@@ -226,7 +348,7 @@ def car_into_parking(img, flag):
 
 def car_Out_parking(img, flag):
     try:
-        url = "http://localhost:8010/api/parkingTurn/createPakingTurnWithoutZoneAndPosition"
+        url = os.getenv("APP_HOST") + "/parkingTurn/createPakingTurnWithoutZoneAndPosition"
         if img is None:
             return cv2.imencode('.jpg', img)[1].tobytes()
         grayscale = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -293,7 +415,7 @@ def car_Out_parking(img, flag):
         pattern = r'^\d{2}[A-Z]-\d{5}$'
 
         if re.match(pattern, result_licenses):
-            print("Bien so xe xac dinh la ")
+            print("Bien so xe xac dinh la ----------------------------2 ")
             print(result_licenses)
             global default_licenses_in
             global default_licenses_out
@@ -326,7 +448,7 @@ def car_Out_parking(img, flag):
                 data = {
                     'licenePlate': result_licenses
                 }
-                response1 = requests.post("http://localhost:8010/api/parkingTurn/outPaking", json=data)
+                response1 = requests.post( os.getenv("APP_HOST") + "/parkingTurn/outPaking", json=data)
 
                 # Kiểm tra kết quả trả về
                 if response1.status_code == 200:
@@ -410,12 +532,13 @@ def car_into_slot(img, positon, zone):
         global a1_defl , a2_defl, a3_defl
         print(a1_defl)
         if a1 != a1_defl:
+            print("Bien so xe xac dinh la ----------------------------2 ")
             a1_defl = a1
             url = ''
             if a1 == 1:
-                url = "http://localhost:8010/api/parkingTurn/carInSlot"
+                url = os.getenv("APP_HOST") + "/parkingTurn/carInSlot"
             else:
-                url = "http://localhost:8010/api/parkingTurn/carOutSlot"
+                url = os.getenv("APP_HOST")  + "/parkingTurn/carOutSlot"
             data = {
                     'zone': zone,
                     'position': positon[0]
@@ -432,9 +555,9 @@ def car_into_slot(img, positon, zone):
             a2_defl = a2
             url = ''
             if a2 == 1:
-                url = "http://localhost:8010/api/parkingTurn/carInSlot"
+                url = os.getenv("APP_HOST")  + "/parkingTurn/carInSlot"
             else:
-                url = "http://localhost:8010/api/parkingTurn/carOutSlot"
+                url =os.getenv("APP_HOST")  + "/parkingTurn/carOutSlot"
             data = {
                     'zone': zone,
                     'position': positon[1]
