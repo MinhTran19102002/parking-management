@@ -18,6 +18,7 @@ services:
       - mongodb
     networks:
       - db
+  
   backend:
     container_name: backend
     build:
@@ -35,7 +36,7 @@ services:
     depends_on:
       - mongodb
       - data-importer
-    
+
   frontend:
     container_name: frontend
     build:
@@ -116,6 +117,34 @@ services:
   #     - ./media-server/hls:/usr/share/nginx/html/hls
   #   networks:
   #     - db
+
+  hls-stream:
+    command: [ "python", "./hls-server/src/hls-stream/api.py" ]
+    image: hls-stream:v0.1.0
+    build:
+      context: .
+      dockerfile: hls-stream/Dockerfile
+    container_name: hls-stream
+    working_dir: /app
+    env_file:
+      - ./hls-server/env
+    restart: unless-stopped
+    volumes:
+      - ./hls-server/src/hls-stream:/app/src/hls-stream/
+      - ./hls-server/metadata:/app/metadata/
+      - ./hls-server/stream:/app/stream/
+      - ./hls-server/templates:/app/templates/
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
+
+    # network_mode: "host"
+    ports:
+      - 3597:3597
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "50m"
+    tty: true
 
 networks:
   db:

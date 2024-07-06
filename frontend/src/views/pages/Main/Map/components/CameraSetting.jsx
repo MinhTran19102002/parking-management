@@ -162,7 +162,7 @@ const CameraPointA = ({
   const icon = CameraService.GetIconByIdIcon(iconId);
 
   return (
-    <CameraPoint ref={draggbleRef} style={style}>
+    <CameraPoint ref={draggbleRef} className='camera-point' style={style}>
       <Space.Compact
         direction="vertical"
         style={{ position: 'absolute', transform: 'translate(100%, 0%)', top: 0, right: 0 }}>
@@ -178,7 +178,7 @@ const CameraPointA = ({
         {...CameraService.LimitSize}
         lockAspectRatio={1}
         onResizeStop={(_, __, ___, delta) => onChangeSize(delta)}
-        enable={{ topRight: true, bottomRight: true, bottomLeft: true, topLeft: true }}>
+        enable={false}>
         <div
           className="dragPoint box w-100 h-100"
           style={{

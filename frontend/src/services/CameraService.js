@@ -10,7 +10,7 @@ const CAMERA_ICONS = {
   cam360: <Camera360 className="w-100 h-100" />
 };
 export default {
-  LimitSize: { minHeight: 40, minWidth: 40, maxHeight: 100, maxWidth: 100 },
+  LimitSize: { minHeight: 48, minWidth: 48, maxHeight: 48, maxWidth: 48 },
   GetIconIds: () => CAMERA_ICONIDS,
   GetIcons: () => CAMERA_ICONS,
   GetIconByIdIcon: (iconId, className) => (
