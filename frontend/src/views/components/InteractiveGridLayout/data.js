@@ -10,11 +10,11 @@ const DefaultLayout = {
       { w: 12, h: 5, x: 0, y: 8, i: 'card4' }
     ],
     xl: [
-      { w: 4, h: 4, x: 0, y: 0, i: 'card0' },
-      { w: 4, h: 4, x: 4, y: 0, i: 'card1' },
-      { w: 4, h: 4, x: 8, y: 0, i: 'card2' },
-      { w: 12, h: 4, x: 0, y: 4, i: 'card3' },
-      { w: 12, h: 5, x: 0, y: 8, i: 'card4' }
+      { w: 4, h: 3, x: 0, y: 0, i: 'card0' },
+      { w: 4, h: 3, x: 4, y: 0, i: 'card1' },
+      { w: 4, h: 3, x: 8, y: 0, i: 'card2' },
+      { w: 12, h: 3, x: 0, y: 3, i: 'card3' },
+      { w: 12, h: 4, x: 0, y: 6, i: 'card4' }
     ],
     lg: [
       { w: 4, h: 3, x: 0, y: 0, i: 'card0' },
