@@ -83,7 +83,7 @@ export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }, lag) =>
     title: lag('common:updatedAt'),
     dataIndex: 'updateAt',
     key: 'updateAt',
-    render: (_, item) => dayjs(item.updateAt).format('L')
+    render: (_, item) => dayjs(item.updateAt).format('L LTS')
   },
   {
     title: '',
