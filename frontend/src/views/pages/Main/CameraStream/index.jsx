@@ -4,6 +4,7 @@ import { Content, Footer, Header } from '~/views/layouts';
 import { useQuery } from '@tanstack/react-query';
 import { CameraApi } from '~/api';
 import VideoBlock from '~/views/components/VideoBlock';
+const HLS_DOMAIN = import.meta.env.VITE_DOMAIN_HLS;
 
 function CameraStream({}) {
   const { data, refetch } = useQuery({
@@ -35,16 +36,21 @@ function CameraStream({}) {
     <Content className="w-100 py-3">
       <Row className="w-100" gutter={[8, 8]}>
         {cameras.map((camera = {}, index) => {
+          const { streamLink, cameraId } = camera;
+          const link = `${HLS_DOMAIN}/${cameraId}/index.m3u8`;
           return (
-            <Col key={camera.cameraId} {...colProps}>
-              <Card title={camera.cameraId}>
-                {camera.streamLink ? (
+            streamLink && (
+              <Col key={camera.cameraId} {...colProps}>
+                <Card title={camera.cameraId}>
+                  {/* {camera.streamLink ? (
                   <VideoBlock src={camera.streamLink} />
                 ) : (
                   <Result title="Stream Camera chưa được cài đặt" />
-                )}
-              </Card>
-            </Col>
+                )} */}
+                  {streamLink && <VideoBlock src={link} />}
+                </Card>
+              </Col>
+            )
           );
         })}
       </Row>
