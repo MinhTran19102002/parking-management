@@ -579,7 +579,7 @@ def car_into_slot(img, positon, zone):
 
 def findUrl(type):
     try:
-        url = os.getenv("APP_HOST") + "/config/ConfigCamera"
+        url = os.getenv("APP_HOST") + "/camera/findCameraAIByType"
         print(url)
         data = {
                 'type': type,
@@ -592,7 +592,7 @@ def findUrl(type):
         else:
             print('Failed:', response.status_code, response.text)
         data = response.json()
-        return data.get('camera').get('streamLink')
+        return data.get('streamLink')
     except:
          print("Lỗi: " )
          return ''

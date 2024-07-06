@@ -153,6 +153,33 @@ const updateSlot = async (req, res, next) => {
   }
 };
 
+const setCameraAI = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    // const images = await uploadImageHandler.uploadImageMultiple(req, res, 'camera')
+    const aiType = req.body.aiType;
+    // if (images != []) {
+    //   newCamera.images = im
+    // }
+    // delete newUser.account;
+    const createNew = await cameraService.setCameraAI(req.query._id, aiType);
+
+    res.status(StatusCodes.CREATED).json(createNew);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const findCameraAIByType = async (req, res, next) => {
+  try {
+    // Dieu huong sang tang Service
+    const type = req.body.type;
+    const rs = await cameraService.findCameraAIByType(type);
+    res.status(StatusCodes.OK).json(rs);
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const cameraController = {
   createCamera,
@@ -167,4 +194,6 @@ export const cameraController = {
   findByFilterUsed,
   updateManyCamera,
   updateSlot,
+  setCameraAI,
+  findCameraAIByType
 }

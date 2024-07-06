@@ -31,7 +31,7 @@ const findConfigCamera = async (req, res, next) => {
 const getAll = async (req, res, next) => {
     try {
 
-        const getAll = await configService.getAll();
+        const getAll = await configService.getAll(type);
 
         res.status(StatusCodes.CREATED).json(getAll);
     } catch (error) {
