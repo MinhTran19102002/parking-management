@@ -79,13 +79,10 @@ export default ({
     yField,
     seriesField,
     animation: false,
-    maxColumnWidth,
-    minColumnWidth,
     columnStyle,
     isStack,
     isGroup,
     autoFit: true,
-    columnWidthRatio,
     label: isLabel && {
       formatter: (item, x, y) => {
         const value = item[yField];
@@ -173,7 +170,7 @@ export default ({
 
   if (loading)
     return (
-      <div className='layout-flex-center'>
+      <div className="layout-flex-center">
         <Skeleton.Node className="loading-state skeleton" style={{ margin: 'auto' }} active>
           <BarChartOutlined style={{ fontSize: 50 }} />
         </Skeleton.Node>

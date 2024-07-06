@@ -178,7 +178,7 @@ const CameraPointA = ({
         {...CameraService.LimitSize}
         lockAspectRatio={1}
         onResizeStop={(_, __, ___, delta) => onChangeSize(delta)}
-        enable={{ topRight: true, bottomRight: true, bottomLeft: true, topLeft: true }}>
+        enable={false}>
         <div
           className="dragPoint box w-100 h-100"
           style={{
