@@ -101,7 +101,7 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
           <Input placeholder={lag('common:enter')} id="cameraIdInput" />
         </Form.Item>
 
-        <Form.Item name={'Stream Link'} label={lag('common:cameraPage:streamLink')}>
+        <Form.Item name={'streamLink'} label={lag('common:cameraPage:streamLink')}>
           <Input placeholder={lag('common:enter')} id="streamLink" />
         </Form.Item>
 
