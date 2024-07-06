@@ -41,8 +41,8 @@ function CameraStream({}) {
           return (
             streamLink && (
               <Col key={camera.cameraId} {...colProps}>
-                <Card title={camera.cameraId}>
-                  {/* {camera.streamLink ? (
+                <Card size='small' title={camera.cameraId}>
+                  {/*  {camera.streamLink ? (
                   <VideoBlock src={camera.streamLink} />
                 ) : (
                   <Result title="Stream Camera chưa được cài đặt" />
