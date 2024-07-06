@@ -28,8 +28,21 @@ const findConfigCamera = async (req, res, next) => {
 };
 
 
+const getAll = async (req, res, next) => {
+    try {
+
+        const getAll = await configService.getAll();
+
+        res.status(StatusCodes.CREATED).json(getAll);
+    } catch (error) {
+        next(error);
+    }
+};
+
+
 
 export const configController = {
     updateConfigCamera,
     findConfigCamera,
+    getAll,
 }

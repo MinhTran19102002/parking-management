@@ -76,6 +76,18 @@ const findConfigCamera = async (type) => {
 };
 
 
+const getAll = async () => {
+    try {
+        const result = await GET_DB()
+            .collection(CONFIG_COLLECTION_NAME)
+            .find().toArray();
+        return result;
+    } catch (error) {
+        throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    }
+};
+
+
 
 
 
@@ -84,4 +96,5 @@ export const configModel = {
     CONFIG_COLLECTION_SCHEMA,
     updateConfigCamera,
     findConfigCamera,
+    getAll
 };

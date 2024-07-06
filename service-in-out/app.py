@@ -145,7 +145,9 @@ if __name__ == '__main__':
     # urlarInOutSlot = "rtsp://localhost:8554/CAM_SLOT_001"
     urlCarIn, urlCarOut, urlarInOutSlot = findUrlAll()
     # carIn(urlCarIn, "in")
-
+    print(urlCarIn)
+    print(urlCarOut)
+    print(urlarInOutSlot)
     try: 
         with concurrent.futures.ThreadPoolExecutor() as executor:
             executor.submit(carIn, urlCarIn, "in")
