@@ -65,7 +65,10 @@ const initState = {
     'BQLKTX',
     'TYT',
     'BQLHSDA'
-  ]
+  ],
+  cameraInfor: {
+    aiTypes: ['cameraOut', 'cameraIn', 'cameraSlot']
+  }
 };
 
 export default initState;

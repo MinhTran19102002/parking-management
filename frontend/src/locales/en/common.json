@@ -188,7 +188,8 @@
   "cameraPage": {
     "streamLink": "Stream Link",
     "noSetting": "Not Set",
-    "cameraList": "Camera List"
+    "cameraList": "Camera List",
+    "resetAI": "AI update successful"
   },
   "timePicker": {
     "7": "Last 7 Days",

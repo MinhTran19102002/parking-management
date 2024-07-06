@@ -1,0 +1,18 @@
+{
+    "stream1": {
+        "rtsp_url": "rtsp://admin:becamex%40123@113.161.161.253:557/Streaming/channels/101",
+        "hls_postfix": "/stream/stream1/index.m3u8"
+    },
+    "stream2": {
+        "rtsp_url": "rtsp://192.168.101.52:8554/CAM_SLOT_001",
+        "hls_postfix": "/stream/stream2/index.m3u8"
+    },
+    "CAM_002": {
+        "rtsp_url": "rtsp://192.168.101.52:8554/CAM_002",
+        "hls_postfix": "/stream/CAM_002/index.m3u8"
+    },
+    "CAM_001": {
+        "rtsp_url": "rtsp://192.168.101.52:8554/CAM_001",
+        "hls_postfix": "/stream/CAM_001/index.m3u8"
+    }
+}

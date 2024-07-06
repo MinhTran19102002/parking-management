@@ -8,12 +8,13 @@
       "normal": "Thường"
     },
     "cameraAi": {
-      "title": "Kiểu camera",
+      "title": "Kiểu camera AI",
       "types": {
         "cameraOut": "Nhận diện xe đi ra",
         "cameraIn": "Nhận diện xe đi vào",
         "cameraSlot": "Nhận diện ô đỗ",
-        "undefined": "Không có AI"
+        "undefined": "Không có AI",
+        "resetAI": "Cập nhật AI thành công"
       }
     }
   },

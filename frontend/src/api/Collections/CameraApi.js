@@ -1,6 +1,7 @@
 import { DELETE, GET, POST, PUT } from '../axiosMethods';
 
 const DOMAIN = import.meta.env.VITE_DOMAIN;
+const DOMAIN_AI = import.meta.env.VITE_DOMAIN_AI;
 
 const CameraApi = {
   getByFilter: (payload) => {
@@ -92,8 +93,15 @@ const CameraApi = {
   getAiCamera: (payload) => {
     const url = `${DOMAIN}/config/getAll`;
     return GET({
-      url,
+      url
     });
   },
+
+  resetAi: () => {
+    const url = `${DOMAIN_AI}/service/reset`;
+    return GET({
+      url
+    });
+  }
 };
 export default CameraApi;
