@@ -70,7 +70,6 @@ const updateCamera = async (_id, _data) => {
   delete _data._id;
   console.log(_data)
   let data = await validateBeforCreate(_data);
-  console.log('-------------')
   delete data.cameraId;
   delete data.createdAt;
   data.updatedAt = Date.now();
@@ -278,6 +277,20 @@ const checkCameraId = async (cameraId) => {
     throw new Error(error);
   }
 }
+
+// const checkCameraId = async (cameraId) => {
+//   try {
+//     const valid = await GET_DB().collection(CAMERA_COLLECTION_NAME).findOne({ 'cameraId': cameraId })
+//     if (valid) {
+//       return { valid: false }
+//     }
+//     else {
+//       return { valid: true }
+//     }
+//   } catch (error) {
+//     throw new Error(error);
+//   }
+// }
 
 const updateSlot = async (cameraId, data) => {
   try {

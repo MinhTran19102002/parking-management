@@ -9,6 +9,7 @@ import { stationRoute } from './stationRoute'
 import { cameraRoute } from './cameraRoute'
 import { paymentRoute } from './paymentRoute'
 import { deparmentRoute } from './deparmentRoute'
+import { configRoute } from './configRoute'
 
 const Router = express.Router()
 
@@ -41,5 +42,7 @@ Router.use('/camera', cameraRoute)
 Router.use('/payment', paymentRoute)
 
 Router.use('/deparment', deparmentRoute)
+
+Router.use('/config', configRoute)
 
 export const APIs_V1 = Router

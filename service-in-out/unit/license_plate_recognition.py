@@ -574,3 +574,24 @@ def car_into_slot(img, positon, zone):
     except:
          print("Lỗi: " )
          return cv2.imencode('.jpg', img)[1].tobytes()
+    
+
+
+def findUrl(type):
+    try:
+        url = os.getenv("APP_HOST") + "/config/ConfigCamera"
+        data = {
+                'type': type,
+        }
+        response = requests.get(url, json=data)
+
+        # Kiểm tra kết quả trả về
+        if response.status_code == 201:
+            print('Success:', response.json())
+        else:
+            print('Failed:', response.status_code, response.text)
+        data = response.json()
+        return data.get('camera').get('streamLink')
+    except:
+         print("Lỗi: " )
+         return ''
