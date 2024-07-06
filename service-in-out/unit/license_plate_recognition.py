@@ -580,6 +580,7 @@ def car_into_slot(img, positon, zone):
 def findUrl(type):
     try:
         url = os.getenv("APP_HOST") + "/config/ConfigCamera"
+        print(url)
         data = {
                 'type': type,
         }
