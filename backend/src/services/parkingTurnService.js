@@ -568,6 +568,7 @@ const carInSlot = async (zone, position, licenePlate, datetime) => {
         createdAt: now,
       });
     }
+    console.log("loi o day nefaf ")
     const updateSlot = await parkingTurnModel.updateSlot(zone, position, parkingTurnId, isOut)
 
 
