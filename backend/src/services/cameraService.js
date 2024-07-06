@@ -198,6 +198,49 @@ const updateSlot = async (data) => {
   }
 }
 
+
+const setCameraAI = async (_id, aiType) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const cameraUpdate = await cameraModel.setCameraAI(_id, aiType);
+    if (cameraUpdate == null) {
+
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Camera cập nhật không thành công',
+        'Not Updated',
+        'BR_person_3',
+      );
+    }
+    return cameraUpdate;
+  } catch (error) {
+    // console.log(error)
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+}
+
+
+const findCameraAIByType = async (type) => {
+  // eslint-disable-next-line no-useless-catch
+  try {
+    const findcamera = await cameraModel.findCameraAIByType(type);
+    if (findcamera == null) {
+      throw new ApiError(
+        StatusCodes.NOT_FOUND,
+        'Người lái xe không tồn tại',
+        'Not Found',
+        'BR_person_1_1',
+      );
+    }
+    return findcamera;
+  } catch (error) {
+    if (error.type && error.code)
+      throw new ApiError(error.statusCode, error.message, error.type, error.code);
+    else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
 export const cameraService = {
   createCamera,
   updateCamera,
@@ -209,4 +252,6 @@ export const cameraService = {
   findByFilterUnused,
   updateManyCamera,
   updateSlot,
+  setCameraAI,
+  findCameraAIByType,
 }
