@@ -35,7 +35,7 @@ export default ({
   label = {},
   max,
   isScrollbar,
-  isGroup = falses,
+  isGroup = false,
   columnWidthRatio = false,
   defaultSliderState = { start: 0, end: 0.4 }
 }) => {

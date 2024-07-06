@@ -78,7 +78,7 @@ function NumberStatisChart({ xField = 'dateTime', yField = 'value', seriesField 
     yField,
     data,
     seriesField,
-    isGroup: true,
+    isStack: true,
     unit: {
       x: lag('common:times:hour'),
       y: lag('common:vehicle')

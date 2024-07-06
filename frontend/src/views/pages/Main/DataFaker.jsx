@@ -15,7 +15,7 @@ function DataFaker({}) {
     // }
 
     try {
-      const parkingTurns = await Promise.all(GetParkingsTurn());
+      // const parkingTurns = await Promise.all(GetParkingsTurn());
 
       // const inApi = parkingTurns.map((el) => {
       //   return ParkingApi.importVehicle(el);
@@ -40,7 +40,7 @@ function DataFaker({}) {
     } catch {}
   };
   useEffect(() => {
-    // fake();
+    fake();
   }, []);
   return <div></div>;
 }
