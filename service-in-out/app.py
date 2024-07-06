@@ -143,17 +143,11 @@ if __name__ == '__main__':
     # urlCarOut = "rtsp://localhost:8554/CAM_001"
     # urlCarIn  = "rtsp://localhost:8554/CAM_002"
     # urlarInOutSlot = "rtsp://localhost:8554/CAM_SLOT_001"
-
-
-    urlCarOut = ""
-    urlCarIn  = ""
-    urlarInOutSlot = ""
-    while urlCarIn == "":
-        urlCarIn, urlCarOut, urlarInOutSlot = findUrlAll()
-        print(urlCarIn)
-        print(urlCarOut)
-        print(urlarInOutSlot)
+    urlCarIn, urlCarOut, urlarInOutSlot = findUrlAll()
     # carIn(urlCarIn, "in")
+    print(urlCarIn)
+    print(urlCarOut)
+    print(urlarInOutSlot)
     try: 
         with concurrent.futures.ThreadPoolExecutor() as executor:
             executor.submit(carIn, urlCarIn, "in")
