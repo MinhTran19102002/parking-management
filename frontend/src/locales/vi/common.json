@@ -6,6 +6,15 @@
       "title": "Loại",
       "cam360": "Camera 360",
       "normal": "Thường"
+    },
+    "cameraAi": {
+      "title": "Kiểu camera",
+      "types": {
+        "cameraOut": "Nhận diện xe đi ra",
+        "cameraIn": "Nhận diện xe đi vào",
+        "cameraSlot": "Nhận diện ô đỗ",
+        "undefined": "Không có AI"
+      }
     }
   },
   "entries": "Lượt vào",
@@ -52,6 +61,7 @@
   "type": "Loại",
   "dlRegister": "Hạn đăng ký",
   "unRegister": "Chưa đăng ký",
+  "cancelRegistration": "Hủy đăng ký",
   "extend": "Gia hạn",
   "Car": "Ô tô",
   "car": "Ô tô",
@@ -177,7 +187,8 @@
   },
   "cameraPage": {
     "streamLink": "Luồng stream",
-    "noSetting": "Chưa cài đặt"
+    "noSetting": "Chưa cài đặt",
+    "cameraList": "Danh sách camera"
   },
   "timePicker": {
     "7": "7 ngày gần nhất",

@@ -1,4 +1,4 @@
-import { Button, Form, InputNumber, Space } from 'antd';
+import { Button, DatePicker, Form, InputNumber, Space } from 'antd';
 import Typography from 'antd/es/typography/Typography';
 import React, { useState } from 'react';
 import { FormatNumber, GetAmountFromMonths } from '~/services';
@@ -10,13 +10,16 @@ function PaymentRegister({ licenePlate, hanldeRegister, lag }) {
       onValuesChange={({ months }) => {
         if (months) setAmount(months);
       }}>
+      <Form.Item name={'startDay'} label={lag('common:payment:registerStart')} required>
+        <DatePicker format="L" />
+      </Form.Item>
       <Form.Item name={'months'} label={lag('common:months')} required>
         <InputNumber min={1} max={12} />
       </Form.Item>
       {amount && (
         <Typography.Text>
           {lag('common:amount')}:{' '}
-          {FormatNumber(GetAmountFromMonths(amount), { isEndZeroDecimal: false })} {' '}VND
+          {FormatNumber(GetAmountFromMonths(amount), { isEndZeroDecimal: false })} VND
         </Typography.Text>
       )}
       <Form.Item
