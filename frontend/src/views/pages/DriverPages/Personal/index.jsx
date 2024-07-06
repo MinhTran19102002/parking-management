@@ -46,8 +46,10 @@ function Personal({}) {
 
   const hanldePayment = async (values) => {
     try {
+      const startDay = values.startDay.format('L');
+      delete values.startDay;
       const api = await VehicleApi.registerPayment({
-        startDay: Number(dayjs().format('x')),
+        startDay,
         ...values
       });
       if (api) {
@@ -216,10 +218,10 @@ function Personal({}) {
             dataIndex: 'payment',
             key: 'payment',
             render: (_, item) => {
-              if (item.paymentId) {
-                const { paymentId } = item;
-                const paymentItem = paymentData.find((el) => el._id === paymentId);
-                const { isPay } = paymentItem;
+              const { paymentId } = item;
+              const paymentItem = paymentData.find((el) => el._id === paymentId) || {};
+              const { isPay, _destroy: removed } = paymentItem;
+              if (paymentId && !removed) {
                 return (
                   <Space>
                     <Typography.Text>
