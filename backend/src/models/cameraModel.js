@@ -13,6 +13,7 @@ const CAMENRA_COLLECTION_SCHEMA = Joi.object({
   name: Joi.string().min(1).max(50).trim().strict(),
   image: Joi.string().optional().min(0).max(100).trim().strict().default(''),
   type: Joi.string().valid('normal', 'cam360').required(),
+  aiType: Joi.string().valid('cameraIn', 'cameraOut', 'cameraSlot').optional(),
   zone: Joi.string().optional().min(1).max(10).trim().strict(),
   streamLink: Joi.string().optional().min(1).max(100).trim().strict(),
   slots: Joi.array().items(Joi.string().min(4).max(6).trim().strict()),
@@ -80,6 +81,13 @@ const updateCamera = async (_id, _data) => {
         ...data,
       },
     };
+
+    if(data.aiType){
+      const result1 = await GET_DB()
+      .collection(CAMERA_COLLECTION_NAME)
+      .findOneAndUpdate({ aiType: aiType },{$set: {aiType : ''}}, { returnDocument: 'after' });
+    }
+    
 
     const result = await GET_DB()
       .collection(CAMERA_COLLECTION_NAME)
@@ -324,6 +332,50 @@ const updateSlot = async (cameraId, data) => {
 }
 
 
+const setCameraAI = async (_id, aiType) => {
+  // _data.cameraId = "default"
+  // delete _data._id;
+  // console.log(_data)
+  // let data = await validateBeforCreate(_data);
+  // delete data.cameraId;
+  // delete data.createdAt;
+  // data.updatedAt = Date.now();
+  
+  try {
+
+    if(aiType == 'cameraIn' || aiType == 'cameraOut' || aiType =='cameraSlot'){
+      const result1 = await GET_DB()
+      .collection(CAMERA_COLLECTION_NAME)
+      .findOneAndUpdate({ aiType: aiType },{$set: {aiType : ''}}, { returnDocument: 'after' });
+    }else{
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Khong co loai camera do',
+        'Not Updated',
+        'BR_person_3',
+      );
+    }
+
+    const result = await GET_DB()
+      .collection(CAMERA_COLLECTION_NAME)
+      .findOneAndUpdate({ _id: new ObjectId(_id) },{$set: { aiType: aiType }}, { returnDocument: 'after' });
+    return result;
+  } catch (error) {
+    throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+  }
+};
+
+
+const findCameraAIByType = async (type) => {
+  try {
+    const findZoon = await GET_DB().collection(CAMERA_COLLECTION_NAME).findOne({ aiType: type });
+    return findZoon;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+
 export const cameraModel = {
   CAMERA_COLLECTION_NAME,
   CAMENRA_COLLECTION_SCHEMA,
@@ -335,5 +387,7 @@ export const cameraModel = {
   checkCameraId,
   findByFilterUnused,
   removeCamera,
-  updateSlot
+  updateSlot,
+  setCameraAI,
+  findCameraAIByType,
 };

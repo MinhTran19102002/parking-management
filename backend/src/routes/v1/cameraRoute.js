@@ -40,5 +40,15 @@ Router.route('/updateSlot').put(
   cameraController.updateSlot
 );
 
+Router.route('/setCameraAI').put(
+  // verifyTokenMidleware.verifyTokenAndAdmin,
+  cameraController.setCameraAI
+);
+
+Router.route('/findCameraAIByType').get(
+  // verifyTokenMidleware.verifyTokenAndAdmin,
+  cameraController.findCameraAIByType,
+);
+
 
 export const cameraRoute = Router
