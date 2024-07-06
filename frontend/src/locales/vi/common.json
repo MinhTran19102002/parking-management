@@ -177,7 +177,9 @@
   },
   "cameraPage": {
     "streamLink": "Luồng stream",
-    "noSetting": "Chưa cài đặt"
+    "noSetting": "Chưa cài đặt",
+    "cameraList": "Danh sách camera"
+
   },
   "timePicker": {
     "7": "7 ngày gần nhất",

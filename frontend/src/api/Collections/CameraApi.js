@@ -78,6 +78,15 @@ const CameraApi = {
         ids
       }
     });
+  },
+
+  editAiCamera: (payload) => {
+    // payload = {type, cameraId}
+    const url = `${DOMAIN}/config/ConfigCamera`;
+    return PUT({
+      url,
+      payload
+    });
   }
 };
 export default CameraApi;

@@ -1,19 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import {
-  Card,
-  Row,
-  Table,
-  Typography,
-  Space,
-  Button,
-  Modal,
-  Pagination} from 'antd';
+import { Card, Row, Table, Typography, Space, Button, Modal, Pagination } from 'antd';
 import { Content } from '~/views/layouts';
-import {
-  PlusOutlined,
-  DeleteFilled,
-  ExclamationCircleFilled
-} from '@ant-design/icons';
+import { PlusOutlined, DeleteFilled, ExclamationCircleFilled } from '@ant-design/icons';
 import { CameraApi } from '~/api';
 import { useSearchParams } from 'react-router-dom';
 import AppContext from '~/context';
@@ -53,9 +41,10 @@ function Camera({}) {
     try {
       setLoading(true);
       const api = await CameraApi.getByFilter(params);
-      setData({
-        ...api
-      });
+      const apis = Promise.allSettled([CameraApi.getByFilter(params)]);
+      // setData({
+      //   ...api
+      // });
       isMounted.current = true;
     } catch (error) {
       ErrorService.hanldeError(error, actions.onNoti);
@@ -198,7 +187,7 @@ function Camera({}) {
       <Card
         title={
           <Typography.Title type="primary" level={4} className="mb-0">
-            Danh sách camera:
+            {lag('common:cameraPage:cameraList')}
           </Typography.Title>
         }
         extra={
@@ -209,12 +198,10 @@ function Camera({}) {
                 type="primary"
                 icon={<DeleteFilled />}
                 onClick={onDeleteMany}
-                danger>
-                Xóa
-              </Button>
+                danger></Button>
             )}
             <Button id="btnAdd" type="primary" icon={<PlusOutlined />} onClick={onAdd}>
-              Thêm camera
+              {lag('common:add')}
             </Button>
           </Space>
         }
@@ -223,7 +210,7 @@ function Camera({}) {
           <Row>
             <Space>
               <Typography.Title level={5} className="mb-0">
-                Bộ lọc:
+                {lag('common:filter')}
               </Typography.Title>
             </Space>
           </Row>

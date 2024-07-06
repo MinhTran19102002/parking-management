@@ -177,7 +177,8 @@
   },
   "cameraPage": {
     "streamLink": "Stream Link",
-    "noSetting": "Not Set"
+    "noSetting": "Not Set",
+    "cameraList": "Camera List"
   },
   "timePicker": {
     "7": "Last 7 Days",
