@@ -122,7 +122,7 @@ def findUrlAll():
     return urlCarIn, urlCarOut, urlarInOutSlot
 
 
-@app.route('/service/reset')
+@app.route('/service/reset', methods=['POST'])
 def reset():
     global urlCarOut
     global urlCarIn
