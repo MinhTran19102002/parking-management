@@ -6,6 +6,15 @@
       "title": "Type",
       "cam360": "Camera 360",
       "normal": "Normal"
+    },
+    "cameraAi": {
+      "title": "AI type",
+      "types": {
+        "cameraOut": "Identify outgoing vehicles",
+        "cameraIn": "Identify incoming vehicles",
+        "cameraSlot": "Identify parking spaces",
+        "undefined": "No AI"
+      }
     }
   },
   "entries": "Entries",

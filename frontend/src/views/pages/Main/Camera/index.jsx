@@ -40,8 +40,24 @@ function Camera({}) {
   const callApi = async () => {
     try {
       setLoading(true);
-      const api = await CameraApi.getByFilter(params);
-      const apis = Promise.allSettled([CameraApi.getByFilter(params)]);
+      const apis = await Promise.allSettled([
+        CameraApi.getByFilter(params),
+        CameraApi.getAiCamera()
+      ]);
+      const aiCameras = apis[1].value;
+
+      setData({
+        ...apis[0].value,
+        data: apis[0].value.data.map((camera) => {
+          const { cameraId } = camera;
+          const isAi = aiCameras.find((aiCam) => aiCam.cameraId === cameraId);
+          const aiType = isAi && isAi.type;
+          return {
+            ...camera,
+            aiType
+          };
+        })
+      });
       // setData({
       //   ...api
       // });
@@ -53,6 +69,8 @@ function Camera({}) {
       setSeletedRows([]);
     }
   };
+
+  console.log(data);
 
   useEffect(() => {
     callApi();

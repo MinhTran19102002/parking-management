@@ -87,6 +87,13 @@ const CameraApi = {
       url,
       payload
     });
-  }
+  },
+
+  getAiCamera: (payload) => {
+    const url = `${DOMAIN}/config/getAll`;
+    return GET({
+      url,
+    });
+  },
 };
 export default CameraApi;
