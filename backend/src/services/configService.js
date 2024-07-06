@@ -47,7 +47,28 @@ const findConfigCamera = async (type) => {
         else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
     }
 }
+const getAll = async () => {
+    // eslint-disable-next-line no-useless-catch
+    try {
+        const getAll = await configModel.getAll();
+        if (getAll.length == 0) {
+            throw new ApiError(
+                StatusCodes.INTERNAL_SERVER_ERROR,
+                'Config khong tim thay',
+                'Not Updated',
+                'BR_person_3',
+            );
+        }
+        return getAll;
+    } catch (error) {
+        // console.log(error)
+        if (error.type && error.code)
+            throw new ApiError(error.statusCode, error.message, error.type, error.code);
+        else throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+    }
+}
 export const configService = {
     updateConfigCamera,
     findConfigCamera,
+    getAll
 }
