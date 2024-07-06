@@ -65,9 +65,13 @@ services:
       - "5000:5000"
     expose:
       - 5000
+    environment:
+      APP_HOST: /api
     restart: always
     networks:
       - db
+    depends_on:
+      - backend
 
   media-server:
     image: jrottenberg/ffmpeg:4.4-scratch

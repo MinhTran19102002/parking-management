@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, Response, g, json, send_file
-from unit.license_plate_recognition import select_image1, car_into_parking, car_into_slot, car_Out_parking, select_image
+from unit.license_plate_recognition import select_image1, car_into_parking, car_into_slot, car_Out_parking, select_image, findUrl
 import os
 import numpy as np
 from PIL import Image
@@ -16,7 +16,6 @@ app.config['UPLOAD_FOLDER'] = 'uploads'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 os.environ["KMP_DUPLICATE_LIB_OK"]="TRUE"
 CORS(app)
-running = True
 @app.route('/service')
 def home():
     return render_template('index.html', title = 'Parking Management')
@@ -51,29 +50,31 @@ def image():
     return redirect(url_for('home'))
 
 def carIn(url, flag):
-    # flag = 'in'
-    # global urlCarIn
-    # url = urlCarIn
-    # print('111111111111111')
+    global urlCarIn
     global running
-    webcam = Webcam(url)
+    webcam = Webcam(urlCarIn)
     while running:
         image = next(webcam.get_frame(17))
         image, licenseS = car_into_parking(image, flag)
         # yield b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n--frame\r\n'
+    carIn(url, flag)
 
 def carOut(url, flag):
+    global urlCarOut
+    global urlCarIn
+    global urlarInOutSlot
     global running
-    webcam = Webcam(url)
+    webcam = Webcam(urlCarOut)
     while running:
         # print('22222')
         image = next(webcam.get_frame(17))
         image, licenseS = car_Out_parking(image, flag)
-        # yield b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n--frame\r\n'
+    carOut(url, flag)
 
 def carInOutSlot(url):
+    global urlarInOutSlot
     global running
-    webcam = Webcam(url)
+    webcam = Webcam(urlarInOutSlot)
     position = ['A104', 'A105', 'A106']
     zone = 'A'
     
@@ -81,8 +82,7 @@ def carInOutSlot(url):
         # print('3333')
         image = next(webcam.get_frame(12))
         image = car_into_slot(image, position, zone)
-        # g.global_var = licenseS
-        # yield b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n--frame\r\n'
+    carInOutSlot(urlarInOutSlot)
 
 
 
@@ -115,18 +115,37 @@ def apiCarInOutSlot():
     response.headers['Access-Control-Allow-Origin'] = '*'
     return response
 
+def findUrlAll():
+    urlCarIn = findUrl("cameraIn")
+    urlCarOut = findUrl("cameraOut")
+    urlarInOutSlot = findUrl("cameraSlot")
+    return urlCarIn, urlCarOut, urlarInOutSlot
 
 
+@app.route('/service/reset')
+def reset():
+    global urlCarOut
+    global urlCarIn
+    global urlarInOutSlot
+    global running
+    running = False
+    urlCarIn, urlCarOut, urlarInOutSlot = findUrlAll()
+    running = True
+    return jsonify({'message': 'success'}), 200
 
 
 if __name__ == '__main__':
     global urlCarOut
     global urlCarIn
     global urlarInOutSlot
-    urlCarOut = "rtsp://localhost:8554/CAM_001"
-    urlCarIn  = "rtsp://localhost:8554/CAM_002"
-    urlarInOutSlot = "rtsp://localhost:8554/CAM_SLOT_001"
+    global running
+    running = True
+    # urlCarOut = "rtsp://localhost:8554/CAM_001"
+    # urlCarIn  = "rtsp://localhost:8554/CAM_002"
+    # urlarInOutSlot = "rtsp://localhost:8554/CAM_SLOT_001"
+    urlCarIn, urlCarOut, urlarInOutSlot = findUrlAll()
     # carIn(urlCarIn, "in")
+
     try: 
         with concurrent.futures.ThreadPoolExecutor() as executor:
             executor.submit(carIn, urlCarIn, "in")
@@ -136,6 +155,8 @@ if __name__ == '__main__':
     except KeyboardInterrupt:
         running = False
         print("Stopping the loop.")
+
+
     # app.run(host='0.0.0.0', threaded=True, port = 5000)
     
 
