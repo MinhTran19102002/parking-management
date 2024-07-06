@@ -66,7 +66,7 @@ function Report({}) {
             onChange={onChangeFilter}
           />
         }
-        extra={<Button>{lag('common:dashboard:exportReport')}</Button>}
+        // extra={<Button>{lag('common:dashboard:exportReport')}</Button>}
         layoutKey="Report"
         rowHeight={80}>
         {getTileLayout().map((el, ix) => (

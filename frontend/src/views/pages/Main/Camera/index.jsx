@@ -1,7 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Card, Row, Table, Typography, Space, Button, Modal, Pagination } from 'antd';
 import { Content } from '~/views/layouts';
-import { PlusOutlined, DeleteFilled, ExclamationCircleFilled } from '@ant-design/icons';
+import {
+  PlusOutlined,
+  DeleteFilled,
+  ExclamationCircleFilled,
+  TrophyFilled
+} from '@ant-design/icons';
 import { CameraApi } from '~/api';
 import { useSearchParams } from 'react-router-dom';
 import AppContext from '~/context';
@@ -40,27 +45,10 @@ function Camera({}) {
   const callApi = async () => {
     try {
       setLoading(true);
-      const apis = await Promise.allSettled([
-        CameraApi.getByFilter(params),
-        CameraApi.getAiCamera()
-      ]);
-      const aiCameras = apis[1].value;
-
+      const api = await CameraApi.getByFilter(params);
       setData({
-        ...apis[0].value,
-        data: apis[0].value.data.map((camera) => {
-          const { cameraId } = camera;
-          const isAi = aiCameras.find((aiCam) => aiCam.cameraId === cameraId);
-          const aiType = isAi && isAi.type;
-          return {
-            ...camera,
-            aiType
-          };
-        })
+        ...api
       });
-      // setData({
-      //   ...api
-      // });
       isMounted.current = true;
     } catch (error) {
       ErrorService.hanldeError(error, actions.onNoti);
@@ -69,8 +57,6 @@ function Camera({}) {
       setSeletedRows([]);
     }
   };
-
-  console.log(data);
 
   useEffect(() => {
     callApi();
@@ -112,6 +98,7 @@ function Camera({}) {
         message: lag('common:deleteSuccess'),
         type: 'success'
       });
+      resetAI();
       callApi();
     } catch (error) {
       ErrorService.hanldeError(error, actions.onNoti);
@@ -144,6 +131,7 @@ function Camera({}) {
       const ids = selectedRows.map((e) => e._id);
       const api = await CameraApi.deleteMany(ids);
       setData(api);
+      resetAI();
       actions.onNoti({
         message: lag('common:form:deleteAllSuccess'),
         type: 'success'
@@ -184,6 +172,15 @@ function Camera({}) {
     })
   };
 
+  const resetAI = async () => {
+    try {
+      await CameraApi.resetAi();
+    } catch (error) {
+      ErrorService.hanldeError(error, actions.onNoti);
+    } finally {
+    }
+  };
+
   return (
     <Content className="w-100 py-3">
       <Modal
@@ -200,6 +197,7 @@ function Camera({}) {
           noChangeAccount={formAction.action === 'edit'}
           onNoti={actions.onNoti}
           onMess={actions.onMess}
+          resetAI={resetAI}
         />
       </Modal>
       <Card
@@ -225,13 +223,13 @@ function Camera({}) {
         }
         className="box">
         <Row className="mt-2 mb-4 w-100">
-          <Row>
+          {/* <Row>
             <Space>
               <Typography.Title level={5} className="mb-0">
                 {lag('common:filter')}
               </Typography.Title>
             </Space>
-          </Row>
+          </Row> */}
         </Row>
         <Table
           columns={hanldeColumes({ pageIndex, pageSize, onEdit, onDelete }, lag)}

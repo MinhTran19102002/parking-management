@@ -42,11 +42,12 @@ export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }, lag) =>
     title: lag('common:camera:cameraAi:title'),
     dataIndex: 'aiType',
     key: 'aiType',
-    render: (text) => (
-      <Space>
-        <Typography.Text>{lag('common:camera:cameraAi:types:' + text)}</Typography.Text>
-      </Space>
-    )
+    render: (text) =>
+      text && (
+        <Space>
+          <Typography.Text>{lag('common:camera:cameraAi:types:' + text)}</Typography.Text>
+        </Space>
+      )
   },
   {
     title: lag('common:zone'),

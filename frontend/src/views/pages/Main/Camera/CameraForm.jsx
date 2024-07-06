@@ -19,7 +19,7 @@ const formItemLayout = {
 
 const DEFAULT_PASSWORD = 'Parking@123';
 
-function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
+function CameraForm({ isOpen, onClose, formAction, noChangeAccount, resetAI }) {
   const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
   const { state, actions } = useContext(AppContext);
@@ -53,10 +53,11 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
   const hanldeEdit = async (values) => {
     try {
       setLoading(true);
-      delete values['images'];
-      const api = await CameraApi.edit(formAction.payload._id, { ...values, image: imageFile });
+      delete values['image'];
+      const api = await CameraApi.edit(formAction.payload._id, { ...values });
       if (api) {
         onNoti({ message: lag('common:form:editSuccess'), type: 'success' });
+        resetAI();
       }
       onClose({ reload: true, newValues: api });
     } catch (error) {
@@ -68,14 +69,15 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
 
   const hanldeAdd = async (values) => {
     try {
-      delete values['images'];
+      delete values['image'];
       setLoading(true);
       const api = await CameraApi.add({
-        ...values,
-        image: imageFile
+        ...values
+        // image: imageFile
       });
       if (api) {
         onNoti({ message: lag('common:form:addSuccess'), type: 'success' });
+        resetAI();
       }
       onClose({ reload: true });
     } catch (error) {
@@ -118,7 +120,21 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
           />
         </Form.Item>
 
-        <Form.Item name={'image'} label={lag('common:image')}>
+        <Form.Item
+          name={'aiType'}
+          label={lag('common:camera:cameraAi:title')}
+          rules={[{ message: false }]}>
+          <Select
+            id="cameraTypeAi"
+            placeholder={lag('common:choose')}
+            options={state.cameraInfor.aiTypes.map((type) => {
+              return { value: type, label: lag('common:camera:cameraAi:types:' + type) };
+            })}
+            allowClear
+          />
+        </Form.Item>
+
+        {/* <Form.Item name={'image'} label={lag('common:image')}>
           <Upload
             accept="image/jpeg,image/jpg,image/png,image/webp"
             beforeUpload={(file) => {
@@ -133,7 +149,7 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount }) {
             listType="picture">
             <Button icon={<UploadOutlined />}>Upload</Button>
           </Upload>
-        </Form.Item>
+        </Form.Item> */}
 
         <Form.Item
           wrapperCol={{
