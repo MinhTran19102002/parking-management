@@ -4,6 +4,7 @@ import moment from 'moment';
 import { StatusCodes } from 'http-status-codes'
 import nodemailer from 'nodemailer'
 import { personModel } from "~/models/personModel";
+import { env } from '~/config/environment';
 
 const register = async (data) => {
     const feePerMonth = 500000 // 500 000
@@ -107,7 +108,7 @@ const payment = async (req) => {
         var createDate = moment().clone().format('yyyyMMDDHHmmss')
         var orderId = moment().clone().format('HHmmss');
         var amount = paymentObj.fee;
-        var returnUrl = '/payment-success' //http://localhost:5173/payment-success
+        var returnUrl =env.FE_HOST + '/payment-success' //http://localhost:5173/payment-success
 
         var orderInfo = "Thanh toán phí dữ xe"; // thong tin thanh toan
         var locale = "vn";
