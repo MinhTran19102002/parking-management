@@ -5,6 +5,7 @@ import {
   Descriptions,
   Layout,
   Modal,
+  Popconfirm,
   Row,
   Space,
   Table,
@@ -63,6 +64,17 @@ function Personal({}) {
         paymentId
       });
       window.open(response);
+    } catch (error) {
+      ErrorService.hanldeError(error, actions.onNoti);
+    }
+  };
+
+  const onCancelRegisteration = async (paymentId) => {
+    try {
+      const response = await VehicleApi.cancelRegisteration({
+        paymentId
+      });
+      refetch();
     } catch (error) {
       ErrorService.hanldeError(error, actions.onNoti);
     }
@@ -159,6 +171,8 @@ function Personal({}) {
     }
   ];
 
+  console.log(paymentData);
+
   return (
     <Content className="w-100 py-3">
       <Modal
@@ -222,6 +236,16 @@ function Personal({}) {
                         {lag('common:payment:pay')}
                       </Button>
                     )}
+
+                    <Popconfirm
+                      title={lag('common:popup:sure')}
+                      onConfirm={() => onCancelRegisteration(paymentId)}
+                      okText={lag('common:confirm')}
+                      cancelText={lag('common:cancel')}>
+                      <Button size="small" danger ghost>
+                        {lag('common:cancelRegistration')}
+                      </Button>
+                    </Popconfirm>
                   </Space>
                 );
               }

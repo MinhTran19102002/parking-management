@@ -19,22 +19,29 @@ const VehicleApi = {
     const url = `${DOMAIN}/payment/create_payment`;
     return POST({
       url,
-      payload,
+      payload
     });
   },
   savePayment: (payload) => {
     const url = `${DOMAIN}/payment/save_payment`;
     return POST({
       url,
-      payload,
+      payload
     });
   },
   getPayment: (payload) => {
     const url = `${DOMAIN}/payment/findByFilter`;
     return GET({
       url,
-      payload,
+      payload
     });
   },
+  cancelRegisteration: (payload) => {
+    const url = `${DOMAIN}/payment/cancel`;
+    return POST({
+      url,
+      payload
+    });
+  }
 };
 export default VehicleApi;
