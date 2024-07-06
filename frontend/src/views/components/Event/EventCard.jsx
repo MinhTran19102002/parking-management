@@ -44,7 +44,7 @@ function EventCard({ item }) {
     phone: lag('common:phone')
   };
 
-  let rows = useMemo(() => {
+  const getProps = () => {
     const displays =
       EventDisplay.find((el) => el.eventType === name)?.displayProps ||
       EventDisplay[0].displayProps;
@@ -64,7 +64,8 @@ function EventCard({ item }) {
       };
     });
     return rs;
-  });
+  };
+  let rows = getProps();
 
   let isImage = false;
   if (vehicleEvents.find((el) => el === name)) {
@@ -77,7 +78,8 @@ function EventCard({ item }) {
           {lag('common:undefinedDriver')}
         </Typography.Title>
       ];
-      rows = [];
+      const alwaysData = ['license'];
+      rows = rows.filter((e) => alwaysData.includes(e.id));
     }
   }
 

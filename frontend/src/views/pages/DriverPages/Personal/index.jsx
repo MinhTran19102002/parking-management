@@ -154,7 +154,7 @@ function Personal({}) {
     {
       key: 'department',
       label: lag('common:department'),
-      children: driver.department
+      children: lag('department:' + driver.department)
     },
     {
       key: 'address',
@@ -172,8 +172,6 @@ function Personal({}) {
       children: dayjs(data.updatedAt).format('L LTS')
     }
   ];
-
-  console.log(paymentData);
 
   return (
     <Content className="w-100 py-3">
@@ -217,10 +215,10 @@ function Personal({}) {
             title: lag('common:dlRegister'),
             dataIndex: 'payment',
             key: 'payment',
-            render: (_, item) => {
+            render: (_, item = {}) => {
               const { paymentId } = item;
               const paymentItem = paymentData.find((el) => el._id === paymentId) || {};
-              const { isPay, _destroy: removed } = paymentItem;
+              const { isPay = null, _destroy: removed } = paymentItem;
               if (paymentId && !removed) {
                 return (
                   <Space>
