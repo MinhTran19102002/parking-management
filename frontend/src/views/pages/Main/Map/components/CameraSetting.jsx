@@ -162,7 +162,7 @@ const CameraPointA = ({
   const icon = CameraService.GetIconByIdIcon(iconId);
 
   return (
-    <CameraPoint ref={draggbleRef} style={style}>
+    <CameraPoint ref={draggbleRef} className='camera-point' style={style}>
       <Space.Compact
         direction="vertical"
         style={{ position: 'absolute', transform: 'translate(100%, 0%)', top: 0, right: 0 }}>
