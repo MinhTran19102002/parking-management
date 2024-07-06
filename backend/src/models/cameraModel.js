@@ -54,6 +54,11 @@ const createNew = async (data) => {
         throw new ApiError(StatusCodes.NOT_FOUND, 'Khu vực không được tìm thấy', 'Not Found', 'BR_zone_1');
       }
     }
+    if(data.aiType){
+      const result1 = await GET_DB()
+      .collection(CAMERA_COLLECTION_NAME)
+      .findOneAndUpdate({ aiType: data.aiType },{$set: {aiType : ''}}, { returnDocument: 'after' });
+    }
     const createNew = await GET_DB().collection(CAMERA_COLLECTION_NAME).insertOne(validateData);
     return createNew;
   } catch (error) {
@@ -85,7 +90,7 @@ const updateCamera = async (_id, _data) => {
     if(data.aiType){
       const result1 = await GET_DB()
       .collection(CAMERA_COLLECTION_NAME)
-      .findOneAndUpdate({ aiType: aiType },{$set: {aiType : ''}}, { returnDocument: 'after' });
+      .findOneAndUpdate({ aiType: data.aiType },{$set: {aiType : ''}}, { returnDocument: 'after' });
     }
     
 
