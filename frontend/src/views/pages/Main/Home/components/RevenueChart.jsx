@@ -43,7 +43,7 @@ function NumberStatisChart({ xField = 'dateTime', yField = 'value', seriesField 
           start: start.format('L'),
           end: end.format('L')
         });
-        const xFileds = ChartService.generateRange(start, end, 'h', 'L');
+        const xFileds = ChartService.generateRange(start, end, 'date', 'L');
         let avg = 0;
         const newData = [];
         xFileds.map((dateTime) => {
