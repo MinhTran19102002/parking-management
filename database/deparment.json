@@ -1,0 +1,377 @@
+[{
+  "_id": {
+    "$oid": "6682d9a498b55ba467711b2c"
+  },
+  "id": "KLLCT",
+  "vi": "Khoa Lý luận Chính trị",
+  "en": "Faculty of Political Theory",
+  "createdAt": {
+    "$numberLong": "1719851428593"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a598b55ba467711b2d"
+  },
+  "id": "KDĐT",
+  "vi": "Khoa Điện - Điện tử",
+  "en": "Faculty of Electrical and Electronics Engineering",
+  "createdAt": {
+    "$numberLong": "1719851428594"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a598b55ba467711b2e"
+  },
+  "id": "KCKDL",
+  "vi": "Khoa Cơ khí Động Lực",
+  "en": "Faculty of Automotive Engineering",
+  "createdAt": {
+    "$numberLong": "1719851428595"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a598b55ba467711b2f"
+  },
+  "id": "KKT",
+  "vi": "Khoa Kinh tế",
+  "en": "Faculty of Economics",
+  "createdAt": {
+    "$numberLong": "1719851428595"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a598b55ba467711b30"
+  },
+  "id": "KCNTT",
+  "vi": "Khoa Công nghệ thông tin",
+  "en": "Faculty of Information Technology",
+  "createdAt": {
+    "$numberLong": "1719851428595"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a698b55ba467711b31"
+  },
+  "id": "KITTT",
+  "vi": "Khoa In và Truyền thông",
+  "en": "Faculty of Printing and Media",
+  "createdAt": {
+    "$numberLong": "1719851428595"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a698b55ba467711b32"
+  },
+  "id": "KCKCTM",
+  "vi": "Khoa Cơ khí Chế tạo máy",
+  "en": "Faculty of Mechanical Engineering",
+  "createdAt": {
+    "$numberLong": "1719851428594"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a698b55ba467711b33"
+  },
+  "id": "KKHUD",
+  "vi": "Khoa Khoa học ứng dụng",
+  "en": "Faculty of Applied Sciences",
+  "createdAt": {
+    "$numberLong": "1719851428594"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a698b55ba467711b34"
+  },
+  "id": "KXD",
+  "vi": "Khoa Xây dựng",
+  "en": "Faculty of Civil Engineering",
+  "createdAt": {
+    "$numberLong": "1719851428596"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a698b55ba467711b35"
+  },
+  "id": "KNN",
+  "vi": "Khoa Ngoại ngữ",
+  "en": "Faculty of Foreign Languages",
+  "createdAt": {
+    "$numberLong": "1719851428596"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a698b55ba467711b36"
+  },
+  "id": "KĐTCLC",
+  "vi": "Khoa Đào tạo Chất lượng cao",
+  "en": "Faculty of High-Quality Training",
+  "createdAt": {
+    "$numberLong": "1719851428596"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a698b55ba467711b37"
+  },
+  "id": "VSPKT",
+  "vi": "Viện Sư phạm Kỹ thuật",
+  "en": "Institute of Technical Education",
+  "createdAt": {
+    "$numberLong": "1719851428596"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a698b55ba467711b39"
+  },
+  "id": "PDT",
+  "vi": "Phòng Đào tạo",
+  "en": "Department of Academic Affairs",
+  "createdAt": {
+    "$numberLong": "1719851428596"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a698b55ba467711b38"
+  },
+  "id": "TTHKTTH",
+  "vi": "Trường Trung học Kỹ thuật Thực hành",
+  "en": "Practical Technical High School",
+  "createdAt": {
+    "$numberLong": "1719851428596"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a698b55ba467711b3a"
+  },
+  "id": "PDTKCQ",
+  "vi": "Phòng Đào tạo không chính quy",
+  "en": "Department of Non-Formal Education",
+  "createdAt": {
+    "$numberLong": "1719851428596"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a698b55ba467711b3b"
+  },
+  "id": "PTSVCTS",
+  "vi": "Phòng Tuyển sinh và Công tác Sinh viên",
+  "en": "Department of Admissions and Student Affairs",
+  "createdAt": {
+    "$numberLong": "1719851428596"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a798b55ba467711b3c"
+  },
+  "id": "PTT",
+  "vi": "Phòng Truyền thông",
+  "en": "Department of Communication",
+  "createdAt": {
+    "$numberLong": "1719851428596"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a798b55ba467711b3d"
+  },
+  "id": "PQHDN",
+  "vi": "Phòng Quan hệ Doanh nghiệp",
+  "en": "Department of Corporate Relations",
+  "createdAt": {
+    "$numberLong": "1719851428597"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a798b55ba467711b3e"
+  },
+  "id": "PTTGD",
+  "vi": "Phòng Thanh tra - Giáo dục",
+  "en": "Department of Inspection and Education",
+  "createdAt": {
+    "$numberLong": "1719851428597"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a798b55ba467711b3f"
+  },
+  "id": "PĐBCL",
+  "vi": "Phòng Đảm bảo Chất lượng",
+  "en": "Department of Quality Assurance",
+  "createdAt": {
+    "$numberLong": "1719851428597"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a798b55ba467711b41"
+  },
+  "id": "PKHTC",
+  "vi": "Phòng Kế hoạch - Tài chính",
+  "en": "Department of Planning and Finance",
+  "createdAt": {
+    "$numberLong": "1719851428597"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a798b55ba467711b42"
+  },
+  "id": "KCNMVT",
+  "vi": "Khoa Công nghệ May và Thời Trang",
+  "en": "Faculty of Garment Technology and Fashion",
+  "createdAt": {
+    "$numberLong": "1719851428595"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a798b55ba467711b43"
+  },
+  "id": "KCNHHVTP",
+  "vi": "Khoa Công nghệ Hóa học và Thực phẩm",
+  "en": "Faculty of Chemical and Food Technology",
+  "createdAt": {
+    "$numberLong": "1719851428595"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a798b55ba467711b44"
+  },
+  "id": "PTBVT",
+  "vi": "Phòng Thiết bị - Vật tư",
+  "en": "Department of Equipment and Materials",
+  "createdAt": {
+    "$numberLong": "1719851428597"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a798b55ba467711b46"
+  },
+  "id": "BQLHSDA",
+  "vi": "Bộ phận Quản lý Hồ sơ Dự án",
+  "en": "Project Records Management Department",
+  "createdAt": {
+    "$numberLong": "1719851428597"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a898b55ba467711b47"
+  },
+  "id": "PQTCSVC",
+  "vi": "Phòng Quản trị Cơ sở Vật chất",
+  "en": "Department of Facilities Management",
+  "createdAt": {
+    "$numberLong": "1719851428597"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a898b55ba467711b48"
+  },
+  "id": "BQLKTX",
+  "vi": "Ban quản lý KTX",
+  "en": "Dormitory Management Board",
+  "createdAt": {
+    "$numberLong": "1719851428597"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a798b55ba467711b40"
+  },
+  "id": "PTCHC",
+  "vi": "Phòng Tổ chức - Hành chính",
+  "en": "Department of Organization and Administration",
+  "createdAt": {
+    "$numberLong": "1719851428597"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6682d9a798b55ba467711b45"
+  },
+  "id": "TYT",
+  "vi": "Trạm Y tế",
+  "en": "Medical Station",
+  "createdAt": {
+    "$numberLong": "1719851428597"
+  },
+  "updatedAt": null,
+  "_destroy": false
+}]

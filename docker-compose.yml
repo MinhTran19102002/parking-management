@@ -13,7 +13,7 @@ services:
     container_name: data-importer
     volumes:
       - ./database:/database
-    command: bash -c "sleep 10 && mongoimport --host mongodb --db paking-management --collection event --file /database/event.json --jsonArray && mongoimport --host mongodb --db paking-management --collection parking --file /database/parking.json --jsonArray && mongoimport --host mongodb --db paking-management --collection parkingTurn --file /database/parkingTurn.json --jsonArray && mongoimport --host mongodb --db paking-management --collection persons --file /database/persons.json --jsonArray && mongoimport --host mongodb --db paking-management --collection vehicles --file /database/vehicles.json --jsonArray  && mongoimport --host mongodb --db paking-management --collection station --file /database/station.json --jsonArray && mongoimport --host mongodb --db paking-management --collection camera --file /database/camera.json --jsonArray"
+    command: bash -c "sleep 10 && mongoimport --host mongodb --db paking-management --collection event --file /database/event.json --jsonArray && mongoimport --host mongodb --db paking-management --collection parking --file /database/parking.json --jsonArray && mongoimport --host mongodb --db paking-management --collection parkingTurn --file /database/parkingTurn.json --jsonArray && mongoimport --host mongodb --db paking-management --collection persons --file /database/persons.json --jsonArray && mongoimport --host mongodb --db paking-management --collection vehicles --file /database/vehicles.json --jsonArray  && mongoimport --host mongodb --db paking-management --collection station --file /database/station.json --jsonArray && mongoimport --host mongodb --db paking-management --collection camera --file /database/camera.json --jsonArray && mongoimport --host mongodb --db paking-management --collection config --file /database/config.json --jsonArray && mongoimport --host mongodb --db paking-management --collection deparment --file /database/deparment.json --jsonArray && mongoimport --host mongodb --db paking-management --collection payment --file /database/payment.json --jsonArray"
     depends_on:
       - mongodb
     networks:
@@ -73,39 +73,39 @@ services:
     depends_on:
       - backend
 
-  media-server:
-    image: jrottenberg/ffmpeg:4.4-scratch
-    container_name: ffmpeg
-    command:
-      [
-        "-i",
-        "rtmp://103.130.211.150:10050/stream",
-        "-c:v",
-        "libx264",
-        "-c:a",
-        "aac",
-        "-strict",
-        "-2",
-        "-f",
-        "hls",
-        "-hls_time",
-        "10",
-        "-hls_list_size",
-        "10",
-        "-hls_flags",
-        "delete_segments",
-        "-hls_segment_filename",
-        "/mnt/hls/segment_%01d.ts",
-        "/mnt/hls/index.m3u8"
-      ]
-    volumes:
-      - type: bind
-        source: ./media-server/hls
-        target: /mnt/hls
-    depends_on:
-      - nginx
-    networks:
-      - db
+  # media-server:
+  #   image: jrottenberg/ffmpeg:4.4-scratch
+  #   container_name: ffmpeg
+  #   command:
+  #     [
+  #       "-i",
+  #       "rtmp://103.130.211.150:10050/stream",
+  #       "-c:v",
+  #       "libx264",
+  #       "-c:a",
+  #       "aac",
+  #       "-strict",
+  #       "-2",
+  #       "-f",
+  #       "hls",
+  #       "-hls_time",
+  #       "10",
+  #       "-hls_list_size",
+  #       "10",
+  #       "-hls_flags",
+  #       "delete_segments",
+  #       "-hls_segment_filename",
+  #       "/mnt/hls/segment_%01d.ts",
+  #       "/mnt/hls/index.m3u8"
+  #     ]
+  #   volumes:
+  #     - type: bind
+  #       source: ./media-server/hls
+  #       target: /mnt/hls
+  #   depends_on:
+  #     - nginx
+  #   networks:
+  #     - db
   nginx:
     image: nginx:latest
     container_name: nginx
