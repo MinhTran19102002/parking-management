@@ -7,7 +7,9 @@
   "slots": [
     {
       "position": "B101",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800df92245d833d08e23e"
+      },
       "isBlank": true
     },
     {
@@ -22,7 +24,9 @@
     },
     {
       "position": "B104",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800e092245d833d08e241"
+      },
       "isBlank": true
     },
     {
@@ -39,8 +43,10 @@
     },
     {
       "position": "B201",
-      "parkingTurnId": null,
-      "isBlank": true
+      "parkingTurnId": {
+        "$oid": "66652684f7416cd4d15d5183"
+      },
+      "isBlank": false
     },
     {
       "position": "B202",
@@ -58,7 +64,9 @@
     },
     {
       "position": "B204",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6688010f92245d833d08e25a"
+      },
       "isBlank": true
     },
     {
@@ -68,7 +76,9 @@
     },
     {
       "position": "B206",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6687f3d7d38f7c890fa590c4"
+      },
       "isBlank": true
     },
     {
@@ -80,17 +90,23 @@
     },
     {
       "position": "B302",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800fd92245d833d08e258"
+      },
       "isBlank": true
     },
     {
       "position": "B303",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6619e76056d0659d64b91255"
+      },
       "isBlank": true
     },
     {
       "position": "B304",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800df92245d833d08e240"
+      },
       "isBlank": true
     },
     {
@@ -176,7 +192,9 @@
     },
     {
       "position": "B602",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800e292245d833d08e246"
+      },
       "isBlank": true
     },
     {
@@ -186,7 +204,9 @@
     },
     {
       "position": "B604",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6619e67b0f04fc27d1eee6dd"
+      },
       "isBlank": true
     },
     {
@@ -200,7 +220,7 @@
       "isBlank": true
     }
   ],
-  "occupied": 7,
+  "occupied": 8,
   "total": 36,
   "createdAt": {
     "$numberLong": "1701582639277"
@@ -219,28 +239,30 @@
       "position": "A101",
       "parkingTurnId": null,
       "isBlank": true,
-      "height": 40,
-      "rotate": 90,
-      "width": 200,
-      "x": 3,
-      "y": 32
+      "height": null,
+      "rotate": null,
+      "width": null,
+      "x": null,
+      "y": null
     },
     {
       "position": "A102",
-      "parkingTurnId": null,
-      "isBlank": true
-    },
-    {
-      "position": "A103",
-      "parkingTurnId": null,
-      "isBlank": true
-    },
-    {
-      "position": "A104",
       "parkingTurnId": {
         "$oid": "6648119a00a84e5086a7c4e3"
       },
       "isBlank": false
+    },
+    {
+      "position": "A103",
+      "parkingTurnId": {
+        "$oid": "661970fb2d98fe568030eeea"
+      },
+      "isBlank": false
+    },
+    {
+      "position": "A104",
+      "parkingTurnId": null,
+      "isBlank": true
     },
     {
       "position": "A105",
@@ -249,17 +271,23 @@
     },
     {
       "position": "A106",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800ed92245d833d08e24f"
+      },
       "isBlank": true
     },
     {
       "position": "A107",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6619739b2d98fe568030eeee"
+      },
       "isBlank": true
     },
     {
       "position": "A108",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6688011392245d833d08e262"
+      },
       "isBlank": true
     },
     {
@@ -269,10 +297,8 @@
     },
     {
       "position": "A201",
-      "parkingTurnId": {
-        "$oid": "661970fb2d98fe568030eeea"
-      },
-      "isBlank": false
+      "parkingTurnId": null,
+      "isBlank": true
     },
     {
       "position": "A202",
@@ -301,7 +327,9 @@
     },
     {
       "position": "A301",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6688010f92245d833d08e25b"
+      },
       "isBlank": true
     },
     {
@@ -321,7 +349,9 @@
     },
     {
       "position": "A305",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800e892245d833d08e24a"
+      },
       "isBlank": true
     },
     {
@@ -331,7 +361,9 @@
     },
     {
       "position": "A307",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800f592245d833d08e254"
+      },
       "isBlank": true
     },
     {
@@ -361,7 +393,9 @@
     },
     {
       "position": "A503",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800e992245d833d08e24b"
+      },
       "isBlank": true
     },
     {
@@ -381,17 +415,23 @@
     },
     {
       "position": "A507",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6688011292245d833d08e260"
+      },
       "isBlank": true
     },
     {
       "position": "A508",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800df92245d833d08e23f"
+      },
       "isBlank": true
     },
     {
       "position": "A601",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6619e16baeb7c74d37082903"
+      },
       "isBlank": true
     },
     {
@@ -428,7 +468,9 @@
     },
     {
       "position": "A705",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6688011292245d833d08e261"
+      },
       "isBlank": true
     },
     {
@@ -438,7 +480,9 @@
     },
     {
       "position": "A707",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6687f3d7d38f7c890fa590c4"
+      },
       "isBlank": true
     },
     {
@@ -448,7 +492,9 @@
     },
     {
       "position": "A709",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6688012192245d833d08e269"
+      },
       "isBlank": true
     }
   ],
@@ -474,7 +520,9 @@
     },
     {
       "position": "C102",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6688010f92245d833d08e25c"
+      },
       "isBlank": true
     },
     {
@@ -506,12 +554,16 @@
     },
     {
       "position": "C108",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6619ea04f67a3cf17b75dcf5"
+      },
       "isBlank": true
     },
     {
       "position": "C109",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800fa92245d833d08e256"
+      },
       "isBlank": true
     },
     {
@@ -526,7 +578,9 @@
     },
     {
       "position": "C202",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800d392245d833d08e234"
+      },
       "isBlank": true
     },
     {
@@ -536,12 +590,16 @@
     },
     {
       "position": "C204",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6688011d92245d833d08e267"
+      },
       "isBlank": true
     },
     {
       "position": "C205",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800dd92245d833d08e23c"
+      },
       "isBlank": true
     },
     {
@@ -578,13 +636,17 @@
     },
     {
       "position": "C207",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800d792245d833d08e236"
+      },
       "isBlank": true
     },
     {
       "position": "C208",
-      "parkingTurnId": null,
-      "isBlank": true
+      "parkingTurnId": {
+        "$oid": "668800e892245d833d08e24a"
+      },
+      "isBlank": false
     },
     {
       "position": "C209",
@@ -593,12 +655,16 @@
     },
     {
       "position": "C210",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800ed92245d833d08e24e"
+      },
       "isBlank": true
     },
     {
       "position": "C306",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800f292245d833d08e252"
+      },
       "isBlank": true
     },
     {
@@ -608,7 +674,9 @@
     },
     {
       "position": "C308",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6688012192245d833d08e26a"
+      },
       "isBlank": true
     },
     {
@@ -623,7 +691,9 @@
     },
     {
       "position": "C401",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6688011092245d833d08e25d"
+      },
       "isBlank": true
     },
     {
@@ -640,12 +710,16 @@
     },
     {
       "position": "C404",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800da92245d833d08e239"
+      },
       "isBlank": true
     },
     {
       "position": "C405",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "6688012692245d833d08e26d"
+      },
       "isBlank": true
     },
     {
@@ -655,7 +729,9 @@
     },
     {
       "position": "C407",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "668800e392245d833d08e247"
+      },
       "isBlank": true
     },
     {
@@ -674,11 +750,137 @@
       "isBlank": true
     }
   ],
-  "occupied": 3,
+  "occupied": 5,
   "total": 40,
   "createdAt": {
     "$numberLong": "1701582946092"
   },
   "updatedAt": null,
   "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "666acd10a277b352c6f3e896"
+  },
+  "zone": "O",
+  "description": "Xe chua vao vi tri",
+  "slots": [
+    {
+      "$oid": "66853479e004a1df8f456fa4"
+    },
+    {
+      "$oid": "667e8a4377f45500fdf0b0e7"
+    },
+    {
+      "$oid": "6687f3d7d38f7c890fa590c4"
+    },
+    {
+      "$oid": "668800d792245d833d08e236"
+    },
+    {
+      "$oid": "668800df92245d833d08e23f"
+    },
+    {
+      "$oid": "668800e292245d833d08e246"
+    },
+    {
+      "$oid": "668800df92245d833d08e240"
+    },
+    {
+      "$oid": "668800e092245d833d08e241"
+    },
+    {
+      "$oid": "668800e392245d833d08e247"
+    },
+    {
+      "$oid": "6688012192245d833d08e26a"
+    },
+    {
+      "$oid": "6688012692245d833d08e26d"
+    },
+    {
+      "$oid": "6619e67b0f04fc27d1eee6dd"
+    },
+    {
+      "$oid": "668800e992245d833d08e24b"
+    },
+    {
+      "$oid": "668800e892245d833d08e24a"
+    },
+    {
+      "$oid": "6619e76056d0659d64b91255"
+    },
+    {
+      "$oid": "6619739b2d98fe568030eeee"
+    },
+    {
+      "$oid": "668800ed92245d833d08e24f"
+    },
+    {
+      "$oid": "6688011d92245d833d08e267"
+    },
+    {
+      "$oid": "668800ed92245d833d08e24e"
+    },
+    {
+      "$oid": "6688012192245d833d08e269"
+    },
+    {
+      "$oid": "668800f292245d833d08e252"
+    },
+    {
+      "$oid": "6619e16baeb7c74d37082903"
+    },
+    {
+      "$oid": "668800f592245d833d08e254"
+    },
+    {
+      "$oid": "668800fa92245d833d08e256"
+    },
+    {
+      "$oid": "668800fd92245d833d08e258"
+    },
+    {
+      "$oid": "6688011292245d833d08e260"
+    },
+    {
+      "$oid": "6688010f92245d833d08e25b"
+    },
+    {
+      "$oid": "6688011392245d833d08e262"
+    },
+    {
+      "$oid": "6688011092245d833d08e25d"
+    },
+    {
+      "$oid": "6688011292245d833d08e261"
+    },
+    {
+      "$oid": "6688010f92245d833d08e25c"
+    },
+    {
+      "$oid": "6688010f92245d833d08e25a"
+    },
+    {
+      "$oid": "6619ea04f67a3cf17b75dcf5"
+    },
+    {
+      "$oid": "668800d392245d833d08e234"
+    },
+    {
+      "$oid": "668800da92245d833d08e239"
+    },
+    {
+      "$oid": "668800df92245d833d08e23e"
+    },
+    {
+      "$oid": "668800dd92245d833d08e23c"
+    },
+    {
+      "$oid": "66888830d89d7ea3eb81bd01"
+    },
+    {
+      "$oid": "66888cced89d7ea3eb81bd04"
+    }
+  ]
 }]

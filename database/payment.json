@@ -1,0 +1,36 @@
+[{
+  "_id": {
+    "$oid": "66763dd89d6f0f5b4d2e09e9"
+  },
+  "startDay": {
+    "$numberLong": "1719025112176"
+  },
+  "endDay": {
+    "$numberLong": "1729565912176"
+  },
+  "licenePlate": "18A-12345",
+  "fee": 4000000,
+  "isPay": true,
+  "createdAt": {
+    "$numberLong": "1719025112750"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6687a1b035f4ffe149c08160"
+  },
+  "startDay": {
+    "$numberLong": "1720164783938"
+  },
+  "endDay": {
+    "$numberLong": "1728113583938"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 1500000,
+  "isPay": true,
+  "createdAt": {
+    "$numberLong": "1720164784446"
+  },
+  "_destroy": false
+}]
