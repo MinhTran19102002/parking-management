@@ -40,7 +40,7 @@ function DataFaker({}) {
     } catch {}
   };
   useEffect(() => {
-    fake();
+    // fake();
   }, []);
   return <div></div>;
 }

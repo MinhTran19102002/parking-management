@@ -20,7 +20,7 @@ const inOut = [
 const inOutSlot = [
   {
     key: 'zone',
-    dataIndex: ['parkingTurn', 'zone']
+    dataIndex: ['zone']
   },
   {
     key: 'position',

@@ -5,6 +5,7 @@ import {
   Descriptions,
   Layout,
   Modal,
+  Popconfirm,
   Row,
   Space,
   Table,
@@ -45,8 +46,10 @@ function Personal({}) {
 
   const hanldePayment = async (values) => {
     try {
+      const startDay = values.startDay.format('L');
+      delete values.startDay;
       const api = await VehicleApi.registerPayment({
-        startDay: Number(dayjs().format('x')),
+        startDay,
         ...values
       });
       if (api) {
@@ -63,6 +66,17 @@ function Personal({}) {
         paymentId
       });
       window.open(response);
+    } catch (error) {
+      ErrorService.hanldeError(error, actions.onNoti);
+    }
+  };
+
+  const onCancelRegisteration = async (paymentId) => {
+    try {
+      const response = await VehicleApi.cancelRegisteration({
+        paymentId
+      });
+      refetch();
     } catch (error) {
       ErrorService.hanldeError(error, actions.onNoti);
     }
@@ -159,6 +173,8 @@ function Personal({}) {
     }
   ];
 
+  console.log(paymentData);
+
   return (
     <Content className="w-100 py-3">
       <Modal
@@ -202,10 +218,10 @@ function Personal({}) {
             dataIndex: 'payment',
             key: 'payment',
             render: (_, item) => {
-              if (item.paymentId) {
-                const { paymentId } = item;
-                const paymentItem = paymentData.find((el) => el._id === paymentId);
-                const { isPay } = paymentItem;
+              const { paymentId } = item;
+              const paymentItem = paymentData.find((el) => el._id === paymentId) || {};
+              const { isPay, _destroy: removed } = paymentItem;
+              if (paymentId && !removed) {
                 return (
                   <Space>
                     <Typography.Text>
@@ -222,6 +238,16 @@ function Personal({}) {
                         {lag('common:payment:pay')}
                       </Button>
                     )}
+
+                    <Popconfirm
+                      title={lag('common:popup:sure')}
+                      onConfirm={() => onCancelRegisteration(paymentId)}
+                      okText={lag('common:confirm')}
+                      cancelText={lag('common:cancel')}>
+                      <Button size="small" danger ghost>
+                        {lag('common:cancelRegistration')}
+                      </Button>
+                    </Popconfirm>
                   </Space>
                 );
               }

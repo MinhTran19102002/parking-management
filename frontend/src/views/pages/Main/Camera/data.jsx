@@ -13,30 +13,40 @@ export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }, lag) =>
     width: 60,
     render: (_, prop, index) => (pageIndex - 1) * pageSize + index + 1
   },
-  {
-    title: lag('common:image'),
-    dataIndex: 'images',
-    key: 'images',
-    render: (_, item) => (
-      <Avatar.Group shape="square">
-        <CustomedImage
-          style={{ width: 60, height: 60, objectFit: 'cover', border: '1.6px solid #fff' }}
-          src={`${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/camera/${
-            item.image
-          }`}
-        />
-      </Avatar.Group>
-    )
-  },
+  // {
+  //   title: lag('common:image'),
+  //   dataIndex: 'images',
+  //   key: 'images',
+  //   render: (_, item) => (
+  //     <Avatar.Group shape="square">
+  //       <CustomedImage
+  //         style={{ width: 60, height: 60, objectFit: 'cover', border: '1.6px solid #fff' }}
+  //         src={`${import.meta.env.VITE_DOMAIN}/${import.meta.env.VITE_UPLOADS}/camera/${
+  //           item.image
+  //         }`}
+  //       />
+  //     </Avatar.Group>
+  //   )
+  // },
   {
     title: 'CameraId',
     dataIndex: 'cameraId',
     sorter: (a, b) => a.name - b.name
   },
+  // {
+  //   title: lag('common:type'),
+  //   dataIndex: 'type',
+  //   key: 'type'
+  // },
   {
-    title: lag('common:type'),
-    dataIndex: 'type',
-    key: 'type'
+    title: lag('common:camera:cameraAi:title'),
+    dataIndex: 'aiType',
+    key: 'aiType',
+    render: (text) => (
+      <Space>
+        <Typography.Text>{lag('common:camera:cameraAi:types:' + text)}</Typography.Text>
+      </Space>
+    )
   },
   {
     title: lag('common:zone'),
@@ -73,7 +83,7 @@ export const hanldeColumes = ({ pageIndex, pageSize, onEdit, onDelete }, lag) =>
     title: lag('common:updatedAt'),
     dataIndex: 'updateAt',
     key: 'updateAt',
-    render: (_, item) => dayjs(item.updateAt).format('L')
+    render: (_, item) => dayjs(item.updateAt).format('L LTS')
   },
   {
     title: '',

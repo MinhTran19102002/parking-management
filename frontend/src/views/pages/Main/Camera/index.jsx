@@ -1,19 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import {
-  Card,
-  Row,
-  Table,
-  Typography,
-  Space,
-  Button,
-  Modal,
-  Pagination} from 'antd';
+import { Card, Row, Table, Typography, Space, Button, Modal, Pagination } from 'antd';
 import { Content } from '~/views/layouts';
-import {
-  PlusOutlined,
-  DeleteFilled,
-  ExclamationCircleFilled
-} from '@ant-design/icons';
+import { PlusOutlined, DeleteFilled, ExclamationCircleFilled } from '@ant-design/icons';
 import { CameraApi } from '~/api';
 import { useSearchParams } from 'react-router-dom';
 import AppContext from '~/context';
@@ -52,10 +40,27 @@ function Camera({}) {
   const callApi = async () => {
     try {
       setLoading(true);
-      const api = await CameraApi.getByFilter(params);
+      const apis = await Promise.allSettled([
+        CameraApi.getByFilter(params),
+        CameraApi.getAiCamera()
+      ]);
+      const aiCameras = apis[1].value;
+
       setData({
-        ...api
+        ...apis[0].value,
+        data: apis[0].value.data.map((camera) => {
+          const { cameraId } = camera;
+          const isAi = aiCameras.find((aiCam) => aiCam.cameraId === cameraId);
+          const aiType = isAi && isAi.type;
+          return {
+            ...camera,
+            aiType
+          };
+        })
       });
+      // setData({
+      //   ...api
+      // });
       isMounted.current = true;
     } catch (error) {
       ErrorService.hanldeError(error, actions.onNoti);
@@ -64,6 +69,8 @@ function Camera({}) {
       setSeletedRows([]);
     }
   };
+
+  console.log(data);
 
   useEffect(() => {
     callApi();
@@ -198,7 +205,7 @@ function Camera({}) {
       <Card
         title={
           <Typography.Title type="primary" level={4} className="mb-0">
-            Danh sách camera:
+            {lag('common:cameraPage:cameraList')}
           </Typography.Title>
         }
         extra={
@@ -209,12 +216,10 @@ function Camera({}) {
                 type="primary"
                 icon={<DeleteFilled />}
                 onClick={onDeleteMany}
-                danger>
-                Xóa
-              </Button>
+                danger></Button>
             )}
             <Button id="btnAdd" type="primary" icon={<PlusOutlined />} onClick={onAdd}>
-              Thêm camera
+              {lag('common:add')}
             </Button>
           </Space>
         }
@@ -223,7 +228,7 @@ function Camera({}) {
           <Row>
             <Space>
               <Typography.Title level={5} className="mb-0">
-                Bộ lọc:
+                {lag('common:filter')}
               </Typography.Title>
             </Space>
           </Row>
