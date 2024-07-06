@@ -2,20 +2,20 @@
   "_id": {
     "$oid": "6688765ab4c945df24b7b2d9"
   },
-  "cameraId": "CAM_1234222",
+  "cameraId": "CAM_002",
   "type": "cameraIn"
 },
 {
   "_id": {
     "$oid": "6688778fb4c945df24b7b2dc"
   },
-  "cameraId": "Cam_outParking",
+  "cameraId": "CAM_001",
   "type": "cameraOut"
 },
 {
   "_id": {
     "$oid": "66887a17b4c945df24b7b2dd"
   },
-  "cameraId": "Cam_inoutSlot",
+  "cameraId": "CAM_SLOT_001",
   "type": "cameraSlot"
 }]

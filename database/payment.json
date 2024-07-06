@@ -14,7 +14,7 @@
   "createdAt": {
     "$numberLong": "1719025112750"
   },
-  "_destroy": false
+  "_destroy": true
 },
 {
   "_id": {
@@ -33,4 +33,76 @@
     "$numberLong": "1720164784446"
   },
   "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6688a7ac29ddc877e7c16cce"
+  },
+  "startDay": {
+    "$numberLong": "1707238800000"
+  },
+  "endDay": {
+    "$numberLong": "1715014800000"
+  },
+  "licenePlate": "18A-12345",
+  "fee": 1500000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720231852124"
+  },
+  "_destroy": true
+},
+{
+  "_id": {
+    "$oid": "6688b7bb59763c81995f04d6"
+  },
+  "startDay": {
+    "$numberLong": "1704560400000"
+  },
+  "endDay": {
+    "$numberLong": "1715014800000"
+  },
+  "licenePlate": "18A-12345",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720235963340"
+  },
+  "_destroy": true
+},
+{
+  "_id": {
+    "$oid": "6688b7df59763c81995f04d7"
+  },
+  "startDay": {
+    "$numberLong": "1709744400000"
+  },
+  "endDay": {
+    "$numberLong": "1712422800000"
+  },
+  "licenePlate": "18A-12345",
+  "fee": 500000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720235999487"
+  },
+  "_destroy": true
+},
+{
+  "_id": {
+    "$oid": "6688c02259763c81995f0523"
+  },
+  "startDay": {
+    "$numberLong": "1717693200000"
+  },
+  "endDay": {
+    "$numberLong": "1725642000000"
+  },
+  "licenePlate": "18A-12345",
+  "fee": 1500000,
+  "isPay": true,
+  "createdAt": {
+    "$numberLong": "1720238114006"
+  },
+  "_destroy": true
 }]

@@ -1,0 +1,84 @@
+[{
+  "_id": {
+    "$oid": "66100a2d74c255251ec6ff77"
+  },
+  "stationName": "StationA101",
+  "zoneId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "createdAt": {
+    "$numberLong": "1712327213585"
+  },
+  "_destroy": false,
+  "slotNumber ": 2
+},
+{
+  "_id": {
+    "$oid": "66100a6074c255251ec6ff78"
+  },
+  "stationName": "StationA102",
+  "zoneId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "createdAt": {
+    "$numberLong": "1712327264701"
+  },
+  "_destroy": false,
+  "slotNumber ": 1
+},
+{
+  "_id": {
+    "$oid": "66101bfecc4630aa10f23e21"
+  },
+  "stationName": "StationB101",
+  "zoneId": {
+    "$oid": "656c172fb24fa21202c800af"
+  },
+  "slotNumber": 1,
+  "createdAt": {
+    "$numberLong": "1712331774354"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66101c0ccc4630aa10f23e22"
+  },
+  "stationName": "StationB102",
+  "zoneId": {
+    "$oid": "656c172fb24fa21202c800af"
+  },
+  "slotNumber": 2,
+  "createdAt": {
+    "$numberLong": "1712331788666"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66101c17cc4630aa10f23e23"
+  },
+  "stationName": "StationC101",
+  "zoneId": {
+    "$oid": "656c1862b24fa21202c800b1"
+  },
+  "slotNumber": 2,
+  "createdAt": {
+    "$numberLong": "1712331799217"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66101c1acc4630aa10f23e24"
+  },
+  "stationName": "StationC102",
+  "zoneId": {
+    "$oid": "656c1862b24fa21202c800b1"
+  },
+  "slotNumber": 2,
+  "createdAt": {
+    "$numberLong": "1712331802888"
+  },
+  "_destroy": false
+}]
