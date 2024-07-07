@@ -67,7 +67,7 @@ services:
     expose:
       - 5000
     environment:
-      APP_HOST: /api
+      APP_HOST: https://park.workon.space/api
     restart: always
     networks:
       - db
