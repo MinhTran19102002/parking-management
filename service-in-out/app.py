@@ -52,7 +52,9 @@ def image():
 def carIn(url, flag):
     print('11')
     global urlCarIn
+    print(urlCarIn)
     global running
+    print(running)
     webcam = Webcam(urlCarIn)
     print('22')
     while running:
@@ -155,7 +157,9 @@ if __name__ == '__main__':
         print(urlCarIn)
         print(urlCarOut)
         print(urlarInOutSlot)
-    urlCarOut = "rtsp://localhost:8554/CAM_001"
+    urlCarOut = "rtsp://localhost:8554/CAM_0011"
+    urlCarIn  = "rtsp://localhost:8554/CAM_0021"
+    urlarInOutSlot = "rtsp://localhost:8554/CAM_SLOT_0011"
     # carIn(urlCarIn, "in")
     try: 
         with concurrent.futures.ThreadPoolExecutor() as executor:
