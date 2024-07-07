@@ -76,7 +76,7 @@ function EventBlock({}) {
     <div>
       <Row justify="space-between" className="pe-4">
         <Typography.Title level={4}>{lag('common:events')}</Typography.Title>
-        <Popconfirm
+        {/* <Popconfirm
           title={lag('common:popup:sure')}
           onConfirm={onExport}
           okText={lag('common:confirm')}
@@ -84,7 +84,7 @@ function EventBlock({}) {
           <Button icon={<FileExcelOutlined />} size="large">
             {lag('common:dashboard:exportReport')}
           </Button>
-        </Popconfirm>
+        </Popconfirm> */}
       </Row>
       <div
         id="scrollableDiv"

@@ -17,6 +17,9 @@ from contextlib import asynccontextmanager
 from fastapi.templating import Jinja2Templates
 
 
+api_tag = os.getenv("API_TAG", "/hls")
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
 
@@ -39,7 +42,7 @@ app.add_middleware(
 )
 
 
-@app.get("/", include_in_schema=False)
+@app.get(api_tag + "/", include_in_schema=False)
 async def index():
     """
     This endpoint redirects the root URL to the API documentation page.
@@ -51,13 +54,13 @@ async def index():
     return RedirectResponse(url="/docs")
 
 
-@app.get("/stream/{id}/{fileName}", include_in_schema=False)
+@app.get(api_tag + "/stream/{id}/{fileName}", include_in_schema=False)
 async def video(response: Response, id: str, fileName: str):
     response.headers["Content-Type"] = "application/x-mpegURL"
     return FileResponse("stream/" + id + "/" + fileName, filename=fileName)
 
 
-@app.get("/streams")
+@app.get(api_tag + "/streams")
 async def get_streams():
     """
     This endpoint returns a list of active streams.
@@ -72,7 +75,7 @@ async def get_streams():
 templates = Jinja2Templates(directory="templates")
 
 
-@app.get("/live/{id}")
+@app.get(api_tag + "/live/{id}")
 async def get_live_stream(request: Request, id: str):
     """
     This endpoint returns the live stream URL of a given stream.
@@ -93,7 +96,7 @@ async def get_live_stream(request: Request, id: str):
     )
 
 
-@app.post("/stream/add/")
+@app.post(api_tag + "/stream/add/")
 async def add_stream(stream: dict):
     """
     This endpoint adds a new stream to the list of active streams.
@@ -125,7 +128,7 @@ async def add_stream(stream: dict):
         )
 
 
-@app.post("/stream/remove/{id}")
+@app.post(api_tag + "/stream/remove/{id}")
 async def remove_stream(id: str):
     """
     This endpoint removes a stream from the list of active streams.
