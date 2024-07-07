@@ -50,13 +50,15 @@ def image():
     return redirect(url_for('home'))
 
 def carIn(url, flag):
+    print('11')
     global urlCarIn
     global running
     webcam = Webcam(urlCarIn)
+    print('22')
     while running:
+        print('33')
         image = next(webcam.get_frame(17))
         image, licenseS = car_into_parking(image, flag)
-        # yield b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n--frame\r\n'
     carIn(url, flag)
 
 def carOut(url, flag):
@@ -153,6 +155,7 @@ if __name__ == '__main__':
         print(urlCarIn)
         print(urlCarOut)
         print(urlarInOutSlot)
+    urlCarOut = "rtsp://localhost:8554/CAM_001"
     # carIn(urlCarIn, "in")
     try: 
         with concurrent.futures.ThreadPoolExecutor() as executor:
