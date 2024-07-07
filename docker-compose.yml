@@ -74,66 +74,22 @@ services:
     depends_on:
       - backend
 
-  # media-server:
-  #   image: jrottenberg/ffmpeg:4.4-scratch
-  #   container_name: ffmpeg
-  #   command:
-  #     [
-  #       "-i",
-  #       "rtmp://103.130.211.150:10050/stream",
-  #       "-c:v",
-  #       "libx264",
-  #       "-c:a",
-  #       "aac",
-  #       "-strict",
-  #       "-2",
-  #       "-f",
-  #       "hls",
-  #       "-hls_time",
-  #       "10",
-  #       "-hls_list_size",
-  #       "10",
-  #       "-hls_flags",
-  #       "delete_segments",
-  #       "-hls_segment_filename",
-  #       "/mnt/hls/segment_%01d.ts",
-  #       "/mnt/hls/index.m3u8"
-  #     ]
-  #   volumes:
-  #     - type: bind
-  #       source: ./media-server/hls
-  #       target: /mnt/hls
-  #   depends_on:
-  #     - nginx
-  #   networks:
-  #     - db
-  # nginx:
-  #   image: nginx:latest
-  #   container_name: nginx
-  #   ports:
-  #     - "88:88"
-  #   volumes:
-  #     - ./media-server/nginx.conf:/etc/nginx/nginx.conf
-  #     - ./media-server/hls:/usr/share/nginx/html/hls
-  #   networks:
-  #     - db
-
   hls-stream:
-    command: [ "python", "./hls-server/src/hls-stream/api.py" ]
+    command: [ "python", "src/hls-stream/api.py" ]
     image: hls-stream:v0.1.0
     build:
-      context: .
-      dockerfile: hls-stream/Dockerfile
+      context: ./hls-server/deployment/hls-stream
+      dockerfile: Dockerfile
     container_name: hls-stream
-    working_dir: /app
+    working_dir: /app3
     env_file:
-      - ./hls-server/env
+      - ./hls-server/.env
     restart: unless-stopped
     volumes:
-      - ./hls-server/src/hls-stream:/app/src/hls-stream/
-      - ./hls-server/metadata:/app/metadata/
-      - ./hls-server/stream:/app/stream/
-      - ./hls-server/templates:/app/templates/
+      - ./hls-server/src/hls-stream:/app3/src/hls-stream/
+      - ./hls-server/metadata:/app3/metadata/
+      - ./hls-server/stream:/app3/stream/
+      - ./hls-server/templates:/app3/templates/
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
 
