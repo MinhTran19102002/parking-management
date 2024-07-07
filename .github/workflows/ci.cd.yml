@@ -1,0 +1,45 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Build and push backend service
+        uses: docker/build-push-action@v4
+        with:
+          context: ./backend
+          tags: username/backend:latest
+
+      - name: Build and push frontend service
+        uses: docker/build-push-action@v4
+        with:
+          context: ./frontend
+          tags: username/frontend:latest
+
+      - name: Build and push AI service
+        uses: docker/build-push-action@v4
+        with:
+          context: ./ai-service
+          tags: username/ai-service:latest
+
+      - name: Deploy with Docker Compose
+        run: |
+          docker-compose -f docker-compose.yml up -d
