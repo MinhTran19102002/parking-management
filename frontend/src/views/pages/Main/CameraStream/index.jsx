@@ -37,7 +37,7 @@ function CameraStream({}) {
       <Row className="w-100" gutter={[8, 8]}>
         {cameras.map((camera = {}, index) => {
           const { streamLink, cameraId } = camera;
-          const link = `${HLS_DOMAIN}/${cameraId}/index.m3u8`;
+          const link = `${HLS_DOMAIN}/stream/${cameraId}/index.m3u8`;
           return (
             streamLink && (
               <Col key={camera.cameraId} {...colProps}>

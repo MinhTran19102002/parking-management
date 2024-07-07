@@ -51,6 +51,17 @@ async def index():
 
         RedirectResponse: A redirection to the API documentation page.
     """
+    return RedirectResponse(url="/docs")\
+        
+@app.get(api_tag + "/docs", include_in_schema=False)
+async def index():
+    """
+    This endpoint redirects the root URL to the API documentation page.
+
+    Returns:
+
+        RedirectResponse: A redirection to the API documentation page.
+    """
     return RedirectResponse(url="/docs")
 
 
@@ -96,7 +107,7 @@ async def get_live_stream(request: Request, id: str):
     )
 
 
-@app.post(api_tag + "/stream/add/")
+@app.post(api_tag + "/stream/add")
 async def add_stream(stream: dict):
     """
     This endpoint adds a new stream to the list of active streams.
