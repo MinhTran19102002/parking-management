@@ -74,13 +74,13 @@ services:
     depends_on:
       - backend
 
-  hls-stream:
+  hls_stream:
     command: [ "python", "src/hls-stream/api.py" ]
     image: hls-stream:v0.1.0
     build:
       context: ./hls-server/deployment/hls-stream
       dockerfile: Dockerfile
-    container_name: hls-stream
+    container_name: hls_stream
     working_dir: /app3
     env_file:
       - ./hls-server/.env
