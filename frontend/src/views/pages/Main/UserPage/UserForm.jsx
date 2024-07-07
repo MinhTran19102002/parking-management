@@ -135,7 +135,7 @@ function UserForm({ isOpen, onClose, formAction, noChangeAccount, role = 'Manage
         </Form.Item>
         <Form.Item
           name={'user'}
-          label={lag('common:addAccount')}
+          label={lag('common:form:addAccount')}
           validateDebounce={1000}
           rules={[{ required: true, message: false }]}>
           <Input placeholder="example" id="usernameinput" disabled={noChangeAccount} />
