@@ -101,6 +101,8 @@ services:
       options:
         max-size: "50m"
     tty: true
+    networks:
+      - db
 
 networks:
   db:
