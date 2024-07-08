@@ -200,7 +200,8 @@
   "popup": {
     "sure": "Bạn chắc chưa ?",
     "dc": "Các nội dung được chọn sẽ bị mất vĩnh viễn",
-    "aggree": "Đồng ý"
+    "aggree": "Đồng ý",
+    "pointSetting": "Hiển thị giá trị"
   },
   "statusList": {
     "vehicle": {
