@@ -9,42 +9,25 @@ on:
       - main
 
 jobs:
-  build:
+  backend:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+
+    strategy:
+      matrix:
+        node-version: [18.x]
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-
-      # - name: Build and push backend service
-      #   uses: docker/build-push-action@v4
-      #   with:
-      #     context: ./backend
-      #     tags: username/backend:latest
-
-      # - name: Build and push frontend service
-      #   uses: docker/build-push-action@v4
-      #   with:
-      #     context: ./frontend
-      #     tags: username/frontend:latest
-
-      # - name: Build and push AI service
-      #   uses: docker/build-push-action@v4
-      #   with:
-      #     context: ./hls-server
-      #     tags: username/hls-server:latest
-
-      # - name: Build and push AI service
-      #   uses: docker/build-push-action@v4
-      #   with:
-      #     context: ./service-in-out
-      #     tags: username/service-in-out:latest
+        uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Unit test Backend
+        run: yarn test
 
       - name: Deploy with Docker Compose
         run: |
