@@ -9,7 +9,8 @@ import moment from 'moment';
 import { required } from 'joi';
 
 const ExcelJS = require('exceljs');
-// import XLSXChart from 'xlsx-chart';
+import XLSXChart from 'xlsx-chart';
+const XLSX = require('xlsx');
 
 // import { writeXLSX } from 'xlsx';
 
@@ -530,7 +531,7 @@ const carInSlot = async (zone, position, licenePlate, datetime) => {
       );
     }
 
-    
+
     if (parkingHollow.slots.length == 1 && licenePlate == '') {
       parkingTurnId = parkingHollow.slots[0]
       const updateCarHollow = await parkingTurnModel.carOutHollow('O', parkingTurnId)
@@ -562,7 +563,7 @@ const carInSlot = async (zone, position, licenePlate, datetime) => {
         createdAt: now,
       });
     }
-    if (parkingTurnLicene.length  >0 && parkingHollow.slots.length >= 1) {
+    if (parkingTurnLicene.length > 0 && parkingHollow.slots.length >= 1) {
       parkingTurnId = parkingTurnLicene[0]._id
       const updateCarHollow = await parkingTurnModel.carOutHollow('O', parkingTurnId)
       if (updateCarHollow.momodifiedCountdi == 0) {
@@ -637,13 +638,12 @@ const carOutSlot = async (zone, position, datetime) => {
 }
 
 
-const carOutSlotByLicenePlate= async (licenePlate, datetime) => {
+const carOutSlotByLicenePlate = async (licenePlate, datetime) => {
   try {
     let parkingTurn = null
     let parkingTurnLicene = await parkingTurnModel.findOneByLicenePlate(licenePlate)
-    if (parkingTurnLicene != [])
-    {
-      parkingTurn =parkingTurnLicene[0]
+    if (parkingTurnLicene != []) {
+      parkingTurn = parkingTurnLicene[0]
     }
     const isOut = true
     const parking = await parkingModel.findOneById(parkingTurn.parkingId)
@@ -982,35 +982,138 @@ const exportReport = async (req, res) => {
   }
   try {
 
-    const data = await parkingTurnModel.visistorRate(start, end);
+    const datavisistorRate = await parkingTurnModel.visistorRate(start, end);
     var xlsxChart = new XLSXChart();
-    let opts = {
-      chart: "pie",
-      titles: [
-        "Title 1",
-      ],
-      fields: [
-        "visitor",
-        "driver"
-      ],
-      data: {
-        "Title 1": {
-          "visitor": 5,
-          "driver": 10,
-        },
-      },
-      chartTitle: "Title 1"
-    }
 
+    let fieldsdatavisistorRate = []
+    let transformedDatadatavisistorRate = {};
+    datavisistorRate.forEach(item => {
+      fieldsdatavisistorRate.push(item.type)
+      transformedDatadatavisistorRate[item.type] = item.value;
+    });
+
+
+    const datainoutByTime = await parkingTurnModel.inoutByTime(start, end)
+
+    let fieldsdatainoutByTime = []
+    let transformedDatadatainoutByTime = {};
+    datainoutByTime.forEach(item => {
+      fieldsdatainoutByTime.push(item.date)
+      transformedDatadatainoutByTime[item.date] = item.count;
+    });
+
+    const inoutByJob = await parkingTurnModel.inoutByJob(start, end)
+    let fieldsdatainoutByJob = []
+    let transformedDatainoutByJob = {};
+    inoutByJob.forEach(item => {
+      fieldsdatainoutByJob.push(item.job)
+      transformedDatainoutByJob[item.job] = item.value;
+    });
+
+
+    const inoutByDepa = await parkingTurnModel.inoutByDepa(start, end)
+    let fieldsdatainoutByDepa = []
+    let transformedDatainoutByDepa = {};
+    inoutByDepa.forEach(item => {
+      fieldsdatainoutByDepa.push(item.department)
+      transformedDatainoutByDepa[item.department] = item.value;
+    });
+
+
+    let data = [
+      { "type": "driver", "value": 49 },
+      { "type": "visitor", "value": 32 }
+    ];
+
+    // Chuyển đổi dữ liệu thành định dạng bảng cho Excel
+    let worksheetData = [["Type", "Value"]];
+    data.forEach(item => {
+      worksheetData.push([item.type, item.value]);
+    });
+
+    // Tạo workbook và worksheet cho dữ liệu
+    let wb = XLSX.utils.book_new();
+    let ws = XLSX.utils.aoa_to_sheet(worksheetData);
+
+    // Thêm worksheet dữ liệu vào workbook
+    XLSX.utils.book_append_sheet(wb, ws, 'Data1');
+
+
+    let opts = {
+      charts: [{
+        chart: "column",
+        titles: [
+          "Số lượng",
+        ],
+        fields: fieldsdatavisistorRate,
+        data: {
+          "Số lượng": transformedDatadatavisistorRate,
+        },
+        chartTitle: "Biểu đồ khách lãn vai"
+      },
+      {
+        chart: "column",
+        titles: [
+          "Số lượng",
+        ],
+        fields: fieldsdatainoutByTime,
+        data: {
+          "Số lượng": transformedDatadatainoutByTime
+        },
+        chartTitle: "Biểu đồ thống kê ra vào"
+      },
+      {
+        chart: "column",
+        titles: [
+          "Số lượng",
+        ],
+        fields: fieldsdatainoutByJob,
+        data: {
+          "Số lượng": transformedDatainoutByJob,
+        },
+        chartTitle: "Biểu đồ khách theo công việc"
+      },
+      {
+        chart: "column",
+        titles: [
+          "Số lượng",
+        ],
+        fields: fieldsdatainoutByDepa,
+        data: {
+          "Số lượng": transformedDatainoutByDepa,
+        },
+        chartTitle: "Biểu đồ khách theo phòng ban"
+      }
+      ]
+    };
 
     xlsxChart.generate(opts, function (err, data) {
+      console.log(data)
+      let tempWb = XLSX.read(data, { type: 'buffer' });
+
+      // Tạo buffer từ workbook
+      let excelBuffer = XLSX.write(tempWb, { bookType: 'xlsx', type: 'buffer' });
+      console.log(excelBuffer)
+      // Trả về tệp Excel dưới dạng tải xuống
       res.set({
-        "Content-Type": "application/vnd.ms-excel",
+        "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         "Content-Disposition": "attachment; filename=chart.xlsx",
-        "Content-Length": data.length
+        "Content-Length": excelBuffer.length
       });
-      res.status(200).send(data);
+
+      res.send(excelBuffer);
     });
+
+
+
+    // xlsxChart.generate(opts, function (err, data) {
+    //   res.set({
+    //     "Content-Type": "application/vnd.ms-excel",
+    //     "Content-Disposition": "attachment; filename=chart.xlsx",
+    //     "Content-Length": data.length
+    //   });
+    //   res.status(200).send(data);
+    // });
   } catch (error) {
     if (error.type && error.code)
       throw new ApiError(error.statusCode, error.message, error.type, error.code);

@@ -175,14 +175,14 @@ if __name__ == '__main__':
         print(urlCarIn)
         print(urlCarOut)
         print(urlarInOutSlot)
-    # urlCarOut = "rtsp://103.130.211.150:10050/CAM_001"
-    # urlCarIn  = "rtsp://103.130.211.150:10050/CAM_002"
-    # urlarInOutSlot = "rtsp://103.130.211.150:10050/CAM_SLOT_001"
+    urlCarOut = "rtsp://103.130.211.150:10050/CAM_001"
+    urlCarIn  = "rtsp://103.130.211.150:10050/CAM_002"
+    urlarInOutSlot = "rtsp://103.130.211.150:10050/CAM_SLOT_001"
 
 
-    urlCarOut = "rtsp://localhost:8554/CAM_001"
-    urlCarIn  = "rtsp://localhost:8554/CAM_002"
-    urlarInOutSlot = "rtsp://localhost:8554/CAM_SLOT_001"
+    # urlCarOut = "rtsp://localhost:8554/CAM_001"
+    # urlCarIn  = "rtsp://localhost:8554/CAM_002"
+    # urlarInOutSlot = "rtsp://localhost:8554/CAM_SLOT_001"
     try: 
         with concurrent.futures.ThreadPoolExecutor() as executor:
             executor.submit(carIn, urlCarIn, "in")
