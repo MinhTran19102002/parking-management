@@ -62,7 +62,7 @@ def carIn(url, flag):
     test =True
     webcam = Webcam(urlCarIn)
     while running:
-        if test == False:
+        if webcam == None:
             continue  
         image = next(webcam.get_frame(17))
         image, licenseS = car_into_parking(image, flag)
@@ -80,8 +80,8 @@ def carOut(url, flag):
     # else:
     #     test =False
     while running:
-        if test == False:
-            continue  
+        if webcam == None:
+            continue 
         image = next(webcam.get_frame(17))
         image, licenseS = car_Out_parking(image, flag)
     carOut(urlCarOut, flag)
@@ -99,7 +99,8 @@ def carInOutSlot(url):
     zone = 'A'
     
     while running:
-        if test == False:
+        if webcam == None:
+
             continue  
         image = next(webcam.get_frame(12))
         image = car_into_slot(image, position, zone)
@@ -174,10 +175,14 @@ if __name__ == '__main__':
         print(urlCarIn)
         print(urlCarOut)
         print(urlarInOutSlot)
-    # urlCarOut = "rtsp://0.0.0.0:8554/CAM_0011"
-    # urlCarIn  = "rtsp://0.0.0.0:8554/CAM_0021"
-    # urlarInOutSlot = "rtsp://0.0.0.0:8554/CAM_SLOT_0011"
-    # carIn(urlCarIn, "in")
+    # urlCarOut = "rtsp://103.130.211.150:10050/CAM_001"
+    # urlCarIn  = "rtsp://103.130.211.150:10050/CAM_002"
+    # urlarInOutSlot = "rtsp://103.130.211.150:10050/CAM_SLOT_001"
+
+
+    urlCarOut = "rtsp://localhost:8554/CAM_001"
+    urlCarIn  = "rtsp://localhost:8554/CAM_002"
+    urlarInOutSlot = "rtsp://localhost:8554/CAM_SLOT_001"
     try: 
         with concurrent.futures.ThreadPoolExecutor() as executor:
             executor.submit(carIn, urlCarIn, "in")

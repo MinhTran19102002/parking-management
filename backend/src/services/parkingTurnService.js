@@ -532,7 +532,6 @@ const carInSlot = async (zone, position, licenePlate, datetime) => {
 
     
     if (parkingHollow.slots.length == 1 && licenePlate == '') {
-      
       parkingTurnId = parkingHollow.slots[0]
       const updateCarHollow = await parkingTurnModel.carOutHollow('O', parkingTurnId)
       const updateParkingTurn = await parkingTurnModel.updateParkingTurn(parking._id, position, parkingTurnId)
@@ -551,9 +550,19 @@ const carInSlot = async (zone, position, licenePlate, datetime) => {
     if (licenePlate != '') {
       parkingTurnLicene = await parkingTurnModel.findOneByLicenePlate(licenePlate)
     }
-    console.log(parkingTurnLicene)
-    // console.log(parkingTurnLicene)
-    if (parkingTurnLicene != [] && parkingHollow.slots.length >= 1) {
+    if (licenePlate == '' && parkingHollow.slots.length > 1) {
+      // const updateParkingTurn = await parkingTurnModel.updateParkingTurn(parking._id, position, '')
+      // if (updateCarHollow.momodifiedCountdi == 0) {
+      //   throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe chua cap nhat ra khoi bai chua dau', 'Not Updated', 'BR_parking_3');
+      // }
+      await eventModel.createEvent({
+        zone: zone,
+        position: position,
+        name: 'inSlot',
+        createdAt: now,
+      });
+    }
+    if (parkingTurnLicene.length  >0 && parkingHollow.slots.length >= 1) {
       parkingTurnId = parkingTurnLicene[0]._id
       const updateCarHollow = await parkingTurnModel.carOutHollow('O', parkingTurnId)
       if (updateCarHollow.momodifiedCountdi == 0) {
@@ -571,10 +580,7 @@ const carInSlot = async (zone, position, licenePlate, datetime) => {
         createdAt: now,
       });
     }
-    console.log("loi o day nefaf ")
     const updateSlot = await parkingTurnModel.updateSlot(zone, position, parkingTurnId, isOut)
-
-
     return updateSlot
   } catch (error) {
     if (error.type && error.code)
