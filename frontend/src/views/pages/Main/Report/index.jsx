@@ -62,7 +62,7 @@ function Report({}) {
       const api = await MonitorApi.exportReport(params);
       const link = document.createElement('a');
       link.href = window.URL.createObjectURL(new Blob([api]));
-      link.download = `output.xlsx`;
+      link.download = `Report_${params.timeType}_${params.start}_${params.end}.xlsx`;
       link.click();
     } catch (error) {
       ErrorService.hanldeError(error, actions.onNoti);

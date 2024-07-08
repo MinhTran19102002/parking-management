@@ -133,10 +133,11 @@ export default {
   },
 
   exportReport: (payload) => {
-    const url = `${DOMAIN}/Reports/exportReport`;
+    const url = `${DOMAIN}/parkingTurn/Reports/exportReport`;
     return GET({
       url,
-      payload
+      payload,
+      responseType: 'blob'
     });
   }
 };
