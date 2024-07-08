@@ -6,6 +6,9 @@ class Webcam():
         # url = "rtmp://103.130.211.150:10050/stream"
         self.url = url
         self.vid = cv2.VideoCapture(url)
+        if self.vid  is None or not self.vid.isOpened():
+            print('Warning: unable to open video source: ', url)
+            self.vid = None
     def get_frame(self, fram_surf):
         frame_count = 0
         while True:

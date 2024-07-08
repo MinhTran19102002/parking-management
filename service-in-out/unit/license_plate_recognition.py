@@ -33,6 +33,9 @@ a3_defl =1
 global cout_frame 
 cout_frame = 0
 
+global cout_frameOut 
+cout_frameOut = 0
+
 model=YOLO('yolov8s.pt')
 
 # area1=[(263,243),(130,396),(345,400),(395,240)]
@@ -294,8 +297,8 @@ def car_into_parking(img, flag):
                                 break
                             # result_licenses.append(license_text)
                 except:  print("Lỗi1111: " )
-        # global cout_frame 
-        # cout_frame = cout_frame + 1
+        global cout_frame 
+        cout_frame = cout_frame + 1
         pattern = r'^\d{2}[A-Z]-\d{5}$'
         # result_licenses
 
@@ -304,8 +307,8 @@ def car_into_parking(img, flag):
             print(result_licenses)
             global default_licenses_in
             global default_licenses_out
-            if default_licenses_in != result_licenses and flag =="in":
-                # # cout_frame = 0
+            if (default_licenses_in != result_licenses and flag =="in") or cout_frame>=10:
+                cout_frame = 0
                 if default_licenses_out == default_licenses_in:
                     default_licenses_out = ''
                 default_licenses_in = result_licenses
@@ -327,18 +330,6 @@ def car_into_parking(img, flag):
                     print('Success:', response.json())
                 else:
                     print('Failed:', response.status_code, response.text)
-            elif default_licenses_out != result_licenses and flag =="out":
-                default_licenses_out = result_licenses
-                data = {
-                    'licenePlate': result_licenses
-                }
-                response1 = requests.post("http://localhost:8010/api/parkingTurn/outPaking", json=data)
-
-                # Kiểm tra kết quả trả về
-                if response1.status_code == 200:
-                    print('Success:', response1.json())
-                else:
-                    print('Failed:', response1.status_code, response.text)
         resized_frame = cv2.resize(img, (640, 480))
         return cv2.imencode('.jpg', resized_frame)[1].tobytes(), result_licenses #frame
     except:
@@ -414,33 +405,15 @@ def car_Out_parking(img, flag):
                 except:  print("Lỗi1111: " )
         pattern = r'^\d{2}[A-Z]-\d{5}$'
 
+        global cout_frameOut 
+        cout_frameOut = cout_frameOut + 1
         if re.match(pattern, result_licenses):
             print("Bien so xe xac dinh la ----------------------------2 ")
             print(result_licenses)
             global default_licenses_in
             global default_licenses_out
-            if default_licenses_in != result_licenses and flag =="in":
-                # # cout_frame = 0
-                default_licenses_in = result_licenses
-                print("""result_licenses""")
-                _, img_encoded = cv2.imencode('.jpg', img)
-                img_bytes = img_encoded.tobytes()
-                data = {
-                    'licenePlate': result_licenses
-                }
-                # Tệp tin hình ảnh
-
-                files = {
-                    'image': ('xevao.jpg', img_bytes, 'image/jpeg')
-                }
-                response = requests.post(url, data=data, files=files)
-
-                # Kiểm tra kết quả trả về
-                if response.status_code == 201:
-                    print('Success:', response.json())
-                else:
-                    print('Failed:', response.status_code, response.text)
-            elif default_licenses_out != result_licenses and flag =="out":
+            if (default_licenses_out != result_licenses and flag =="out") or (cout_frameOut>=10):
+                cout_frameOut = 0
                 if default_licenses_out == default_licenses_in:
                     default_licenses_in = ''
                 print("Xe ra bai")
@@ -454,7 +427,7 @@ def car_Out_parking(img, flag):
                 if response1.status_code == 200:
                     print('Success:', response1.json())
                 else:
-                    print('Failed:', response1.status_code, response.text)
+                    print('Failed:', response1.status_code, response1.text)
         resized_frame = cv2.resize(img, (640, 480))
         return cv2.imencode('.jpg', resized_frame)[1].tobytes(), result_licenses #frame
     except:
