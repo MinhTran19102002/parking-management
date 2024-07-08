@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import PasswordForm from '~/views/components/Form/PasswordForm';
 import { useTranslation } from 'react-i18next';
 import DataFaker from './DataFaker';
+import Loading from '~/views/components/Loading';
 
 function Main({}) {
   const { token } = theme.useToken();
@@ -80,7 +81,7 @@ function Main({}) {
       <Sider routes={currRoute} />
       <Layout className="px-4 d-flex justify-content-center flex-column align-item-center">
         <Header className="border-1" />
-        <Suspense>
+        <Suspense fallback={<Loading />}>
           <Routes>
             {currRoute.map((route, ix) => {
               if (route.children) {
