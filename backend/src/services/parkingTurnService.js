@@ -1098,10 +1098,10 @@ const exportReport = async (req, res) => {
       res.set({
         "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         "Content-Disposition": "attachment; filename=chart.xlsx",
-        "Content-Length": excelBuffer.length
+        "Content-Length": data.length
       });
 
-      res.send(excelBuffer);
+      res.send(data);
     });
 
 
