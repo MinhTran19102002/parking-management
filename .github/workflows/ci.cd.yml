@@ -26,9 +26,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "npm"
-      - run: npm ci
-      - run: npm test
+          cache: 'yarn'
+          cache-dependency-path: './backend/yarn.lock'
+      - run: yarn install
+      - run: yarn test
 
       - name: Deploy with Docker Compose
         run: |
