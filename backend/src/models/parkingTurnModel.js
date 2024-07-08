@@ -194,7 +194,7 @@ const updateOutV2 = async (filter, now, licenePlate) => {
       throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe không ở trong bãi', 'Error', 'BR_vihicle_5_1');
     }
     const arrayPayment = paymentModel.findByLicenePlate(licenePlate,find.start, timeOut )
-    if(arrayPayment != []){
+    if(Array.isArray(arrayPayment) && arrayPayment.length > 0){
       fee = 0
     }
     const updateOut = await GET_DB()
