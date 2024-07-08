@@ -26,8 +26,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-      - name: Unit test Backend
-        run: yarn test
+          cache: 'yarn'
+      - run: yarn install
+      - run: yarn test
 
       - name: Deploy with Docker Compose
         run: |
