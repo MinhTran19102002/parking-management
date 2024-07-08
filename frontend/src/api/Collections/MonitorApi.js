@@ -130,5 +130,14 @@ export default {
       url,
       payload
     });
+  },
+
+  exportReport: (payload) => {
+    const url = `${DOMAIN}/parkingTurn/Reports/exportReport`;
+    return GET({
+      url,
+      payload,
+      responseType: 'blob'
+    });
   }
 };

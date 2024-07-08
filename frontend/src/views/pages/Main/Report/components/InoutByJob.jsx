@@ -60,11 +60,13 @@ function InoutByJob({ id, params, angleField = 'value', colorField = 'type' }) {
       fill: color,
       color
     },
+    height: 180
   };
 
   useEffect(() => {
     refetch();
   }, [JSON.stringify(params)]);
+
   return (
     <PureCard
       title={lag(`common:reportPage:${id}`)}

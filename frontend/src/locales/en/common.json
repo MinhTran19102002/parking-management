@@ -200,7 +200,8 @@
   "popup": {
     "sure": "Are you sure?",
     "dc": "Selected content will be permanently lost",
-    "aggree": "Agree"
+    "aggree": "Agree",
+    "pointSetting": "Display value"
   },
   "statusList": {
     "vehicle": {
