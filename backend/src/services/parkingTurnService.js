@@ -6,6 +6,9 @@ import { vehicleModel } from '~/models/vehicleModel';
 import { eventModel } from '~/models/eventModel';
 import { StatusCodes } from 'http-status-codes';
 import moment from 'moment';
+import { required } from 'joi';
+
+const ExcelJS = require('exceljs');
 // import XLSXChart from 'xlsx-chart';
 
 // import { writeXLSX } from 'xlsx';
@@ -686,7 +689,7 @@ const carOutSlotByLicenePlate= async (licenePlate, datetime) => {
 const getByFilter = async (req, res) => {
   // const pageIndex = req.query.pageIndex;
   // const pageSize = req.query.pageSize;
-  const getByFilter = req.query;
+  const filter = req.query;
   try {
     const getByFilter = await eventModel.findEvent(filter);
     if (getByFilter.acknowledged == false) {

@@ -8,6 +8,7 @@ import io
 from unit.webcam import Webcam
 from flask_cors import CORS
 import concurrent.futures
+import requests
 
 
 # from flask import Flask, render_template
@@ -49,16 +50,20 @@ def image():
         return jsonify({'message': 'File successfully uploaded', 'result': result}), 200
     return redirect(url_for('home'))
 
+
+def check_webcam(cap):
+    if not cap.isOpened():
+        return False
+    return True
+
 def carIn(url, flag):
-    print('11')
     global urlCarIn
-    print(urlCarIn)
     global running
-    print(running)
+    test =True
     webcam = Webcam(urlCarIn)
-    print('22')
     while running:
-        print('33')
+        if test == False:
+            continue  
         image = next(webcam.get_frame(17))
         image, licenseS = car_into_parking(image, flag)
     carIn(url, flag)
@@ -68,22 +73,34 @@ def carOut(url, flag):
     global urlCarIn
     global urlarInOutSlot
     global running
+    test = True
     webcam = Webcam(urlCarOut)
+    # if check_webcam(webcam):
+    #     test =True
+    # else:
+    #     test =False
     while running:
-        # print('22222')
+        if test == False:
+            continue  
         image = next(webcam.get_frame(17))
         image, licenseS = car_Out_parking(image, flag)
-    carOut(url, flag)
+    carOut(urlCarOut, flag)
 
 def carInOutSlot(url):
     global urlarInOutSlot
     global running
     webcam = Webcam(urlarInOutSlot)
+    test = True
+    # if check_webcam(webcam):
+    #     test =True
+    # else:
+    #     test =False
     position = ['A104', 'A105', 'A106']
     zone = 'A'
     
     while running:
-        # print('3333')
+        if test == False:
+            continue  
         image = next(webcam.get_frame(12))
         image = car_into_slot(image, position, zone)
     carInOutSlot(urlarInOutSlot)
@@ -157,9 +174,9 @@ if __name__ == '__main__':
         print(urlCarIn)
         print(urlCarOut)
         print(urlarInOutSlot)
-    urlCarOut = "rtsp://localhost:8554/CAM_0011"
-    urlCarIn  = "rtsp://localhost:8554/CAM_0021"
-    urlarInOutSlot = "rtsp://localhost:8554/CAM_SLOT_0011"
+    # urlCarOut = "rtsp://0.0.0.0:8554/CAM_0011"
+    # urlCarIn  = "rtsp://0.0.0.0:8554/CAM_0021"
+    # urlarInOutSlot = "rtsp://0.0.0.0:8554/CAM_SLOT_0011"
     # carIn(urlCarIn, "in")
     try: 
         with concurrent.futures.ThreadPoolExecutor() as executor:
