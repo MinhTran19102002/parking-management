@@ -25,7 +25,7 @@ export default ({
   style,
   numberFormatOptions = {
     options: 0,
-    isEndZeroDecimal: false,
+    isEndZeroDecimal: false
   }
 }) => {
   const { state, actions } = useContext(AppContext);
@@ -46,6 +46,7 @@ export default ({
     innerRadius: 0.54,
     renderer: 'svg',
     padding,
+    height,
     appendPadding,
     pieStyle: {
       cfg: {
@@ -55,12 +56,11 @@ export default ({
     },
     meta: {
       value: {
-        formatter: (v) => `${FormatNumber(v), numberFormatOptions} ${unit}`
+        formatter: (v) => `${(FormatNumber(v), numberFormatOptions)} ${unit}`
       }
     },
     label: {
       type: 'inner',
-      offset: '-50%',
       autoRotate: false,
       formatter: (item) => {
         let value = item.percent * 100;
@@ -110,7 +110,7 @@ export default ({
       title: false,
       content: {
         style: {
-          fontSize: 20,
+          fontSize: 16,
           whiteSpace: 'pre-wrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
@@ -145,9 +145,5 @@ export default ({
       </div>
     );
 
-  return (
-    <SmoothChart ref={parent}>
-      <Pie {...config} />
-    </SmoothChart>
-  );
+  return <Pie {...config} />;
 };

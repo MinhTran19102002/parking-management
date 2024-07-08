@@ -36,7 +36,7 @@ function VisistorRate({ id, params, angleField = 'value', colorField = 'type' })
     colorField,
     yFieldTexts,
     data,
-    padding: [20, 240, 0, 24],
+    padding: [20, 240, 0, 0],
     loading,
     unit,
     legend: {
@@ -48,8 +48,9 @@ function VisistorRate({ id, params, angleField = 'value', colorField = 'type' })
     },
     style: {
       fill: color,
-      color,
-    }
+      color
+    },
+    height: 200,
   };
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import InteractiveGridLayout from '~/views/components/InteractiveGridLayout';
 import { Content } from '~/views/layouts';
 import General from './components/General';
@@ -7,15 +7,20 @@ import InoutByJob from './components/InoutByJob';
 import VisistorRate from './components/VisistorRate';
 import TopDriver from './components/TopDriver';
 import InoutByDepartment from './components/InoutByDepartment';
-import { Button } from 'antd';
+import { Button, Popconfirm } from 'antd';
 import DatePickerWithUnit from '~/views/components/DatePickerWithUnit';
 import { useSearchParams } from 'react-router-dom';
 import dayjs from 'dayjs';
 import { useTranslation } from 'react-i18next';
+import { MonitorApi } from '~/api';
+import { FileExcelOutlined } from '@ant-design/icons';
+import AppContext from '~/context';
+import { ErrorService } from '~/services';
 
 const dynamicBlock = {};
 function Report({}) {
   const [searchParams, setSearchParams] = useSearchParams();
+  const { actions } = useContext(AppContext);
   const { t: lag } = useTranslation();
   const params = {
     start: dayjs().add(-30, 'd').format('L'),
@@ -52,6 +57,18 @@ function Report({}) {
     }
   ];
 
+  const onExport = async () => {
+    try {
+      const api = await MonitorApi.exportReport(params);
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(new Blob([api]));
+      link.download = `output.xlsx`;
+      link.click();
+    } catch (error) {
+      ErrorService.hanldeError(error, actions.onNoti);
+    }
+  };
+
   const onChangeFilter = (values) => {
     setSearchParams(values);
   };
@@ -66,7 +83,17 @@ function Report({}) {
             onChange={onChangeFilter}
           />
         }
-        // extra={<Button>{lag('common:dashboard:exportReport')}</Button>}
+        extra={
+          <Popconfirm
+            title={lag('common:popup:sure')}
+            onConfirm={onExport}
+            okText={lag('common:confirm')}
+            cancelText={lag('common:cancel')}>
+            <Button icon={<FileExcelOutlined />} onClick={onExport}>
+              {lag('common:dashboard:exportReport')}
+            </Button>
+          </Popconfirm>
+        }
         layoutKey="Report"
         rowHeight={80}>
         {getTileLayout().map((el, ix) => (

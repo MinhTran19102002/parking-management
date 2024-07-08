@@ -24,9 +24,6 @@ export const SmoothChart = styled.div`
     height: 100%;
   }
 
-  canvas {
-    height: 100%;
-  }
 `;
 
 export const BlockPieChart = styled.div`

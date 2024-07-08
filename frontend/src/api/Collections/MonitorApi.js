@@ -130,5 +130,13 @@ export default {
       url,
       payload
     });
+  },
+
+  exportReport: (payload) => {
+    const url = `${DOMAIN}/Reports/exportReport`;
+    return GET({
+      url,
+      payload
+    });
   }
 };
