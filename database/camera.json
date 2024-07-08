@@ -13,7 +13,7 @@
     "$numberLong": "1720248405654"
   },
   "_destroy": false,
-  "streamLink": "rtsp://localhost:8554/CAM_002",
+  "streamLink": "http://103.130.211.150:10050/CAM_002",
   "aiType": "cameraIn"
 },
 {
@@ -21,7 +21,7 @@
     "$oid": "66651443571022a671c1a976"
   },
   "cameraId": "Cam_1232",
-  "streamLink": "http://localhost:8078/hls/test1234.m3u8",
+  "streamLink": "http://103.130.211.150:10050/hls/test1234.m3u8",
   "type": "cam360",
   "image": "",
   "createdAt": {
@@ -38,7 +38,7 @@
   },
   "cameraId": "CAM_001",
   "type": "normal",
-  "streamLink": "rtsp://localhost:8554/CAM_001",
+  "streamLink": "http://103.130.211.150:10050/CAM_001",
   "image": "camera-1720220007704.jpg",
   "createdAt": {
     "$numberLong": "1720220007956"
@@ -55,7 +55,7 @@
   },
   "cameraId": "CAM_SLOT_001",
   "type": "normal",
-  "streamLink": "rtsp://localhost:8554/CAM_SLOT_001",
+  "streamLink": "http://103.130.211.150:10050/CAM_SLOT_001",
   "image": "camera-1720220133009.jpg",
   "createdAt": {
     "$numberLong": "1720220133259"

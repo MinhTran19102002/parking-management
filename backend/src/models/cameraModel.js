@@ -13,7 +13,7 @@ const CAMENRA_COLLECTION_SCHEMA = Joi.object({
   name: Joi.string().min(1).max(50).trim().strict(),
   image: Joi.string().optional().min(0).max(100).trim().strict().default(''),
   type: Joi.string().valid('normal', 'cam360').required(),
-  aiType: Joi.string().valid('cameraIn', 'cameraOut', 'cameraSlot').optional(),
+  aiType: Joi.string().valid('cameraIn', 'cameraOut', 'cameraSlot', '').optional(),
   zone: Joi.string().optional().min(1).max(10).trim().strict(),
   streamLink: Joi.string().optional().min(1).max(100).trim().strict(),
   slots: Joi.array().items(Joi.string().min(4).max(6).trim().strict()),
@@ -74,7 +74,6 @@ const createNew = async (data) => {
 const updateCamera = async (_id, _data) => {
   _data.cameraId = "default"
   delete _data._id;
-  console.log(_data)
   let data = await validateBeforCreate(_data);
   delete data.cameraId;
   delete data.createdAt;
@@ -115,6 +114,7 @@ const removeCamera = async (_ids) => {
       $unset: {
         location: 1,
         zone: 1,
+        slots: 1,
       },
     };
     const objectIds = _ids.map((id) => new ObjectId(id))

@@ -47,18 +47,17 @@ const updateCamera = async (_id, params) => {
 const updateManyCamera = async (listCamrera) => {
   // eslint-disable-next-line no-useless-catch
   try {
-    console.log(listCamrera)
     let listUpdate = []
     let listId = []
     await Promise.allSettled(
       listCamrera.map(async (data) => {
-        console.log(data._id)
         const cameraUpdate = await cameraModel.updateCamera(data._id, data);
 
         return cameraUpdate;
       }),
     )
       .then((results) => {
+        console.log(results)
         results.forEach((result) => {
           listUpdate.push(result.value)
           listId.push(result.value._id)
@@ -229,7 +228,7 @@ const findCameraAIByType = async (type) => {
     if (findcamera == null) {
       throw new ApiError(
         StatusCodes.NOT_FOUND,
-        'Người lái xe không tồn tại',
+        'Khong co loai camera do',
         'Not Found',
         'BR_person_1_1',
       );

@@ -32,7 +32,7 @@ io = new Server(httpServer, {
   },
 });
 const START_SEVER = () => {
-  io.on('connection', (socket) => {
+  io.of('/api').on('connection', (socket) => {
     console.log('connect !');
   });
 
