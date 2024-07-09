@@ -26,10 +26,16 @@ jobs:
         username: ${{ secrets.REMOTE_USERNAME }}
         password: ${{ secrets.REMOTE_PASSWORD }}
         script: |
-          cd /project/20110677_20110642/parking-management
-          git pull origin main
-          docker-compose down
-          docker-compose up -d
+          if [ -d "/project/20110677_20110642/parking-management" ]; then
+            echo "Path exists. Pulling latest code and deploying..."
+            cd /project/20110677_20110642/parking-management
+            git pull origin main
+            docker-compose down
+            docker-compose up -d
+          else
+            echo "Path does not exist."
+            exit 1
+          fi
 
 
 
