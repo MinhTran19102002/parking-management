@@ -1,7 +1,7 @@
 import React from 'react';
 import { CustomedCard } from './style';
 import { Flex, Popover, Row, Space, Typography } from 'antd';
-import { MoreOutlined } from '@ant-design/icons';
+import Icon, { MenuOutlined, MoreOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
 function PureCard({
@@ -18,7 +18,14 @@ function PureCard({
   return (
     <CustomedCard
       title={title}
-      extra={extra}
+      extra={
+        <Space>
+          {extra}{' '}
+          <div className="draggable-handle cursor-move">
+            <Icon component={MenuOutlined} style={{fontSize: 20}} />
+          </div>
+        </Space>
+      }
       className={`border h-100 ${className}`}
       {...props}
       classNames={classNames}>
