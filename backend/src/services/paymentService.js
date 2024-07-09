@@ -5,6 +5,7 @@ import { StatusCodes } from 'http-status-codes'
 import nodemailer from 'nodemailer'
 import { personModel } from "~/models/personModel";
 import { env } from '~/config/environment';
+import { vehicleModel } from "~/models/vehicleModel";
 
 const register = async (data) => {
     const feePerMonth = 500000 // 500 000
@@ -96,6 +97,15 @@ const payment = async (req) => {
             throw new ApiError(
                 StatusCodes.INTERNAL_SERVER_ERROR,
                 'Khong tin thay thong tin dang ky',
+                'Not Deleted',
+                'BR_person_4',
+              );
+        }
+        const vehicle = vehicleModel.findOneByLicenePlate(paymentObj.licenePlate)
+        if(vehicle.active == false){
+            throw new ApiError(
+                StatusCodes.INTERNAL_SERVER_ERROR,
+                'Xe khong kha dung de thanh toan',
                 'Not Deleted',
                 'BR_person_4',
               );
