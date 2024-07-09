@@ -26,7 +26,7 @@ jobs:
         username: ${{ secrets.REMOTE_USERNAME }}
         password: ${{ secrets.REMOTE_PASSWORD }}
         script: |
-          cd /path/to/your/remote/project
+          cd /project/20110677_20110642/parking-management
           git pull origin main
           docker-compose down
           docker-compose up -d
