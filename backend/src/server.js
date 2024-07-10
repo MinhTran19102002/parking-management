@@ -25,6 +25,7 @@ app.use('/api', APIs_V1);
 
 //Middleware xu ly loi tap trung
 app.use(errorHandlingMiddleware);
+app.timeout = 300000;
 const httpServer = createServer(app);
 io = new Server(httpServer, {
   cors: {

@@ -7,9 +7,11 @@ import { eventModel } from '~/models/eventModel';
 import { StatusCodes } from 'http-status-codes';
 import moment from 'moment';
 import { required } from 'joi';
+import axios from 'axios';
 
 const ExcelJS = require('exceljs');
 import XLSXChart from 'xlsx-chart';
+import { env } from '~/config/environment';
 const XLSX = require('xlsx');
 
 // import { writeXLSX } from 'xlsx';
@@ -1121,6 +1123,45 @@ const exportReport = async (req, res) => {
   }
 };
 
+const sendMessageTelegram = async (message, type) => {
+  let token = env.TOKEN_BOT_TELEGRAM
+  let chat_id
+  if (type == 'nomal') { chat_id = env.CHAT_ID }
+  else {
+    chat_id = env.CHAT_ID_URGENT
+  }
+
+  let url = "https://api.telegram.org/bot" + token + "/sendMessage"
+  // ?chat_id=" + chat_id + "&text=" + message
+  const params = {
+    chat_id: chat_id,
+    text: message
+  };
+  console.log(url)
+  const axiosClient = axios.create({
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    _timeout: 55000
+  });
+  let maxRetries = 3;
+  let retries = 0;
+  while (retries < maxRetries) {
+    try {
+      const response = await axiosClient.get(url, { params })
+      return response;
+    } catch (error) {
+      if (error.code === 'ECONNRESET') {
+        console.log('Connection reset, retrying...');
+        retries++;
+      } else {
+        throw error;
+      }
+    }
+  }
+  throw new Error(`Failed to establish connection after ${maxRetries} retries.`);
+
+}
 
 export const parkingTurnService = {
   createPakingTurn,
@@ -1144,4 +1185,5 @@ export const parkingTurnService = {
   mostParkedVehicle,
   exportReport,
   carOutSlotByLicenePlate,
+  sendMessageTelegram,
 };

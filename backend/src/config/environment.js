@@ -9,5 +9,8 @@ export const env = {
   JWT_REFRESH_KEY: process.env.JWT_REFRESH_KEY,
   BUILD_MODE : process.env.BUILD_MODE,
   APP_VERSION : process.env.APP_VERSION,
-  FE_HOST:  process.env.FE_HOST
+  FE_HOST:  process.env.FE_HOST,
+  TOKEN_BOT_TELEGRAM:  process.env.TOKEN_BOT_TELEGRAM,
+  CHAT_ID:  process.env.CHAT_ID,
+  CHAT_ID_URGENT:  process.env.CHAT_ID_URGENT
 }
