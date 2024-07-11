@@ -332,9 +332,10 @@ const getEvent = async (req, res) => {
       startDay = moment(req.query.startDay, 'DD/MM/YYYY').format('DD/MM/YYYY');
       endDay = moment(req.query.endDay, 'DD/MM/YYYY').clone().add(1, 'days').format('DD/MM/YYYY');
     }
-    if (req.query.name !== undefined){
-      req.query.name = JSON.parse(req.query.name);
-    }
+    // console.log(req.query.name)
+    // if (req.query.name !== undefined){
+    //   req.query.name = JSON.parse(req.query.name);
+    // }
     const filter = req.query;
     const findEvent = await eventModel.findEvent(filter, startDay, endDay);
     if (findEvent.acknowledged == false) {
