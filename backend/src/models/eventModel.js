@@ -96,6 +96,11 @@ const findEvent = async ({ pageSize, pageIndex, startTime, endTime, ...params },
         [key]: new RegExp(`${value}`, 'i'),
       };
     }
+    else if (key == 'name') {
+      regex = {
+        [key]: { $in: value }
+      };
+    }
     else if (key !== 'startDay' && key !== 'endDay') {
       regex = {
         [key]: new RegExp(`^${value}`, 'i'),
@@ -105,7 +110,6 @@ const findEvent = async ({ pageSize, pageIndex, startTime, endTime, ...params },
     Object.assign(paramMatch, regex);
   }
   try {
-    console.log(paramMatch)
     let pipeline = {};
     let pipelineDay = {};
 
