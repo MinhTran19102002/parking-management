@@ -291,7 +291,7 @@ def car_into_parking(img, flag):
                             # print("ket qua la ")
                             # print(license_text)
                             # print(exact[0])
-                            if exact[0] >= 0.85:
+                            if exact[0] >= 0.9:
                                 cv2.rectangle(img, (x, y), (x + w, y + h), (145, 60, 255), 5)
                                 result_licenses = license_text
                                 break
@@ -397,7 +397,7 @@ def car_Out_parking(img, flag):
                             # print("ket qua la ")
                             # print(license_text)
                             # print(exact[0])
-                            if exact[0] >= 0.85:
+                            if exact[0] >= 0.9:
                                 cv2.rectangle(img, (x, y), (x + w, y + h), (145, 60, 255), 5)
                                 result_licenses = license_text
                                 break
