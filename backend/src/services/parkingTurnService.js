@@ -119,6 +119,24 @@ const createPakingTurnUpdate = async (licenePlate, zone, position, image, dateti
   try {
     // Nếu API cần random dữ liệu của zone
     //tim vehicleId
+    let now = Date.now();
+
+    if (datetime != "") {
+      const timestamp = parseInt(datetime, 10);
+      const date = new Date(timestamp);
+      now = date.getTime()
+    }
+    const emptyLot = await parkingModel.findOccupied()
+    console.log(emptyLot)
+    if (emptyLot == 0) {
+      throw new ApiError(
+        StatusCodes.INTERNAL_SERVER_ERROR,
+        'Bãi xe đã hết chỗ',
+        'Not Created',
+        'BR_vihicle_2',
+      );
+    }
+
     console.log(licenePlate)
     let vihicle = await vehicleModel.findOneByLicenePlate(licenePlate);
 
@@ -142,13 +160,7 @@ const createPakingTurnUpdate = async (licenePlate, zone, position, image, dateti
 
 
     // them anh o day
-    let now = Date.now();
 
-    if (datetime != "") {
-      const timestamp = parseInt(datetime, 10);
-      const date = new Date(timestamp);
-      now = date.getTime()
-    }
     const data = {
       vehicleId: vihicle._id.toString(),
       parkingId: parking._id.toString(),
@@ -173,6 +185,20 @@ const createPakingTurnUpdate = async (licenePlate, zone, position, image, dateti
       eventId: createPakingTurn.insertedId,
       createdAt: now,
     });
+    if (emptyLot == 1) {
+      await eventModel.createEvent({
+        name: 'parking_full_total',
+        zone: parking.zone,
+        createdAt: now,
+      });
+    }
+    else if (emptyLot <= 4) {
+      await eventModel.createEvent({
+        name: 'almost_full_total',
+        zone: parking.zone,
+        createdAt: now,
+      });
+    }
     // createPakingTurn.position = position
     return createPakingTurn;
   } catch (error) {
@@ -324,7 +350,7 @@ const GetRevenueByHour = async (req, res) => {
 const getEvent = async (req, res) => {
   // const pageIndex = req.query.pageIndex;
   // const pageSize = req.query.pageSize;
-  
+
   try {
     let startDay
     let endDay
@@ -515,6 +541,7 @@ const carInSlot = async (zone, position, licenePlate, datetime) => {
       const date = new Date(timestamp);
       now = date.getTime()
     }
+    let updateSlot
     let parkingTurnId = null
     const isOut = false
     // const parking = await parkingModel.findOne(zone)
@@ -546,6 +573,7 @@ const carInSlot = async (zone, position, licenePlate, datetime) => {
       if (updateCarHollow.momodifiedCountdi == 0) {
         throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe chua cap nhat ra khoi bai chua dau', 'Not Updated', 'BR_parking_3');
       }
+      updateSlot = await parkingTurnModel.updateSlot(zone, position, parkingTurnId, isOut)
       await eventModel.createEvent({
         zone: zone,
         position: position,
@@ -563,6 +591,7 @@ const carInSlot = async (zone, position, licenePlate, datetime) => {
       // if (updateCarHollow.momodifiedCountdi == 0) {
       //   throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe chua cap nhat ra khoi bai chua dau', 'Not Updated', 'BR_parking_3');
       // }
+      updateSlot = await parkingTurnModel.updateSlot(zone, position, parkingTurnId, isOut)
       await eventModel.createEvent({
         zone: zone,
         position: position,
@@ -579,7 +608,7 @@ const carInSlot = async (zone, position, licenePlate, datetime) => {
       const updateParkingTurn = await parkingTurnModel.updateParkingTurn(parking._id, position, parkingTurnId)
 
       console.log(updateParkingTurn)
-
+      updateSlot = await parkingTurnModel.updateSlot(zone, position, parkingTurnId, isOut)
       await eventModel.createEvent({
         zone: zone,
         position: position,
@@ -588,7 +617,20 @@ const carInSlot = async (zone, position, licenePlate, datetime) => {
         createdAt: now,
       });
     }
-    const updateSlot = await parkingTurnModel.updateSlot(zone, position, parkingTurnId, isOut)
+    if (parking.total == parking.occupied + 1)
+      await eventModel.createEvent({
+        name: 'parking_full',
+        zone: parking.zone,
+        createdAt: now,
+      });
+    else if (parking.total - 3 <= parking.occupied + 1) {
+      await eventModel.createEvent({
+        name: 'almost_full',
+        zone: parking.zone,
+        createdAt: now,
+      });
+    }
+
     return updateSlot
   } catch (error) {
     if (error.type && error.code)

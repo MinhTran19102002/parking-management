@@ -1,4 +1,4 @@
-import Joi, { array, object } from 'joi';
+import Joi, { array, object, valid } from 'joi';
 import { ObjectId } from 'mongodb';
 import ApiError from '~/utils/ApiError';
 import { OBJECT_ID_RULE, OBJECT_ID_RULE_MESSAGE } from '~/utils/validators';
@@ -80,14 +80,14 @@ const findOneById = async (id) => {
 const getStatus = async (zone) => {
   try {
     let match = {}
-    if (zone == '0'){
+    if (zone == '0') {
       match = {
         $match: {
         },
       }
     }
-    else{
-      match ={
+    else {
+      match = {
         $match: {
           zone: zone,
         },
@@ -271,6 +271,62 @@ const updateSlot = async (zone, position, dataUpadte) => {
 };
 
 
+const findOccupied = async () => {
+  try {
+    const findZone = await GET_DB().collection(PARKING_COLLECTION_NAME).aggregate([
+      {
+        $match: {
+          zone: { $in: ["A", "B", "C"] }
+        },
+      },
+      {
+        $project: {
+          total:1,
+          occupied: 1
+        }
+      }
+    ]).toArray();
+    console.log(findZone)
+    let total = 0
+    findZone.forEach(valid => {
+      total = total + (valid.total - valid.occupied)
+    })
+    const findO = await GET_DB().collection(PARKING_COLLECTION_NAME).findOne({
+      zone: "O"
+    });
+    console.log(total)
+    console.log(findO)
+
+    return total - findO.slots.length;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+
+const findOccupiedByZone = async (zone) => {
+  try {
+    const findZone = await GET_DB().collection(PARKING_COLLECTION_NAME).aggregate([
+      {
+        $match: {
+          zone: zone
+        },
+      },
+      {
+        $project: {
+          total:1,
+          occupied: 1
+        }
+      }
+    ]).toArray();
+
+    return findZone[0];
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+
 export const parkingModel = {
   PARKING_COLLECTION_NAME,
   PARKING_COLLECTION_SCHEMA,
@@ -279,4 +335,6 @@ export const parkingModel = {
   getStatus,
   updateSlot,
   findOneById,
+  findOccupied,
+  findOccupiedByZone,
 };
