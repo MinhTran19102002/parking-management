@@ -37,34 +37,64 @@ const createEvent = async (data) => {
     if (createNew.acknowledged == true) {
       let message
       let type
+      if (validateData.name == "parking_full_total") {
+        message = "Thông báo khẩn cấp!\nBãi xe đã đầy"
+        type = "urgent"
+      }
+      if (validateData.name == "almost_full_total") {
+        message = "Thông báo khẩn cấp!\nBãi xe sắp đầy"
+        type = "urgent"
+      }
       if (validateData.name == "parking_full") {
         message = "Thông báo khẩn cấp!\nKhu vực đầy: " + validateData.zone
         type = "urgent"
       }
       if (validateData.name == "almost_full") {
-        message = "Thông báo khẩn cấp!\nKhu vực sắp đầy: " + validateData.zone
+        const parkingInfor = await parkingModel.findOccupiedByZone(validateData.zone)
+        const count = parkingInfor.total - parkingInfor.occupied
+        message = "Thông báo khẩn cấp!\nKhu vực sắp đầy: " + validateData.zone + "\nSố lượng còn: " + count + "/" + parkingInfor.total
         type = "urgent"
       }
       if (validateData.name == "in") {
         const parkingTurn = await parkingTurnModel.findOneById(validateData.eventId)
-        console.log(parkingTurn)
-        message = "Thông báo!\nXe vào bãi đỗ: " + parkingTurn.vehicle.licenePlate
+        let inforPerson = "\nKhách vãng lai"
+        if(parkingTurn.driver!= null){
+          inforPerson = "\nTên chủ xe: " + parkingTurn.driver.name + "\nSĐT: " + parkingTurn.driver.phone
+        }
+        message = "Thông báo!\nXe vào bãi đỗ: " + parkingTurn.vehicle.licenePlate + inforPerson
         type = "nomal"
       }
       if (validateData.name == "out") {
         const parkingTurn = await parkingTurnModel.findOneById(validateData.eventId)
-        console.log(parkingTurn)
-        message = "Thông báo!\nXe ra bãi đỗ: " + parkingTurn.vehicle.licenePlate
+        let inforPerson = "\nKhách vãng lai"
+        if(parkingTurn.driver!= null){
+          inforPerson = "\nTên chủ xe: " + parkingTurn.driver.name + "\nSĐT: " + parkingTurn.driver.phone
+        }
+        let position = ""
+        if(parkingTurn.position){
+          position = parkingTurn.position
+        }
+
+        message = "Thông báo!\nXe ra bãi đỗ: " + parkingTurn.vehicle.licenePlate + inforPerson + "\nChi phí: " + parkingTurn.fee + " VNĐ\nVị trí: " + position 
         type = "nomal"
       }
       if (validateData.name == "inSlot") {
         const parkingTurn = await parkingTurnModel.findOneById(validateData.eventId)
-        message = "Thông báo!\nXe vào ô đỗ: " + parkingTurn.vehicle.licenePlate + "\nVị trí: " + validateData.position
+        console.log(parkingTurn)
+        let inforPerson = "\nKhách vãng lai"
+        if(parkingTurn.driver!= null){
+          inforPerson = "\nTên chủ xe: " + parkingTurn.driver.name + "\nSĐT: " + parkingTurn.driver.phone
+        }
+        message = "Thông báo!\nXe vào ô đỗ: " + parkingTurn.vehicle.licenePlate + inforPerson + "\nVị trí: " + validateData.position 
         type = "nomal"
       }
       if (validateData.name == "outSlot") {
         const parkingTurn = await parkingTurnModel.findOneById(validateData.eventId)
-        message = "Thông báo!\nXe ra ô đỗ: " + parkingTurn.vehicle.licenePlate + "\nVị trí: " + validateData.position
+        let inforPerson = "\nKhách vãng lai"
+        if(parkingTurn.driver!= null){
+          inforPerson = "\nTên chủ xe: " + parkingTurn.driver.name + "\nSĐT: " + parkingTurn.driver.phone
+        }
+        message = "Thông báo!\nXe ra ô đỗ: " + parkingTurn.vehicle.licenePlate + inforPerson + "\nVị trí: " + validateData.position
         type = "nomal"
       }
       await parkingTurnService.sendMessageTelegram(message, type)
