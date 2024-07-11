@@ -30,6 +30,7 @@ function History({}) {
     queryFn: async () => {
       let rs = {};
       try {
+        if (params.name) params.name = [params.name];
         rs = await MonitorApi.getEvents({ ...params });
       } catch (error) {
         console.log(error);
@@ -41,6 +42,10 @@ function History({}) {
   useEffect(() => {
     refetch();
   }, [JSON.stringify(params)]);
+
+  const onChangeFilter = (values) => {
+    setSearchParams(values);
+  };
 
   return (
     <Content className="w-100 py-3">
@@ -54,7 +59,7 @@ function History({}) {
           totalPage={totalPage}
           pageSize={pageSize}
           pageIndex={pageIndex}
-          onChange={setSearchParams}
+          onChange={onChangeFilter}
           scroll={{ y: 1000, scrollToFirstRowOnChange: true }}
           filterList={[
             {
