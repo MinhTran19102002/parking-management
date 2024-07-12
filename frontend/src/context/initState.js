@@ -33,7 +33,13 @@ const initState = {
     },
     {
       name: 'outSlot'
-    }
+    },
+    {
+      name: 'almost_full'
+    },
+    {
+      name: 'parking_full'
+    },
   ],
   departments: [
     'KLLCT',

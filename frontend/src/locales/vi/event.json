@@ -1,6 +1,7 @@
 {
   "name": "Tên sự kiện",
   "byName": {
+    "title": "Tên sự kiện",
     "in": "Xe vào",
     "out": "Xe ra",
     "inSlot": "Xe vào ô đỗ",
@@ -16,5 +17,8 @@
     "cut": "Cắt hình",
     "cutImage": "Hình đã cắt",
     "licenePlates": "Các biển số xe được nhận diện:"
+  },
+  "filter": {
+    "title": "Lọc sự kiện"
   }
 }
