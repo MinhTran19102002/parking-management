@@ -91,7 +91,7 @@ function Register({}) {
           onFinish={onFinish}
           disabled={loading}
           {...formItemLayout}
-          style={{ width: 600 }}>
+          style={{ width: 800 }}>
           <Form.Item name={'name'} label={lag('common:fullName')} rules={[{ required: true }]}>
             <Input placeholder="Nguyễn Văn A" id="nameInput" />
           </Form.Item>
@@ -140,7 +140,14 @@ function Register({}) {
             label={lag('common:department')}
             name={['department']}
             rules={[{ required: true }]}>
-            <Input placeholder="Công nghệ thông tin" />
+            <Select
+              options={state.departments.map((de) => {
+                return {
+                  value: de,
+                  label: lag(`department:${de}`)
+                };
+              })}
+            />
           </Form.Item>
           <Form.List name={'licenePlate'}>
             {(fields, { add, remove }) => (
