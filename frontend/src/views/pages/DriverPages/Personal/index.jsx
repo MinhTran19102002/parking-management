@@ -52,6 +52,7 @@ function Personal({}) {
         startDay,
         ...values
       });
+      setOpen(false);
       if (api) {
         actions.onNoti({ message: lag('common:form:addSuccess'), type: 'success' });
       }

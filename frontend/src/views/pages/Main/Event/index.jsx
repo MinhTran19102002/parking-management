@@ -1,5 +1,18 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { Button, Card, Col, Form, Input, Layout, Radio, Row, Upload, Select, Switch } from 'antd';
+import {
+  Button,
+  Card,
+  Col,
+  Form,
+  Input,
+  Layout,
+  Radio,
+  Row,
+  Upload,
+  Select,
+  Switch,
+  DatePicker
+} from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
 import AppContext from '~/context';
 import { ParkingApi, UserApi } from '~/api';
@@ -10,6 +23,7 @@ import { SLOTS_C } from '../Map/data/parkingC';
 import { UploadOutlined } from '@ant-design/icons';
 import StreamEvents from './StreamEvents';
 import { useTranslation } from 'react-i18next';
+import dayjs from 'dayjs';
 
 const formItemLayout = {
   labelCol: {
@@ -36,7 +50,7 @@ function Event({}) {
   const occupiedSlots = useMemo(() => {
     const { A: zoneA, B: zoneB, C: zoneC } = parkings;
     return [...(zoneA?.slots || []), ...(zoneB?.slots || []), ...(zoneC?.slots || [])];
-  }, [parkings]);
+  }, [JSON.stringify(parkings)]);
 
   const callApi = async () => {
     try {
@@ -62,10 +76,16 @@ function Event({}) {
     try {
       //hanldeImage
       delete values['image'];
-      await ParkingApi.importVehicle({
-        ...values,
-        image: imageFile
-      });
+      let { datetime = dayjs() } = values;
+      await Promise.all([
+        ParkingApi.importVehicle({
+          ...values,
+          image: imageFile
+        }),
+        ParkingApi.importSlotVehicle({
+          ...values
+        })
+      ]);
       actions.onNoti({
         type: 'success',
         message: lag('event:actions:importSuccess'),
@@ -82,9 +102,15 @@ function Event({}) {
   const hanldeExport = async (values) => {
     try {
       setLoading(true);
-      const apis = values.licenePlate.map((el) => {
-        return ParkingApi.exportVehicle({ licenePlate: el });
-      });
+      let { datetime = dayjs() } = values;
+      const apis = values.licenePlate
+        .map((el) => {
+          return [
+            ParkingApi.exportSlotVehicle({ licenePlate: el }),
+            ParkingApi.exportVehicle({ licenePlate: el })
+          ];
+        })
+        .flat();
       await Promise.allSettled(apis);
       actions.onNoti({
         type: 'success',
@@ -107,7 +133,7 @@ function Event({}) {
   return (
     <Content className="w-100 py-3">
       <StreamEvents />
-      <Row gutter={16} className='mt-4'>
+      <Row gutter={16} className="mt-4">
         <Col span={24} xl={12}>
           <Form
             name="importVehicleForm"
@@ -136,6 +162,9 @@ function Event({}) {
                   }}
                 />
               </Form.Item>
+              {/* <Form.Item>
+                <DatePicker name="datetime" format={'L LTS'} />
+              </Form.Item> */}
               <Form.Item
                 name="licenePlate"
                 label="Biển số xe"
@@ -246,17 +275,20 @@ function Event({}) {
                   </Button>
                 </Form.Item>
               }>
+              {/* <Form.Item>
+                <DatePicker.TimePicker name="datetime" format={'L LTS'} />
+              </Form.Item> */}
               <Form.Item
                 name="licenePlate"
                 label="Biển số xe"
                 rules={[{ required: true, message: false }]}>
                 <Select mode="multiple" showSearch>
-                  {occupiedSlots.map((el, ix) => () => {
+                  {occupiedSlots.map((el, ix) => {
                     return (
                       <Select.Option
                         key={'option' + el?.parkingTurn?.vehicles?.licenePlate + ix}
                         value={el?.parkingTurn?.vehicles?.licenePlate}>
-                        {el?.parkingTurn?.vehicles[0]?.licenePlate}
+                        {el?.parkingTurn?.vehicles?.licenePlate}
                       </Select.Option>
                     );
                   })}

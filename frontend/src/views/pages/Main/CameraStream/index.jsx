@@ -2,11 +2,13 @@ import React, { useEffect } from 'react';
 import { Button, Card, Col, Layout, Result, Row } from 'antd';
 import { Content, Footer, Header } from '~/views/layouts';
 import { useQuery } from '@tanstack/react-query';
-import { CameraApi } from '~/api';
+import { CameraApi, HlsApi } from '~/api';
 import VideoBlock from '~/views/components/VideoBlock';
+import { useTranslation } from 'react-i18next';
 const HLS_DOMAIN = import.meta.env.VITE_DOMAIN_HLS;
 
 function CameraStream({}) {
+  const { t: lag } = useTranslation();
   const { data, refetch } = useQuery({
     queryKey: ['cameras', 'all'],
     initialData: {},
@@ -19,6 +21,30 @@ function CameraStream({}) {
       return rs;
     }
   });
+
+  const { data: hlsData, refetch: refetchHLS } = useQuery({
+    queryKey: ['HlsSetting', 'Check'],
+    initialData: [],
+    queryFn: async () => {
+      let rs = [];
+      try {
+        const api = await HlsApi.getAll();
+        rs = Object.keys(api).reduce((acc, curr) => {
+          const item = api[curr];
+          acc.push({
+            cameraId: curr,
+            rtspUrl: item.rtsp_url,
+            hlsPostfix: item.hls_postfix
+          });
+          return acc;
+        }, []);
+      } catch (error) {
+        console.log(error);
+      }
+      return rs;
+    }
+  });
+
   const { data: cameras = [] } = data;
 
   const colProps = {
@@ -31,6 +57,7 @@ function CameraStream({}) {
 
   useEffect(() => {
     refetch();
+    refetchHLS();
   }, []);
   return (
     <Content className="w-100 py-3">
@@ -41,13 +68,17 @@ function CameraStream({}) {
           return (
             streamLink && (
               <Col key={camera.cameraId} {...colProps}>
-                <Card size='small' title={camera.cameraId}>
+                <Card size="small" title={camera.cameraId}>
                   {/*  {camera.streamLink ? (
                   <VideoBlock src={camera.streamLink} />
                 ) : (
                   <Result title="Stream Camera chưa được cài đặt" />
                 )} */}
-                  {streamLink && <VideoBlock src={link} />}
+                  {hlsData.find((el) => el.cameraId === camera.cameraId) ? (
+                    <VideoBlock src={link} />
+                  ) : (
+                    <Result subTitle={lag('common:cameraPage:unInstall')} />
+                  )}
                 </Card>
               </Col>
             )

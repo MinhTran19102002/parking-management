@@ -38,8 +38,8 @@ export const EventDisplay = [
     eventType: 'default',
     displayProps: [
       {
-        key: 'license',
-        dataIndex: ['vehicle', 'licenePlate']
+        key: 'zone',
+        dataIndex: ['zone']
       }
     ]
   },

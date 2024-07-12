@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { GetDefaultLayouts, GetLayouts, LOCAL_KEY } from './data';
+import React, { useContext, useEffect, useState } from 'react';
+import { GetLayouts, LOCAL_KEY } from './data';
 import { ResponsiveGridLayoutStyled } from './style';
-import { useTranslation } from 'react-i18next';
 import AppContext from '~/context';
-import { Button, Flex, Layout, Space, Typography } from 'antd';
+import { Flex, Space, Typography } from 'antd';
 import LayoutSetting from './LayoutSetting';
 
 let didmount = false;
@@ -50,6 +49,7 @@ function InteractiveGridLayout({
       ...oldData,
       [layoutKey]: layouts
     };
+    console.log(newData);
     localStorage.removeItem(LOCAL_KEY);
     localStorage.setItem(LOCAL_KEY, JSON.stringify(newData));
   };
@@ -57,7 +57,6 @@ function InteractiveGridLayout({
   const onWidthChange = (containerWidth) => {};
 
   const onLayoutChange = (_, allLayouts) => {
-    console.log(allLayouts);
     setLayouts(allLayouts);
   };
 
@@ -89,7 +88,7 @@ function InteractiveGridLayout({
         onLayoutChange={onLayoutChange}
         onWidthChange={onWidthChange}
         className={`layout ${className}`}
-        draggableCancel=".ant-typography"
+        draggableHandle=".draggable-handle"
         layouts={Object.keys(layouts).reduce((acc, curr, ix) => {
           const obj = layouts[curr].map((el, index) => {
             delete el.moved;

@@ -1,4 +1,15 @@
-import { Button, Divider, Flex, Popconfirm, Row, Skeleton, Space, Typography, theme } from 'antd';
+import {
+  Button,
+  Divider,
+  Drawer,
+  Flex,
+  Popconfirm,
+  Row,
+  Skeleton,
+  Space,
+  Typography,
+  theme
+} from 'antd';
 import React, { useEffect, useRef, useState } from 'react';
 import { List } from 'antd';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -7,39 +18,28 @@ import { MonitorApi } from '~/api';
 import { ErrorService } from '~/services';
 import AppContext from '~/context';
 import { useContext } from 'react';
-import { FileExcelOutlined } from '@ant-design/icons';
+import { FileExcelOutlined, FilterOutlined } from '@ant-design/icons';
 import { useTranslation } from 'react-i18next';
+import EventFilter from './EventFilter';
 
 let pageSize = 30;
 const loadMoreCount = 10;
 function EventBlock({}) {
-  const { state, actions } = useContext(AppContext);
+  const { state } = useContext(AppContext);
   const [data, setData] = useState([]);
   const [totalCount, setTotalCount] = useState(0);
   const { token } = theme.useToken();
   const [pageIndex, setPageIndex] = useState(1);
   const [loading, setLoading] = useState(false);
   const [loadingMore, setLoadingMore] = useState(false);
-  const isMounted = useRef(false);
   const { t: lag } = useTranslation();
-  const { geekblue6, blue2, colorTextSecondary, colorText, gold2, gold7 } = token;
-  const inColor = {
-    primary: geekblue6,
-    secondary: blue2
-  };
-  const outColor = {
-    primary: gold7,
-    secondary: gold2
-  };
-  const onScroll = (e) => {
-    if (e.currentTarget.scrollHeight - e.currentTarget.scrollTop === 400) {
-      appendData();
-    }
-  };
+  const { geekblue6, blue2, gold2, gold7 } = token;
+  const [filter, setFilter] = useState({});
+  const [openFilter, setOpenFilter] = useState(false);
 
-  const callApi = async (pageIndex, pageSize, hanldeData) => {
+  const callApi = async (pageIndex, pageSize) => {
     try {
-      const api = await MonitorApi.getEvents({ pageSize, pageIndex });
+      const api = await MonitorApi.getEvents({ pageSize, pageIndex, ...filter });
       setData(api.data);
       setTotalCount(api.totalCount);
     } catch (error) {
@@ -58,18 +58,12 @@ function EventBlock({}) {
     callApi(pageIndex, pageSize, (newData) => {
       setData(newData);
     });
-  }, [state.parkingEvent]);
+  }, [state.parkingEvent, JSON.stringify(filter)]);
 
-  const onExport = async () => {
-    try {
-      const api = await MonitorApi.export();
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(new Blob([api]));
-      link.download = `output.xlsx`;
-      link.click();
-    } catch (error) {
-      ErrorService.hanldeError(error, actions.onNoti);
-    }
+  const onChangeFilter = (values) => {
+    setFilter(values);
+    console.log(values);
+    setOpenFilter(false);
   };
 
   return (
@@ -85,6 +79,19 @@ function EventBlock({}) {
             {lag('common:dashboard:exportReport')}
           </Button>
         </Popconfirm> */}
+        <Button icon={<FilterOutlined />} type="text" onClick={() => setOpenFilter(true)} />
+        <Drawer
+          title={lag('event:filter:title')}
+          open={openFilter}
+          onClose={() => setOpenFilter(false)}
+          destroyOnClose>
+          <EventFilter
+            onClose={() => setOpenFilter(false)}
+            eventNames={state.eventInfor}
+            onChange={onChangeFilter}
+            initialValues={filter}
+          />
+        </Drawer>
       </Row>
       <div
         id="scrollableDiv"
@@ -112,7 +119,6 @@ function EventBlock({}) {
             dataSource={data}
             split={false}
             renderItem={(item, index) => {
-              const color = item.type === 'in' ? inColor : outColor;
               return (
                 <List.Item key={item.email + index}>
                   <EventCard item={item} />

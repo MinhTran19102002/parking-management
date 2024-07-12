@@ -137,6 +137,7 @@ function SettingMap({}) {
         title="Cài đặt camera và ô đỗ"
         width="fit-content"
         footer={null}
+        destroyOnClose
         open={openAssignedSlotModal}
         onCancel={() => setOpenAssignedSlotModal(false)}>
         <SlotAssigend
@@ -152,9 +153,11 @@ function SettingMap({}) {
               <Radio.Button value={zone}>{lag('common:zoneName', { zone })}</Radio.Button>
             ))}
           </Radio.Group>
-          <Button type="primary" onClick={() => setOpenAssignedSlotModal(true)}>
-            {lag('common:mapPage:settingSlot')}
-          </Button>
+          {settingMode || (
+            <Button type="primary" onClick={() => setOpenAssignedSlotModal(true)}>
+              {lag('common:mapPage:settingSlot')}
+            </Button>
+          )}
         </Space>
         <Space>
           {!settingMode ? (
