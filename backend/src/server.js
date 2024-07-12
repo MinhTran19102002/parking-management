@@ -31,10 +31,10 @@ io = new Server(httpServer, {
   cors: {
     origin: ['http://localhost:5173', 'https://parking-management-iota.vercel.app', 'https://park.workon.space'],
   },
-  // path: '/api',
+  path: '/api',
 });
 const START_SEVER = () => {
-  io.of('/api').on('connection', (socket) => {
+  io.on('connection', (socket) => {
     console.log('connect !');
   });
 
