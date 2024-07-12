@@ -32,6 +32,7 @@ io = new Server(httpServer, {
   cors: {
     origin: ['http://localhost:5173', 'https://parking-management-iota.vercel.app', 'https://park.workon.space'],
   },
+  transports: ['websocket', 'polling'],
 });
 const START_SEVER = () => {
   io.on('connection', (socket) => {
