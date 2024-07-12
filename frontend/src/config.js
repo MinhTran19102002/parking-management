@@ -62,7 +62,7 @@ const themeByMode = {
       entry: ['#389e0d', '#d9f7be'],
       exit: ['#1d39c4', '#d6e4ff'],
       almost_full: ['#d48806', '#fff1b8'],
-      parking_full: ['#c41d7f', '#ffd6e7']
+      parking_full: ['#F5222D', '#feced1']
     }
   },
   dark: {
@@ -74,8 +74,8 @@ const themeByMode = {
       outSlot: ['#4096ff', '#0a2767'],
       entry: ['#389e0d', '#d9f7be'],
       exit: ['#1d39c4', '#d6e4ff'],
-      almost_full: ['#d48806', '#fff1b8'],
-      parking_full: ['#c41d7f', '#ffd6e7']
+      almost_full: ['#d48806', '#453804'],
+      parking_full: ['#F5222D', '#5f171a']
     }
   }
 };
