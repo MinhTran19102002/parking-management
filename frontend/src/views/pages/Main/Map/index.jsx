@@ -72,6 +72,7 @@ function Map({}) {
 
   useEffect(() => {
     callApi();
+    refetchCameraUsed();
   }, [zone, state.parkingEvent]);
 
   const onHoverCamera = (camera = {}) => {

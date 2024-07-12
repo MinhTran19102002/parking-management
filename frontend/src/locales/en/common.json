@@ -44,6 +44,7 @@
     "setting": "Setting",
     "event": "In out",
     "setting-map": "Map setting",
+    "setting-hls": "HLS service",
     "report": "Report"
   },
   "choose": "Choose",
@@ -97,6 +98,7 @@
   "amount": "Amount",
   "avg": "The average value",
   "turn": "Turn",
+  "hls": {},
   "form": {
     "addCar": "Add Car",
     "wrongFormat": "Wrong Format",
@@ -189,7 +191,8 @@
     "streamLink": "Stream Link",
     "noSetting": "Not Set",
     "cameraList": "Camera List",
-    "resetAI": "AI update successful"
+    "resetAI": "AI update successful",
+    "unInstall": "HLS server error"
   },
   "timePicker": {
     "7": "Last 7 Days",
