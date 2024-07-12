@@ -35,7 +35,7 @@ function EventBlock({}) {
   const { t: lag } = useTranslation();
   const { geekblue6, blue2, gold2, gold7 } = token;
   const [filter, setFilter] = useState({});
-  const [openFilter, setOpenFilter] = useState({});
+  const [openFilter, setOpenFilter] = useState(false);
 
   const callApi = async (pageIndex, pageSize) => {
     try {
