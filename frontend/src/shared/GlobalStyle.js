@@ -178,4 +178,12 @@ export default createGlobalStyle`
     .k-tilelayout {
         background-color: transparent;
     }
+
+    .cursor-pointer {
+        cursor: pointer;
+    }
+
+    .cursor-move {
+        cursor: move;
+    }
 `;

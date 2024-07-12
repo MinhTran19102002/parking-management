@@ -12,21 +12,19 @@ import CameraService from '~/services/CameraService';
 import { Popover } from 'antd';
 import { CameraCard } from '~/views/components';
 
-function CameraLayer({ zone, data = [], onHoverCamera, selectedCameraId, onClick, selectable }) {
+function CameraLayer({ zone, data = [], onHoverCamera, selectedCameraId, onClick }) {
   const { actions } = useContext(AppContext);
-  const isMounted = useRef(false);
   const [loading, setLoading] = useState(false);
   const cameras = useMemo(() => {
     return data.filter((el) => el.zone === zone);
   }, [zone, data]);
 
-  const DefaultCameraLocation = CameraLocations[zone] || [];
   return (
     <div id="cameraLayer">
-      {cameras.map((camera = {}, ix) => {
+      {cameras.map((camera = {}) => {
         return (
           <CameraPoint
-            onClick={() => onClick(camera.cameraId)}
+            onClick={() => onClick && onClick(camera.cameraId)}
             onMouseOver={() => onHoverCamera(camera)}
             onMouseOut={() => onHoverCamera({})}
             key={'camera' + camera._id}
@@ -42,10 +40,4 @@ function CameraLayer({ zone, data = [], onHoverCamera, selectedCameraId, onClick
   );
 }
 
-const getCameraIcon = (type) => {
-  if (type === 'ver') return <CameraVer />;
-  else if (type === 'hori') return <CameraHori />;
-  else if (type === '360') return <Camera360 />;
-  else <CameraVer />;
-};
 export default CameraLayer;

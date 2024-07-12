@@ -14,6 +14,7 @@ import {
   FileTextOutlined
 } from '@ant-design/icons';
 import { lazy } from 'react';
+import HlsSetting from '~/views/pages/Main/HlsSetting';
 const Driver = lazy(() => import('~/views/pages/Main/Driver'));
 const Home = lazy(() => import('~/views/pages/Main/Home'));
 const DriverMap = lazy(() => import('~/views/pages/DriverPages/Map'));
@@ -131,6 +132,12 @@ const adminRoutes = [
       //   path: '/staff',
       //   element: <Staff />
       // },
+      {
+        key: 'setting-hls',
+        label: 'Bản đồ',
+        path: '/setting-hls',
+        element: <HlsSetting />
+      },
       {
         key: 'user',
         label: 'Quản lý người dùng',

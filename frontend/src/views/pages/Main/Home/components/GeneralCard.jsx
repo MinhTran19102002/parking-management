@@ -6,6 +6,7 @@ import CardBlock from '~/views/components/CardBlock';
 import CustomedTag from '~/views/components/CustomedTag';
 import AppContext from '~/context';
 import { useTranslation } from 'react-i18next';
+import { PureCard } from '~/views/components/Card';
 
 function GeneralCard({ zone = 'A' }) {
   const { t: lag } = useTranslation();
@@ -116,7 +117,7 @@ function GeneralCard({ zone = 'A' }) {
   }, [state.parkingEvent]);
 
   return (
-    <Card
+    <PureCard
       title={
         <CustomedTag bordered={false} entity={zone} entityType={'zone'}>
           {lag('common:zoneName', { zone })}
@@ -124,7 +125,7 @@ function GeneralCard({ zone = 'A' }) {
       }
       className="card-main">
       <Gauge {...config} />
-    </Card>
+    </PureCard>
   );
 }
 
