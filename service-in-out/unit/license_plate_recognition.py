@@ -505,7 +505,6 @@ def car_into_slot(img, positon, zone):
         global a1_defl , a2_defl, a3_defl
         print(a1_defl)
         if a1 != a1_defl:
-            print("Bien so xe xac dinh la ----------------------------2 ")
             a1_defl = a1
             url = ''
             if a1 == 1:
@@ -569,3 +568,170 @@ def findUrl(type):
     except:
          print("Lỗi: " )
          return ''
+    
+
+
+
+def car_into_parkingUpdate(img, flag):
+    try:
+        url = os.getenv("APP_HOST") +  "/parkingTurn/createPakingTurnWithoutZoneAndPosition"
+        if img is None:
+            return cv2.imencode('.jpg', img)[1].tobytes()
+        result_licenses = ''
+        img=cv2.resize(img,(1020,600))
+        results=model.predict(img)
+        a=results[0].boxes.data
+        
+        px=pd.DataFrame(a).astype("float")
+        for index,row in px.iterrows():
+            x1=int(row[0])
+            y1=int(row[1])
+            x2=int(row[2])
+            y2=int(row[3])
+            d=int(row[5])
+            c=class_list[d]
+            width = abs(x2 - x1)
+            height = abs(y2 - y1)
+            area = width * height
+            if 'car' in c and area > 10000:
+                
+                imgRoi = img[y1:y2, x1:x2]
+                try:
+                    result = ocr.ocr(imgRoi, cls=True)
+                    result = result[0]
+                    if(result is not None):
+                        txts = [line[1][0] for line in result]
+                        exact  = [line[1][1] for line in result]
+                        license_text = ''
+                        if(len(txts)==2):
+                            license_text= txts[0] + txts[1]
+                        if(len(txts)==1):
+                            license_text= txts[0]
+                        
+                        license_text = license_text.replace(".", "")
+                        license_text = license_text.replace("-", "")
+                        license_text = license_text.replace(" ", "")
+                        print(license_text)
+                        if license_text and len(license_text)== 8:
+                            license_text =  license_text[:3] +'-' + license_text[3:]
+                            if exact[0] >= 0.9:
+                                cv2.rectangle(img,(x1,y1),(x2,y2),(0,255,0),2)  
+                                result_licenses = license_text
+                                break
+                except:  print("Lỗi1111: " )
+        global cout_frame 
+        cout_frame = cout_frame + 1
+        pattern = r'^\d{2}[A-Z]-\d{5}$'
+
+        if re.match(pattern, result_licenses):
+            print("Bien so xe xac dinh la ------------------------1")
+            print(result_licenses)
+            global default_licenses_in
+            global default_licenses_out
+            if (default_licenses_in != result_licenses and flag =="in") or cout_frame>=5:
+                cout_frame = 0
+                if default_licenses_out == default_licenses_in:
+                    default_licenses_out = ''
+                default_licenses_in = result_licenses
+                print("Xe vao bai")
+                _, img_encoded = cv2.imencode('.jpg', img)
+                img_bytes = img_encoded.tobytes()
+                data = {
+                    'licenePlate': result_licenses
+                }
+                # Tệp tin hình ảnh
+
+                files = {
+                    'image': ('xevao.jpg', img_bytes, 'image/jpeg')
+                }
+                response = requests.post(url, data=data, files=files)
+
+                # Kiểm tra kết quả trả về
+                if response.status_code == 201:
+                    print('Success:', response.json())
+                else:
+                    print('Failed:', response.status_code, response.text)
+        resized_frame = cv2.resize(img, (640, 480))
+        return cv2.imencode('.jpg', resized_frame)[1].tobytes(), result_licenses #frame
+    except:
+         print("Lỗi: " )
+         return cv2.imencode('.jpg', img)[1].tobytes(), result_licenses
+
+
+def car_Out_parkingUpdate(img, flag):
+    try:
+        url = os.getenv("APP_HOST") + "/parkingTurn/createPakingTurnWithoutZoneAndPosition"
+        if img is None:
+            return cv2.imencode('.jpg', img)[1].tobytes()
+        result_licenses = ''
+        img=cv2.resize(img,(1020,600))
+        results=model.predict(img)
+        a=results[0].boxes.data
+        
+        px=pd.DataFrame(a).astype("float")
+        for index,row in px.iterrows():
+            x1=int(row[0])
+            y1=int(row[1])
+            x2=int(row[2])
+            y2=int(row[3])
+            d=int(row[5])
+            c=class_list[d]
+            width = abs(x2 - x1)
+            height = abs(y2 - y1)
+            area = width * height
+            if 'car' in c and area > 10000:
+                # cv2.rectangle(img,(x1,y1),(x2,y2),(0,255,0),2)  
+                imgRoi = img[y1:y2, x1:x2]
+                try:
+                    result = ocr.ocr(imgRoi, cls=True)
+                    result = result[0]
+                    if(result is not None):
+                        txts = [line[1][0] for line in result]
+                        exact  = [line[1][1] for line in result]
+                        license_text = ''
+                        if(len(txts)==2):
+                            license_text= txts[0] + txts[1]
+                        if(len(txts)==1):
+                            license_text= txts[0]
+                        license_text = license_text.replace(".", "")
+                        license_text = license_text.replace("-", "")
+                        license_text = license_text.replace(" ", "")
+                        if license_text and len(license_text)== 8:
+                            license_text =  license_text[:3] +'-' + license_text[3:]
+                            if exact[0] >= 0.9:
+                                cv2.rectangle(img,(x1,y1),(x2,y2),(0,255,0),2)  
+                                result_licenses = license_text
+                                break
+                            # result_licenses.append(license_text)
+                except:  print("Lỗi1111: " )
+        pattern = r'^\d{2}[A-Z]-\d{5}$'
+
+        global cout_frameOut 
+        cout_frameOut = cout_frameOut + 1
+        if re.match(pattern, result_licenses):
+            print("Bien so xe xac dinh la ----------------------------2 ")
+            print(result_licenses)
+            global default_licenses_in
+            global default_licenses_out
+            if (default_licenses_out != result_licenses and flag =="out") or (cout_frameOut>=5):
+                cout_frameOut = 0
+                if default_licenses_out == default_licenses_in:
+                    default_licenses_in = ''
+                print("Xe ra bai")
+                default_licenses_out = result_licenses
+                data = {
+                    'licenePlate': result_licenses
+                }
+                response1 = requests.post( os.getenv("APP_HOST") + "/parkingTurn/outPaking", json=data)
+
+                # Kiểm tra kết quả trả về
+                if response1.status_code == 200:
+                    print('Success:', response1.json())
+                else:
+                    print('Failed:', response1.status_code, response1.text)
+        resized_frame = cv2.resize(img, (640, 480))
+        return cv2.imencode('.jpg', resized_frame)[1].tobytes(), result_licenses #frame
+    except:
+         print("Lỗi: " )
+         return cv2.imencode('.jpg', img)[1].tobytes(), result_licenses
+
