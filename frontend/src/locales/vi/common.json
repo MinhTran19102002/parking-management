@@ -44,6 +44,7 @@
     "setting": "Cài đặt",
     "event": "Nhập xuất xe",
     "setting-map": "Cài đặt bản đồ",
+    "setting-hls": "HLS service",
     "report": "Báo cáo"
   },
   "choose": "Chọn",
@@ -98,6 +99,7 @@
   "isPay": "Đã thanh toán",
   "avg": "Giá trị trung bình",
   "turn": "Lượt",
+  "hls": {},
   "form": {
     "addCar": "Thêm xe",
     "wrongFormat": "Sai định dạng",
@@ -189,7 +191,8 @@
   "cameraPage": {
     "streamLink": "Luồng stream",
     "noSetting": "Chưa cài đặt",
-    "cameraList": "Danh sách camera"
+    "cameraList": "Danh sách camera",
+    "unInstall": "Gặp lỗi tại HLS server"
   },
   "timePicker": {
     "7": "7 ngày gần nhất",

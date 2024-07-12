@@ -70,6 +70,7 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount, resetAI }) {
   const hanldeAdd = async (values) => {
     try {
       delete values['image'];
+      if (!values.streamLink) delete values.streamLink;
       setLoading(true);
       const api = await CameraApi.add({
         ...values

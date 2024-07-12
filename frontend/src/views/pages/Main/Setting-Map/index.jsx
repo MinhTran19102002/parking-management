@@ -137,6 +137,7 @@ function SettingMap({}) {
         title="Cài đặt camera và ô đỗ"
         width="fit-content"
         footer={null}
+        destroyOnClose
         open={openAssignedSlotModal}
         onCancel={() => setOpenAssignedSlotModal(false)}>
         <SlotAssigend

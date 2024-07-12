@@ -7,5 +7,16 @@ import StaffApi from './Collections/StaffApi';
 import CameraApi from './Collections/CameraApi';
 import VehicleApi from './Collections/VehicleApi';
 import MediaServerApi from './Collections/MediaServerApi';
+import HlsApi from './Collections/HlsApi';
 
-export { AccountApi, MonitorApi, UserApi, ParkingApi, StaffApi, CameraApi, VehicleApi, MediaServerApi };
+export {
+  AccountApi,
+  MonitorApi,
+  UserApi,
+  ParkingApi,
+  StaffApi,
+  CameraApi,
+  VehicleApi,
+  MediaServerApi,
+  HlsApi
+};

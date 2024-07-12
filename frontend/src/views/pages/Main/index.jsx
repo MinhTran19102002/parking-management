@@ -79,7 +79,7 @@ function Main({}) {
         />
       </Modal>
       <Sider routes={currRoute} />
-      <Layout className="px-4 d-flex justify-content-center flex-column align-item-center">
+      <Layout className="px-4 d-flex flex-column align-item-center">
         <Header className="border-1" />
         <Suspense fallback={<Loading />}>
           <Routes>
