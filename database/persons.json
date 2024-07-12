@@ -546,12 +546,12 @@
 },
 {
   "_id": {
-    "$oid": "6575841757acff4574f1c1b7"
+    "$oid": "6575841757acff4574f1c1b6"
   },
-  "name": "Ngô Văn Tuấn",
-  "phone": "0782233445",
-  "email": "ngovantuan707@gmail.com",
-  "address": "707 Đường LMN, Quận 2, TP HCM",
+  "name": "Lê Thị Thùy Dung",
+  "phone": "0781122334",
+  "email": "lethithuydung606@gmail.com",
+  "address": "606 Đường XYZ, Quận 1, TP HCM",
   "createdAt": {
     "$numberLong": "1702200343346"
   },
@@ -560,12 +560,12 @@
 },
 {
   "_id": {
-    "$oid": "6575841757acff4574f1c1b6"
+    "$oid": "6575841757acff4574f1c1b7"
   },
-  "name": "Lê Thị Thùy Dung",
-  "phone": "0781122334",
-  "email": "lethithuydung606@gmail.com",
-  "address": "606 Đường XYZ, Quận 1, TP HCM",
+  "name": "Ngô Văn Tuấn",
+  "phone": "0782233445",
+  "email": "ngovantuan707@gmail.com",
+  "address": "707 Đường LMN, Quận 2, TP HCM",
   "createdAt": {
     "$numberLong": "1702200343346"
   },
@@ -1313,14 +1313,14 @@
   "email": "adminParking@gmail.com",
   "account": {
     "username": "admin",
-    "password": "$2b$10$hXq0LUujs158MKdiI.R25O0k10KJQgqe3ijQKhMTeAFUmEltfBjtC",
+    "password": "$2b$10$KneiQRhzLs8PibSQosZucubdh9t57XXGYiFkAS.9hlnOYK93aRvdC",
     "role": "Admin"
   },
   "createdAt": {
     "$numberLong": "1702571962709"
   },
   "updatedAt": {
-    "$numberLong": "1719631603990"
+    "$numberLong": "1720703922756"
   },
   "_destroy": false,
   "address": "Kiên Giang"
@@ -4460,7 +4460,40 @@
     "$numberLong": "1720186739082"
   },
   "updatedAt": {
-    "$numberLong": "1720186790980"
+    "$numberLong": "1720270510482"
   },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668b46a8e1f66f9bcbc8e89b"
+  },
+  "account": {
+    "username": "MaiAnh",
+    "password": "$2b$10$Zzs238kjk7Pqr/XlrW1y.e7rxJN0GlHoEAnde5j0It1hM/cbZMgoK",
+    "role": "Manager"
+  },
+  "name": "Quách Thị Mai Anh",
+  "address": "An Giang",
+  "phone": "0909749720",
+  "email": "maianh332@gmail.com",
+  "createdAt": {
+    "$numberLong": "1720403624184"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668b46b9e1f66f9bcbc8e89f"
+  },
+  "name": "Tri thieu NGuyf",
+  "address": "Tay Ninh",
+  "phone": "0996319853",
+  "email": "thiekfdai1ds@gmail.com",
+  "createdAt": {
+    "$numberLong": "1720403641812"
+  },
+  "updatedAt": null,
   "_destroy": false
 }]

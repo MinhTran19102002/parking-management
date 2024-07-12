@@ -193,8 +193,8 @@ const updateOutV2 = async (filter, now, licenePlate) => {
     else {
       throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe không ở trong bãi', 'Error', 'BR_vihicle_5_1');
     }
-    const arrayPayment = paymentModel.findByLicenePlate(licenePlate,find.start, timeOut )
-    if(Array.isArray(arrayPayment) && arrayPayment.length > 0){
+    const arrayPayment = paymentModel.findByLicenePlate(licenePlate, find.start, timeOut)
+    if (Array.isArray(arrayPayment) && arrayPayment.length > 0) {
       fee = 0
     }
     const updateOut = await GET_DB()
@@ -203,7 +203,7 @@ const updateOutV2 = async (filter, now, licenePlate) => {
     const update = await GET_DB()
       .collection(parkingModel.PARKING_COLLECTION_NAME)
       .updateOne(
-        { _id: new ObjectId(updateOut.parkingId) },
+        { zone: 'O' },
         {
           $pull: { slots: new ObjectId(updateOut._id) }
         },
@@ -701,7 +701,7 @@ const general = async (start, end) => {
             //     },
             //   },
             // },
-            averageDuration : "$averageDuration"
+            averageDuration: "$averageDuration"
           }
         }
       ]);
@@ -1135,7 +1135,7 @@ const findOneByLicenePlate = async (licenePlate) => {
   try {
     const findOneByLicenePlate = await GET_DB()
       .collection(PARKINGTURN_COLLECTION_NAME)
-      .aggregate([     
+      .aggregate([
         {
           $lookup: {
             from: vehicleModel.VEHICLE_COLLECTION_NAME,
@@ -1147,11 +1147,54 @@ const findOneByLicenePlate = async (licenePlate) => {
         {
           $match: {
             "driver.licenePlate": licenePlate,
-            "end" : null
+            "end": null
           },
         },
       ]).toArray();
     return findOneByLicenePlate;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
+
+const findOneById = async (id) => {
+  try {
+    const findOneByLicenePlate = await GET_DB()
+      .collection(PARKINGTURN_COLLECTION_NAME)
+      .aggregate([
+        {
+          $match: {
+            "_id": new ObjectId(id)
+          },
+        },
+        {
+          $lookup: {
+            from: vehicleModel.VEHICLE_COLLECTION_NAME,
+            localField: 'vehicleId',
+            foreignField: '_id',
+            as: 'vehicle',
+          },
+        },
+        {
+          $unwind: '$vehicle',
+        },
+        {
+          $lookup: {
+            from: personModel.PERSON_COLLECTION_NAME,
+            localField: 'vehicle.driverId',
+            foreignField: '_id',
+            as: 'driver',
+          },
+        },
+        {
+          $unwind: {
+            path: '$driver',
+            preserveNullAndEmptyArrays: true,
+          },
+        },
+      ]).toArray();
+    return findOneByLicenePlate[0];
   } catch (error) {
     throw new Error(error);
   }
@@ -1180,4 +1223,5 @@ export const parkingTurnModel = {
   inoutByDepa,
   mostParkedVehicle,
   general,
+  findOneById,
 };

@@ -6,6 +6,7 @@ import { parkingModel } from './parkingModel';
 import { parkingTurnModel } from './parkingTurnModel';
 import { vehicleModel } from './vehicleModel';
 import { personModel } from './personModel';
+import { parkingTurnService } from '~/services/parkingTurnService';
 
 const EVENT_COLLECTION_NAME = 'event';
 const EVENT_COLLECTION_SCHEMA = Joi.object({
@@ -33,6 +34,71 @@ const createEvent = async (data) => {
     }
     validateData.createdAt = data.createdAt;
     const createNew = await GET_DB().collection(EVENT_COLLECTION_NAME).insertOne(validateData);
+    if (createNew.acknowledged == true) {
+      let message
+      let type
+      if (validateData.name == "parking_full_total") {
+        message = "Thông báo khẩn cấp!\nBãi xe đã đầy"
+        type = "urgent"
+      }
+      if (validateData.name == "almost_full_total") {
+        message = "Thông báo khẩn cấp!\nBãi xe sắp đầy"
+        type = "urgent"
+      }
+      if (validateData.name == "parking_full") {
+        message = "Thông báo khẩn cấp!\nKhu vực đầy: " + validateData.zone
+        type = "urgent"
+      }
+      if (validateData.name == "almost_full") {
+        const parkingInfor = await parkingModel.findOccupiedByZone(validateData.zone)
+        const count = parkingInfor.total - parkingInfor.occupied
+        message = "Thông báo khẩn cấp!\nKhu vực sắp đầy: " + validateData.zone + "\nSố lượng còn: " + count + "/" + parkingInfor.total
+        type = "urgent"
+      }
+      if (validateData.name == "in") {
+        const parkingTurn = await parkingTurnModel.findOneById(validateData.eventId)
+        let inforPerson = "\nKhách vãng lai"
+        if(parkingTurn.driver!= null){
+          inforPerson = "\nTên chủ xe: " + parkingTurn.driver.name + "\nSĐT: " + parkingTurn.driver.phone
+        }
+        message = "Thông báo!\nXe vào bãi đỗ: " + parkingTurn.vehicle.licenePlate + inforPerson
+        type = "nomal"
+      }
+      if (validateData.name == "out") {
+        const parkingTurn = await parkingTurnModel.findOneById(validateData.eventId)
+        let inforPerson = "\nKhách vãng lai"
+        if(parkingTurn.driver!= null){
+          inforPerson = "\nTên chủ xe: " + parkingTurn.driver.name + "\nSĐT: " + parkingTurn.driver.phone
+        }
+        let position = ""
+        if(parkingTurn.position){
+          position = parkingTurn.position
+        }
+
+        message = "Thông báo!\nXe ra bãi đỗ: " + parkingTurn.vehicle.licenePlate + inforPerson + "\nChi phí: " + parkingTurn.fee + " VNĐ\nVị trí: " + position 
+        type = "nomal"
+      }
+      if (validateData.name == "inSlot") {
+        const parkingTurn = await parkingTurnModel.findOneById(validateData.eventId)
+        console.log(parkingTurn)
+        let inforPerson = "\nKhách vãng lai"
+        if(parkingTurn.driver!= null){
+          inforPerson = "\nTên chủ xe: " + parkingTurn.driver.name + "\nSĐT: " + parkingTurn.driver.phone
+        }
+        message = "Thông báo!\nXe vào ô đỗ: " + parkingTurn.vehicle.licenePlate + inforPerson + "\nVị trí: " + validateData.position 
+        type = "nomal"
+      }
+      if (validateData.name == "outSlot") {
+        const parkingTurn = await parkingTurnModel.findOneById(validateData.eventId)
+        let inforPerson = "\nKhách vãng lai"
+        if(parkingTurn.driver!= null){
+          inforPerson = "\nTên chủ xe: " + parkingTurn.driver.name + "\nSĐT: " + parkingTurn.driver.phone
+        }
+        message = "Thông báo!\nXe ra ô đỗ: " + parkingTurn.vehicle.licenePlate + inforPerson + "\nVị trí: " + validateData.position
+        type = "nomal"
+      }
+      await parkingTurnService.sendMessageTelegram(message, type)
+    }
     return createNew;
   } catch (error) {
     throw new Error(error);
@@ -51,13 +117,18 @@ const findEvent = async ({ pageSize, pageIndex, startTime, endTime, ...params },
     }
     if (key == 'position') {
       key = 'parkingTurn.' + key; //driver.vehicle.licenePlate
-    } 
+    }
     if (key == 'personName') {
       key = 'person.' + 'name'; //driver.vehicle.licenePlate
-    } 
+    }
     if (key == 'person.name') {
       regex = {
         [key]: new RegExp(`${value}`, 'i'),
+      };
+    }
+    else if (key == 'name') {
+      regex = {
+        [key]: { $in: value }
       };
     }
     else if (key !== 'startDay' && key !== 'endDay') {
@@ -69,7 +140,6 @@ const findEvent = async ({ pageSize, pageIndex, startTime, endTime, ...params },
     Object.assign(paramMatch, regex);
   }
   try {
-    console.log(paramMatch)
     let pipeline = {};
     let pipelineDay = {};
 

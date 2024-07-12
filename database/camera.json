@@ -10,10 +10,10 @@
     "$numberLong": "1716632068030"
   },
   "updatedAt": {
-    "$numberLong": "1720248405654"
+    "$numberLong": "1720394780139"
   },
   "_destroy": false,
-  "streamLink": "http://103.130.211.150:10050/CAM_002",
+  "streamLink": "rtsp://localhost:8554/CAM_002",
   "aiType": "cameraIn"
 },
 {
@@ -21,14 +21,14 @@
     "$oid": "66651443571022a671c1a976"
   },
   "cameraId": "Cam_1232",
-  "streamLink": "http://103.130.211.150:10050/hls/test1234.m3u8",
+  "streamLink": "http://localhost:8078/hls/test1234.m3u8",
   "type": "cam360",
   "image": "",
   "createdAt": {
     "$numberLong": "1717900355940"
   },
   "updatedAt": {
-    "$numberLong": "1720248306700"
+    "$numberLong": "1720621595955"
   },
   "_destroy": false
 },
@@ -38,16 +38,32 @@
   },
   "cameraId": "CAM_001",
   "type": "normal",
-  "streamLink": "http://103.130.211.150:10050/CAM_001",
-  "image": "camera-1720220007704.jpg",
+  "streamLink": "rtsp://localhost:8554/CAM_001",
+  "image": "",
   "createdAt": {
     "$numberLong": "1720220007956"
   },
   "updatedAt": {
-    "$numberLong": "1720226816201"
+    "$numberLong": "1720394807094"
   },
   "_destroy": false,
-  "aiType": ""
+  "aiType": "cameraOut",
+  "location": {
+    "width": 39,
+    "height": 39,
+    "top": 290,
+    "left": 673,
+    "iconId": "hori"
+  },
+  "zone": "A",
+  "slots": [
+    "A602",
+    "A601",
+    "A507",
+    "A506",
+    "A505",
+    "A603"
+  ]
 },
 {
   "_id": {
@@ -55,13 +71,13 @@
   },
   "cameraId": "CAM_SLOT_001",
   "type": "normal",
-  "streamLink": "http://103.130.211.150:10050/CAM_SLOT_001",
+  "streamLink": "rtsp://localhost:8554/CAM_SLOT_001",
   "image": "camera-1720220133009.jpg",
   "createdAt": {
     "$numberLong": "1720220133259"
   },
   "updatedAt": {
-    "$numberLong": "1720226816201"
+    "$numberLong": "1720394807092"
   },
   "_destroy": false,
   "location": {
@@ -85,13 +101,27 @@
   },
   "cameraId": "CAM_005",
   "type": "normal",
-  "aiType": "cameraOut",
+  "aiType": "",
   "image": "",
   "createdAt": {
     "$numberLong": "1720247984347"
   },
   "updatedAt": {
-    "$numberLong": "1720248574639"
+    "$numberLong": "1720394423689"
   },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668b46c1e1f66f9bcbc8e8a0"
+  },
+  "cameraId": "CAM_32421",
+  "name": "Camera khu B1",
+  "type": "normal",
+  "image": "linkanh",
+  "createdAt": {
+    "$numberLong": "1720403649278"
+  },
+  "updatedAt": null,
   "_destroy": false
 }]

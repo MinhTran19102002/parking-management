@@ -152,9 +152,11 @@ function SettingMap({}) {
               <Radio.Button value={zone}>{lag('common:zoneName', { zone })}</Radio.Button>
             ))}
           </Radio.Group>
-          <Button type="primary" onClick={() => setOpenAssignedSlotModal(true)}>
-            {lag('common:mapPage:settingSlot')}
-          </Button>
+          {settingMode || (
+            <Button type="primary" onClick={() => setOpenAssignedSlotModal(true)}>
+              {lag('common:mapPage:settingSlot')}
+            </Button>
+          )}
         </Space>
         <Space>
           {!settingMode ? (
