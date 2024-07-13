@@ -7,7 +7,9 @@
     "inSlot": "Car entering parking slot",
     "outSlot": "Car exiting parking slot",
     "almost_full": "Parking almost full",
-    "parking_full": "Parking full"
+    "parking_full": "Parking full",
+    "parking_full_total": "Total parking full",
+    "almost_full_total": "Total parking almost full"
   },
   "actions": {
     "import": "Import Vehicle",

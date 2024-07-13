@@ -104,6 +104,9 @@
   "averageDuration": "Average Duration",
   "date": "Time",
   "hls": {},
+  "BR": {
+    "BR_undefined": "Underfined error"
+  },
   "form": {
     "addCar": "Add Car",
     "wrongFormat": "Wrong Format",
@@ -176,7 +179,7 @@
     "exportReport": "Export Report"
   },
   "sheet": {
-    "common:": "Information",
+    "common": "Information",
     "info": "Report information",
     "time": "Export time"
   },
