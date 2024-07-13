@@ -7,34 +7,8 @@ import { MonitorApi } from '~/api';
 import { FormatNumber } from '~/services';
 import { PureCard } from '~/views/components/Card';
 
-function TopDriver({ id, params }) {
+function TopDriver({ id, params, data = [], loading }) {
   const { t: lag } = useTranslation();
-  const {
-    data,
-    refetch,
-    isRefetching: loading
-  } = useQuery({
-    initialData: [],
-    queryKey: ['Report', 'TopDriver'],
-    queryFn: async () => {
-      let rs = [];
-      try {
-        const api = await MonitorApi.getMostParkedVehicle(params);
-        rs = api.map((item) => {
-          return {
-            licenePlate: item.vehicle.licenePlate,
-            name: item.driver.name,
-            turn: item.turn
-          };
-        });
-      } catch {}
-      return rs;
-    }
-  });
-
-  useEffect(() => {
-    refetch();
-  }, [JSON.stringify(params)]);
   return (
     <PureCard title={lag(`common:reportPage:${id}`)} className="card-main">
       <div

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, Response, g, json, send_file
-from unit.license_plate_recognition import select_image1, car_into_parking, car_into_slot, car_Out_parking, select_image, findUrl
+from unit.license_plate_recognition import select_image1, car_into_parking, car_into_slot, car_Out_parking, select_image, findUrl, car_into_parkingUpdate, car_Out_parkingUpdate
 import os
 import numpy as np
 from PIL import Image
@@ -65,7 +65,7 @@ def carIn(url, flag):
         if webcam == None:
             continue  
         image = next(webcam.get_frame(17))
-        image, licenseS = car_into_parking(image, flag)
+        image, licenseS = car_into_parkingUpdate(image, flag)
     carIn(url, flag)
 
 def carOut(url, flag):
@@ -83,7 +83,7 @@ def carOut(url, flag):
         if webcam == None:
             continue 
         image = next(webcam.get_frame(17))
-        image, licenseS = car_Out_parking(image, flag)
+        image, licenseS = car_Out_parkingUpdate(image, flag)
     carOut(urlCarOut, flag)
 
 def carInOutSlot(url):

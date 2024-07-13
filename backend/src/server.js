@@ -28,13 +28,17 @@ app.use(errorHandlingMiddleware);
 app.timeout = 300000;
 const httpServer = createServer(app);
 io = new Server(httpServer, {
+  // path: "/my-custom-path/",
   cors: {
-    origin: ['http://localhost:5173', 'https://parking-management-iota.vercel.app', 'https://park.workon.space'],
+    origin: '*',
   },
-  // path: '/api',
+  pingTimeout: 60000,
+  methods: ["GET", "POST"],
+  transports: ['websocket', 'polling'],
+  credentials: true
 });
 const START_SEVER = () => {
-  io.of('/api').on('connection', (socket) => {
+  io.on('connection', (socket) => {
     console.log('connect !');
   });
 
