@@ -105,6 +105,9 @@
   "averageDuration": "Thời gian đỗ trung bình",
   "date": "Thời gian",
   "hls": {},
+  "BR": {
+    "BR_undefined": "Lỗi không xác định"
+  },
   "form": {
     "addCar": "Thêm xe",
     "wrongFormat": "Sai định dạng",
