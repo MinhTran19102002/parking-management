@@ -7,7 +7,7 @@ import AppContext from '~/context';
 import { PureCard } from '~/views/components/Card';
 import PieChart from '~/views/components/Chart/pie-chart';
 
-function InoutByJob({ id, params, angleField = 'value', colorField = 'type' }) {
+function InoutByJob({ id, angleField = 'value', colorField = 'type', data = [], loading }) {
   const { t: lag } = useTranslation();
   const { token } = theme.useToken();
   const color = token.colorText;
@@ -15,28 +15,7 @@ function InoutByJob({ id, params, angleField = 'value', colorField = 'type' }) {
   let { jobs } = state;
   jobs = [...jobs, 'other'];
   const types = jobs.slice();
-  const {
-    data,
-    refetch,
-    isRefetching: loading
-  } = useQuery({
-    queryKey: ['Report', 'InoutByJob'],
-    queryFn: async () => {
-      let rs = [];
-      try {
-        const api = await MonitorApi.getInoutByJob({ ...params, jobs });
 
-        rs = api.map((item) => {
-          return {
-            [colorField]: item.job,
-            [angleField]: item.value
-          };
-        });
-      } catch {}
-
-      return rs;
-    }
-  });
   const unit = lag('common:turn');
   const yFieldTexts = types.reduce((acc, type) => {
     acc[type] = lag('common:jobs:' + type);
@@ -62,10 +41,6 @@ function InoutByJob({ id, params, angleField = 'value', colorField = 'type' }) {
     },
     height: 180
   };
-
-  useEffect(() => {
-    refetch();
-  }, [JSON.stringify(params)]);
 
   return (
     <PureCard
