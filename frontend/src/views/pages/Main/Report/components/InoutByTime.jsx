@@ -9,7 +9,7 @@ import { PureCard } from '~/views/components/Card';
 import ChartSetting from '~/views/components/Card/ChartSetting';
 import ColumnChart from '~/views/components/Chart/column-chart';
 
-function InoutByTime({ id, xField = 'date', yField = 'value', seriesField = 'type', params = {} }) {
+function InoutByTime({ id, xField = 'date', yField = 'value', seriesField = 'type', data=[], loading, params }) {
   const { start, end, timeType } = params;
   const [setting, setSetting] = useState({ isLabel: true });
   const { isLabel } = setting;
@@ -20,44 +20,6 @@ function InoutByTime({ id, xField = 'date', yField = 'value', seriesField = 'typ
     acc[type] = lag('common:' + type);
     return acc;
   }, {});
-  const {
-    data,
-    refetch,
-    isRefetching: loading
-  } = useQuery({
-    queryKey: ['Report', 'InOutByTime'],
-    queryFn: async () => {
-      let rs = [];
-      try {
-        const format = ChartService.getFormatByTimetype(params.timeType);
-        const xFileds = ChartService.generateRange(
-          dayjs(start, format),
-          dayjs(end, format),
-          timeType,
-          format
-        );
-        const api = await MonitorApi.getInoutByTime({ ...params, xFileds, types });
-        const newData = [];
-        xFileds.map((dateTime) => {
-          const item = api.find((el) => dateTime === el[xField]) || {};
-          const dt = item?.count;
-          types.map((type) => {
-            newData.push({
-              [xField]: dateTime,
-              [yField]: Number(dt) || 0,
-              [seriesField]: type
-            });
-          });
-        });
-
-        rs = newData;
-      } catch (error) {
-        console.log(error);
-      }
-
-      return rs;
-    }
-  });
   const unit = '';
   const config = {
     xField,
@@ -77,10 +39,6 @@ function InoutByTime({ id, xField = 'date', yField = 'value', seriesField = 'typ
       position: 'top'
     }
   };
-
-  useEffect(() => {
-    refetch();
-  }, [JSON.stringify(params)]);
   return (
     <PureCard
       title={lag(`common:reportPage:${id}`)}

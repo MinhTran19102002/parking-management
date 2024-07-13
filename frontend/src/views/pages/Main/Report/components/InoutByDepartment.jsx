@@ -14,7 +14,9 @@ function InoutByDepartment({
   xField = 'department',
   yField = 'value',
   seriesField = 'type',
-  params = {}
+  params = {},
+  loading,
+  data = []
 }) {
   const { start, end, timeType } = params;
   const [setting, setSetting] = useState({ isLabel: true });
@@ -27,37 +29,6 @@ function InoutByDepartment({
     acc[type] = lag('common:' + type);
     return acc;
   }, {});
-  const {
-    data,
-    refetch,
-    isRefetching: loading
-  } = useQuery({
-    queryKey: ['Report', 'InOutByDepartment'],
-    queryFn: async () => {
-      let rs = [];
-      try {
-        const xFileds = departments;
-        const api = await MonitorApi.getInoutByDepartments({ ...params, xFileds, types });
-        const newData = [];
-        xFileds.map((dateTime) => {
-          const item = api.find((el) => dateTime === el[xField]) || {};
-          const dt = item?.value;
-          types.map((type) => {
-            newData.push({
-              [xField]: dateTime,
-              [yField]: Number(dt) || 0,
-              [seriesField]: type
-            });
-          });
-        });
-
-        rs = newData;
-      } catch (error) {
-        console.log(error);
-      }
-      return rs;
-    }
-  });
   const unit = '';
   const config = {
     xField,
@@ -79,9 +50,6 @@ function InoutByDepartment({
     tooltipTitle: (text) => lag('department:' + text)
   };
 
-  useEffect(() => {
-    refetch();
-  }, [JSON.stringify(params)]);
   return (
     <PureCard
       title={lag(`common:reportPage:${id}`)}

@@ -6,26 +6,10 @@ import { MonitorApi } from '~/api';
 import { PureCard } from '~/views/components/Card';
 import PieChart from '~/views/components/Chart/pie-chart';
 
-function VisistorRate({ id, params, angleField = 'value', colorField = 'type' }) {
+function VisistorRate({ id, params, angleField = 'value', colorField = 'driverType', data=[], loading }) {
   const { t: lag } = useTranslation();
   const { token } = theme.useToken();
   const color = token.colorText;
-  const {
-    data,
-    refetch,
-    isRefetching: loading
-  } = useQuery({
-    queryKey: ['Report', 'VisistorRate'],
-    queryFn: async () => {
-      let rs = [];
-      try {
-        const api = await MonitorApi.getVisistorRate(params);
-        rs = api;
-      } catch {}
-
-      return rs;
-    }
-  });
   const unit = '';
   const yFieldTexts = {
     visitor: lag('common:undefinedDriver'),
@@ -50,12 +34,9 @@ function VisistorRate({ id, params, angleField = 'value', colorField = 'type' })
       fill: color,
       color
     },
-    height: 200,
+    height: 200
   };
 
-  useEffect(() => {
-    refetch();
-  }, [JSON.stringify(params)]);
   return (
     <PureCard
       title={lag(`common:reportPage:${id}`)}
