@@ -35,7 +35,7 @@ jobs:
             cd project/20110677_20110642/parking-management/
             git pull origin main
             docker-compose down
-            docker-compose up -d
+            docker-compose up --build -d
           else
             echo "Path does not exist."
             exit 1
