@@ -32,7 +32,9 @@ io = new Server(httpServer, {
   cors: {
     origin: '*',
   },
+  methods: ["GET", "POST"],
   transports: ['websocket', 'polling'],
+  credentials: true
 });
 const START_SEVER = () => {
   io.on('connection', (socket) => {
