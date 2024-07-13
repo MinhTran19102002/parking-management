@@ -176,7 +176,7 @@
     "exportReport": "Export Report"
   },
   "sheet": {
-    "common:": "Information",
+    "common": "Information",
     "info": "Report information",
     "time": "Export time"
   },

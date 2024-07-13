@@ -177,7 +177,7 @@
     "exportReport": "Xuất báo cáo"
   },
   "sheet": {
-    "common:": "Thông tin chung",
+    "common": "Thông tin chung",
     "info": "Thông tin báo cáo",
     "time": "Thời gian xuất báo cáo"
   },
