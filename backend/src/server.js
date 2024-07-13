@@ -32,6 +32,7 @@ io = new Server(httpServer, {
   cors: {
     origin: '*',
   },
+  pingTimeout: 60000,
   methods: ["GET", "POST"],
   transports: ['websocket', 'polling'],
   credentials: true
