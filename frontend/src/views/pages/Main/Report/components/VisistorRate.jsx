@@ -6,7 +6,7 @@ import { MonitorApi } from '~/api';
 import { PureCard } from '~/views/components/Card';
 import PieChart from '~/views/components/Chart/pie-chart';
 
-function VisistorRate({ id, params, angleField = 'value', colorField = 'type', data=[], loading }) {
+function VisistorRate({ id, params, angleField = 'value', colorField = 'driverType', data=[], loading }) {
   const { t: lag } = useTranslation();
   const { token } = theme.useToken();
   const color = token.colorText;

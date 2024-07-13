@@ -3,16 +3,52 @@ import { Button, Popconfirm } from 'antd';
 import React, { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 import * as XLSX from 'xlsx';
+import ExcelJS from 'exceljs';
+import { saveAs } from 'file-saver';
 
+const styleByColumn = {
+  department: {
+    width: 34
+  },
+  date: {
+    width: 16
+  },
+  licenePlate: {
+    width: 16
+  },
+  turn: {
+    width: 10
+  },
+  value: {
+    width: 10
+  },
+  entries: {
+    width: 10
+  },
+  exists: {
+    width: 10
+  },
+  fee: {
+    width: 10
+  },
+  zone: {
+    width: 10
+  },
+  averageDuration: {
+    width: 24
+  }
+};
 function ExportReport({ data, element, params }) {
   const { t: lag } = useTranslation();
 
-  const onExport = () => {
+  const onExport = async () => {
     const wb = XLSX.utils.book_new();
+    const workbook = new ExcelJS.Workbook();
+
     for (let [key, value] of Object.entries(data)) {
       //format column value for sheet
       key = lag('common:reportPage:export:' + key);
-      const formatedValue = value.map((record, ix) => {
+      const jsonData = value.map((record, ix) => {
         const hideColumn = [lag('common:type')];
         const newRecord = {};
         for (let [name, label] of Object.entries(record)) {
@@ -28,58 +64,54 @@ function ExportReport({ data, element, params }) {
         return newRecord;
       });
 
-      const aoaData = [
-        Object.keys(formatedValue[0]), // Tiêu đề cột
-        ...formatedValue.map(Object.values) // Dữ liệu hàng
-      ];
-      const ws = XLSX.utils.aoa_to_sheet(aoaData);
+      const worksheet = workbook.addWorksheet(key);
+      const headerRow = worksheet.addRow(Object.keys(jsonData[0]));
 
-      // Định dạng các ô tiêu đề
-      const headerCellStyle = {
-        font: { name: 'Arial', sz: 14, bold: true, color: { rgb: 'FF0000' } },
-        fill: { fgColor: { rgb: 'FFFF00' } },
-        border: {
-          top: { style: 'thin', color: { rgb: '000000' } },
-          bottom: { style: 'thin', color: { rgb: '000000' } },
-          left: { style: 'thin', color: { rgb: '000000' } },
-          right: { style: 'thin', color: { rgb: '000000' } }
-        },
-        alignment: { horizontal: 'center', vertical: 'center' }
-      };
+      const styleByColumnConvertKey = Object.keys(styleByColumn).reduce((acc, key) => {
+        const convertKey = lag('common:' + key);
+        acc[convertKey] = styleByColumn[key];
+        return acc;
+      }, {});
+      worksheet.columns = Object.keys(jsonData[0]).map((key, _) => {
+        let rs = {
+          header: key,
+          key: key,
+          width: 20
+        };
 
-      // Định dạng các ô dữ liệu
-      const dataCellStyle = {
-        font: { name: 'Arial', sz: 12, color: { rgb: '000000' } },
-        border: {
-          top: { style: 'thin', color: { rgb: '000000' } },
-          bottom: { style: 'thin', color: { rgb: '000000' } },
-          left: { style: 'thin', color: { rgb: '000000' } },
-          right: { style: 'thin', color: { rgb: '000000' } }
-        },
-        alignment: { horizontal: 'left', vertical: 'center' }
-      };
-
-      // Áp dụng định dạng cho hàng tiêu đề
-      const range = XLSX.utils.decode_range(ws['!ref']);
-      for (let C = range.s.c; C <= range.e.c; ++C) {
-        const cellAddress = XLSX.utils.encode_cell({ c: C, r: 0 });
-        if (!ws[cellAddress]) continue;
-        ws[cellAddress].s = headerCellStyle;
-      }
-
-      // Áp dụng định dạng cho các ô dữ liệu
-      for (let R = range.s.r + 1; R <= range.e.r; ++R) {
-        for (let C = range.s.c; C <= range.e.c; ++C) {
-          const cellAddress = XLSX.utils.encode_cell({ c: C, r: R });
-          if (!ws[cellAddress]) continue;
-          ws[cellAddress].s = dataCellStyle;
+        const styleObj = styleByColumnConvertKey[key];
+        if (styleObj) {
+          rs = {
+            ...rs,
+            ...styleObj
+          };
         }
-      }
+        return rs;
+      });
 
-      //Append sheet into file
-      XLSX.utils.book_append_sheet(wb, ws, key);
+      // Áp dụng style cho hàng tiêu đề
+      headerRow.eachCell((cell) => {
+        cell.font = { bold: true, color: { argb: '000' } };
+        cell.fill = {
+          type: 'pattern',
+          fgColor: { argb: '#D9D9D9' }
+        };
+        cell.alignment = { horizontal: 'center' };
+      });
+      // Thêm dữ liệu hàng
+      jsonData.forEach((data) => {
+        worksheet.addRow(Object.values(data));
+      });
     }
-    XLSX.writeFile(wb, `Parking_Report_${params.start}_${params.end}.xlsx`);
+    // Tạo buffer từ workbook
+    const buffer = await workbook.xlsx.writeBuffer();
+
+    // Tạo blob và lưu file
+    const blob = new Blob([buffer], {
+      type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    });
+    saveAs(blob, `Parking_Report_${params.start}_${params.end}.xlsx`);
+    // XLSX.writeFile(wb, `Parking_Report_${params.start}_${params.end}.xlsx`);
   };
   return (
     <div>

@@ -199,7 +199,10 @@ function Report({}) {
       let rs = [];
       try {
         const api = await MonitorApi.getVisistorRate(params);
-        rs = api;
+        rs = api.map((el) => ({
+          ...el,
+          driverType: el.type
+        }));
       } catch {}
       return rs;
     }
@@ -308,3 +311,36 @@ function Report({}) {
 }
 
 export default Report;
+
+const exportToExcel = async () => {
+  const workbook = new ExcelJS.Workbook();
+  const worksheet = workbook.addWorksheet('Sheet1');
+
+  // Thêm hàng tiêu đề
+  const headerRow = worksheet.addRow(Object.keys(jsonData[0]));
+
+  // Áp dụng style cho hàng tiêu đề
+  headerRow.eachCell((cell) => {
+    cell.font = { bold: true, color: { argb: 'FFFFFF' } };
+    cell.fill = {
+      type: 'pattern',
+      pattern: 'solid',
+      fgColor: { argb: '000000' }
+    };
+    cell.alignment = { horizontal: 'center' };
+  });
+
+  // Thêm dữ liệu hàng
+  jsonData.forEach((data) => {
+    worksheet.addRow(Object.values(data));
+  });
+
+  // Tạo buffer từ workbook
+  const buffer = await workbook.xlsx.writeBuffer();
+
+  // Tạo blob và lưu file
+  const blob = new Blob([buffer], {
+    type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+  });
+  saveAs(blob, 'exported_data.xlsx');
+};

@@ -30,6 +30,7 @@
   "personName": "Tên chủ xe",
   "eventName": "Tên sự kiện",
   "events": "Sự kiện",
+  "driverType": "Kiểu chủ xe",
   "pages": {
     "dashboard": "Dashboard",
     "map": "Bản đồ",
@@ -52,6 +53,7 @@
   "time": "Thời gian",
   "fee": "Phí",
   "driver": "Chủ xe",
+  "visistor": "Khách vãn lai",
   "phone": "SĐT",
   "image": "Hình ảnh",
   "fullName": "Họ và tên",

@@ -30,6 +30,7 @@
   "eventName": "Event name",
   "events": "Events",
   "isPay": "Paid",
+  "driverType": "Driver type",
   "pages": {
     "dashboard": "Dashboard",
     "map": "Map",
@@ -52,6 +53,7 @@
   "time": "Time",
   "fee": "Fee",
   "driver": "Driver",
+  "visistor": "Visitor",
   "phone": "Phone",
   "image": "Image",
   "fullName": "Full name",

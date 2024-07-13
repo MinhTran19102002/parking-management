@@ -16,7 +16,6 @@ import { useTranslation } from 'react-i18next';
 import PaymentSuccess from './views/components/Result/PaymentSuccess';
 import "react-grid-layout/css/styles.css";
 import "react-resizable/css/styles.css";
-import "xlsx-js-style/dist/xlsx.bundle.js";
 
 function Authencation({ children }) {
   const { state } = useContext(AppContext);
