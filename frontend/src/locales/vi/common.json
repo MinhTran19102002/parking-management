@@ -105,6 +105,9 @@
   "averageDuration": "Thời gian đỗ trung bình",
   "date": "Thời gian",
   "hls": {},
+  "BR": {
+    "BR_undefined": "Lỗi không xác định"
+  },
   "form": {
     "addCar": "Thêm xe",
     "wrongFormat": "Sai định dạng",
@@ -177,7 +180,7 @@
     "exportReport": "Xuất báo cáo"
   },
   "sheet": {
-    "common:": "Thông tin chung",
+    "common": "Thông tin chung",
     "info": "Thông tin báo cáo",
     "time": "Thời gian xuất báo cáo"
   },

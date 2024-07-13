@@ -34,19 +34,7 @@ def image():
         
         # Gọi hàm xử lý ảnh
         result, fileImage = select_image(file)
-        
-#         img = Image.fromarray(fileImage.astype('uint8'))
-
-# # Tạo một đối tượng StringIO để lưu trữ dữ liệu của hình ảnh dưới dạng chuỗi
-#         img_io = io.BytesIO()
-
-# # Lưu hình ảnh vào đối tượng StringIO với định dạng PNG
-#         img.save(img_io, format='PNG')
-
-# # Mã hóa dữ liệu của hình ảnh thành chuỗi Base64
-#         img_base64 = base64.b64encode(img_io.getvalue()).decode()
-        
-        # return render_template('index.html', result = result,fileImage =img_base64 )
+    
         return jsonify({'message': 'File successfully uploaded', 'result': result}), 200
     return redirect(url_for('home'))
 
@@ -62,10 +50,12 @@ def carIn(url, flag):
     test =True
     webcam = Webcam(urlCarIn)
     while running:
+        print("carIn")
         if webcam == None:
             continue  
         image = next(webcam.get_frame(17))
         image, licenseS = car_into_parkingUpdate(image, flag)
+        yield b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n--frame\r\n'
     carIn(url, flag)
 
 def carOut(url, flag):
@@ -80,10 +70,12 @@ def carOut(url, flag):
     # else:
     #     test =False
     while running:
+        print("carOut")
         if webcam == None:
             continue 
         image = next(webcam.get_frame(17))
         image, licenseS = car_Out_parkingUpdate(image, flag)
+        yield b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n--frame\r\n'
     carOut(urlCarOut, flag)
 
 def carInOutSlot(url):
@@ -99,11 +91,13 @@ def carInOutSlot(url):
     zone = 'A'
     
     while running:
+        print("carInOutSlot")
         if webcam == None:
 
             continue  
         image = next(webcam.get_frame(12))
         image = car_into_slot(image, position, zone)
+        yield b'Content-Type: image/jpeg\r\n\r\n' + image + b'\r\n--frame\r\n'
     carInOutSlot(urlarInOutSlot)
 
 
@@ -175,25 +169,28 @@ if __name__ == '__main__':
         print(urlCarIn)
         print(urlCarOut)
         print(urlarInOutSlot)
-    # urlCarOut = "rtsp://103.130.211.150:10050/CAM_001"
+    # urlCarOut = "./unit/video/XeRa.mp4"
+    # urlCarIn  = "./unit/video/XeVao.mp4"
+    # urlarInOutSlot = "./unit/video/Slot_InOut.mp4"
+
+     # urlCarOut = "rtsp://103.130.211.150:10050/CAM_001"
     # urlCarIn  = "rtsp://103.130.211.150:10050/CAM_002"
     # urlarInOutSlot = "rtsp://103.130.211.150:10050/CAM_SLOT_001"
-
-
+    
     urlCarOut = "rtsp://localhost:8554/CAM_001"
     urlCarIn  = "rtsp://localhost:8554/CAM_002"
     urlarInOutSlot = "rtsp://localhost:8554/CAM_SLOT_001"
-    try: 
-        with concurrent.futures.ThreadPoolExecutor() as executor:
-            executor.submit(carIn, urlCarIn, "in")
-            executor.submit(carOut, urlCarOut, "out")
-            executor.submit(carInOutSlot, urlarInOutSlot)
-            app.run(host='0.0.0.0', threaded=True, port = 5000)
-    except KeyboardInterrupt:
-        running = False
-        print("Stopping the loop.")
+    # try: 
+    #     with concurrent.futures.ThreadPoolExecutor() as executor:
+    #         executor.submit(carIn, urlCarIn, "in")
+    #         executor.submit(carOut, urlCarOut, "out")
+    #         executor.submit(carInOutSlot, urlarInOutSlot)
+    #         app.run(host='0.0.0.0', threaded=True, port = 5000)
+    # except KeyboardInterrupt:
+    #     running = False
+    #     print("Stopping the loop.")
 
 
-    # app.run(host='0.0.0.0', threaded=True, port = 5000)
+    app.run(host='0.0.0.0', threaded=True, port = 5000)
     
 

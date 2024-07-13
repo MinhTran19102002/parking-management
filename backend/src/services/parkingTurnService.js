@@ -1189,7 +1189,7 @@ const sendMessageTelegram = async (message, type) => {
     headers: {
       'Content-Type': 'application/json'
     },
-    _timeout: 55000
+    timeout: 55000
   });
   let maxRetries = 3;
   let retries = 0;
