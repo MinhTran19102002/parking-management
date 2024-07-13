@@ -175,6 +175,11 @@
     "noEvent": "No Other Events",
     "exportReport": "Export Report"
   },
+  "sheet": {
+    "common:": "Information",
+    "info": "Report information",
+    "time": "Export time"
+  },
   "reportPage": {
     "general": "General Statistics",
     "visitorRate": "Visitor Rate",

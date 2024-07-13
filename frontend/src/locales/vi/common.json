@@ -176,6 +176,11 @@
     "noEvent": "Không còn sự kiện nào khác",
     "exportReport": "Xuất báo cáo"
   },
+  "sheet": {
+    "common:": "Thông tin chung",
+    "info": "Thông tin báo cáo",
+    "time": "Thời gian xuất báo cáo"
+  },
   "reportPage": {
     "general": "Thống kê tổng quan",
     "visitorRate": "Tỉ lệ khách vãng lai",

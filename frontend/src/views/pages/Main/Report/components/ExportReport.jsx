@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import * as XLSX from 'xlsx';
 import ExcelJS from 'exceljs';
 import { saveAs } from 'file-saver';
+import dayjs from 'dayjs';
 
 const styleByColumn = {
   department: {
@@ -42,11 +43,20 @@ function ExportReport({ data, element, params }) {
   const { t: lag } = useTranslation();
 
   const onExport = async () => {
-    const wb = XLSX.utils.book_new();
     const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet(lag('common:sheet:common'));
+    worksheet.mergeCells(['A1', 'C1']);
+    worksheet.getCell('A1').value = lag('common:sheet:info');
+    worksheet.getCell('A2').value = lag('common:sheet:time');
+    worksheet.getCell('B2').value = dayjs().format('L LTS');
+    worksheet.getCell('A3').value = lag('common:filter');
+    worksheet.getCell('B3').value = `${params.start} - ${params.end}`;
+    worksheet.getColumn('A').width = 38;
+    worksheet.getColumn('A').width = 44;
 
     for (let [key, value] of Object.entries(data)) {
       //format column value for sheet
+      const rawKey = key;
       key = lag('common:reportPage:export:' + key);
       const jsonData = value.map((record, ix) => {
         const hideColumn = [lag('common:type')];
@@ -65,13 +75,24 @@ function ExportReport({ data, element, params }) {
       });
 
       const worksheet = workbook.addWorksheet(key);
-      const headerRow = worksheet.addRow(Object.keys(jsonData[0]));
 
+      // Thêm một hàng trống ở đầu
+      worksheet.addRow(['Hàng đầu']);
+
+      // Số cột
+      const columnCount = jsonData.length > 0 ? Object.keys(jsonData[0]).length : 0;
+      if (columnCount > 0) {
+        const mergeRange = `A1:${String.fromCharCode(65 + columnCount - 1)}1`;
+        worksheet.mergeCells(mergeRange);
+      }
+
+      const headerRow = worksheet.addRow(Object.keys(jsonData[0]));
       const styleByColumnConvertKey = Object.keys(styleByColumn).reduce((acc, key) => {
         const convertKey = lag('common:' + key);
         acc[convertKey] = styleByColumn[key];
         return acc;
       }, {});
+
       worksheet.columns = Object.keys(jsonData[0]).map((key, _) => {
         let rs = {
           header: key,
@@ -102,6 +123,14 @@ function ExportReport({ data, element, params }) {
       jsonData.forEach((data) => {
         worksheet.addRow(Object.values(data));
       });
+
+      // Áp dụng style cho hàng tiêu đề
+      worksheet.getRow(1).eachCell((cell) => {
+        cell.font = { bold: true, size: 20 };
+        cell.alignment = { horizontal: 'center' };
+      });
+
+      worksheet.getCell('A1').value = lag('common:reportPage:' + rawKey);
     }
     // Tạo buffer từ workbook
     const buffer = await workbook.xlsx.writeBuffer();
