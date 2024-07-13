@@ -594,7 +594,6 @@ def car_into_parkingUpdate(img, flag):
             height = abs(y2 - y1)
             area = width * height
             if 'car' in c and area > 10000:
-                
                 imgRoi = img[y1:y2, x1:x2]
                 try:
                     result = ocr.ocr(imgRoi, cls=True)
