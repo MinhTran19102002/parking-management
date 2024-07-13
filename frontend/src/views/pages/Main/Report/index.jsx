@@ -17,6 +17,7 @@ import { FileExcelOutlined } from '@ant-design/icons';
 import AppContext from '~/context';
 import { ChartService, ErrorService } from '~/services';
 import { useQuery } from '@tanstack/react-query';
+import ExportReport from './components/ExportReport';
 
 const dynamicBlock = {};
 function Report({}) {
@@ -107,7 +108,7 @@ function Report({}) {
       let rs = [];
       try {
         const angleField = 'value',
-          colorField = 'type';
+          colorField = 'job';
         const api = await MonitorApi.getInoutByJob({ ...params, jobs });
         rs = api.map((item) => {
           return {
@@ -204,6 +205,15 @@ function Report({}) {
     }
   });
 
+  const data = {
+    general: generalData,
+    inoutByJob: inoutByJobData,
+    inoutByUnit: inoutDepartmentData,
+    inoutByTime: inoutByTime,
+    visitorRate: visistorData,
+    topDriver: topDriverData
+  };
+
   const getTileLayout = () => [
     {
       body: <General id="general" params={params} data={generalData} loading={generalLoading} />,
@@ -252,15 +262,15 @@ function Report({}) {
   ];
 
   const onExport = async () => {
-    try {
-      const api = await MonitorApi.exportReport(params);
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(new Blob([api]));
-      link.download = `Report_${params.timeType}_${params.start}_${params.end}.xlsx`;
-      link.click();
-    } catch (error) {
-      ErrorService.hanldeError(error, actions.onNoti);
-    }
+    // try {
+    //   const api = await MonitorApi.exportReport(params);
+    //   const link = document.createElement('a');
+    //   link.href = window.URL.createObjectURL(new Blob([api]));
+    //   link.download = `Report_${params.timeType}_${params.start}_${params.end}.xlsx`;
+    //   link.click();
+    // } catch (error) {
+    //   ErrorService.hanldeError(error, actions.onNoti);
+    // }
   };
 
   const onChangeFilter = (values) => {
@@ -286,17 +296,7 @@ function Report({}) {
             onChange={onChangeFilter}
           />
         }
-        extra={
-          <Popconfirm
-            title={lag('common:popup:sure')}
-            onConfirm={onExport}
-            okText={lag('common:confirm')}
-            cancelText={lag('common:cancel')}>
-            <Button icon={<FileExcelOutlined />} onClick={onExport}>
-              {lag('common:dashboard:exportReport')}
-            </Button>
-          </Popconfirm>
-        }
+        extra={<ExportReport data={data} params={params} />}
         layoutKey="Report"
         rowHeight={80}>
         {getTileLayout().map((el, ix) => (

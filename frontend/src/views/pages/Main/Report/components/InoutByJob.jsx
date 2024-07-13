@@ -7,7 +7,7 @@ import AppContext from '~/context';
 import { PureCard } from '~/views/components/Card';
 import PieChart from '~/views/components/Chart/pie-chart';
 
-function InoutByJob({ id, angleField = 'value', colorField = 'type', data = [], loading }) {
+function InoutByJob({ id, angleField = 'value', colorField = 'job', data = [], loading }) {
   const { t: lag } = useTranslation();
   const { token } = theme.useToken();
   const color = token.colorText;

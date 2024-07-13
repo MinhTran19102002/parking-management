@@ -99,6 +99,9 @@
   "isPay": "Đã thanh toán",
   "avg": "Giá trị trung bình",
   "turn": "Lượt",
+  "value": "Lượt đỗ",
+  "averageDuration": "Thời gian đỗ trung bình",
+  "date": "Thời gian",
   "hls": {},
   "form": {
     "addCar": "Thêm xe",
@@ -177,7 +180,15 @@
     "inoutByTime": "Thống kê lượt đỗ theo thời gian",
     "inoutByJob": "Thống kê lượt đỗ theo công việc",
     "inoutByUnit": "Thống kê lượt đỗ theo đơn vị",
-    "topDriver": "Xe đỗ nhiều nhất"
+    "topDriver": "Xe đỗ nhiều nhất",
+    "export": {
+      "general": "Tổng quan",
+      "visitorRate": "Khách vãn lai",
+      "inoutByTime": "Lượt đỗ theo thời gina",
+      "inoutByJob": "Lượt đỗ theo công việc",
+      "inoutByUnit": "Lượt đỗ theo đơn vị",
+      "topDriver": "Top xe đỗ"
+    }
   },
   "mapPage": {
     "dragAndDropIntoMap": "Kéo thả vào bản đồ",

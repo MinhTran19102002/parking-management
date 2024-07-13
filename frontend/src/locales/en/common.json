@@ -98,6 +98,9 @@
   "amount": "Amount",
   "avg": "The average value",
   "turn": "Turn",
+  "value": "Turn",
+  "averageDuration": "Average Duration",
+  "date": "Time",
   "hls": {},
   "form": {
     "addCar": "Add Car",
@@ -176,7 +179,15 @@
     "inoutByTime": "Statistics of parking turn by Time",
     "inoutByJob": "Statistics of parking turn by Job",
     "inoutByUnit": "Statistics of parking turn by Unit",
-    "topDriver": "Most parked vehicles"
+    "topDriver": "Most parked vehicles",
+    "export": {
+      "general": "General",
+      "visitorRate": "Visitor",
+      "inoutByTime": "Parking turn by Time",
+      "inoutByJob": "Parking turn by Job",
+      "inoutByUnit": "Parking turn by Unit",
+      "topDriver": "Most parked vehicles"
+    }
   },
   "mapPage": {
     "dragAndDropIntoMap": "Drag and Drop into Map",
