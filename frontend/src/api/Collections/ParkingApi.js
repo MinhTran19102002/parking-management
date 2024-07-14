@@ -29,13 +29,9 @@ export default {
 
   importVehicle: (payload) => {
     const { licenePlate, position, zone } = payload;
-    let path = '/createPakingTurn';
-    if (!position) {
-      path = '/createPakingTurnWithoutPosition';
-      if (!zone) {
-        path = '/createPakingTurnWithoutZoneAndPosition';
-      }
-    }
+    delete payload.position;
+    delete payload.zone;
+    const path = '/createPakingTurnWithoutZoneAndPosition';
     const url = `${DOMAIN}/parkingTurn${path}`;
 
     return POST({
@@ -65,7 +61,7 @@ export default {
 
   exportVehicle: (payload) => {
     const url = `${DOMAIN}/parkingTurn/outPaking`;
-3
+    3;
     return POST({
       url,
       payload
