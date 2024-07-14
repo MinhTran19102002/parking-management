@@ -30,6 +30,7 @@
   "personName": "Tên chủ xe",
   "eventName": "Tên sự kiện",
   "events": "Sự kiện",
+  "driverType": "Kiểu chủ xe",
   "pages": {
     "dashboard": "Dashboard",
     "map": "Bản đồ",
@@ -52,6 +53,7 @@
   "time": "Thời gian",
   "fee": "Phí",
   "driver": "Chủ xe",
+  "visistor": "Khách vãn lai",
   "phone": "SĐT",
   "image": "Hình ảnh",
   "fullName": "Họ và tên",
@@ -99,7 +101,13 @@
   "isPay": "Đã thanh toán",
   "avg": "Giá trị trung bình",
   "turn": "Lượt",
+  "value": "Lượt đỗ",
+  "averageDuration": "Thời gian đỗ trung bình",
+  "date": "Thời gian",
   "hls": {},
+  "BR": {
+    "BR_undefined": "Lỗi không xác định"
+  },
   "form": {
     "addCar": "Thêm xe",
     "wrongFormat": "Sai định dạng",
@@ -171,13 +179,26 @@
     "noEvent": "Không còn sự kiện nào khác",
     "exportReport": "Xuất báo cáo"
   },
+  "sheet": {
+    "common": "Thông tin chung",
+    "info": "Thông tin báo cáo",
+    "time": "Thời gian xuất báo cáo"
+  },
   "reportPage": {
     "general": "Thống kê tổng quan",
     "visitorRate": "Tỉ lệ khách vãng lai",
     "inoutByTime": "Thống kê lượt đỗ theo thời gian",
     "inoutByJob": "Thống kê lượt đỗ theo công việc",
     "inoutByUnit": "Thống kê lượt đỗ theo đơn vị",
-    "topDriver": "Xe đỗ nhiều nhất"
+    "topDriver": "Xe đỗ nhiều nhất",
+    "export": {
+      "general": "Tổng quan",
+      "visitorRate": "Khách vãn lai",
+      "inoutByTime": "Lượt đỗ theo thời gina",
+      "inoutByJob": "Lượt đỗ theo công việc",
+      "inoutByUnit": "Lượt đỗ theo đơn vị",
+      "topDriver": "Top xe đỗ"
+    }
   },
   "mapPage": {
     "dragAndDropIntoMap": "Kéo thả vào bản đồ",

@@ -20,6 +20,7 @@ function Main({}) {
 
   useEffect(() => {
     const hanldeNotiParking = (event) => {
+      console.log('WS On Event Parking', event);
       actions.onEventParking(event);
     };
     //config websocket

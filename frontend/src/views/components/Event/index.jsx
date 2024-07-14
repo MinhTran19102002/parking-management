@@ -39,6 +39,7 @@ function EventBlock({}) {
 
   const callApi = async (pageIndex, pageSize) => {
     try {
+      console.log('event Block callApi');
       const api = await MonitorApi.getEvents({ pageSize, pageIndex, ...filter });
       setData(api.data);
       setTotalCount(api.totalCount);
@@ -58,7 +59,7 @@ function EventBlock({}) {
     callApi(pageIndex, pageSize, (newData) => {
       setData(newData);
     });
-  }, [state.parkingEvent, JSON.stringify(filter)]);
+  }, [JSON.stringify(state.parkingEvent), JSON.stringify(filter)]);
 
   const onChangeFilter = (values) => {
     setFilter(values);

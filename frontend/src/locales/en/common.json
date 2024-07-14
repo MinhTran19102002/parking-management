@@ -30,6 +30,7 @@
   "eventName": "Event name",
   "events": "Events",
   "isPay": "Paid",
+  "driverType": "Driver type",
   "pages": {
     "dashboard": "Dashboard",
     "map": "Map",
@@ -52,6 +53,7 @@
   "time": "Time",
   "fee": "Fee",
   "driver": "Driver",
+  "visistor": "Visitor",
   "phone": "Phone",
   "image": "Image",
   "fullName": "Full name",
@@ -98,7 +100,13 @@
   "amount": "Amount",
   "avg": "The average value",
   "turn": "Turn",
+  "value": "Turn",
+  "averageDuration": "Average Duration",
+  "date": "Time",
   "hls": {},
+  "BR": {
+    "BR_undefined": "Underfined error"
+  },
   "form": {
     "addCar": "Add Car",
     "wrongFormat": "Wrong Format",
@@ -170,13 +178,26 @@
     "noEvent": "No Other Events",
     "exportReport": "Export Report"
   },
+  "sheet": {
+    "common": "Information",
+    "info": "Report information",
+    "time": "Export time"
+  },
   "reportPage": {
     "general": "General Statistics",
     "visitorRate": "Visitor Rate",
     "inoutByTime": "Statistics of parking turn by Time",
     "inoutByJob": "Statistics of parking turn by Job",
     "inoutByUnit": "Statistics of parking turn by Unit",
-    "topDriver": "Most parked vehicles"
+    "topDriver": "Most parked vehicles",
+    "export": {
+      "general": "General",
+      "visitorRate": "Visitor",
+      "inoutByTime": "Parking turn by Time",
+      "inoutByJob": "Parking turn by Job",
+      "inoutByUnit": "Parking turn by Unit",
+      "topDriver": "Most parked vehicles"
+    }
   },
   "mapPage": {
     "dragAndDropIntoMap": "Drag and Drop into Map",
