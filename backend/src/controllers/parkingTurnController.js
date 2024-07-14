@@ -78,7 +78,7 @@ const createNewZone = async (req, res, next) => {
     // Dieu huong sang tang Service
     const createUser = await parkingTurnService.createPakingTurnUpdate(licenePlate, zone, position, image, datetime);
     console.log('loi o day')
-    server.io.emit('notification-parking', { message: 'Car enters the parking lot' })
+    server.io.emit('notification-parking', { message: 'Car enters the parking lot', id:  createUser.insertedId})
     res.status(StatusCodes.CREATED).json(createUser);
   } catch (error) {
     next(error);
@@ -116,7 +116,7 @@ const outPaking = async (req, res, next) => {
     }
     // Dieu huong sang tang Service
     const outPaking = await parkingTurnService.outPaking(licenePlate, datetime);
-    server.io.emit('notification-parking', { message: 'Car goes to the parking lot' })
+    server.io.emit('notification-parking', { message: 'Car out Parking' , id : outPaking._id})
     res.status(StatusCodes.OK).json(outPaking);
   } catch (error) {
     next(error);
@@ -229,7 +229,8 @@ const carInSlot = async (req, res, next) => {
     }
     // Dieu huong sang tang Service
     const carInSlot = await parkingTurnService.carInSlot(zone, position, licenePlate, datetime);
-    // server.io.emit('notification-parking',{ message:  'Car goes to the parking lot'})
+    let now = Date.now();
+    server.io.emit('notification-parking',{ message:  'Car in slot', id: now})
     res.status(StatusCodes.OK).json(carInSlot);
   } catch (error) {
     next(error);
@@ -266,8 +267,8 @@ const carOutSlot = async (req, res, next) => {
     else{
       outPaking = await parkingTurnService.carOutSlotByLicenePlate( licenePlate, datetime);
     }
-
-    server.io.emit('notification-parking', { message: 'Car goes to the parking lot' })
+    let now = Date.now();
+    server.io.emit('notification-parking', { message: 'Car out slot', id: now })
     res.status(StatusCodes.OK).json(outPaking);
   } catch (error) {
     next(error);
