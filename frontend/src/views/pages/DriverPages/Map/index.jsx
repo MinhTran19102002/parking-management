@@ -24,7 +24,8 @@ function Map({}) {
       let rs = [];
       try {
         setLoading(true);
-        const api = await ParkingApi.getStatusByDriver({ phone: '0357647771' });
+        const phone = state.auth.info.phone;
+        const api = await ParkingApi.getStatusByDriver({ phone });
         rs = api.reduce((acc, curr) => {
           acc.push(
             ...curr.slots.map((slot) => {
