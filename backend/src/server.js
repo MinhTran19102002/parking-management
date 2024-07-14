@@ -25,17 +25,17 @@ app.use('/api', APIs_V1);
 
 //Middleware xu ly loi tap trung
 app.use(errorHandlingMiddleware);
-app.timeout = 300000;
+// app.timeout = 300000;
 const httpServer = createServer(app);
 io = new Server(httpServer, {
-  // path: "/my-custom-path/",
+  path: '/socket',
   cors: {
-    origin: '*',
+    origin: ['http://localhost:5173/', 'https://parking-management-iota.vercel.app', 'https://park.workon.space'],
   },
-  pingTimeout: 60000,
-  methods: ["GET", "POST"],
-  transports: ['websocket', 'polling'],
-  credentials: true
+  // pingTimeout: 60000,
+  // methods: ["GET", "POST"],
+  transports: ['websocket'],
+  // credentials: true
 });
 const START_SEVER = () => {
   io.on('connection', (socket) => {

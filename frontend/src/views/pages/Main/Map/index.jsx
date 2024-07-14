@@ -73,7 +73,7 @@ function Map({}) {
   useEffect(() => {
     callApi();
     refetchCameraUsed();
-  }, [zone, state.parkingEvent]);
+  }, [zone, JSON.stringify(state.parkingEvent)]);
 
   const onHoverCamera = (camera = {}) => {
     const { slots = [] } = camera;
@@ -85,7 +85,9 @@ function Map({}) {
       <Flex justify="space-between">
         <Radio.Group defaultValue={zone} buttonStyle="solid" onChange={onChangeZone}>
           {state.zones.map((zone) => (
-            <Radio.Button key={zone} value={zone}>{lag(`common:zoneName`, { zone })}</Radio.Button>
+            <Radio.Button key={zone} value={zone}>
+              {lag(`common:zoneName`, { zone })}
+            </Radio.Button>
           ))}
         </Radio.Group>
       </Flex>

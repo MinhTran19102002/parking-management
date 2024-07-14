@@ -87,7 +87,7 @@ def carInOutSlot(url):
     #     test =True
     # else:
     #     test =False
-    position = ['A104', 'A105', 'A106']
+    position = ['A601', 'A602', 'A603']
     zone = 'A'
     
     while running:

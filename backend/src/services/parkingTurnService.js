@@ -715,7 +715,7 @@ const carOutSlotByLicenePlate = async (licenePlate, datetime) => {
       now = date.getTime()
     }
     const parkingHollow = await parkingModel.findOne('O')
-    const updateSlot = await parkingTurnModel.updateSlot(zone, position, parkingTurnId, isOut)
+    const updateSlot = await parkingTurnModel.updateSlot(zone, position, null, isOut)
     const updateCarHollow = await parkingTurnModel.carInHollow('O', slot.parkingTurnId)
     if (updateCarHollow.momodifiedCountdi == 0) {
       throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe chua cap nhat vao bai chua dau', 'Not Updated', 'BR_parking_3');
