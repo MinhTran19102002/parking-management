@@ -51,7 +51,7 @@ async def index():
 
         RedirectResponse: A redirection to the API documentation page.
     """
-    return RedirectResponse(url="/docs")\
+    return RedirectResponse(url="/docs")
         
 @app.get(api_tag + "/docs", include_in_schema=False)
 async def index():

@@ -115,7 +115,7 @@ function Register({}) {
                     return Promise.resolve();
                   }
 
-                  return Promise.reject(new Error(lag('common:formatPassword')));
+                  return Promise.reject(new Error(lag('common:form:wrongFormat')));
                 }
               })
             ]}>

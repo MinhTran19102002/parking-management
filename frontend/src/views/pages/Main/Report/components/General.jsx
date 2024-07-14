@@ -7,37 +7,8 @@ import { MonitorApi } from '~/api';
 import AppContext from '~/context';
 import { PureCard } from '~/views/components/Card';
 
-function General({ id, params }) {
+function General({ id, loading, data = [] }) {
   const { t: lag } = useTranslation();
-  const { state } = useContext(AppContext);
-  const {
-    data,
-    refetch,
-    isRefetching: loading
-  } = useQuery({
-    queryKey: ['Report', 'General'],
-    queryFn: async () => {
-      let rs = [];
-      try {
-        const api = await MonitorApi.getReportGeneral(params);
-        rs = state.zones.map((zone) => {
-          return api.find((el) => el.zone === zone) || {
-            zone,
-            entries: 0,
-            exists: 0,
-            fee: 0,
-            averageDuration: 0
-          };
-        });
-      } catch {}
-
-      return rs;
-    }
-  });
-
-  useEffect(() => {
-    refetch();
-  }, [JSON.stringify(params)]);
   return (
     <PureCard
       title={lag(`common:reportPage:${id}`)}

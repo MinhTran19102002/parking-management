@@ -38,7 +38,13 @@ const initState = {
       name: 'almost_full'
     },
     {
-      name: 'parking_full'
+      name: 'parking_full',
+    },
+    {
+      name: 'parking_full_total',
+    },
+    {
+      name: 'almost_full_total',
     },
   ],
   departments: [

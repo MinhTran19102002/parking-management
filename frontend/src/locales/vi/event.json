@@ -7,7 +7,9 @@
     "inSlot": "Xe vào ô đỗ",
     "outSlot": "Xe ra ô đỗ",
     "almost_full": "Bãi sắp đầy",
-    "parking_full": "Bãi đầy"
+    "parking_full": "Bãi đầy",
+    "parking_full_total": "Tất cả bãi xe đầu",
+    "almost_full_total": "Tất cả bãi xe gần đầy"
   },
   "actions": {
     "import": "Nhập xe",

@@ -77,15 +77,13 @@ function Event({}) {
       //hanldeImage
       delete values['image'];
       let { datetime = dayjs() } = values;
-      await Promise.all([
-        ParkingApi.importVehicle({
-          ...values,
-          image: imageFile
-        }),
-        ParkingApi.importSlotVehicle({
-          ...values
-        })
-      ]);
+       await ParkingApi.importVehicle({
+        ...values,
+        image: imageFile
+      });
+       await ParkingApi.importSlotVehicle({
+        ...values
+      });
       actions.onNoti({
         type: 'success',
         message: lag('event:actions:importSuccess'),
