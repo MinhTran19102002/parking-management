@@ -46,13 +46,14 @@ function Personal({}) {
 
   const hanldePayment = async (values) => {
     try {
-      const startDay = values.startDay.format('L');
+      const startDay = values.startDay.unix();
       delete values.startDay;
       const api = await VehicleApi.registerPayment({
         startDay,
         ...values
       });
       setOpen(false);
+      refetch();
       if (api) {
         actions.onNoti({ message: lag('common:form:addSuccess'), type: 'success' });
       }

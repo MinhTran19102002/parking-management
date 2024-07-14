@@ -77,11 +77,11 @@ function Event({}) {
       //hanldeImage
       delete values['image'];
       let { datetime = dayjs() } = values;
-       await ParkingApi.importVehicle({
+      await ParkingApi.importVehicle({
         ...values,
         image: imageFile
       });
-       await ParkingApi.importSlotVehicle({
+      await ParkingApi.importSlotVehicle({
         ...values
       });
       actions.onNoti({
@@ -100,16 +100,8 @@ function Event({}) {
   const hanldeExport = async (values) => {
     try {
       setLoading(true);
-      let { datetime = dayjs() } = values;
-      const apis = values.licenePlate
-        .map((el) => {
-          return [
-            ParkingApi.exportSlotVehicle({ licenePlate: el }),
-            ParkingApi.exportVehicle({ licenePlate: el })
-          ];
-        })
-        .flat();
-      await Promise.allSettled(apis);
+      await ParkingApi.exportSlotVehicle({ licenePlate: values });
+      await ParkingApi.exportVehicle({ licenePlate: values });
       actions.onNoti({
         type: 'success',
         message: lag('event:actions:exportSuccess'),
@@ -280,7 +272,7 @@ function Event({}) {
                 name="licenePlate"
                 label="Biển số xe"
                 rules={[{ required: true, message: false }]}>
-                <Select mode="multiple" showSearch>
+                <Select showSearch>
                   {occupiedSlots.map((el, ix) => {
                     return (
                       <Select.Option
