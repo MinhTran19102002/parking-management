@@ -42,7 +42,19 @@ app.add_middleware(
 )
 
 
-@app.get(api_tag + "/", include_in_schema=False)
+# @app.get(api_tag + "/", include_in_schema=False)
+# async def index():
+#     """
+#     This endpoint redirects the root URL to the API documentation page.
+
+#     Returns:
+
+#         RedirectResponse: A redirection to the API documentation page.
+#     """
+#     return RedirectResponse(url="/docs")
+
+
+@app.get(api_tag + "/swagger", include_in_schema=False)
 async def index():
     """
     This endpoint redirects the root URL to the API documentation page.
@@ -52,7 +64,8 @@ async def index():
         RedirectResponse: A redirection to the API documentation page.
     """
     return RedirectResponse(url="/docs")
-        
+
+
 @app.get(api_tag + "/docs", include_in_schema=False)
 async def index():
     """
