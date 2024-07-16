@@ -17,6 +17,7 @@
       }
     }
   },
+  "back": "Back",
   "entries": "Entries",
   "exists": "Entries",
   "avgParkTime": "Average parking time",

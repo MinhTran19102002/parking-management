@@ -1,8 +1,8 @@
-import { Layout, Result, Typography } from 'antd';
+import { Button, Layout, Result, Typography } from 'antd';
 import dayjs from 'dayjs';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { VehicleApi } from '~/api';
 import { FormatNumber } from '~/services';
 
@@ -10,6 +10,7 @@ function PaymentSuccess({}) {
   const { t: lag } = useTranslation();
   const [searchParams, setSearchParams] = useSearchParams();
   const params = {};
+  const navigate = useNavigate();
   for (let [key, value] of searchParams.entries()) {
     params[key] = value;
   }
@@ -45,6 +46,11 @@ function PaymentSuccess({}) {
           </Typography.Text>
         }
         style={{ margin: 'auto' }}
+        extra={
+          <Button type="primary" onClick={() => navigate('/')}>
+            {lag('common:back')}
+          </Button>
+        }
       />
     </Layout>
   );
