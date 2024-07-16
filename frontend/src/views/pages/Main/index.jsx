@@ -90,7 +90,7 @@ function Main({}) {
               }
               return <Route {...route} key={'route' + ix} />;
             })}
-            {/* <Route path="*" element={<Navigate to={currRoute[0].path} />} /> */}
+            <Route path="*" element={<Navigate to={currRoute[0].path} />} />
           </Routes>
         </Suspense>
         <Footer />

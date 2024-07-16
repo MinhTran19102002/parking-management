@@ -51,6 +51,7 @@ function Sider({ routes, ...props }) {
       style={
         {
           // background: token.colorBgContainer
+          paddingBottom: 64,
         }
       }>
       <Flex vertical className="px-2 mt-1" align="center">

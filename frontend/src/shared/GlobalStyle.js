@@ -112,6 +112,12 @@ export default createGlobalStyle`
     position: relative;
     }
 
+    .ant-layout {
+        .ant-layout-sider-children {
+            padding-bottom: 64px;
+        }
+    }
+
     .react-resizable-handle {
         position: absolute;
         width: 20px;
