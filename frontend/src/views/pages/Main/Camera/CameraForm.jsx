@@ -101,7 +101,7 @@ function CameraForm({ isOpen, onClose, formAction, noChangeAccount, resetAI }) {
         {...formItemLayout}
         style={{ maxWidth: 4000 }}>
         <Form.Item name={'cameraId'} label="Camera ID" rules={[{ required: true }]}>
-          <Input placeholder={lag('common:enter')} id="cameraIdInput" />
+          <Input disabled={formAction.action === 'edit'} placeholder={lag('common:enter')} id="cameraIdInput" />
         </Form.Item>
 
         <Form.Item name={'streamLink'} label={lag('common:cameraPage:streamLink')}>
