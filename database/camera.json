@@ -10,60 +10,35 @@
     "$numberLong": "1716632068030"
   },
   "updatedAt": {
-    "$numberLong": "1720394780139"
+    "$numberLong": "1720918542861"
   },
   "_destroy": false,
   "streamLink": "rtsp://localhost:8554/CAM_002",
-  "aiType": "cameraIn"
+  "aiType": "",
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 367,
+    "left": 752,
+    "iconId": "hori"
+  },
+  "zone": "A"
 },
 {
   "_id": {
     "$oid": "66651443571022a671c1a976"
   },
   "cameraId": "Cam_1232",
-  "streamLink": "http://localhost:8078/hls/test1234.m3u8",
+  "streamLink": "http://localhost:3597/hls/stream/CAM_SLOT_023/index.m3u8",
   "type": "cam360",
   "image": "",
   "createdAt": {
     "$numberLong": "1717900355940"
   },
   "updatedAt": {
-    "$numberLong": "1720621595955"
+    "$numberLong": "1721183709380"
   },
   "_destroy": false
-},
-{
-  "_id": {
-    "$oid": "6688796792d5a25c827df178"
-  },
-  "cameraId": "CAM_001",
-  "type": "normal",
-  "streamLink": "rtsp://localhost:8554/CAM_001",
-  "image": "",
-  "createdAt": {
-    "$numberLong": "1720220007956"
-  },
-  "updatedAt": {
-    "$numberLong": "1720394807094"
-  },
-  "_destroy": false,
-  "aiType": "cameraOut",
-  "location": {
-    "width": 39,
-    "height": 39,
-    "top": 290,
-    "left": 673,
-    "iconId": "hori"
-  },
-  "zone": "A",
-  "slots": [
-    "A602",
-    "A601",
-    "A507",
-    "A506",
-    "A505",
-    "A603"
-  ]
 },
 {
   "_id": {
@@ -77,23 +52,23 @@
     "$numberLong": "1720220133259"
   },
   "updatedAt": {
-    "$numberLong": "1720394807092"
+    "$numberLong": "1720918542861"
   },
   "_destroy": false,
   "location": {
     "width": 64,
     "height": 64,
-    "top": 131,
-    "left": 326,
+    "top": 276,
+    "left": 671,
     "iconId": "hori"
   },
   "zone": "A",
   "slots": [
-    "A104",
-    "A106",
-    "A105"
+    "A603",
+    "A602",
+    "A601"
   ],
-  "aiType": "cameraSlot"
+  "aiType": ""
 },
 {
   "_id": {
@@ -107,9 +82,25 @@
     "$numberLong": "1720247984347"
   },
   "updatedAt": {
-    "$numberLong": "1720394423689"
+    "$numberLong": "1720918542861"
   },
-  "_destroy": false
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 401,
+    "left": 469,
+    "iconId": "hori"
+  },
+  "zone": "A",
+  "slots": [
+    "A706",
+    "A705",
+    "A704",
+    "A703",
+    "A702",
+    "A701"
+  ]
 },
 {
   "_id": {
@@ -122,6 +113,831 @@
   "createdAt": {
     "$numberLong": "1720403649278"
   },
-  "updatedAt": null,
+  "updatedAt": {
+    "$numberLong": "1720918542861"
+  },
   "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669131fcb75cc88b2323027b"
+  },
+  "cameraId": "CAM_SLOT_002",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720791548153"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542861"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 408,
+    "left": 660,
+    "iconId": "hori"
+  },
+  "zone": "A",
+  "slots": [
+    "A709",
+    "A708",
+    "A707"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66913205b75cc88b2323027c"
+  },
+  "cameraId": "CAM_SLOT_003",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720791556934"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542861"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 149,
+    "left": 453,
+    "iconId": "hori"
+  },
+  "zone": "A",
+  "slots": [
+    "A501",
+    "A502",
+    "A503",
+    "A504"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66913210b75cc88b2323027d"
+  },
+  "cameraId": "CAM_SLOT_004",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720791567752"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542861"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 111,
+    "left": 653,
+    "iconId": "hori"
+  },
+  "zone": "A",
+  "slots": [
+    "A107",
+    "A108",
+    "A109"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66913216b75cc88b2323027e"
+  },
+  "cameraId": "CAM_SLOT_005",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720791574323"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542861"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 369,
+    "left": 334,
+    "iconId": "hori"
+  },
+  "zone": "A",
+  "slots": [
+    "A305",
+    "A306",
+    "A307",
+    "A308",
+    "A402",
+    "A401"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6691321fb75cc88b2323027f"
+  },
+  "cameraId": "CAM_SLOT_006",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720791582726"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542861"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 396,
+    "left": 108,
+    "iconId": "hori"
+  },
+  "zone": "A",
+  "slots": [
+    "A301",
+    "A302",
+    "A303",
+    "A304"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66913227b75cc88b23230280"
+  },
+  "cameraId": "CAM_SLOT_007",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720791591391"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 121,
+    "left": 123,
+    "iconId": "hori"
+  },
+  "zone": "A",
+  "slots": [
+    "A201",
+    "A202",
+    "A203",
+    "A204",
+    "A205",
+    "A206"
+  ]
+},
+{
+  "_id": {
+    "$oid": "669133feb75cc88b23230281"
+  },
+  "cameraId": "CAM_SLOT_008",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720792062519"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 165,
+    "left": 706,
+    "iconId": "hori"
+  },
+  "zone": "A",
+  "slots": [
+    "A505",
+    "A506",
+    "A507",
+    "A508"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66913404b75cc88b23230282"
+  },
+  "cameraId": "CAM_SLOT_009",
+  "type": "normal",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720792068608"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 177,
+    "left": 126,
+    "iconId": "hori"
+  },
+  "zone": "B",
+  "slots": [
+    "B101",
+    "B102",
+    "B103",
+    "B104",
+    "B105",
+    "B106"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6691340cb75cc88b23230283"
+  },
+  "cameraId": "CAM_SLOT_010",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720792076140"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 488,
+    "left": 136,
+    "iconId": "hori"
+  },
+  "zone": "B",
+  "slots": [
+    "B206",
+    "B205",
+    "B204",
+    "B203",
+    "B202",
+    "B201"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66913413b75cc88b23230284"
+  },
+  "cameraId": "CAM_SLOT_011",
+  "type": "cam360",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720792083553"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 491,
+    "left": 412,
+    "iconId": "hori"
+  },
+  "zone": "B",
+  "slots": [
+    "B406",
+    "B405",
+    "B404",
+    "B403",
+    "B402",
+    "B401"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66913419b75cc88b23230285"
+  },
+  "cameraId": "CAM_SLOT_012",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720792089644"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 396,
+    "left": 179,
+    "iconId": "hori"
+  },
+  "zone": "C",
+  "slots": [
+    "C206",
+    "C207",
+    "C208",
+    "C209",
+    "C210"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66913420b75cc88b23230286"
+  },
+  "cameraId": "CAM_SLOT_013",
+  "type": "cam360",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720792096211"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 388,
+    "left": 445,
+    "iconId": "hori"
+  },
+  "zone": "C",
+  "slots": [
+    "C405",
+    "C404",
+    "C403",
+    "C402",
+    "C401"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6691344ab75cc88b23230287"
+  },
+  "cameraId": "CAM_SLOT_015",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720792138017"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 141,
+    "left": 163,
+    "iconId": "hori"
+  },
+  "zone": "C",
+  "slots": [
+    "C101",
+    "C102",
+    "C103",
+    "C104",
+    "C105"
+  ]
+},
+{
+  "_id": {
+    "$oid": "669134a3b75cc88b23230288"
+  },
+  "cameraId": "CAM_SLOT_014",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720792227458"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 132,
+    "left": 443,
+    "iconId": "hori"
+  },
+  "zone": "C",
+  "slots": [
+    "C201",
+    "C202",
+    "C203",
+    "C204",
+    "C205"
+  ]
+},
+{
+  "_id": {
+    "$oid": "669134aeb75cc88b23230289"
+  },
+  "cameraId": "CAM_SLOT_016",
+  "type": "cam360",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720792238198"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 171,
+    "left": 411,
+    "iconId": "hori"
+  },
+  "zone": "B",
+  "slots": [
+    "B301",
+    "B302",
+    "B303",
+    "B304",
+    "B305",
+    "B306"
+  ]
+},
+{
+  "_id": {
+    "$oid": "669134b5b75cc88b2323028a"
+  },
+  "cameraId": "CAM_SLOT_017",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720792244775"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 480,
+    "left": 689,
+    "iconId": "hori"
+  },
+  "zone": "B",
+  "slots": [
+    "B606",
+    "B605",
+    "B604",
+    "B603",
+    "B602",
+    "B601"
+  ]
+},
+{
+  "_id": {
+    "$oid": "669134bcb75cc88b2323028b"
+  },
+  "cameraId": "CAM_SLOT_018",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720792252236"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 171,
+    "left": 673,
+    "iconId": "hori"
+  },
+  "zone": "B",
+  "slots": [
+    "B501",
+    "B502",
+    "B503",
+    "B504",
+    "B505",
+    "B506"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66913690b75cc88b2323028c"
+  },
+  "cameraId": "CAM_SLOT_019",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720792720265"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 136,
+    "left": 780,
+    "iconId": "hori"
+  },
+  "zone": "C",
+  "slots": [
+    "C305",
+    "C304",
+    "C303",
+    "C302",
+    "C301"
+  ]
+},
+{
+  "_id": {
+    "$oid": "66913697b75cc88b2323028d"
+  },
+  "cameraId": "CAM_SLOT_020",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720792727080"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 145,
+    "left": 550,
+    "iconId": "hori"
+  },
+  "zone": "C",
+  "slots": [
+    "C106",
+    "C107",
+    "C108",
+    "C109",
+    "C110"
+  ]
+},
+{
+  "_id": {
+    "$oid": "6691369db75cc88b2323028e"
+  },
+  "cameraId": "CAM_SLOT_021",
+  "type": "cam360",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720792733248"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 392,
+    "left": 767,
+    "iconId": "hori"
+  },
+  "zone": "C",
+  "slots": [
+    "C310",
+    "C309",
+    "C308",
+    "C307",
+    "C306"
+  ]
+},
+{
+  "_id": {
+    "$oid": "669136c8b75cc88b2323028f"
+  },
+  "cameraId": "CAM_SLOT_022",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720792775786"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 398,
+    "left": 545,
+    "iconId": "hori"
+  },
+  "zone": "C",
+  "slots": [
+    "C406",
+    "C407",
+    "C408",
+    "C409",
+    "C410"
+  ]
+},
+{
+  "_id": {
+    "$oid": "669139cab75cc88b23230290"
+  },
+  "cameraId": "CAM__003",
+  "type": "cam360",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720793546390"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542860"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 23,
+    "left": 781,
+    "iconId": "hori"
+  },
+  "zone": "B"
+},
+{
+  "_id": {
+    "$oid": "669139d8b75cc88b23230291"
+  },
+  "cameraId": "CAM__004",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720793560702"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542859"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 14,
+    "left": 206,
+    "iconId": "hori"
+  },
+  "zone": "B"
+},
+{
+  "_id": {
+    "$oid": "669139e3b75cc88b23230292"
+  },
+  "cameraId": "CAM__005",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720793571468"
+  },
+  "updatedAt": {
+    "$numberLong": "1720918542859"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 73,
+    "left": 824,
+    "iconId": "hori"
+  },
+  "zone": "C"
+},
+{
+  "_id": {
+    "$oid": "669139ebb75cc88b23230293"
+  },
+  "cameraId": "CAM__006",
+  "type": "normal",
+  "aiType": "cameraOut",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720793579108"
+  },
+  "updatedAt": {
+    "$numberLong": "1721203677946"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 118,
+    "left": 17,
+    "iconId": "hori"
+  },
+  "zone": "C",
+  "streamLink": "rtsp://localhost:8554/CAM_006"
+},
+{
+  "_id": {
+    "$oid": "66913a43b75cc88b23230294"
+  },
+  "cameraId": "CAM_SLOT_023",
+  "type": "normal",
+  "aiType": "cameraSlot",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720793667312"
+  },
+  "updatedAt": {
+    "$numberLong": "1721203251198"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 134,
+    "left": 288,
+    "iconId": "hori"
+  },
+  "zone": "A",
+  "slots": [
+    "A101",
+    "A102",
+    "A103",
+    "A104",
+    "A105",
+    "A106"
+  ],
+  "streamLink": "http://localhost:3597/hls/stream/CAM_001/index.m3u8"
+},
+{
+  "_id": {
+    "$oid": "66913aedb75cc88b23230295"
+  },
+  "cameraId": "CAM__007",
+  "type": "normal",
+  "aiType": "",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1720793837455"
+  },
+  "updatedAt": {
+    "$numberLong": "1721183551139"
+  },
+  "_destroy": false,
+  "location": {
+    "width": 64,
+    "height": 64,
+    "top": 328,
+    "left": 823,
+    "iconId": "hori"
+  },
+  "zone": "C",
+  "streamLink": ""
+},
+{
+  "_id": {
+    "$oid": "66977dbdbd29d60f8ba66d34"
+  },
+  "cameraId": "CAM_001",
+  "type": "normal",
+  "aiType": "cameraIn",
+  "image": "",
+  "createdAt": {
+    "$numberLong": "1721204157598"
+  },
+  "updatedAt": {
+    "$numberLong": "1721204228737"
+  },
+  "_destroy": false,
+  "streamLink": "rtsp://rtsp-server:8554/CAM_002"
 }]

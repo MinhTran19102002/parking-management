@@ -716,7 +716,7 @@
   "createdAt": {
     "$numberLong": "1720550302306"
   },
-  "_destroy": false
+  "_destroy": true
 },
 {
   "_id": {
@@ -1309,6 +1309,1744 @@
   "isPay": false,
   "createdAt": {
     "$numberLong": "1720703925148"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668ffb22899c5e8f7f3d4f6f"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720711970369"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668ffb251f07dade3c2a1483"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720711973846"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668ffb2add2361bf7c0a3446"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720711978680"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690ac9a76cd91990ec23579"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720757402313"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690ac9d4e19d5acc66759d6"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720757405339"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690acb3842e051ea24ebd9e"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720757427622"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690bfd7e1a805e2aec56257"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720762327467"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690bfd917994dd8a5ea36bd"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720762329779"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690c07dc16db6c9a0779d5a"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720762493185"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690ef3b60d172148ed6ff0f"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720774459757"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690ef4f88afea9915300e37"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720774479288"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690ef67c23a7bb377906f76"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720774503747"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669142ab116d5cace3cb18cf"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720795819736"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669142b7bd8b9ec1371535a4"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720795831683"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669142c5de0860955b91da8d"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720795845185"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66914cea570f407b918a5ffd"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720798442195"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66914d03a6dddceaf6225e0f"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720798467824"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66915051d76d9bb6281ef05d"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720799313975"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669150649bff37b4c18c2c44"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720799332337"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691526edd9f68d31496dfcd"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720799854375"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691527a40e20850020f6ed5"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720799866522"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691564e56f965f0120322b1"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720800846360"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691565204182aae91f63799"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720800850419"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691596c721f5ba4311ac790"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720801644636"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66915976e067ac65dc77eb49"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720801654342"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66915ce34f9c5bd0f4d4e8a4"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720802531257"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66915ce48992a834ac6bcc3c"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720802532079"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66915e0df0ae4779c09a5559"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720802829498"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66915e2ce0213cb4feb78083"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720802860348"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66915e32b2b507ea491c8fde"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720802866529"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66915ffb4594862bdad95cb5"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720803323494"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66916001daaca5c1b9e0aed4"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720803329653"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669163c7900e6a5f655d61c6"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720804295889"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669163deeda6a7d9d0030de0"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720804318962"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691656dc0494d311ae132d7"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720804717179"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691657292a5247458de6252"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720804722121"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66916936c04118608d5448b9"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720805686274"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66916939f948b37eedd3976b"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720805689304"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66916e5f2c35880d339200c0"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720807007093"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66916e647a240bae6fc71695"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720807012489"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669174a66ce1f3c6e0dc015b"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720808614392"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669174b8d3d337dd20501f33"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720808632413"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691ef5353f609145d43b7bb"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720840019114"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691ef57911c72631989f503"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720840023456"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691f2997c115d71018185a5"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720840857209"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691f29f219bdb00cf4b18bb"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720840863493"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691f40f827c49908c10d56b"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720841231550"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691f414f3276ff20855448c"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720841236425"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691f6379dd6a89a2c1bb1ba"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720841783369"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691f6433c396c9ab95fd04f"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720841795166"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691fd8907c84f411723d831"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720843657785"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691fd9323353d1063003475"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720843667445"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691ffbe2ae0d13f84690611"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720844222517"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6691ffc3910cfc86a31f05b5"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720844227883"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6692004defcd34b956c833db"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720844365606"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669200531ca1b81a51fa7c90"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720844371412"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669226a1a0bc91181ee7efcd"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720854177487"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669226a5411bbb85985cf3e7"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720854181921"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669226caf7c3aabe0270540e"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720854218297"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66922701479c617ee9a019d6"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720854273763"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66923b92e5ed840b08f5e775"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720859538842"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66923bccee3ed11a22e5a967"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720859596591"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66926ee08ea7ea457c19aad7"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720872672259"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66926ee52e664a385ac4e7e8"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720872677708"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66929ac9d9ccdaef12d082f8"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720883913311"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66929aca40dc57b5753f5947"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720883914812"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66929c08d92dda99aad3c736"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720884232762"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66929c11202e6c5c7ad3d8cb"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720884241538"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66929c2c3f5d23588dddb128"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720884268257"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932cc9ff9233cec44bc3a9"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720921289859"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932ccee78aeac80d857968"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720921294370"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932ef16ec982df75038863"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720921841577"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932ef3930bb64ba0b1f49b"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720921843773"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669333604ef49dedc59c8e8f"
+  },
+  "startDay": {
+    "$numberLong": "1707238800000"
+  },
+  "endDay": {
+    "$numberLong": "1717693200000"
+  },
+  "licenePlate": "61A-99932",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720922976754"
+  },
+  "_destroy": true
+},
+{
+  "_id": {
+    "$oid": "669334824ef49dedc59c8e90"
+  },
+  "startDay": 1720890000,
+  "endDay": {
+    "$numberLong": "6818490000"
+  },
+  "licenePlate": "61A-99932",
+  "fee": 1000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720923266631"
+  },
+  "_destroy": true
+},
+{
+  "_id": {
+    "$oid": "669334954ef49dedc59c8e91"
+  },
+  "startDay": 1720890000,
+  "endDay": {
+    "$numberLong": "6818490000"
+  },
+  "licenePlate": "62A-99922",
+  "fee": 1000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720923285721"
+  },
+  "_destroy": true
+},
+{
+  "_id": {
+    "$oid": "669334ae4ef49dedc59c8e92"
+  },
+  "startDay": 1720890000,
+  "endDay": {
+    "$numberLong": "4399290000"
+  },
+  "licenePlate": "61A-99932",
+  "fee": 500000,
+  "isPay": true,
+  "createdAt": {
+    "$numberLong": "1720923310535"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6693355ec76fc6c749328897"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720923486269"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66933562c02ddb7c81c7801c"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720923490300"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669335f11bd7bbded8a8d507"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720923633344"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669336d55ecfcbcba9379734"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720923861881"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669337c392d8947116fd4b8c"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720924099578"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669338dfd50067c7eb9c04fc"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1720924383382"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66954e75e4d7186712598707"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1721060981379"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66954e95cdaa45e5e70d7e25"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1721061013156"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66954eaa3f242bd5042d7cc3"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1721061034887"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66954fb78f3ac9fb3e3358b9"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1721061303251"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66954fb88593b883c4aa4839"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1721061304264"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66954fb8ecf7432aba1cdb9c"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1721061304853"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669551d944b6b6364d328aeb"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1721061849305"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669551e5a74a5495fac8c64b"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1721061861864"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669552121c22503eb462f6f6"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1721061906668"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66966e69fc4811cbe71d6e31"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1721134697953"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669670772fd36b9983138b84"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1721135223394"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669675e09d3e63524198bad2"
+  },
+  "startDay": 1721062800,
+  "endDay": {
+    "$numberLong": "6818662800"
+  },
+  "licenePlate": "18A-12345",
+  "fee": 1000000,
+  "isPay": true,
+  "createdAt": {
+    "$numberLong": "1721136608949"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669679f2c5be5a72040d205a"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1721137650003"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66973f846bce3b5e1db28281"
+  },
+  "startDay": {
+    "$numberLong": "1729013176000"
+  },
+  "endDay": {
+    "$numberLong": "1739640376000"
+  },
+  "licenePlate": "51H-59951",
+  "fee": 2000000,
+  "isPay": false,
+  "createdAt": {
+    "$numberLong": "1721188228191"
   },
   "_destroy": false
 }]

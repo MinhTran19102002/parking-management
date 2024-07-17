@@ -3940,7 +3940,7 @@
   "updatedAt": null,
   "_destroy": false,
   "paymentId": {
-    "$oid": "668d839e6b87e651331b0038"
+    "$oid": "669675e09d3e63524198bad2"
   }
 },
 {
@@ -4077,7 +4077,7 @@
   "updatedAt": null,
   "_destroy": false,
   "paymentId": {
-    "$oid": "668fdbb5f5802c3e5f8b9937"
+    "$oid": "66973f846bce3b5e1db28281"
   }
 },
 {
@@ -6978,6 +6978,89 @@
   "active": false,
   "createdAt": {
     "$numberLong": "1720701896902"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690bb93f6b9f306e78c6018"
+  },
+  "licenePlate": "88H-88888",
+  "type": "Car",
+  "driverId": null,
+  "paymentId": null,
+  "active": false,
+  "createdAt": {
+    "$numberLong": "1720761235435"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690ee89f6b9f306e78c601f"
+  },
+  "licenePlate": "12D-44221",
+  "driverId": null,
+  "paymentId": null,
+  "type": "Car",
+  "active": false,
+  "createdAt": {
+    "$numberLong": "1720774281416"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6693328d4ef49dedc59c8e8a"
+  },
+  "licenePlate": "12D-3214",
+  "driverId": null,
+  "paymentId": null,
+  "type": "Car",
+  "active": false,
+  "createdAt": {
+    "$numberLong": "1720922765165"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669332f24ef49dedc59c8e8c"
+  },
+  "licenePlate": "62A-99922",
+  "driverId": {
+    "$oid": "669332f34ef49dedc59c8e8e"
+  },
+  "paymentId": {
+    "$oid": "669334954ef49dedc59c8e91"
+  },
+  "type": "Car",
+  "active": true,
+  "createdAt": {
+    "$numberLong": "1720922866283"
+  },
+  "updatedAt": null,
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669332f24ef49dedc59c8e8d"
+  },
+  "licenePlate": "61A-99932",
+  "driverId": {
+    "$oid": "669332f34ef49dedc59c8e8e"
+  },
+  "paymentId": {
+    "$oid": "669334ae4ef49dedc59c8e92"
+  },
+  "type": "Car",
+  "active": true,
+  "createdAt": {
+    "$numberLong": "1720922866283"
   },
   "updatedAt": null,
   "_destroy": false

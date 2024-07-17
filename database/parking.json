@@ -10,7 +10,7 @@
       "parkingTurnId": {
         "$oid": "668800df92245d833d08e23e"
       },
-      "isBlank": true
+      "isBlank": false
     },
     {
       "position": "B102",
@@ -244,7 +244,7 @@
     {
       "position": "A101",
       "parkingTurnId": {
-        "$oid": "6688bcc459763c81995f04df"
+        "$oid": "66932f3b4ef49dedc59c8e7a"
       },
       "isBlank": false,
       "height": null,
@@ -256,7 +256,7 @@
     {
       "position": "A102",
       "parkingTurnId": {
-        "$oid": "6648119a00a84e5086a7c4e3"
+        "$oid": "66932f8a4ef49dedc59c8e80"
       },
       "isBlank": false
     },
@@ -269,29 +269,29 @@
     },
     {
       "position": "A104",
-      "parkingTurnId": null,
+      "parkingTurnId": {
+        "$oid": "669330124ef49dedc59c8e85"
+      },
       "isBlank": true
     },
     {
       "position": "A105",
-      "parkingTurnId": {
-        "$oid": "668fd7127ebe1f34555a95a0"
-      },
+      "parkingTurnId": null,
       "isBlank": true
     },
     {
       "position": "A106",
       "parkingTurnId": {
-        "$oid": "668fd7ce7926d640dc6f6c69"
+        "$oid": "66932a359a9b9bb946b296f0"
       },
-      "isBlank": true
+      "isBlank": false
     },
     {
       "position": "A107",
       "parkingTurnId": {
         "$oid": "668fbffd06b9bb479bb1ea88"
       },
-      "isBlank": false
+      "isBlank": true
     },
     {
       "position": "A108",
@@ -305,7 +305,7 @@
       "parkingTurnId": {
         "$oid": "668fc46fe0711151ed1d26d5"
       },
-      "isBlank": false
+      "isBlank": true
     },
     {
       "position": "A201",
@@ -480,21 +480,19 @@
       "parkingTurnId": {
         "$oid": "668fc21de0711151ed1d26a1"
       },
-      "isBlank": false
+      "isBlank": true
     },
     {
       "position": "A602",
-      "parkingTurnId": {
-        "$oid": "668fc55be0711151ed1d2705"
-      },
-      "isBlank": false
+      "parkingTurnId": null,
+      "isBlank": true
     },
     {
       "position": "A603",
       "parkingTurnId": {
         "$oid": "668fc4dce0711151ed1d26f5"
       },
-      "isBlank": false
+      "isBlank": true
     },
     {
       "position": "A701",
@@ -560,7 +558,7 @@
       "isBlank": false
     }
   ],
-  "occupied": 42,
+  "occupied": 39,
   "total": 45,
   "createdAt": {
     "$numberLong": "1701582937653"

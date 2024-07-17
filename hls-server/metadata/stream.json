@@ -1,6 +1,6 @@
 {
-    "Cam_1232": {
-        "rtsp_url": "rtsp://807e9439d5ca.entrypoint.cloud.wowza.com:1935/app-rC94792j/068b9c9a_stream2",
-        "hls_postfix": "/stream/Cam_1232/index.m3u8"
+    "CAM_SLOT_001": {
+        "rtsp_url": "rtsp://rtsp-server:8554/CAM_001",
+        "hls_postfix": "/stream/CAM_SLOT_001/index.m3u8"
     }
 }
