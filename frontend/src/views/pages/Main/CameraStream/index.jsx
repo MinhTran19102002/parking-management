@@ -7,7 +7,7 @@ import VideoBlock from '~/views/components/VideoBlock';
 import { useTranslation } from 'react-i18next';
 const HLS_DOMAIN = import.meta.env.VITE_DOMAIN_HLS;
 
-function CameraStream({}) {
+function CameraStream({ }) {
   const { t: lag } = useTranslation();
   const { data, refetch } = useQuery({
     queryKey: ['cameras', 'all'],
@@ -17,7 +17,7 @@ function CameraStream({}) {
       try {
         const api = await CameraApi.getByFilter({});
         rs = api;
-      } catch {}
+      } catch { }
       return rs;
     }
   });
@@ -65,6 +65,7 @@ function CameraStream({}) {
         {cameras.map((camera = {}, index) => {
           const { streamLink, cameraId } = camera;
           const link = `${HLS_DOMAIN}/stream/${cameraId}/index.m3u8`;
+          console.log(link, hlsData)
           return (
             streamLink && (
               <Col key={camera.cameraId} {...colProps}>

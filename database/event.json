@@ -10862,4 +10862,1500 @@
     "$numberLong": "1720711020943"
   },
   "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668ff8eb693ae856299901bd"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "668ff8ea693ae856299901bc"
+  },
+  "createdAt": {
+    "$numberLong": "1720711401375"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668ff929693ae856299901be"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "668ff8ea693ae856299901bc"
+  },
+  "createdAt": {
+    "$numberLong": "1720711465043"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668ffa16693ae856299901c0"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "668ffa16693ae856299901bf"
+  },
+  "createdAt": {
+    "$numberLong": "1720711700662"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668ffa28693ae856299901c1"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "668ffa16693ae856299901bf"
+  },
+  "createdAt": {
+    "$numberLong": "1720711719222"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668ffa2c693ae856299901c2"
+  },
+  "name": "almost_full",
+  "zone": "A",
+  "createdAt": {
+    "$numberLong": "1720711719222"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668ffa3c693ae856299901c3"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "668ffa16693ae856299901bf"
+  },
+  "createdAt": {
+    "$numberLong": "1720711738822"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668ffa4f693ae856299901c4"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "668ffa16693ae856299901bf"
+  },
+  "createdAt": {
+    "$numberLong": "1720711758801"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668ffd5464d8b392d867965d"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "668ffd5364d8b392d867965c"
+  },
+  "createdAt": {
+    "$numberLong": "1720712530405"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668ffd6264d8b392d867965e"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "668ffd5364d8b392d867965c"
+  },
+  "createdAt": {
+    "$numberLong": "1720712545620"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668ffd6564d8b392d867965f"
+  },
+  "name": "almost_full",
+  "zone": "A",
+  "createdAt": {
+    "$numberLong": "1720712545620"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668ffd7064d8b392d8679660"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "668ffd5364d8b392d867965c"
+  },
+  "createdAt": {
+    "$numberLong": "1720712559385"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "668ffd9064d8b392d8679661"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "668ffd5364d8b392d867965c"
+  },
+  "createdAt": {
+    "$numberLong": "1720712591012"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690bf64f6b9f306e78c601b"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "668fc46fe0711151ed1d26d5"
+  },
+  "createdAt": {
+    "$numberLong": "1720762211936"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690bf64f6b9f306e78c601c"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "668fbffd06b9bb479bb1ea88"
+  },
+  "createdAt": {
+    "$numberLong": "1720762211920"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690bf65f6b9f306e78c601d"
+  },
+  "zone": "A",
+  "position": "A107",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "668fbffd06b9bb479bb1ea88"
+  },
+  "createdAt": {
+    "$numberLong": "1720762212173"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690bf65f6b9f306e78c601e"
+  },
+  "zone": "A",
+  "position": "A109",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "668fc46fe0711151ed1d26d5"
+  },
+  "createdAt": {
+    "$numberLong": "1720762212202"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690d5fbc17fe7aacae6e66b"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "6690d5fac17fe7aacae6e66a"
+  },
+  "createdAt": {
+    "$numberLong": "1720767993684"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690d61cc17fe7aacae6e66c"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "6690d5fac17fe7aacae6e66a"
+  },
+  "createdAt": {
+    "$numberLong": "1720768027868"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690d621c17fe7aacae6e66d"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6690d5fac17fe7aacae6e66a"
+  },
+  "createdAt": {
+    "$numberLong": "1720768032938"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690d628c17fe7aacae6e66e"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "6690d5fac17fe7aacae6e66a"
+  },
+  "createdAt": {
+    "$numberLong": "1720768039579"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690d62cc17fe7aacae6e66f"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6690d5fac17fe7aacae6e66a"
+  },
+  "createdAt": {
+    "$numberLong": "1720768043798"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690d631c17fe7aacae6e670"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "6690d5fac17fe7aacae6e66a"
+  },
+  "createdAt": {
+    "$numberLong": "1720768048961"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690d639c17fe7aacae6e671"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6690d5fac17fe7aacae6e66a"
+  },
+  "createdAt": {
+    "$numberLong": "1720768056172"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690d641c17fe7aacae6e672"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "6690d5fac17fe7aacae6e66a"
+  },
+  "createdAt": {
+    "$numberLong": "1720768064085"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690d646c17fe7aacae6e673"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6690d5fac17fe7aacae6e66a"
+  },
+  "createdAt": {
+    "$numberLong": "1720768069854"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6690d647c17fe7aacae6e674"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "6690d5fac17fe7aacae6e66a"
+  },
+  "createdAt": {
+    "$numberLong": "1720768070637"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669250a03e3bb33fb0236ace"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "6692509f3e3bb33fb0236acd"
+  },
+  "createdAt": {
+    "$numberLong": "1720864926152"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669250b23e3bb33fb0236acf"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "6692509f3e3bb33fb0236acd"
+  },
+  "createdAt": {
+    "$numberLong": "1720864945566"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669250c03e3bb33fb0236ad0"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6692509f3e3bb33fb0236acd"
+  },
+  "createdAt": {
+    "$numberLong": "1720864959226"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669250c63e3bb33fb0236ad1"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "6692509f3e3bb33fb0236acd"
+  },
+  "createdAt": {
+    "$numberLong": "1720864965194"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669250d13e3bb33fb0236ad2"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6692509f3e3bb33fb0236acd"
+  },
+  "createdAt": {
+    "$numberLong": "1720864976348"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6692529a3e3bb33fb0236ad3"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "6692509f3e3bb33fb0236acd"
+  },
+  "createdAt": {
+    "$numberLong": "1720865433457"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669252a03e3bb33fb0236ad4"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6692509f3e3bb33fb0236acd"
+  },
+  "createdAt": {
+    "$numberLong": "1720865439478"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6692539c3e3bb33fb0236ad5"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "6692509f3e3bb33fb0236acd"
+  },
+  "createdAt": {
+    "$numberLong": "1720865690518"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6692562ab3b1e052194f8c42"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "66925629b3b1e052194f8c41"
+  },
+  "createdAt": {
+    "$numberLong": "1720866344421"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669256deb3b1e052194f8c43"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "66925629b3b1e052194f8c41"
+  },
+  "createdAt": {
+    "$numberLong": "1720866523824"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66925834b3b1e052194f8c45"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "66925834b3b1e052194f8c44"
+  },
+  "createdAt": {
+    "$numberLong": "1720866866801"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66925866b3b1e052194f8c46"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "66925834b3b1e052194f8c44"
+  },
+  "createdAt": {
+    "$numberLong": "1720866917575"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6692588eb3b1e052194f8c47"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "66925834b3b1e052194f8c44"
+  },
+  "createdAt": {
+    "$numberLong": "1720866957269"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669258abb3b1e052194f8c48"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "66925834b3b1e052194f8c44"
+  },
+  "createdAt": {
+    "$numberLong": "1720866986274"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66925bccb3b1e052194f8c4a"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "66925bcbb3b1e052194f8c49"
+  },
+  "createdAt": {
+    "$numberLong": "1720867786400"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66925bf4b3b1e052194f8c4b"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "66925bcbb3b1e052194f8c49"
+  },
+  "createdAt": {
+    "$numberLong": "1720867827884"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66925c1db3b1e052194f8c4c"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "66925bcbb3b1e052194f8c49"
+  },
+  "createdAt": {
+    "$numberLong": "1720867867960"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66925c34b3b1e052194f8c4d"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "66925bcbb3b1e052194f8c49"
+  },
+  "createdAt": {
+    "$numberLong": "1720867892064"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66926566b3b1e052194f8c4f"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "66926566b3b1e052194f8c4e"
+  },
+  "createdAt": {
+    "$numberLong": "1720870245126"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669266fcb3b1e052194f8c50"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "66926566b3b1e052194f8c4e"
+  },
+  "createdAt": {
+    "$numberLong": "1720870651695"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6692670eb3b1e052194f8c51"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "66926566b3b1e052194f8c4e"
+  },
+  "createdAt": {
+    "$numberLong": "1720870669626"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66926778b3b1e052194f8c52"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "66926566b3b1e052194f8c4e"
+  },
+  "createdAt": {
+    "$numberLong": "1720870775577"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6692947e40f765e7e6af2a5c"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "6692947e40f765e7e6af2a5b"
+  },
+  "createdAt": {
+    "$numberLong": "1720882300667"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6692952940f765e7e6af2a5d"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "6692947e40f765e7e6af2a5b"
+  },
+  "createdAt": {
+    "$numberLong": "1720882472088"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6692953740f765e7e6af2a5e"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6692947e40f765e7e6af2a5b"
+  },
+  "createdAt": {
+    "$numberLong": "1720882486183"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6692957740f765e7e6af2a5f"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "6692947e40f765e7e6af2a5b"
+  },
+  "createdAt": {
+    "$numberLong": "1720882550031"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6692958440f765e7e6af2a60"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6692947e40f765e7e6af2a5b"
+  },
+  "createdAt": {
+    "$numberLong": "1720882563085"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669295c440f765e7e6af2a61"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "6692947e40f765e7e6af2a5b"
+  },
+  "createdAt": {
+    "$numberLong": "1720882627366"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669295d640f765e7e6af2a62"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6692947e40f765e7e6af2a5b"
+  },
+  "createdAt": {
+    "$numberLong": "1720882644960"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6692961640f765e7e6af2a63"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "6692947e40f765e7e6af2a5b"
+  },
+  "createdAt": {
+    "$numberLong": "1720882709703"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6692962440f765e7e6af2a64"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6692947e40f765e7e6af2a5b"
+  },
+  "createdAt": {
+    "$numberLong": "1720882723759"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6692966340f765e7e6af2a65"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "6692947e40f765e7e6af2a5b"
+  },
+  "createdAt": {
+    "$numberLong": "1720882786685"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6692967240f765e7e6af2a66"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6692947e40f765e7e6af2a5b"
+  },
+  "createdAt": {
+    "$numberLong": "1720882801185"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669296b340f765e7e6af2a67"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "6692947e40f765e7e6af2a5b"
+  },
+  "createdAt": {
+    "$numberLong": "1720882866011"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669296c040f765e7e6af2a68"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6692947e40f765e7e6af2a5b"
+  },
+  "createdAt": {
+    "$numberLong": "1720882879902"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66931da5c44ac308ed33a59b"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "6692947e40f765e7e6af2a5b"
+  },
+  "createdAt": {
+    "$numberLong": "1720917413070"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66931f417589af354b6dffc9"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "66931f417589af354b6dffc8"
+  },
+  "createdAt": {
+    "$numberLong": "1720917823858"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669320da7589af354b6dffca"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "66931f417589af354b6dffc8"
+  },
+  "createdAt": {
+    "$numberLong": "1720918233706"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669320e97589af354b6dffcb"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "66931f417589af354b6dffc8"
+  },
+  "createdAt": {
+    "$numberLong": "1720918248763"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669321537589af354b6dffcc"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "66931f417589af354b6dffc8"
+  },
+  "createdAt": {
+    "$numberLong": "1720918355044"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669322569a9b9bb946b296e4"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "668fc21de0711151ed1d26a1"
+  },
+  "createdAt": {
+    "$numberLong": "1720918613488"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669322569a9b9bb946b296e5"
+  },
+  "zone": "A",
+  "position": "A601",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "668fc21de0711151ed1d26a1"
+  },
+  "createdAt": {
+    "$numberLong": "1720918613770"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669322759a9b9bb946b296e6"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "668fc4dce0711151ed1d26f5"
+  },
+  "createdAt": {
+    "$numberLong": "1720918644778"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669322759a9b9bb946b296e7"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "668fc55be0711151ed1d2705"
+  },
+  "createdAt": {
+    "$numberLong": "1720918644780"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669322769a9b9bb946b296e8"
+  },
+  "zone": "A",
+  "position": "A603",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "668fc4dce0711151ed1d26f5"
+  },
+  "createdAt": {
+    "$numberLong": "1720918645044"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669322769a9b9bb946b296e9"
+  },
+  "zone": "A",
+  "position": "A602",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "668fc55be0711151ed1d2705"
+  },
+  "createdAt": {
+    "$numberLong": "1720918645067"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669324319a9b9bb946b296ea"
+  },
+  "zone": "A",
+  "position": "A104",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "6688bc7659763c81995f04d8"
+  },
+  "createdAt": {
+    "$numberLong": "1720919088195"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669326329a9b9bb946b296ec"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "669326329a9b9bb946b296eb"
+  },
+  "createdAt": {
+    "$numberLong": "1720919600669"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669329727bcab355695b7fbe"
+  },
+  "zone": "A",
+  "position": "A104",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6688bc7659763c81995f04d8"
+  },
+  "createdAt": {
+    "$numberLong": "1720920433252"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669329b99a9b9bb946b296ee"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "669329b89a9b9bb946b296ed"
+  },
+  "createdAt": {
+    "$numberLong": "1720920503351"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669329bc9a9b9bb946b296ef"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "669329b89a9b9bb946b296ed"
+  },
+  "createdAt": {
+    "$numberLong": "1720920507271"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669329c57bcab355695b7fbf"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "6688bc7659763c81995f04d8"
+  },
+  "createdAt": {
+    "$numberLong": "1720920517069"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932a369a9b9bb946b296f1"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "66932a359a9b9bb946b296f0"
+  },
+  "createdAt": {
+    "$numberLong": "1720920628012"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932a399a9b9bb946b296f2"
+  },
+  "zone": "A",
+  "position": "A106",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "66932a359a9b9bb946b296f0"
+  },
+  "createdAt": {
+    "$numberLong": "1720920631876"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932bdb7bcab355695b7fc0"
+  },
+  "zone": "A",
+  "position": "A101",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6688bcc459763c81995f04df"
+  },
+  "createdAt": {
+    "$numberLong": "1720921050438"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932be87bcab355695b7fc1"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "661970fb2d98fe568030eeea"
+  },
+  "createdAt": {
+    "$numberLong": "1720921063442"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932f3c4ef49dedc59c8e7b"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "66932f3b4ef49dedc59c8e7a"
+  },
+  "createdAt": {
+    "$numberLong": "1720921914052"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932f3f4ef49dedc59c8e7c"
+  },
+  "zone": "A",
+  "position": "A101",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "66932f3b4ef49dedc59c8e7a"
+  },
+  "createdAt": {
+    "$numberLong": "1720921918042"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932f674ef49dedc59c8e7e"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "66932f664ef49dedc59c8e7d"
+  },
+  "createdAt": {
+    "$numberLong": "1720921957348"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932f6a4ef49dedc59c8e7f"
+  },
+  "zone": "A",
+  "position": "A602",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "66932f664ef49dedc59c8e7d"
+  },
+  "createdAt": {
+    "$numberLong": "1720921961457"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932f8a4ef49dedc59c8e81"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "66932f8a4ef49dedc59c8e80"
+  },
+  "createdAt": {
+    "$numberLong": "1720921992644"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932f8e4ef49dedc59c8e82"
+  },
+  "zone": "A",
+  "position": "A102",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "66932f8a4ef49dedc59c8e80"
+  },
+  "createdAt": {
+    "$numberLong": "1720921996673"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932fb34ef49dedc59c8e83"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "66932f664ef49dedc59c8e7d"
+  },
+  "createdAt": {
+    "$numberLong": "1720922034550"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66932fb44ef49dedc59c8e84"
+  },
+  "zone": "A",
+  "position": "A602",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "66932f664ef49dedc59c8e7d"
+  },
+  "createdAt": {
+    "$numberLong": "1720922034894"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669330134ef49dedc59c8e86"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "669330124ef49dedc59c8e85"
+  },
+  "createdAt": {
+    "$numberLong": "1720922129559"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669330164ef49dedc59c8e87"
+  },
+  "zone": "A",
+  "position": "A104",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "669330124ef49dedc59c8e85"
+  },
+  "createdAt": {
+    "$numberLong": "1720922133343"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6693302f4ef49dedc59c8e88"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "669330124ef49dedc59c8e85"
+  },
+  "createdAt": {
+    "$numberLong": "1720922158491"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6693302f4ef49dedc59c8e89"
+  },
+  "zone": "A",
+  "position": "A104",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "669330124ef49dedc59c8e85"
+  },
+  "createdAt": {
+    "$numberLong": "1720922158777"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66933154f145c1abe503f9b1"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "669329b89a9b9bb946b296ed"
+  },
+  "createdAt": {
+    "$numberLong": "1720922451092"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6693318ef145c1abe503f9b2"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "669329b89a9b9bb946b296ed"
+  },
+  "createdAt": {
+    "$numberLong": "1720922510036"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6693332d02a19d7d68192ff0"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "6693332d02a19d7d68192fef"
+  },
+  "createdAt": {
+    "$numberLong": "1720922923811"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "669333ef02a19d7d68192ff1"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "6693332d02a19d7d68192fef"
+  },
+  "createdAt": {
+    "$numberLong": "1720923117762"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6693340602a19d7d68192ff2"
+  },
+  "zone": "A",
+  "position": "A105",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "6693332d02a19d7d68192fef"
+  },
+  "createdAt": {
+    "$numberLong": "1720923141009"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "6693348b02a19d7d68192ff3"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "6693332d02a19d7d68192fef"
+  },
+  "createdAt": {
+    "$numberLong": "1720923274975"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66933cfdbe8fcb470c115f1c"
+  },
+  "name": "in",
+  "eventId": {
+    "$oid": "66933cfdbe8fcb470c115f1b"
+  },
+  "createdAt": {
+    "$numberLong": "1720925435850"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66933d5cbe8fcb470c115f1d"
+  },
+  "zone": "A",
+  "position": "A602",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "66933cfdbe8fcb470c115f1b"
+  },
+  "createdAt": {
+    "$numberLong": "1720925531724"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66933d61be8fcb470c115f1e"
+  },
+  "zone": "A",
+  "position": "A602",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "66933cfdbe8fcb470c115f1b"
+  },
+  "createdAt": {
+    "$numberLong": "1720925536562"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66933d65be8fcb470c115f1f"
+  },
+  "zone": "A",
+  "position": "A602",
+  "name": "inSlot",
+  "eventId": {
+    "$oid": "66933cfdbe8fcb470c115f1b"
+  },
+  "createdAt": {
+    "$numberLong": "1720925540563"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66933d70be8fcb470c115f20"
+  },
+  "zone": "A",
+  "position": "A602",
+  "name": "outSlot",
+  "eventId": {
+    "$oid": "66933cfdbe8fcb470c115f1b"
+  },
+  "createdAt": {
+    "$numberLong": "1720925551554"
+  },
+  "_destroy": false
+},
+{
+  "_id": {
+    "$oid": "66933d87be8fcb470c115f21"
+  },
+  "name": "out",
+  "eventId": {
+    "$oid": "66933cfdbe8fcb470c115f1b"
+  },
+  "createdAt": {
+    "$numberLong": "1720925574273"
+  },
+  "_destroy": false
 }]

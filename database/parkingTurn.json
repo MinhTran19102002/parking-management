@@ -3401,12 +3401,14 @@
   },
   "position": "A101",
   "image": "licensePlateAsset 196-1712943353136.png",
-  "fee": 20000,
+  "fee": 2230000,
   "start": {
     "$numberLong": "1712943354724"
   },
-  "_destroy": false,
-  "end": null
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720921063442"
+  }
 },
 {
   "_id": {
@@ -3942,25 +3944,6 @@
   "fee": 20000,
   "start": {
     "$numberLong": "1715997559412"
-  },
-  "_destroy": false,
-  "end": null
-},
-{
-  "_id": {
-    "$oid": "6648119a00a84e5086a7c4e3"
-  },
-  "vehicleId": {
-    "$oid": "6647f836e7220a128eef408e"
-  },
-  "parkingId": {
-    "$oid": "656c1859b24fa21202c800b0"
-  },
-  "position": "A102",
-  "image": "choncainay-1715999129007.jpg",
-  "fee": 20000,
-  "start": {
-    "$numberLong": "1715999129535"
   },
   "_destroy": false,
   "end": null
@@ -5381,15 +5364,18 @@
     "$oid": "668655deafce55da707b0788"
   },
   "parkingId": {
-    "$oid": "666acd10a277b352c6f3e896"
+    "$oid": "656c1859b24fa21202c800b0"
   },
   "image": "20A-12894-1720237173646.png",
-  "fee": 20000,
+  "fee": 200000,
   "start": {
     "$numberLong": "1720237174136"
   },
-  "_destroy": false,
-  "end": null
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720920517069"
+  },
+  "position": "A104"
 },
 {
   "_id": {
@@ -6212,12 +6198,14 @@
     "$oid": "656c1859b24fa21202c800b0"
   },
   "image": "testImage-1720696826935.jpg",
-  "fee": 20000,
+  "fee": 30000,
   "start": {
     "$numberLong": "1720696826939"
   },
-  "_destroy": false,
-  "end": null,
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720762211920"
+  },
   "position": "A107"
 },
 {
@@ -6231,12 +6219,14 @@
     "$oid": "656c1859b24fa21202c800b0"
   },
   "image": "testImage-1720697371892.jpg",
-  "fee": 20000,
+  "fee": 80000,
   "start": {
     "$numberLong": "1720697371897"
   },
-  "_destroy": false,
-  "end": null,
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720918613488"
+  },
   "position": "A601"
 },
 {
@@ -6480,12 +6470,14 @@
     "$oid": "656c1859b24fa21202c800b0"
   },
   "image": "testImage-1720697965747.jpg",
-  "fee": 20000,
+  "fee": 30000,
   "start": {
     "$numberLong": "1720697965749"
   },
-  "_destroy": false,
-  "end": null,
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720762211936"
+  },
   "position": "A109"
 },
 {
@@ -6632,12 +6624,14 @@
     "$oid": "656c1859b24fa21202c800b0"
   },
   "image": "testImage-1720698074495.jpg",
-  "fee": 20000,
+  "fee": 80000,
   "start": {
     "$numberLong": "1720698074499"
   },
-  "_destroy": false,
-  "end": null,
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720918644778"
+  },
   "position": "A603"
 },
 {
@@ -6708,12 +6702,14 @@
     "$oid": "656c1859b24fa21202c800b0"
   },
   "image": "testImage-1720698201659.jpg",
-  "fee": 20000,
+  "fee": 80000,
   "start": {
     "$numberLong": "1720698201661"
   },
-  "_destroy": false,
-  "end": null,
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720918644780"
+  },
   "position": "A602"
 },
 {
@@ -6936,4 +6932,413 @@
     "$numberLong": "1720710715296"
   },
   "position": "A106"
+},
+{
+  "_id": {
+    "$oid": "668ff8ea693ae856299901bc"
+  },
+  "vehicleId": {
+    "$oid": "66754305493449bc993c2075"
+  },
+  "parkingId": {
+    "$oid": "666acd10a277b352c6f3e896"
+  },
+  "image": "xevao-1720711401363.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720711401375"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720711465043"
+  }
+},
+{
+  "_id": {
+    "$oid": "668ffa16693ae856299901bf"
+  },
+  "vehicleId": {
+    "$oid": "66754305493449bc993c2075"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "xevao-1720711700655.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720711700662"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720711758801"
+  },
+  "position": "A105"
+},
+{
+  "_id": {
+    "$oid": "668ffd5364d8b392d867965c"
+  },
+  "vehicleId": {
+    "$oid": "66754305493449bc993c2075"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "xevao-1720712530373.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720712530405"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720712591012"
+  },
+  "position": "A105"
+},
+{
+  "_id": {
+    "$oid": "6690d5fac17fe7aacae6e66a"
+  },
+  "vehicleId": {
+    "$oid": "66754305493449bc993c2075"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "xevao-1720767993670.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720767993684"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720768070637"
+  },
+  "position": "A105"
+},
+{
+  "_id": {
+    "$oid": "6692509f3e3bb33fb0236acd"
+  },
+  "vehicleId": {
+    "$oid": "66754305493449bc993c2075"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "xevao-1720864926079.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720864926152"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720865690518"
+  },
+  "position": "A105"
+},
+{
+  "_id": {
+    "$oid": "66925629b3b1e052194f8c41"
+  },
+  "vehicleId": {
+    "$oid": "66754305493449bc993c2075"
+  },
+  "parkingId": {
+    "$oid": "666acd10a277b352c6f3e896"
+  },
+  "image": "xevao-1720866344391.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720866344421"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720866523824"
+  }
+},
+{
+  "_id": {
+    "$oid": "66925834b3b1e052194f8c44"
+  },
+  "vehicleId": {
+    "$oid": "66754305493449bc993c2075"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "xevao-1720866866791.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720866866801"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720866986274"
+  },
+  "position": "A105"
+},
+{
+  "_id": {
+    "$oid": "66925bcbb3b1e052194f8c49"
+  },
+  "vehicleId": {
+    "$oid": "66754305493449bc993c2075"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "xevao-1720867786394.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720867786400"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720867892064"
+  },
+  "position": "A105"
+},
+{
+  "_id": {
+    "$oid": "66926566b3b1e052194f8c4e"
+  },
+  "vehicleId": {
+    "$oid": "66754305493449bc993c2075"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "xevao-1720870245121.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720870245126"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720870775577"
+  },
+  "position": "A105"
+},
+{
+  "_id": {
+    "$oid": "6692947e40f765e7e6af2a5b"
+  },
+  "vehicleId": {
+    "$oid": "66754305493449bc993c2075"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "xevao-1720882300661.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720882300667"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720917413070"
+  },
+  "position": "A105"
+},
+{
+  "_id": {
+    "$oid": "66931f417589af354b6dffc8"
+  },
+  "vehicleId": {
+    "$oid": "66754305493449bc993c2075"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "xevao-1720917823850.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720917823858"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720918355044"
+  },
+  "position": "A105"
+},
+{
+  "_id": {
+    "$oid": "669326329a9b9bb946b296eb"
+  },
+  "vehicleId": {
+    "$oid": "668655dfafce55da707b078e"
+  },
+  "parkingId": {
+    "$oid": "666acd10a277b352c6f3e896"
+  },
+  "image": "88A-39307-1720919600664.png",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720919600669"
+  },
+  "_destroy": false,
+  "end": null
+},
+{
+  "_id": {
+    "$oid": "669329b89a9b9bb946b296ed"
+  },
+  "vehicleId": {
+    "$oid": "668655d6afce55da707b0760"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "95L-3456-1720920503348.png",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720920503351"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720922510036"
+  },
+  "position": "A105"
+},
+{
+  "_id": {
+    "$oid": "66932a359a9b9bb946b296f0"
+  },
+  "vehicleId": {
+    "$oid": "668655deafce55da707b078a"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "37A-86868-1720920628009.png",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720920628012"
+  },
+  "_destroy": false,
+  "end": null,
+  "position": "A106"
+},
+{
+  "_id": {
+    "$oid": "66932f3b4ef49dedc59c8e7a"
+  },
+  "vehicleId": {
+    "$oid": "668655daafce55da707b0775"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "51G-00776-1720921914046.png",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720921914052"
+  },
+  "_destroy": false,
+  "end": null,
+  "position": "A101"
+},
+{
+  "_id": {
+    "$oid": "66932f664ef49dedc59c8e7d"
+  },
+  "vehicleId": {
+    "$oid": "6619ea02f67a3cf17b75dcf4"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "80A-91999-1720921957345.png",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720921957348"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720922034550"
+  },
+  "position": "A602"
+},
+{
+  "_id": {
+    "$oid": "66932f8a4ef49dedc59c8e80"
+  },
+  "vehicleId": {
+    "$oid": "668655ddafce55da707b0786"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "36A-66666-1720921992635.png",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720921992644"
+  },
+  "_destroy": false,
+  "end": null,
+  "position": "A102"
+},
+{
+  "_id": {
+    "$oid": "669330124ef49dedc59c8e85"
+  },
+  "vehicleId": {
+    "$oid": "668655d4afce55da707b075c"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "51A-88888-1720922129557.png",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720922129559"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720922158491"
+  },
+  "position": "A104"
+},
+{
+  "_id": {
+    "$oid": "6693332d02a19d7d68192fef"
+  },
+  "vehicleId": {
+    "$oid": "668655d6afce55da707b0760"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "95L-3456-1720922923804.png",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720922923811"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720923274975"
+  },
+  "position": "A105"
+},
+{
+  "_id": {
+    "$oid": "66933cfdbe8fcb470c115f1b"
+  },
+  "vehicleId": {
+    "$oid": "66754305493449bc993c2075"
+  },
+  "parkingId": {
+    "$oid": "656c1859b24fa21202c800b0"
+  },
+  "image": "xevao-1720925435845.jpg",
+  "fee": 20000,
+  "start": {
+    "$numberLong": "1720925435850"
+  },
+  "_destroy": true,
+  "end": {
+    "$numberLong": "1720925574273"
+  },
+  "position": "A602"
 }]
