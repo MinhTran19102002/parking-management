@@ -229,7 +229,7 @@ function Camera({}) {
                 width: 320
               }}
               name="cameraId"
-              placeholder={lag('common:name')}
+              placeholder={'Camera Id'}
               defaultValue={params.cameraId}
               onPressEnter={onEnterFilter}
               onChange={onChangeFilter}
