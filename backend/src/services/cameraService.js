@@ -68,6 +68,7 @@ const updateManyCamera = async (listCamrera) => {
         throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
       });
     const removeCamera = await cameraModel.removeCamera(listId);
+    console.log('1111111111111111')
     console.log(removeCamera)
     return listUpdate;
   } catch (error) {

@@ -32,27 +32,27 @@ Router.route('/outPaking')
   .post(parkingTurnController.outPaking)
 
 Router.route('/Reports/GetVehicleInOutNumber')
-  .get(parkingTurnController.getVehicleInOutNumber)
+  .get(verifyTokenMidleware.verifyTokenAndAdminManager,parkingTurnController.getVehicleInOutNumber)
 
 Router.route('/Reports/GetVehicleInOutNumberByHour')
-  .get(parkingTurnController.getVehicleInOutNumberByHour)
+  .get(verifyTokenMidleware.verifyTokenAndAdminManager,parkingTurnController.getVehicleInOutNumberByHour)
 
 Router.route('/Reports/GetRevenue')
-  .get(parkingTurnController.getRevenue)
+  .get(verifyTokenMidleware.verifyTokenAndAdminManager,parkingTurnController.getRevenue)
 
 
 Router.route('/Reports/GetRevenueByHour')
-  .get(parkingTurnController.GetRevenueByHour)
+  .get(verifyTokenMidleware.verifyTokenAndAdminManager,parkingTurnController.GetRevenueByHour)
 
 Router.route('/event')
-  .get(parkingTurnController.getEvent)
+  .get(verifyTokenMidleware.verifyTokenAndAdminManager,parkingTurnController.getEvent)
 //verifyTokenMidleware.verifyTokenAndManager,verifyTokenMidleware.verifyTokenAndAdminManager,
 
 Router.route('/event/export')
-  .get(parkingTurnController.exportEvent)
+  .get(verifyTokenMidleware.verifyTokenAndAdminManager,parkingTurnController.exportEvent)
 
 Router.route('/event/getByDriver')
-  .get(parkingTurnController.getByDriver)
+  .get(verifyTokenMidleware.verifyToken,parkingTurnController.getByDriver)
 
 
 Router.route('/carInSlot')

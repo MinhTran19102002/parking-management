@@ -35,10 +35,10 @@ Router.route('/driver')
     // verifyTokenMidleware.verifyTokenAndAdminManager,
     userController.createDriver,
   ) //
-  .get( userController.findDriver) //
+  .get(verifyTokenMidleware.verifyTokenAndAdminManager, userController.findDriver) //
   .put(
     // userValidation.updateDriver,
-    // verifyTokenMidleware.verifyTokenAndAdminManager,
+    verifyTokenMidleware.verifyToken,
     userController.updateDriver,
   ) //
   .delete(
@@ -53,7 +53,7 @@ Router.route('/driver/deletes').post(
 );
 
 Router.route('/driver/filter').get(
-  // verifyTokenMidleware.verifyTokenAndAdminManager,
+  verifyTokenMidleware.verifyTokenAndAdminManager,
   userController.findDriverByFilter,
 );
 

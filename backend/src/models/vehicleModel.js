@@ -4,6 +4,7 @@ import { GET_DB } from '~/config/mongodb';
 import { ObjectId } from 'mongodb';
 import ApiError from '~/utils/ApiError';
 import { StatusCodes } from 'http-status-codes';
+import { paymentModel } from './paymentModel';
 
 const VEHICLE_COLLECTION_NAME = 'vehicles';
 const VEHICLE_COLLECTION_SCHEMA = Joi.object({
@@ -84,6 +85,8 @@ const inActive = async (licenePlate) => {
     const inActive = await GET_DB()
       .collection(VEHICLE_COLLECTION_NAME)
       .updateOne({ licenePlate: licenePlate }, { $set: { driverId: null, active : false } });
+    await paymentModel.cancelByLicenePlate(licenePlate)
+    
     return inActive;
   } catch (error) {
     throw new Error(error);
@@ -95,11 +98,24 @@ const inActiveById = async (id) => {
     const inActive = await GET_DB()
       .collection(VEHICLE_COLLECTION_NAME)
       .updateOne({ _id: new ObjectId(id) }, { $set: { driverId: null, active : false } });
+
+      await paymentModel.cancel(id)
     return inActive;
   } catch (error) {
     throw new Error(error);
   }
 };
+
+// const inActiveByIdS = async (id) => {
+//   try {
+//     const inActive = await GET_DB()
+//       .collection(VEHICLE_COLLECTION_NAME)
+//       .updateOne({ _id: new ObjectId(id) }, { $set: { driverId: null, active : false } });
+//     return inActive;
+//   } catch (error) {
+//     throw new Error(error);
+//   }
+// };
 
 const deleteOne = async (id) => {
   try {

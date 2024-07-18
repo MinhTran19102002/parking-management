@@ -1,16 +1,16 @@
 import express from 'express'
 import { StatusCodes } from 'http-status-codes'
 import { cameraController } from '~/controllers/cameraController'
-// import { verifyTokenMidleware } from '~/middlewares/verifytokenMidleware'
+import { verifyTokenMidleware } from '~/middlewares/verifytokenMidleware'
 // import {parkingValidation} from '~/validations/parkingValidation'
 
 const Router = express.Router()
 
 Router.route('/')
-  .get(cameraController.findByFilter)
-  .post(cameraController.createCamera)
-  .put(cameraController.updateCamera)
-  .delete(cameraController.deleteCamera)
+  .get(verifyTokenMidleware.verifyTokenAndAdminManager,cameraController.findByFilter)
+  .post(verifyTokenMidleware.verifyTokenAndAdmin,cameraController.createCamera)
+  .put(verifyTokenMidleware.verifyTokenAndAdmin,cameraController.updateCamera)
+  .delete(verifyTokenMidleware.verifyTokenAndAdmin,cameraController.deleteCamera)
 
 Router.route('/unused')
   .get(cameraController.findByFilterUnused)
@@ -31,22 +31,22 @@ Router.route('/checkCameraId')
 Router.route('/upload').get(cameraController.upload)
 
 Router.route('/addImage').put(
-  // verifyTokenMidleware.verifyTokenAndAdmin,
+  verifyTokenMidleware.verifyTokenAndAdmin,
   cameraController.addImage
 );
 
 Router.route('/updateSlot').put(
-  // verifyTokenMidleware.verifyTokenAndAdmin,
+  verifyTokenMidleware.verifyTokenAndAdmin,
   cameraController.updateSlot
 );
 
 Router.route('/setCameraAI').put(
-  // verifyTokenMidleware.verifyTokenAndAdmin,
+  verifyTokenMidleware.verifyTokenAndAdmin,
   cameraController.setCameraAI
 );
 
 Router.route('/findCameraAIByType').get(
-  // verifyTokenMidleware.verifyTokenAndAdmin,
+  verifyTokenMidleware.verifyTokenAndAdminManager,
   cameraController.findCameraAIByType,
 );
 

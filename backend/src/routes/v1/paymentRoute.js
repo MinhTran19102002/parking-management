@@ -1,22 +1,23 @@
 import express from 'express'
+import { verifyTokenMidleware } from '~/middlewares/verifytokenMidleware'
 import { paymentController } from '~/controllers/paymentController'
 
 const Router = express.Router()
 
 Router.route('/create_payment')   // dang ky xong roi thanh toan  
-  .post(paymentController.payment)
+  .post(verifyTokenMidleware.verifyToken,paymentController.payment)
 
 Router.route('/register')   //  dang ky 
-  .post(paymentController.register)
+  .post(verifyTokenMidleware.verifyToken,paymentController.register)
 
 Router.route('/findById')   // 
-  .get(paymentController.findById)
+  .get(verifyTokenMidleware.verifyToken,paymentController.findById)
 
 Router.route('/findByfilter')   // 
-  .get(paymentController.findByfilter)
+  .get(verifyTokenMidleware.verifyToken,paymentController.findByfilter)
 
 Router.route('/cancel')   // 
-  .post(paymentController.cancel)
+  .post(verifyTokenMidleware.verifyToken,paymentController.cancel)
 
 
 

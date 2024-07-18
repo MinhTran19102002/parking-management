@@ -15,7 +15,7 @@ const CAMENRA_COLLECTION_SCHEMA = Joi.object({
   type: Joi.string().valid('normal', 'cam360').required(),
   aiType: Joi.string().valid('cameraIn', 'cameraOut', 'cameraSlot', '').optional(),
   zone: Joi.string().optional().min(1).max(10).trim().strict(),
-  streamLink: Joi.string().optional().max(100).trim().strict(),
+  streamLink: Joi.string().optional().max(100).trim().strict().allow(null, ''),
   slots: Joi.array().items(Joi.string().min(4).max(6).trim().strict()),
   location: Joi.object({
     top: Joi.number().strict(),
