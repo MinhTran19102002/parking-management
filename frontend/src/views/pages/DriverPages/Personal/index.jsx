@@ -46,7 +46,7 @@ function Personal({}) {
 
   const hanldePayment = async (values) => {
     try {
-      const startDay = values.startDay.unix();
+      const startDay = Number(values.startDay.format('x'));
       delete values.startDay;
       const api = await VehicleApi.registerPayment({
         startDay,

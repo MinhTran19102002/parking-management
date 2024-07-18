@@ -11,7 +11,7 @@ function PaymentRegister({ licenePlate, hanldeRegister, lag }) {
         if (months) setAmount(months);
       }}>
       <Form.Item name={'startDay'} label={lag('common:payment:registerStart')} required>
-        <DatePicker format="L" />
+        <DatePicker format="L LTS" />
       </Form.Item>
       <Form.Item name={'months'} label={lag('common:months')} required>
         <InputNumber min={1} max={12} />
