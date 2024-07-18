@@ -98,10 +98,10 @@ const CameraApi = {
   },
 
   resetAi: () => {
-    const url = `${DOMAIN_AI}/service/reset`;
-    return GET({
-      url
-    });
+    // const url = `${DOMAIN_AI}/service/reset`;
+    // return GET({
+    //   url
+    // });
   }
 };
 export default CameraApi;
