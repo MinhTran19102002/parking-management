@@ -85,7 +85,7 @@ const createEvent = async (data) => {
         if(parkingTurn.driver!= null){
           inforPerson = "\nTên chủ xe: " + parkingTurn.driver.name + "\nSĐT: " + parkingTurn.driver.phone
         }
-        message = "Thông báo!\nXe vào ô đỗ: " + parkingTurn.vehicle.licenePlate + inforPerson + "\nVị trí: " + validateData.position 
+        message = "Thông báo!\nXe vào ô đỗ: " + parkingTurn.vehicle.licenePlate + inforPerson +"\nKhu vực: "+validateData.position.charAt(0)+ "\nVị trí: " + validateData.position 
         type = "nomal"
       }
       if (validateData.name == "outSlot") {
@@ -94,7 +94,7 @@ const createEvent = async (data) => {
         if(parkingTurn.driver!= null){
           inforPerson = "\nTên chủ xe: " + parkingTurn.driver.name + "\nSĐT: " + parkingTurn.driver.phone
         }
-        message = "Thông báo!\nXe ra ô đỗ: " + parkingTurn.vehicle.licenePlate + inforPerson + "\nVị trí: " + validateData.position
+        message = "Thông báo!\nXe ra ô đỗ: " + parkingTurn.vehicle.licenePlate + inforPerson + "\nKhu vực: "+validateData.position.charAt(0)+ "\nVị trí: " + validateData.position
         type = "nomal"
       }
       await parkingTurnService.sendMessageTelegram(message, type)

@@ -11,10 +11,12 @@ Router.route('/vehicle')
   .post(vehicleValidation.create, verifyTokenMidleware.verifyTokenAndManager,vehicleController.createNew);
 
 Router.route('/active').post(
+  verifyTokenMidleware.verifyTokenAndAdminManager,
   vehicleController.isActive
 )
 
 Router.route('/inActive').post(
+  verifyTokenMidleware.verifyTokenAndAdminManager,
   vehicleController.inActive
 )
 

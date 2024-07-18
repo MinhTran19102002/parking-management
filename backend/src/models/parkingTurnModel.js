@@ -193,7 +193,8 @@ const updateOutV2 = async (filter, now, licenePlate) => {
     else {
       throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, 'Xe không ở trong bãi', 'Error', 'BR_vihicle_5_1');
     }
-    const arrayPayment = paymentModel.findByLicenePlate(licenePlate, find.start, timeOut)
+    const arrayPayment = await paymentModel.findByLicenePlate(licenePlate, find.start, timeOut)
+    console.log(arrayPayment)
     if (Array.isArray(arrayPayment) && arrayPayment.length > 0) {
       fee = 0
     }
@@ -451,6 +452,9 @@ const getVehicleInOutNumberByHour = async (startDate, endDate) => {
 
 const getRevenue = async (startDate, endDate) => {
   try {
+
+    let start1 = Date.parse(parseDate(startDate))
+    let end1 = Date.parse(parseDate(endDate))
     const start = Date.parse(parseDate(startDate)) - 7 * 60 * 60 * 1000;
     const end = Date.parse(parseDate(endDate)) - 7 * 60 * 60 * 1000;
     const getVehicleInOutNumber = await GET_DB()
@@ -459,8 +463,8 @@ const getRevenue = async (startDate, endDate) => {
         {
           $match: {
             start: {
-              $gte: start,
-              $lte: end,
+              $gte: start1,
+              $lte: end1,
             },
           },
         },
@@ -537,6 +541,9 @@ const getRevenue = async (startDate, endDate) => {
 
 const GetRevenueByHour = async (startDate, endDate) => {
   try {
+
+    let start1 = Date.parse(parseDate(startDate))
+    let end1 = Date.parse(parseDate(endDate))
     const start = Date.parse(parseDate(startDate)) - 7 * 60 * 60 * 1000;
     const end = Date.parse(parseDate(endDate)) - 7 * 60 * 60 * 1000;
     const getVehicleInOutNumber = await GET_DB()
@@ -545,8 +552,8 @@ const GetRevenueByHour = async (startDate, endDate) => {
         {
           $match: {
             start: {
-              $gte: start,
-              $lte: end,
+              $gte: start1,
+              $lte: end1,
             },
           },
         },

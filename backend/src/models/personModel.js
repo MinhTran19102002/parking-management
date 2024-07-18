@@ -565,10 +565,26 @@ const deleteDriver = async (_id) => {
       .collection(PERSON_COLLECTION_NAME)
       .findOne({ _id: new ObjectId(_id), driver: { $exists: true } });
     if (driver) {
-      if (driver.driver.vehicleId) {
-        const updateId = await GET_DB()
-          .collection(vehicleModel.VEHICLE_COLLECTION_NAME)
-          .updateOne({ _id: new ObjectId(driver.driver.vehicleId) }, { $set: { driverId: null } });
+      if (Array.isArray(driver.driver.arrayvehicleId) && driver.driver.arrayvehicleId.length > 0) {
+
+        await Promise.allSettled(
+          driver.driver.arrayvehicleId.map(async (data) => {
+            const create = await vehicleModel.inActiveById(data);
+            return create;
+          }),
+        )
+          .then((results) => {
+            results.forEach((result) => {
+              console.log(result);
+            });
+          })
+          .catch((error) => {
+            throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, error.message);
+          });
+        // const updateId = await GET_DB()
+        //   .collection(vehicleModel.VEHICLE_COLLECTION_NAME)
+        //   .updateOne({ _id: new ObjectId(driver.driver.vehicleId) }, { $set: { driverId: null } });
+        // await vehicleModel.inActiveById()
       }
     } else {
       throw new ApiError(

@@ -34,7 +34,7 @@ const createNew = async (data) => {
       throw new ApiError(StatusCodes.NOT_FOUND, 'Xe hien tai chua duoc xac nhan', 'already exist', 'BR_zone_1');
     }
     const checkDay = await GET_DB().collection(PAYMENT_COLLECTION_NAME).findOne({ "licenePlate": data.licenePlate, _destroy: false });
-
+    console.log(checkDay)
     if (checkDay) {
       if (checkDay.endDay > data.startDay)
         throw new ApiError(StatusCodes.NOT_FOUND, 'Xe hien da dang ky nao ngay nay roi', 'already exist', 'BR_zone_1');
@@ -118,6 +118,25 @@ const cancel = async (_id) => {
     throw new Error(error);
   }
 };
+
+
+const cancelByLicenePlate = async (licenePlate) => {
+  try {
+    const findOne = await GET_DB()
+      .collection(PAYMENT_COLLECTION_NAME)
+      .updateMany({ licenePlate: licenePlate },
+        {
+          $set: {
+            _destroy: true
+          }
+        }
+      );
+    return findOne;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 
 const findByfilter = async ({ pageSize, pageIndex, startDate, endDate, ...params }) => {
   // Construct the regular expression pattern dynamically
@@ -265,4 +284,5 @@ export const paymentModel = {
   findByfilter,
   cancel,
   findByLicenePlate,
+  cancelByLicenePlate,
 }
