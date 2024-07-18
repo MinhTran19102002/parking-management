@@ -102,7 +102,7 @@ function Map({}) {
           {lag('common:yourCarStatus', { ...personalSlot })}
         </Typography.Title>
       ) : (
-        <Typography.Title level={2}>{lag('common:yourCarStatus:carNotZone')}</Typography.Title>
+        <Typography.Title level={2}>{lag('common:carNotZone')}</Typography.Title>
       )}
 
       <TransformBlock className="mt-2 overflow-hidden" style={{ backgroundColor: token.neutral5 }}>

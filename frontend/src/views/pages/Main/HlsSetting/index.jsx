@@ -159,14 +159,14 @@ function HlsSetting({}) {
             render: (_, record, ix) => {
               return (
                 <Space>
-                  <Button
+                  {/* <Button
                     id={`btnEdit${ix}`}
                     icon={<EditOutlined />}
                     type="text"
                     onClick={() => {
                       onEdit(record.cameraId);
                     }}
-                  />
+                  /> */}
                   <Button
                     id={`btnDelete${ix}`}
                     icon={<DeleteOutlined />}

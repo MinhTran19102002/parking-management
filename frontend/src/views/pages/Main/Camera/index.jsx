@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Card, Row, Table, Typography, Space, Button, Modal, Pagination } from 'antd';
+import { Card, Row, Table, Typography, Space, Button, Modal, Pagination, Input } from 'antd';
 import { Content } from '~/views/layouts';
 import {
   PlusOutlined,
@@ -223,13 +223,19 @@ function Camera({}) {
         }
         className="box">
         <Row className="mt-2 mb-4 w-100">
-          {/* <Row>
-            <Space>
-              <Typography.Title level={5} className="mb-0">
-                {lag('common:filter')}
-              </Typography.Title>
-            </Space>
-          </Row> */}
+          <Space>
+            <Input
+              style={{
+                width: 320
+              }}
+              name="cameraId"
+              placeholder={'Camera Id'}
+              defaultValue={params.cameraId}
+              onPressEnter={onEnterFilter}
+              onChange={onChangeFilter}
+              allowClear={true}
+            />
+          </Space>
         </Row>
         <Table
           columns={hanldeColumes({ pageIndex, pageSize, onEdit, onDelete }, lag)}

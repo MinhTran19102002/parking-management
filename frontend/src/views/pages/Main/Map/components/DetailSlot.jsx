@@ -53,6 +53,8 @@ function DetailSlot({ position, zone, vehicle, driver, image, startTime }) {
     if (key === 'job') {
       xValue = JobServices.getTextByValue(xValue);
     }
+    if (key === 'department') xValue = lag('department:' + xValue);
+
     driverInfo.push(
       <Typography.Text key={'info' + i}>
         <span className="label" style={{ color: token.colorTextSecondary }}>
